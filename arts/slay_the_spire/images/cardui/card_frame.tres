@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bjw8kfs7k2gu1"]
+
+[ext_resource type="Texture2D" uid="uid://bxjgjid6bgcng" path="res://arts/slay_the_spire/images/cardui/cardui2.png" id="1_w2o7r"]
+
+[resource]
+atlas = ExtResource("1_w2o7r")
+region = Rect2(2, 178, 262, 185)
+filter_clip = true

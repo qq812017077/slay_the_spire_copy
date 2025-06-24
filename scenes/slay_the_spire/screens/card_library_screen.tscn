@@ -1,0 +1,607 @@
+[gd_scene load_steps=30 format=3 uid="uid://b04je3p7tmt13"]
+
+[ext_resource type="Texture2D" uid="uid://d2xsq4vnwwm3w" path="res://arts/slay_the_spire/images/ui/card_library/greenTab.png" id="1_3il74"]
+[ext_resource type="Texture2D" uid="uid://darv4lj7071sb" path="res://arts/slay_the_spire/images/ui/card_library/redTab.png" id="1_7ny8j"]
+[ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="1_8ntxm"]
+[ext_resource type="Script" uid="uid://qr665s5ofd43" path="res://scripts/ui/screens/card_library_screen.gd" id="1_v566g"]
+[ext_resource type="PackedScene" uid="uid://dauhc6r325g02" path="res://scenes/slay_the_spire/cards/skill_card.tscn" id="3_y706e"]
+[ext_resource type="Texture2D" uid="uid://bmf6vnoay6xwv" path="res://arts/slay_the_spire/images/ui/card_library/blueTab.png" id="4_jve6k"]
+[ext_resource type="Texture2D" uid="uid://bfbfmm1lq5dye" path="res://arts/slay_the_spire/images/ui/card_library/purpleTab.png" id="5_i2t0k"]
+[ext_resource type="Texture2D" uid="uid://d2o0bgapkb5ea" path="res://arts/slay_the_spire/images/ui/card_library/colorlessTab.png" id="6_bx56t"]
+[ext_resource type="FontFile" uid="uid://poln5dbu12w4" path="res://arts/slay_the_spire/fonts/zhs/NotoSansMonoCJKsc-Regular.otf" id="7_7sblx"]
+[ext_resource type="Texture2D" uid="uid://j2demj5k8yct" path="res://arts/slay_the_spire/images/ui/card_library/curseTab.png" id="7_sr5sr"]
+[ext_resource type="Texture2D" uid="uid://qt8rfg6mll40" path="res://arts/slay_the_spire/images/ui/card_library/TabBar.tres" id="8_uio4d"]
+[ext_resource type="PackedScene" uid="uid://brhvcimo2tlol" path="res://scenes/slay_the_spire/cards/attack_card.tscn" id="9_rkeyx"]
+[ext_resource type="PackedScene" uid="uid://6nwca2xsjk7u" path="res://scenes/slay_the_spire/cards/power_card.tscn" id="10_7clo3"]
+[ext_resource type="ButtonGroup" uid="uid://cxr4bjf0w1jif" path="res://arts/slay_the_spire/images/ui/card_library/tab_group.tres" id="13_8i2rw"]
+[ext_resource type="Script" uid="uid://kvhqo7uinots" path="res://scripts/ui/screens/comps/card_lib_sort_header.gd" id="14_qld7t"]
+[ext_resource type="Texture2D" uid="uid://dpudrjctmgpcv" path="res://arts/slay_the_spire/images/ui/FilterArrowUp.png" id="16_8i2rw"]
+[ext_resource type="Texture2D" uid="uid://dcyeshwb085jb" path="res://arts/slay_the_spire/images/ui/card_library/tickbox_ticked.png" id="16_dcf3r"]
+[ext_resource type="Texture2D" uid="uid://kc4xb10krl0l" path="res://arts/slay_the_spire/images/ui/card_library/tickbox_unticked.png" id="17_8i2rw"]
+[ext_resource type="Texture2D" uid="uid://bcewy3ocbvufe" path="res://arts/slay_the_spire/images/ui/FilterArrowDown.png" id="17_dopji"]
+[ext_resource type="Script" uid="uid://bso61sp7q7mdh" path="res://scripts/ui/screens/comps/top_panel_toggle_button.gd" id="18_nfpkn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pofnb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dopji"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dcf3r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qld7t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7sblx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8i2rw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ip3n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrtub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfpkn"]
+
+[node name="CardLibraryScreen" type="Control" node_paths=PackedStringArray("scroll_container", "v_scroll_bar", "tabs", "card_lib_sort_header", "upgrade_checkbox", "cards_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = -173.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8ntxm")
+script = ExtResource("1_v566g")
+attack_prefab = ExtResource("9_rkeyx")
+skill_prefab = ExtResource("3_y706e")
+power_prefab = ExtResource("10_7clo3")
+scroll_container = NodePath("ScrollContainer")
+v_scroll_bar = NodePath("VScrollBar")
+tabs = [NodePath("ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/RedTab"), NodePath("ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/GreenTab"), NodePath("ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/BlueTab"), NodePath("ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/PurpleTab"), NodePath("ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/ColorlessTab"), NodePath("ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/CurseTab")]
+card_lib_sort_header = NodePath("ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture")
+upgrade_checkbox = NodePath("ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture/HBoxContainer/UpgradeCheckBox")
+cards_container = NodePath("ScrollContainer/VBoxContainer/MarginContainer/CardsContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 1429.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer_deprected" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Space" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected"]
+custom_minimum_size = Vector2(21.955, 0)
+layout_mode = 2
+
+[node name="TabContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected"]
+custom_minimum_size = Vector2(1228, 76)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = -85
+columns = 6
+
+[node name="RedTab" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pofnb")
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+icon = ExtResource("1_7ny8j")
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer/RedTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -21.0
+offset_right = 90.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GreenTab" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer"]
+z_index = -1
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pofnb")
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+icon = ExtResource("1_3il74")
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer/GreenTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlueTab" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer"]
+z_index = -2
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pofnb")
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+icon = ExtResource("4_jve6k")
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer/BlueTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PurpleTab" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer"]
+z_index = -3
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pofnb")
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+icon = ExtResource("5_i2t0k")
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer/PurpleTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorlessTab" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer"]
+z_index = -4
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pofnb")
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+icon = ExtResource("6_bx56t")
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer/ColorlessTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurseTab" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer"]
+z_index = -5
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pofnb")
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+icon = ExtResource("7_sr5sr")
+flat = true
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer_deprected/TabContainer/CurseTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Space" type="Control" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(63.94, 0)
+layout_mode = 2
+
+[node name="TabContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1228, 76)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/h_separation = -5
+columns = 6
+
+[node name="RedTab" type="TextureButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer"]
+custom_minimum_size = Vector2(200, 76)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+texture_normal = ExtResource("1_7ny8j")
+texture_pressed = ExtResource("1_7ny8j")
+texture_hover = ExtResource("1_7ny8j")
+texture_disabled = ExtResource("1_7ny8j")
+texture_focused = ExtResource("1_7ny8j")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/RedTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -21.0
+offset_right = 90.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GreenTab" type="TextureButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer"]
+z_index = -1
+custom_minimum_size = Vector2(200, 76)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+texture_normal = ExtResource("1_3il74")
+texture_pressed = ExtResource("1_3il74")
+texture_hover = ExtResource("1_3il74")
+texture_disabled = ExtResource("1_3il74")
+texture_focused = ExtResource("1_3il74")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/GreenTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlueTab" type="TextureButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer"]
+z_index = -2
+custom_minimum_size = Vector2(200, 76)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+texture_normal = ExtResource("4_jve6k")
+texture_pressed = ExtResource("4_jve6k")
+texture_hover = ExtResource("4_jve6k")
+texture_disabled = ExtResource("4_jve6k")
+texture_focused = ExtResource("4_jve6k")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/BlueTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PurpleTab" type="TextureButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer"]
+z_index = -3
+custom_minimum_size = Vector2(200, 76)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+texture_normal = ExtResource("5_i2t0k")
+texture_pressed = ExtResource("5_i2t0k")
+texture_hover = ExtResource("5_i2t0k")
+texture_disabled = ExtResource("5_i2t0k")
+texture_focused = ExtResource("5_i2t0k")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/PurpleTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorlessTab" type="TextureButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer"]
+z_index = -4
+custom_minimum_size = Vector2(200, 76)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+texture_normal = ExtResource("6_bx56t")
+texture_pressed = ExtResource("6_bx56t")
+texture_hover = ExtResource("6_bx56t")
+texture_disabled = ExtResource("6_bx56t")
+texture_focused = ExtResource("6_bx56t")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/ColorlessTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurseTab" type="TextureButton" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer"]
+z_index = -5
+custom_minimum_size = Vector2(200, 76)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("13_8i2rw")
+texture_normal = ExtResource("7_sr5sr")
+texture_pressed = ExtResource("7_sr5sr")
+texture_hover = ExtResource("7_sr5sr")
+texture_disabled = ExtResource("7_sr5sr")
+texture_focused = ExtResource("7_sr5sr")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/TabContainer/CurseTab"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -21.0
+offset_right = 37.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.67451, 0.27451, 1)
+theme_override_colors/font_outline_color = Color(0.305882, 0.0470588, 0.0627451, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("7_7sblx")
+theme_override_font_sizes/font_size = 28
+text = "红色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TabColorBar" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="TabBarTexture" type="TextureRect" parent="ScrollContainer/VBoxContainer/TabColorBar" node_paths=PackedStringArray("rarity_button", "type_button", "cost_button")]
+self_modulate = Color(0.447059, 0.0862745, 0.0862745, 1)
+layout_mode = 0
+offset_top = -21.03
+offset_right = 1294.0
+offset_bottom = 43.97
+texture = ExtResource("8_uio4d")
+script = ExtResource("14_qld7t")
+arrow_up = ExtResource("16_8i2rw")
+arrow_down = ExtResource("17_dopji")
+rarity_button = NodePath("HBoxContainer/CardRarity")
+type_button = NodePath("HBoxContainer/CardType")
+cost_button = NodePath("HBoxContainer/CardCost")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -28.88
+offset_bottom = 27.12
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardRarity" type="Button" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dopji")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dcf3r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qld7t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7sblx")
+toggle_mode = true
+text = "稀有度"
+icon = ExtResource("16_8i2rw")
+icon_alignment = 2
+script = ExtResource("18_nfpkn")
+
+[node name="CardType" type="Button" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dopji")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8i2rw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0ip3n")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7sblx")
+toggle_mode = true
+text = "大撒大撒"
+script = ExtResource("18_nfpkn")
+
+[node name="CardCost" type="Button" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dopji")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8i2rw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mrtub")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7sblx")
+toggle_mode = true
+script = ExtResource("18_nfpkn")
+
+[node name="Space" type="Control" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpgradeCheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nfpkn")
+theme_override_icons/checked = ExtResource("16_dcf3r")
+theme_override_icons/unchecked = ExtResource("17_8i2rw")
+theme_override_icons/radio_checked = ExtResource("16_dcf3r")
+theme_override_icons/radio_unchecked = ExtResource("17_8i2rw")
+text = "看升级版"
+script = ExtResource("18_nfpkn")
+
+[node name="Space2" type="Control" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.19
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="CardsContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 35
+theme_override_constants/v_separation = 20
+columns = 5
+
+[node name="VScrollBar" type="VScrollBar" parent="."]
+z_index = 999
+layout_mode = 0
+offset_left = 1379.0
+offset_right = 1429.0
+offset_bottom = 900.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://qt8rfg6mll40"]
+
+[ext_resource type="Texture2D" uid="uid://jynnuanm2qtn" path="res://arts/slay_the_spire/images/ui/card_library/colorTabBar.png" id="1_3hopn"]
+
+[resource]
+atlas = ExtResource("1_3hopn")
+region = Rect2(17, 19, 1298, 65)

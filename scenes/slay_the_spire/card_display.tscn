@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://i8arfqkss15b"]
+
+[ext_resource type="Script" uid="uid://dwprjpprfr6b6" path="res://scripts/test/card_display.gd" id="1_3e0cd"]
+[ext_resource type="PackedScene" uid="uid://brhvcimo2tlol" path="res://scenes/slay_the_spire/cards/attack_card.tscn" id="1_qktx7"]
+[ext_resource type="PackedScene" uid="uid://6nwca2xsjk7u" path="res://scenes/slay_the_spire/cards/power_card.tscn" id="3_2wdie"]
+[ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="3_he2fu"]
+[ext_resource type="PackedScene" uid="uid://dauhc6r325g02" path="res://scenes/slay_the_spire/cards/skill_card.tscn" id="3_l7iln"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ml45"]
+
+[node name="CardDisplay" type="PanelContainer" node_paths=PackedStringArray("card_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5ml45")
+script = ExtResource("1_3e0cd")
+attack_card_prefab = ExtResource("1_qktx7")
+skill_card_prefab = ExtResource("3_l7iln")
+power_card_prefab = ExtResource("3_2wdie")
+card_container = NodePath("MarginContainer/ScrollContainer/MarginContainer/GridContainer")
+card_theme = ExtResource("3_he2fu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_he2fu")
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="Card" parent="MarginContainer/ScrollContainer/MarginContainer/GridContainer" instance=ExtResource("1_qktx7")]
+visible = false
+layout_mode = 2

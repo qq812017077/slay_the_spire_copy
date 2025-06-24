@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://e8nhkfd6qpbx"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 23.0
+text = "1213123123
+的打算"
+vertical_alignment = 1

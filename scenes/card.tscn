@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgh5hqobc5puw"]
+
+[ext_resource type="Script" uid="uid://cx66c4msdxhth" path="res://scripts/ui/card_widget.gd" id="1_d81rb"]
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_d81rb")
+
+[node name="FrontFace" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="FrontFace"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackFace" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="BackFace"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

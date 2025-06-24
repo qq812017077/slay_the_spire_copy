@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcgdn8tolk322"]
+
+[ext_resource type="Script" uid="uid://d2sqyl6ou7u8u" path="res://scripts/core/card_manager.gd" id="1_htrw1"]
+[ext_resource type="Script" uid="uid://f40etcioaujp" path="res://scripts/hand_container.gd" id="2_htrw1"]
+[ext_resource type="PackedScene" uid="uid://dg37v5wgu73m7" path="res://scenes/player.tscn" id="3_osnhv"]
+[ext_resource type="PackedScene" uid="uid://brhvcimo2tlol" path="res://scenes/slay_the_spire/cards/attack_card.tscn" id="4_5mf5x"]
+
+[sub_resource type="Curve2D" id="Curve2D_537il"]
+_data = {
+"points": PackedVector2Array(-103.818, 57.233, 103.818, -57.233, -509.008, 1.05389, -159.664, 0, 159.664, 0, 2.10773, -86.4153, -111.601, -58.8723, 111.601, 58.8723, 513.223, 1.05389)
+}
+point_count = 3
+
+[node name="fight" type="Node"]
+
+[node name="CardManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 2.0
+offset_bottom = 2.0
+script = ExtResource("1_htrw1")
+
+[node name="HandContainer" type="Control" parent="CardManager"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 619.0
+offset_top = 678.0
+offset_right = 659.0
+offset_bottom = 718.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_htrw1")
+
+[node name="Path2D" type="Path2D" parent="CardManager/HandContainer"]
+scale = Vector2(0.8, 0.8)
+curve = SubResource("Curve2D_537il")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="CardManager/HandContainer/Path2D"]
+position = Vector2(-509.008, 1.05389)
+rotation = -0.503827
+loop = false
+
+[node name="player" parent="." instance=ExtResource("3_osnhv")]
+offset_left = 294.0
+offset_top = 552.0
+offset_right = 294.0
+offset_bottom = 552.0
+
+[node name="AttackCard" parent="." instance=ExtResource("4_5mf5x")]
+offset_left = 744.0
+offset_top = 470.0
+offset_right = 744.0
+offset_bottom = 470.0

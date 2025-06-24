@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c66o12lhnitju"]
+
+[ext_resource type="StyleBox" uid="uid://cy37fqm2kjr42" path="res://arts/themes/scroll_grabber.tres" id="1_a3tlr"]
+[ext_resource type="StyleBox" uid="uid://ccard7ipssy3f" path="res://arts/themes/scroll.tres" id="2_hwljv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8mr3b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vv03f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwljv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_31yea"]
+
+[resource]
+CardDescriptionLabel/base_type = &"CardDescriptionLabel"
+CardDescriptionLabel/colors/keyword_color = Color(0.937255, 0.784314, 0.317647, 1)
+CardDescriptionLabel/colors/normal_color = Color(1, 0.964706, 0.886275, 1)
+CardDescriptionLabel/colors/shadow_color = Color(0, 0, 0, 0.776471)
+CardDescriptionLabel/constants/shadow_offset_x = 2
+CardDescriptionLabel/constants/shadow_offset_y = 2
+CardDescriptionLabel/font_sizes/font_size = 18
+CardLibraryScreen/base_type = &"CardLibraryScreen"
+CardLibraryScreen/colors/tab_font_normal_color = Color(0.724643, 0.724643, 0.724643, 1)
+CardLibraryScreen/colors/tab_font_selected_color = Color(0.823529, 0.67451, 0.27451, 1)
+SortHeader/colors/font_normal_color = Color(0.996078, 0.960784, 0.882353, 1)
+SortHeader/colors/font_outline_color = Color(0.243137, 0.231373, 0.211765, 1)
+SortHeader/colors/font_pressed_color = Color(0.905882, 0.752941, 0.305882, 1)
+SortHeader/colors/font_shadow_color = Color(0, 0, 0, 0.811765)
+SortHeader/constants/font_size = 28
+SortHeader/constants/outline_size = 14
+SortHeader/constants/shadow_offset_x = 3
+SortHeader/constants/shadow_offset_y = 3
+TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_8mr3b")
+TabBar/styles/tab_hovered = SubResource("StyleBoxEmpty_vv03f")
+TabBar/styles/tab_selected = SubResource("StyleBoxEmpty_hwljv")
+TabBar/styles/tab_unselected = SubResource("StyleBoxEmpty_31yea")
+VScrollBar/styles/grabber = ExtResource("1_a3tlr")
+VScrollBar/styles/grabber_highlight = ExtResource("1_a3tlr")
+VScrollBar/styles/grabber_pressed = ExtResource("1_a3tlr")
+VScrollBar/styles/scroll = ExtResource("2_hwljv")
+VScrollBar/styles/scroll_focus = ExtResource("2_hwljv")

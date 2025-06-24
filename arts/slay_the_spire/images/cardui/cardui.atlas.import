@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dv68hhyxh1ly7"
+path="res://.godot/imported/cardui.atlas-9635fa2b0b8115dcd7e8de39bd5de1a8.spatlas"
+
+[deps]
+
+source_file="res://arts/slay_the_spire/images/cardui/cardui.atlas"
+dest_files=["res://.godot/imported/cardui.atlas-9635fa2b0b8115dcd7e8de39bd5de1a8.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

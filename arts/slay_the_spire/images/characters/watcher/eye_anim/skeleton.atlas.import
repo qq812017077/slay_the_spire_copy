@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://r7ftvoy81dmb"
+path="res://.godot/imported/skeleton.atlas-cef8df852fdd430857d61610f6c740f4.spatlas"
+
+[deps]
+
+source_file="res://arts/slay_the_spire/images/characters/watcher/eye_anim/skeleton.atlas"
+dest_files=["res://.godot/imported/skeleton.atlas-cef8df852fdd430857d61610f6c740f4.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

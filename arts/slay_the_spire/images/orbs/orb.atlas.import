@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://2d48ib4ey37y"
+path="res://.godot/imported/orb.atlas-88a4dd9e0c6ffc1be4e9a045e30329a5.spatlas"
+
+[deps]
+
+source_file="res://arts/slay_the_spire/images/orbs/orb.atlas"
+dest_files=["res://.godot/imported/orb.atlas-88a4dd9e0c6ffc1be4e9a045e30329a5.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

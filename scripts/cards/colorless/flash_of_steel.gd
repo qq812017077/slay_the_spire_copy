@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Flash of Steel", card_string.name, "colorless/attack/flash_of_steel", 0, card_string.description, CardType.ATTACK, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 3
+	
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

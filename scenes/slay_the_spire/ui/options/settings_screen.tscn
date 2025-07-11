@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfyifvawlr8ht"]
+
+[ext_resource type="Script" uid="uid://cv8diog6f3g00" path="res://scripts/ui/options/settings_screen.gd" id="1_8f25w"]
+[ext_resource type="PackedScene" uid="uid://wirqo3pgodbw" path="res://scenes/slay_the_spire/ui/cancel_button.tscn" id="1_fg0gv"]
+[ext_resource type="Texture2D" uid="uid://dn4qlek8qmtmq" path="res://arts/slay_the_spire/images/ui/options/settingsBackground.png" id="2_vs2aa"]
+[ext_resource type="Texture2D" uid="uid://c4ldck1vd58n6" path="res://arts/slay_the_spire/images/ui/options/inputPaneBg2.png" id="3_dg1da"]
+[ext_resource type="Texture2D" uid="uid://d3t4t67j6sflv" path="res://arts/slay_the_spire/images/ui/options/inputPaneFg.png" id="4_bw1r8"]
+[ext_resource type="Texture2D" uid="uid://db8bromw0qtf4" path="res://arts/slay_the_spire/images/ui/options/quitButton.png" id="5_3xwhn"]
+[ext_resource type="Script" uid="uid://crfq7cqdj6pcp" path="res://scripts/ui/buttons/button_ex.gd" id="6_8f25w"]
+[ext_resource type="Texture2D" uid="uid://d3msmv4actkij" path="res://arts/slay_the_spire/images/ui/options/abandon.png" id="6_bjc07"]
+
+[node name="SettingsScreen" type="Control" node_paths=PackedStringArray("game_settings_button", "input_settings_button", "abadon_button", "exit_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.833, 0.833)
+mouse_filter = 2
+script = ExtResource("1_8f25w")
+game_settings_button = NodePath("GameSettingButton")
+input_settings_button = NodePath("InputSettingButton")
+abadon_button = NodePath("GameSettings/AbandonButton")
+exit_button = NodePath("GameSettings/ExitButton")
+
+[node name="CancelButton" parent="." groups=["button"] instance=ExtResource("1_fg0gv")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="InputSettings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="InputPaneBg2" type="Sprite2D" parent="InputSettings"]
+texture = ExtResource("3_dg1da")
+centered = false
+
+[node name="InputPaneFg" type="Sprite2D" parent="InputSettings"]
+texture = ExtResource("4_bw1r8")
+centered = false
+
+[node name="GameSettings" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SettingsBackground" type="Sprite2D" parent="GameSettings"]
+texture = ExtResource("2_vs2aa")
+centered = false
+
+[node name="Graphcis" type="Control" parent="GameSettings"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="GameSettings/Graphcis"]
+layout_mode = 0
+offset_left = 541.0
+offset_top = 298.0
+offset_right = 761.0
+offset_bottom = 346.0
+theme_override_font_sizes/font_size = 31
+text = "画面"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="Control" parent="GameSettings"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="GameSettings/Sound"]
+layout_mode = 0
+offset_left = 1176.0
+offset_top = 288.0
+offset_right = 1396.0
+offset_bottom = 336.0
+theme_override_font_sizes/font_size = 31
+text = "声音"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Preferences" type="Control" parent="GameSettings"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="GameSettings/Preferences"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 609.0
+offset_right = 760.0
+offset_bottom = 657.0
+theme_override_font_sizes/font_size = 31
+text = "偏好"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Miscellaneous" type="Control" parent="GameSettings"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="GameSettings/Miscellaneous"]
+layout_mode = 0
+offset_left = 1165.0
+offset_top = 600.0
+offset_right = 1385.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 31
+text = "杂项"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AbandonButton" type="Button" parent="GameSettings" node_paths=PackedStringArray("texture") groups=["button"]]
+z_index = 1
+layout_mode = 0
+offset_left = 1207.68
+offset_top = 148.86
+offset_right = 1642.68
+offset_bottom = 240.86
+script = ExtResource("6_8f25w")
+texture = NodePath("AbandonIcon")
+metadata/_custom_type_script = "uid://crfq7cqdj6pcp"
+
+[node name="AbandonIcon" type="Sprite2D" parent="GameSettings/AbandonButton"]
+z_index = -1
+texture = ExtResource("6_bjc07")
+centered = false
+
+[node name="ExitButton" type="Button" parent="GameSettings" node_paths=PackedStringArray("texture") groups=["button"]]
+z_index = 1
+layout_mode = 0
+offset_left = 1338.54
+offset_top = 864.346
+offset_right = 1744.54
+offset_bottom = 961.346
+script = ExtResource("6_8f25w")
+texture = NodePath("ExitButton")
+metadata/_custom_type_script = "uid://crfq7cqdj6pcp"
+
+[node name="ExitButton" type="Sprite2D" parent="GameSettings/ExitButton"]
+z_index = -1
+position = Vector2(147.659, -122.449)
+texture = ExtResource("5_3xwhn")
+offset = Vector2(0.015, 0)
+
+[node name="GameSettingButton" type="Button" parent="." groups=["button"]]
+layout_mode = 0
+offset_left = 380.552
+offset_top = 130.0
+offset_right = 680.552
+offset_bottom = 197.0
+text = "游戏设置"
+script = ExtResource("6_8f25w")
+metadata/_custom_type_script = "uid://crfq7cqdj6pcp"
+
+[node name="InputSettingButton" type="Button" parent="." groups=["button"]]
+layout_mode = 0
+offset_left = 767.107
+offset_top = 130.0
+offset_right = 1067.11
+offset_bottom = 197.0
+text = "操作设置"
+script = ExtResource("6_8f25w")
+metadata/_custom_type_script = "uid://crfq7cqdj6pcp"

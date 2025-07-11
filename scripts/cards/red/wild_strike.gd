@@ -14,3 +14,9 @@ func _init() -> void:
 	self.base_damage = 12
 	self.tags.append(CardTag.STRIKE)
 	self.card_to_preview = Wound.new()
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(5)

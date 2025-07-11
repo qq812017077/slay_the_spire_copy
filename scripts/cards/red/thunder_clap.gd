@@ -14,3 +14,10 @@ func _init() -> void:
 
 	self.is_multi_damage = true
 	self.base_damage = 4
+
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

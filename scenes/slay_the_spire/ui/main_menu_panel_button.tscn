@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://wv6w5fqenwtd"]
+
+[ext_resource type="Script" uid="uid://cltkdl4f35tep" path="res://scripts/ui/buttons/main_menu_panel_button.gd" id="1_467oa"]
+[ext_resource type="Texture2D" uid="uid://djcnbhsrhu0fp" path="res://arts/slay_the_spire/images/ui/menu/menuPanel.png" id="2_dmnbf"]
+[ext_resource type="Texture2D" uid="uid://d3v2dhb5u60sc" path="res://arts/slay_the_spire/images/ui/menu/portrait/card.jpg" id="3_ccn46"]
+[ext_resource type="Texture2D" uid="uid://fgrnf4brojgq" path="res://arts/slay_the_spire/images/ui/menu/menuPanelFrame.png" id="4_gecu6"]
+
+[sub_resource type="Curve" id="Curve_gecu6"]
+_data = [Vector2(0.0100806, 0.000753522), 0.0, 0.0665633, 0, 0, Vector2(1, 1), 4.95252, 0.0, 0, 0]
+point_count = 2
+
+[node name="MainMenuPanelButton" type="Control" node_paths=PackedStringArray("button", "panel_img", "portrait_img", "header", "description")]
+custom_minimum_size = Vector2(385, 690)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 385.0
+offset_bottom = 690.0
+pivot_offset = Vector2(192.5, 345)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+script = ExtResource("1_467oa")
+swing_in_curve = SubResource("Curve_gecu6")
+button = NodePath("Button")
+panel_img = NodePath("PanelImg")
+portrait_img = NodePath("PortraitImg")
+header = NodePath("Header")
+description = NodePath("Description")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 690.0
+
+[node name="PanelImg" type="Sprite2D" parent="."]
+position = Vector2(192, 355)
+texture = ExtResource("2_dmnbf")
+region_enabled = true
+region_rect = Rect2(64, 48, 385, 711)
+region_filter_clip_enabled = true
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(31, 103)
+texture = ExtResource("4_gecu6")
+centered = false
+region_enabled = true
+region_rect = Rect2(93, 151, 326, 214)
+
+[node name="PortraitImg" type="Sprite2D" parent="."]
+position = Vector2(36, 107)
+texture = ExtResource("3_ccn46")
+centered = false
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 24.0
+offset_right = 317.0
+offset_bottom = 90.0
+text = "标准模式"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 355.0
+offset_right = 358.0
+offset_bottom = 621.0
+text = "启程去屠戮这座高塔。"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -13,3 +13,9 @@ func _init() -> void:
 
 	self.is_innate = true
 	self.base_damage = 0
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(1)
+		initialize_description()

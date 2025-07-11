@@ -14,3 +14,11 @@ func _init() -> void:
 	self.base_magic_number = 1
 	self.magic_number = self.base_magic_number
 	self.card_to_preview = Smite.new()
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		is_innate = true
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

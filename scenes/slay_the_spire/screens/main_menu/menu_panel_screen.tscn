@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqxwlgn6dpcca"]
+
+[ext_resource type="PackedScene" uid="uid://wv6w5fqenwtd" path="res://scenes/slay_the_spire/ui/main_menu_panel_button.tscn" id="1_sdux5"]
+[ext_resource type="Script" uid="uid://bwg50teqwg0gn" path="res://scripts/ui/screens/menu_panel_screen.gd" id="1_xidl7"]
+[ext_resource type="PackedScene" uid="uid://wirqo3pgodbw" path="res://scenes/slay_the_spire/ui/cancel_button.tscn" id="3_gfoju"]
+[ext_resource type="PackedScene" uid="uid://ddxl2fnk5ccwb" path="res://scenes/slay_the_spire/ui/confirm_button.tscn" id="4_kbrja"]
+
+[node name="MainMenuPanelScreen" type="Control" node_paths=PackedStringArray("panel_buttons", "cancel_button", "confirm_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xidl7")
+panel_buttons = [NodePath("MainMenuPanelButton"), NodePath("MainMenuPanelButton2"), NodePath("MainMenuPanelButton3")]
+cancel_button = NodePath("CancelButton")
+confirm_button = NodePath("ConfirmButton")
+
+[node name="MainMenuPanelButton" parent="." instance=ExtResource("1_sdux5")]
+layout_mode = 0
+offset_left = 333.0
+offset_top = 195.0
+offset_right = 718.0
+offset_bottom = 885.0
+
+[node name="MainMenuPanelButton2" parent="." instance=ExtResource("1_sdux5")]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 195.0
+offset_right = 1152.0
+offset_bottom = 885.0
+
+[node name="MainMenuPanelButton3" parent="." instance=ExtResource("1_sdux5")]
+layout_mode = 0
+offset_left = 1201.0
+offset_top = 195.0
+offset_right = 1586.0
+offset_bottom = 885.0
+
+[node name="CancelButton" parent="." instance=ExtResource("3_gfoju")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="ConfirmButton" parent="." instance=ExtResource("4_kbrja")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -256.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0

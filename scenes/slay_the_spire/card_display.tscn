@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://i8arfqkss15b"]
 
 [ext_resource type="Script" uid="uid://dwprjpprfr6b6" path="res://scripts/test/card_display.gd" id="1_3e0cd"]
-[ext_resource type="PackedScene" uid="uid://brhvcimo2tlol" path="res://scenes/slay_the_spire/cards/attack_card.tscn" id="1_qktx7"]
-[ext_resource type="PackedScene" uid="uid://6nwca2xsjk7u" path="res://scenes/slay_the_spire/cards/power_card.tscn" id="3_2wdie"]
+[ext_resource type="PackedScene" uid="uid://brhvcimo2tlol" path="res://scenes/slay_the_spire/cards/attack_card_small.tscn" id="1_qktx7"]
+[ext_resource type="PackedScene" uid="uid://6nwca2xsjk7u" path="res://scenes/slay_the_spire/cards/power_card_small.tscn" id="3_2wdie"]
 [ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="3_he2fu"]
-[ext_resource type="PackedScene" uid="uid://dauhc6r325g02" path="res://scenes/slay_the_spire/cards/skill_card.tscn" id="3_l7iln"]
+[ext_resource type="PackedScene" uid="uid://dauhc6r325g02" path="res://scenes/slay_the_spire/cards/skill_card_small.tscn" id="3_l7iln"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ml45"]
 

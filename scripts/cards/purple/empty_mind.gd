@@ -14,3 +14,11 @@ func _init() -> void:
 	self.base_magic_number = 2
 	self.magic_number = self.base_magic_number
 	self.tags.append(CardTag.EMPTY)
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(1)
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

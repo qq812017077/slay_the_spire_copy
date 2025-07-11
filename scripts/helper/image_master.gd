@@ -1,6 +1,8 @@
 class_name ImageMaster
 extends Object
 
+# settings
+
 static var card_ui_atlas: TextureAtlas = null
 static var card_back: AtlasRegion = null
 static var card_bg: AtlasRegion = null
@@ -60,9 +62,13 @@ static var card_green_orb_large: AtlasRegion = null
 static var card_attack_bg_blue_large: AtlasRegion = null
 static var card_skill_bg_blue_large: AtlasRegion = null
 static var card_power_bg_blue_large: AtlasRegion = null
-
-static var card_skill_bg_black_large: AtlasRegion = null
 static var card_blue_orb_large: AtlasRegion = null
+
+static var card_attack_bg_colorless_large : AtlasRegion = null 
+static var card_skill_bg_colorless_large : AtlasRegion = null
+static var card_power_bg_colorless_large : AtlasRegion = null
+static var card_skill_bg_black_large: AtlasRegion = null
+static var card_colorless_orb_large: AtlasRegion = null
 
 # frame large
 static var card_frame_attack_common_large: AtlasRegion = null
@@ -81,11 +87,49 @@ static var card_banner_uncommon_large: AtlasRegion = null
 static var card_banner_rare_large: AtlasRegion = null
 
 
+# portrait
+static var PORTRAIT_STANDARD: Texture2D = null
+static var PORTRAIT_DAILY: Texture2D = null
+static var PORTRAIT_LOOP: Texture2D = null
+static var PORTRAIT_INFO_CARD: Texture2D = null
+static var PORTRAIT_INFO_RELIC: Texture2D = null
+static var PORTRAIT_INFO_POTION: Texture2D = null
+static var PORTRAIT_STAT_CHAR: Texture2D = null
+static var PORTRAIT_STAT_HISTORY: Texture2D = null
+static var PORTRAIT_STAT_LEADERBOARD: Texture2D = null
+static var PORTRAIT_SETTING_GAME: Texture2D = null
+static var PORTRAIT_SETTING_INPUT: Texture2D = null
+static var PORTRAIT_SETTING_CREDITS: Texture2D = null
+
+# character
+static var CHARACTER_SELECT_IRONCLAD: Texture2D = null
+static var CHARACTER_SELECT_SILENT: Texture2D = null
+static var CHARACTER_SELECT_DEFECT: Texture2D = null
+static var CHARACTER_SELECT_WATCHER: Texture2D = null
+static var CHARACTER_SELECT_BG_IRONCLAD: Texture2D = null
+static var CHARACTER_SELECT_BG_SILENT: Texture2D = null
+static var CHARACTER_SELECT_BG_DEFECT: Texture2D = null
+static var CHARACTER_SELECT_BG_WATCHER: Texture2D = null
+
+static var UI_GOLD: Texture2D = null
+static var TP_HP: Texture2D = null
+static var TP_GOLD: Texture2D = null
+static var TP_FLOOR: Texture2D = null
+static var TP_ASCENSION: Texture2D = null
+
+static var relic_images: Dictionary = {}
+static var relic_outline_images: Dictionary = {}
+
 static func initialize() -> void:
 	initialize_card_ui()
-	
+	initialize_portrait_img()
+	initialize_panel_ui()
 
-	
+	initialize_settings_ui()
+
+static func initialize_settings_ui() -> void:
+	pass
+
 static func initialize_card_ui() -> void:
 	var card_ui_atlas_path: String = "res://arts/slay_the_spire/images/cardui/cardui.atlas"
 	card_ui_atlas = TextureAtlas.load(card_ui_atlas_path)
@@ -170,12 +214,12 @@ static func initialize_card_ui() -> void:
 	card_power_bg_blue_large = card_ui_atlas.find_region("1024/bg_skill_blue")
 	card_blue_orb_large = card_ui_atlas.find_region("1024/card_blue_orb")
 
-	#	CARD_ATTACK_BG_GRAY_L = card_ui_atlas.find_region("1024/bg_attack_colorless")
-	#	CARD_SKILL_BG_GRAY_L = card_ui_atlas.find_region("1024/bg_skill_colorless")
-	#	CARD_POWER_BG_GRAY_L = card_ui_atlas.find_region("1024/bg_power_colorless")
-	#	CARD_GRAY_ORB_L = card_ui_atlas.find_region("1024/card_colorless_orb")
+	card_attack_bg_colorless_large = card_ui_atlas.find_region("1024/bg_attack_colorless")
+	card_skill_bg_colorless_large = card_ui_atlas.find_region("1024/bg_skill_colorless")
+	card_power_bg_colorless_large = card_ui_atlas.find_region("1024/bg_power_colorless")
+	card_colorless_orb_large = card_ui_atlas.find_region("1024/card_colorless_orb")
 	#	
-	card_skill_bg_black = card_ui_atlas.find_region("1024/bg_skill_black")
+	card_skill_bg_black_large = card_ui_atlas.find_region("1024/bg_skill_black")
 
 	card_frame_attack_common_large = card_ui_atlas.find_region("1024/frame_attack_common")
 	card_frame_attack_uncommon_large = card_ui_atlas.find_region("1024/frame_attack_uncommon")
@@ -203,3 +247,49 @@ static func initialize_card_ui() -> void:
 	#	CARD_RARE_FRAME_MID_L = card_ui_atlas.find_region("1024/rare_center")
 	#	CARD_RARE_FRAME_RIGHT_L = card_ui_atlas.find_region("1024/rare_right")
 	
+
+static func initialize_portrait_img() -> void:
+	PORTRAIT_STANDARD = load("res://arts/slay_the_spire/images/ui/menu/portrait/standard.jpg")
+	PORTRAIT_DAILY = load("res://arts/slay_the_spire/images/ui/menu/portrait/daily.jpg")
+	PORTRAIT_LOOP = load("res://arts/slay_the_spire/images/ui/menu/portrait/loop.jpg")
+	PORTRAIT_INFO_CARD = load("res://arts/slay_the_spire/images/ui/menu/portrait/card.jpg")
+	PORTRAIT_INFO_RELIC = load("res://arts/slay_the_spire/images/ui/menu/portrait/relics.jpg")
+	PORTRAIT_INFO_POTION = load("res://arts/slay_the_spire/images/ui/menu/portrait/potion.jpg")
+	PORTRAIT_STAT_CHAR = load("res://arts/slay_the_spire/images/ui/menu/portrait/charstat.jpg")
+	PORTRAIT_STAT_HISTORY = load("res://arts/slay_the_spire/images/ui/menu/portrait/history.jpg")
+	PORTRAIT_STAT_LEADERBOARD = load("res://arts/slay_the_spire/images/ui/menu/portrait/leaderboards.jpg")
+	PORTRAIT_SETTING_GAME = load("res://arts/slay_the_spire/images/ui/menu/portrait/gamesettings.jpg")
+	PORTRAIT_SETTING_INPUT = load("res://arts/slay_the_spire/images/ui/menu/portrait/input_settings.jpg")
+	PORTRAIT_SETTING_CREDITS = load("res://arts/slay_the_spire/images/ui/menu/portrait/credits.jpg")
+
+static func initialize_panel_ui() -> void:
+	# character select
+	CHARACTER_SELECT_IRONCLAD = load("res://arts/slay_the_spire/images/ui/character_select/ironcladButton.png")
+	CHARACTER_SELECT_SILENT = load("res://arts/slay_the_spire/images/ui/character_select/silentButton.png")
+	CHARACTER_SELECT_DEFECT = load("res://arts/slay_the_spire/images/ui/character_select/defectButton.png")
+	CHARACTER_SELECT_WATCHER = load("res://arts/slay_the_spire/images/ui/character_select/watcherButton.png")
+	CHARACTER_SELECT_BG_IRONCLAD = load("res://arts/slay_the_spire/images/ui/character_select/ironcladPortrait.jpg")
+	CHARACTER_SELECT_BG_SILENT = load("res://arts/slay_the_spire/images/ui/character_select/silentPortrait.jpg")
+	CHARACTER_SELECT_BG_DEFECT = load("res://arts/slay_the_spire/images/ui/character_select/defectPortrait.jpg")
+	CHARACTER_SELECT_BG_WATCHER = load("res://arts/slay_the_spire/images/ui/character_select/watcherPortrait.jpg")
+	
+	UI_GOLD = load("res://arts/slay_the_spire/images/ui/top_panel/gold.png")
+	TP_HP = load("res://arts/slay_the_spire/images/ui/top_panel/panelHeart.png")
+	TP_GOLD = load("res://arts/slay_the_spire/images/ui/top_panel/panelGoldBag.png")
+	TP_FLOOR = load("res://arts/slay_the_spire/images/ui/top_panel/floor.png")
+	TP_ASCENSION = load("res://arts/slay_the_spire/images/ui/top_panel/ascension.png")
+
+
+static func loadPortraitImg(url:String) -> Texture2D:
+	return load("res://arts/slay_the_spire/images/1024Portraits/" + url + ".png")
+
+static func loadRelicImg(setId: String, imgName: String) -> void:
+	if not relic_images.has(setId):
+		relic_images.set(setId, load(AbstractRelic.IMG_DIR + imgName))
+		relic_outline_images.set(setId, load(AbstractRelic.OUTLINE_DIR + imgName))
+
+static func getRelicImg(setId: String) -> Texture2D:
+	return relic_images[setId]
+
+static func getRelicOutlineImg(setId: String) -> Texture2D:
+	return relic_outline_images[setId]

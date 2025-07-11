@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Wallop", card_string.name, "purple/attack/wallop", 2, card_string.description, CardType.ATTACK, CardColor.PURPLE, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 9
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

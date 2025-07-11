@@ -12,3 +12,11 @@ func _init() -> void:
 	super("Echo Form", card_string.name, "blue/power/echo_form", 3, card_string.description, CardType.POWER, CardColor.BLUE, CardRarity.RARE, CardTarget.SELF)
 
 	self.is_ethereal = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		is_ethereal = false
+		rawDescription = card_string.upgrade_description
+		initialize_description()

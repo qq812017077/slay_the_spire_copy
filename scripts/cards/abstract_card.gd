@@ -4,7 +4,7 @@ extends Object
 
 enum CardColor {RED, GREEN, BLUE, PURPLE, COLORLESS, CURSE}
 enum CardRarity {BASIC, SPECIAL, COMMON, UNCOMMON, RARE, CURSE}
-enum CardTarget{NONE, ENEMY, SELF, ALL_ENEMIES, SELF_AND_ENEMY, ALL}
+enum CardTarget {NONE, ENEMY, SELF, ALL_ENEMIES, SELF_AND_ENEMY, ALL}
 enum CardType {ATTACK, SKILL, POWER, STATUS, CURSE}
 enum CardTag {HEALING, STRIKE, EMPTY, STARTER_DEFEND, STARTER_STRIKE}
 ##
@@ -64,9 +64,10 @@ static var orb_potion: AtlasRegion = null
 static var orb_relic: AtlasRegion = null
 static var orb_special: AtlasRegion = null
 
-static var ui_string : UIString = null
+static var ui_string: UIString = null
 
 static var desc_label_by_card_id: Dictionary = {}
+static var cached_orb_textures_by_region: Dictionary = {}
 
 var card_id: String
 var type: CardType
@@ -76,14 +77,21 @@ var color: CardColor
 
 var times_upgrades: int = 0
 var upgraded: bool = false
+
+var upgraded_cost: bool = false
+var upgraded_damage: bool = false
+var upgraded_block: bool = false
+var upgraded_magic_number: bool = false
+
 var cost: int = -1
+var cost_for_turn: int
 var price: int = -1
 var retain: bool = false
 var self_retain: bool = false
 
-var misc: int = 0 	# Miscellaneous value, used for various purposes like showing the number of cards in a deck.
-var is_innate: bool = false	# If true, the card is played at the start of the turn.
-var exhaust: bool = false	# If true, the card is removed from the deck after use.
+var misc: int = 0 # Miscellaneous value, used for various purposes like showing the number of cards in a deck.
+var is_innate: bool = false # If true, the card is played at the start of the turn.
+var exhaust: bool = false # If true, the card is removed from the deck after use.
 
 var damage_type: DamageInfo.DamageType
 # 数值
@@ -100,7 +108,7 @@ var damage: int = -1
 var block: int = -1
 var magic_number: int = -1
 
-var is_multi_damage: bool = false 
+var is_multi_damage: bool = false
 var shuffle_back_into_draw_pile: bool = false
 
 var is_ethereal: bool = false # If true, the card is removed from the deck after use, but can be played again.
@@ -120,18 +128,18 @@ var tint_color: Color
 
 var keywords: Array[String] = []
 
-var originalName: String                 = ""
-var name: String                         = ""
+var originalName: String = ""
+var name: String = ""
 var descriptions: Array[DescriptionLine] = []
-var rawDescription: String               = ""
+var rawDescription: String = ""
 var img_url: String = ""
 var portrait: AtlasRegion = null
 
 
-var card_to_preview:AbstractCard = null
+var card_to_preview: AbstractCard = null
 var tags: Array[CardTag] = []
 
-var card_description_label: CardDescriptionLabel = null
+# var card_description_label: CardDescriptionLabel = null
 # 静态初始化
 static func init_static():
 	# Initialize static variables or perform any static setup here
@@ -143,7 +151,7 @@ static func init_static():
 #########################################################################
 
 func _init(id: String, _name: String, _imgUrl: String, _cost: int, _rawDescription: String, _type: CardType,
-_color: CardColor, _rarity: CardRarity, _target: CardTarget, dType: DamageInfo.DamageType=DamageInfo.DamageType.NORMAL) -> void:
+_color: CardColor, _rarity: CardRarity, _target: CardTarget, dType: DamageInfo.DamageType = DamageInfo.DamageType.NORMAL) -> void:
 	self.card_id = id
 	self.name = _name
 	self.originalName = _name
@@ -153,6 +161,7 @@ _color: CardColor, _rarity: CardRarity, _target: CardTarget, dType: DamageInfo.D
 		self.portrait = card_atlas.find_region("status/beta");
 	
 	self.cost = _cost
+	self.cost_for_turn = self.cost
 	self.rawDescription = _rawDescription
 	self.type = _type
 	self.color = _color
@@ -165,17 +174,55 @@ _color: CardColor, _rarity: CardRarity, _target: CardTarget, dType: DamageInfo.D
 
 	self.initialize_color()
 	self.initialize_description()
-	self.card_description_label = get_cached_description_label(self)
 
 func upgrade() -> void:
 	pass
 
+func make_copy() -> AbstractCard:
+	var copy: AbstractCard = null
+	var script: Script = self.get_script()
+	if script:
+		copy = script.new()
+	return copy
+
+func upgrade_name() -> void:
+	self.times_upgrades += 1
+	self.upgraded = true
+	self.name += "+"
+	# self.card_description_label.name += "+"
+
+func upgrade_damage(amount: int) -> void:
+	base_damage += amount
+	damage = base_damage
+	upgraded_damage = true
+	is_damage_modified = true
+
+func upgrade_block(amount: int) -> void:
+	base_block += amount
+	block = base_block
+	upgraded_block = true
+	is_block_modified = true
+
+func upgrade_magic_mumber(amount: int) -> void:
+	base_magic_number += amount
+	magic_number = base_magic_number
+	upgraded_magic_number = true
+	is_magic_number_modified = true
+
+func upgrade_base_cost(new_cost: int) -> void:
+	var diff = cost_for_turn - self.cost;
+	self.cost = new_cost;
+	if cost_for_turn > 0:
+		cost_for_turn = self.cost + diff
+	if cost_for_turn < 0:
+		cost_for_turn = 0
+	self.upgraded_cost = true;
 func use(_player, _monster) -> void:
 	pass
 #					
 #	get card info
 # 
-func get_card_type()-> String:
+func get_card_type() -> String:
 	match self.type:
 		CardType.ATTACK:
 			return ui_string.TEXT[0]
@@ -189,50 +236,50 @@ func get_card_type()-> String:
 			return ui_string.TEXT[3]
 	return ui_string.TEXT[5]
 
-func get_card_bg()-> AtlasRegion:
+func get_card_bg(use_large = false) -> AtlasRegion:
 	match self.type:
 		CardType.ATTACK:
-			return get_attack_bg()
+			return get_attack_bg(use_large)
 		CardType.SKILL:
-			return get_skill_bg()
+			return get_skill_bg(use_large)
 		CardType.POWER:
-			return get_power_bg()
+			return get_power_bg(use_large)
 		CardType.STATUS:
-			return get_skill_bg()
+			return get_skill_bg(use_large)
 		CardType.CURSE:
-			return get_skill_bg()
+			return get_skill_bg(use_large)
 		_:
 			return null
 #
 #	get card portrait
 # 
-func get_portrait()-> AtlasRegion:
+func get_portrait() -> AtlasRegion:
 	return portrait
 #
 #	get card portrait frame
 # 
-func get_portrait_frame()-> AtlasRegion:
+func get_portrait_frame(use_large: bool = false) -> AtlasRegion:
 	match self.type:
 		CardType.ATTACK:
-			return get_attack_portrait()
+			return get_attack_portrait_frame(use_large)
 		CardType.SKILL:
-			return get_skill_portrait()
+			return get_skill_portrait_frame(use_large)
 		CardType.POWER:
-			return get_power_portrait()
+			return get_power_portrait_frame(use_large)
 		CardType.STATUS:
-			return get_skill_portrait()
+			return get_skill_portrait_frame(use_large)
 		CardType.CURSE:
-			return get_skill_portrait()
+			return get_skill_portrait_frame(use_large)
 		_:
 			return null
 
-func get_banner_image() -> AtlasRegion:
+func get_banner_image(use_large: bool = false) -> AtlasRegion:
 	if self.rarity == CardRarity.UNCOMMON:
-		return ImageMaster.card_banner_uncommon
+		return ImageMaster.card_banner_uncommon_large if use_large else ImageMaster.card_banner_uncommon
 	elif self.rarity == CardRarity.RARE:
-		return ImageMaster.card_banner_rare
+		return ImageMaster.card_banner_rare_large if use_large else ImageMaster.card_banner_rare
 	else:
-		return ImageMaster.card_banner_common
+		return ImageMaster.card_banner_common_large if use_large else ImageMaster.card_banner_common
 
 
 func get_card_back() -> AtlasRegion:
@@ -241,70 +288,10 @@ func get_card_back() -> AtlasRegion:
 func get_description() -> Array[DescriptionLine]:
 	return self.descriptions
 
-func get_description_label() -> CardDescriptionLabel:
-	return self.card_description_label
-#########################################################################
-# Static functions
-#########################################################################
-static func initialize():
-	IMG_WIDTH = 300.0 * Settings.scale
-	IMG_HEIGHT = 420.0 * Settings.scale
+# func get_description_label() -> Control:
+# 	return self.card_description_label
 
-	CN_DESC_BOX_WIDTH = IMG_WIDTH * 0.97 if Settings.BIG_TEXT_MODE else IMG_WIDTH * 0.85
-	CARD_ENERGY_IMG_WIDTH = 24.0 * Settings.scale
-	# load default font
-	if Settings.lineBreakViaCharacter:
-		DESC_CHARACTER_WIDTH = ThemeHelper.normal_font_zhs.get_string_size("一").x
-	else:
-		DESC_CHARACTER_WIDTH = ThemeHelper.normal_font_zhs.get_string_size("a").x
-	
-	ui_string = CardGame.languagePack.get_ui_string("SingleCardViewPopup")
-	
-	# initialize atlas all needed
-	var cards_atlas_path: String = "res://arts/slay_the_spire/images/cards/cards.atlas"
-	var orb_atlas_path: String = "res://arts/slay_the_spire/images/orbs/orb.atlas"
-	
-	# load atlas data to 
-	card_atlas = TextureAtlas.load(cards_atlas_path)
-	orb_atlas = TextureAtlas.load(orb_atlas_path)
-	orb_red = orb_atlas.find_region("red");
-	orb_green = orb_atlas.find_region("green");
-	orb_blue = orb_atlas.find_region("blue");
-	orb_purple = orb_atlas.find_region("purple");
-	orb_card = orb_atlas.find_region("card");
-	orb_potion = orb_atlas.find_region("potion");
-	orb_relic = orb_atlas.find_region("relic");
-	orb_special = orb_atlas.find_region("special");
 
-static func get_card_desc_orb(card_color: CardColor) -> AtlasRegion:
-	match card_color:
-		CardColor.RED:
-			return orb_red
-		CardColor.GREEN:
-			return orb_green
-		CardColor.BLUE:
-			return orb_blue
-		CardColor.PURPLE:
-			return orb_purple
-
-	# push_error("Unknown card color: %s" % card_color)
-	return orb_purple
-
-static func get_card_cost_orb(card_color: CardColor) -> AtlasRegion:
-	match card_color:
-		CardColor.RED:
-			return ImageMaster.card_red_orb
-		CardColor.GREEN:
-			return ImageMaster.card_green_orb
-		CardColor.BLUE:
-			return ImageMaster.card_blue_orb
-		CardColor.PURPLE:
-			return ImageMaster.card_purple_orb
-		CardColor.COLORLESS:
-			return ImageMaster.card_colorless_orb
-		CardColor.CURSE:
-			return ImageMaster.card_colorless_orb
-	return null
 ##############################
 # functions for inner use
 ##############################
@@ -353,13 +340,16 @@ func initialize_description() -> void:
 	
 	if Settings.lineBreakViaCharacter:
 		self.initialize_description_cn()
-		return 
-	
-#	var split :Array[String]
-	self.descriptions.clear();
+	else:
+		self.descriptions.clear();
+
+	# if refresh:
+	# 	refresh_description()
+
+# func refresh_description() -> void:
+# 	self.card_description_label = CardDescriptionLabel.new(self)
 
 func initialize_description_cn():
-	
 	self.descriptions.clear()
 	var numLines: int = 0
 	# string buffer
@@ -378,7 +368,7 @@ func initialize_description_cn():
 						self.keywords.append(keyword_tmp)
 
 					if ThemeHelper.get_desc_string_size_cn(line_str).x + DESC_CHARACTER_WIDTH > CN_DESC_BOX_WIDTH:
-						numLines+=1
+						numLines += 1
 						self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 						line_str = ""
 					line_str += " *" + word2 + " "
@@ -387,29 +377,29 @@ func initialize_description_cn():
 					if not self.keywords.has(target_energy):
 						self.keywords.append(target_energy)
 					if ThemeHelper.get_desc_string_size_cn(line_str).x + CARD_ENERGY_IMG_WIDTH > CN_DESC_BOX_WIDTH:
-						numLines+=1
+						numLines += 1
 						self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 						line_str = ""
 					line_str += " " + word2 + " "
 				elif word2 == "!D!":
 					if ThemeHelper.get_desc_string_size_cn(line_str).x + DESC_CHARACTER_WIDTH > CN_DESC_BOX_WIDTH:
-						numLines+=1
+						numLines += 1
 						self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 						line_str = ""
 					line_str += " D "
 				elif word2 == "!B!" or word2 == "!M!":
 					if ThemeHelper.get_desc_string_size_cn(line_str).x + DESC_CHARACTER_WIDTH > CN_DESC_BOX_WIDTH:
-						numLines+=1
+						numLines += 1
 						self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 						line_str = ""
 					line_str += " " + word2 + "! "
 				elif (Settings.manualLineBreak || Settings.manualAndAutoLineBreak) && word2 == "NL" && line_str.length() != 0:
-					numLines+=1
+					numLines += 1
 					self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 					line_str = ""
 				elif word2[0] == '*':
 					if ThemeHelper.get_desc_string_size_cn(line_str).x + DESC_CHARACTER_WIDTH > CN_DESC_BOX_WIDTH:
-						numLines+=1
+						numLines += 1
 						self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 						line_str = ""
 					line_str += " " + word2 + " "
@@ -417,18 +407,18 @@ func initialize_description_cn():
 					for c in word2:
 						line_str += c
 						if not Settings.manualLineBreak and ThemeHelper.get_desc_string_size_cn(line_str).x + DESC_CHARACTER_WIDTH > CN_DESC_BOX_WIDTH:
-							numLines+=1
+							numLines += 1
 							self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 							line_str = ""
 	if line_str.length() > 0:
-		numLines+=1
+		numLines += 1
 		self.descriptions.append(DescriptionLine.new(line_str, ThemeHelper.get_desc_string_size_cn(line_str)))
 		line_str = ""
 	var removeLine: int = -1;
 	for i in range(self.descriptions.size()):
-		if self.descriptions[i].text == LocalizedString.PERIOD:
-			var descriptionLine : DescriptionLine = self.descriptions[i-1]
-			descriptionLine.text += LocalizedString.PERIOD
+		if self.descriptions[i].text == LocalizedString.PERIOD or self.descriptions[i].text == LocalizedString.COMMA:
+			var descriptionLine: DescriptionLine = self.descriptions[i - 1]
+			descriptionLine.text += self.descriptions[i].text
 			removeLine = i;
 	if removeLine != -1:
 		self.descriptions.remove_at(removeLine)
@@ -436,110 +426,223 @@ func initialize_description_cn():
 	if numLines > 5:
 		push_error("WARNING: Card " + name + " has lots of text");
 
-	
-func dedupe_keyword(keyword: String) -> String:
-	var retVal = GameDictionary.parent_word.get(keyword);
-	return retVal if retVal != null else keyword
-
+func get_dynamic_value_info(value) -> DynamicValueInfo:
+	var high_color = Color.hex(0x7fff00ff)
+	var low_color = Color.hex(0xff6563ff)
+	var result: DynamicValueInfo = DynamicValueInfo.new()
+	match value:
+		'B':
+			if not self.is_block_modified:
+				result.value = str(self.base_block)
+			else:
+				result.is_modified = true
+				result.value = str(self.block)
+				result.modified_color = high_color if self.block >= self.base_block else low_color
+		'D':
+			if not self.is_damage_modified:
+				result.value = str(self.base_damage)
+			else:
+				result.is_modified = true
+				result.value = str(self.damage)
+				result.modified_color = high_color if self.damage >= self.base_damage else low_color
+		'M':
+			if not self.is_magic_number_modified:
+				result.value = str(self.base_magic_number)
+			else:
+				result.is_modified = true
+				result.value = str(self.magic_number)
+				result.modified_color = high_color if self.magic_number >= self.base_magic_number else low_color
+	return result
 func get_dynamic_value(value) -> String:
 	match value:
 		'B':
 			if not self.is_block_modified:
 				return str(self.base_block)
-			if self.block > self.base_block:
-				return "[#7fff00]" + str(self.block) + "[]"
-			return "[#ff6563]" + str(self.block) + "[]"
+			if self.block >= self.base_block:
+				return "[color=#7fff00]" + str(self.block) + "[/color]"
+			return "[color=#ff6563]" + str(self.block) + "[/color]"
 
 		'D':
 			if not self.is_damage_modified:
 				return str(self.base_damage)
-			if self.damage > self.base_damage:
-				return "[#7fff00]" + str(self.damage) + "[]"
-			return "[#ff6563]" + str(self.damage) + "[]"
+			if self.damage >= self.base_damage:
+				return "[color=#7fff00]" + str(self.damage) + "[/color]"
+			return "[color=#ff6563]" + str(self.damage) + "[/color]"
 		'M':
 			if not self.is_magic_number_modified:
 				return str(self.base_magic_number)
-			if self.magic_number > self.base_magic_number:
-				return "[#7fff00]" + str(self.magic_number) + "[]"
-			return "[#ff6563]" + str(self.magic_number) + "[]"
+			if self.magic_number >= self.base_magic_number:
+				return "[color=#7fff00]" + str(self.magic_number) + "[/color]"
+			return "[color=#ff6563]" + str(self.magic_number) + "[/color]"
 	
 	push_error("value: " + value)
 	return str(-99)
 
-func get_attack_bg() -> AtlasRegion:
+func get_attack_bg(large: bool) -> AtlasRegion:
 	match self.color:
 		CardColor.RED:
-			return ImageMaster.card_attack_bg_red
+			return ImageMaster.card_attack_bg_red_large if large else ImageMaster.card_attack_bg_red
 		CardColor.GREEN:
-			return ImageMaster.card_attack_bg_green
+			return ImageMaster.card_attack_bg_green_large if large else ImageMaster.card_attack_bg_green
 		CardColor.BLUE:
-			return ImageMaster.card_attack_bg_blue
+			return ImageMaster.card_attack_bg_blue_large if large else ImageMaster.card_attack_bg_blue
 		CardColor.PURPLE:
-			return ImageMaster.card_attack_bg_purple
+			return ImageMaster.card_attack_bg_purple_large if large else ImageMaster.card_attack_bg_purple
 		CardColor.COLORLESS:
-			return ImageMaster.card_attack_bg_colorless
+			return ImageMaster.card_attack_bg_colorless_large if large else ImageMaster.card_attack_bg_colorless
 		_:
 			push_error("Unknown card color: %s" % self.color)
 			return null
 
-func get_skill_bg() -> AtlasRegion:
+func get_skill_bg(large: bool) -> AtlasRegion:
 	match self.color:
 		CardColor.RED:
-			return ImageMaster.card_skill_bg_red
+			return ImageMaster.card_skill_bg_red_large if large else ImageMaster.card_skill_bg_red
 		CardColor.GREEN:
-			return ImageMaster.card_skill_bg_green
+			return ImageMaster.card_skill_bg_green_large if large else ImageMaster.card_skill_bg_green
 		CardColor.BLUE:
-			return ImageMaster.card_skill_bg_blue
+			return ImageMaster.card_skill_bg_blue_large if large else ImageMaster.card_skill_bg_blue
 		CardColor.PURPLE:
-			return ImageMaster.card_skill_bg_purple
+			return ImageMaster.card_skill_bg_purple_large if large else ImageMaster.card_skill_bg_purple
 		CardColor.COLORLESS:
-			return ImageMaster.card_skill_bg_colorless
+			return ImageMaster.card_skill_bg_colorless_large if large else ImageMaster.card_skill_bg_colorless
 		CardColor.CURSE:
-			return ImageMaster.card_skill_bg_black
+			return ImageMaster.card_skill_bg_black_large if large else ImageMaster.card_skill_bg_black
 		_:
 			push_error("Unknown card color: %s" % self.color)
 			return null
 
-func get_power_bg() -> AtlasRegion:
+func get_power_bg(large: bool) -> AtlasRegion:
 	match self.color:
 		CardColor.RED:
-			return ImageMaster.card_power_bg_red
+			return ImageMaster.card_power_bg_red_large if large else ImageMaster.card_power_bg_red
 		CardColor.GREEN:
-			return ImageMaster.card_power_bg_green
+			return ImageMaster.card_power_bg_green_large if large else ImageMaster.card_power_bg_green
 		CardColor.BLUE:
-			return ImageMaster.card_power_bg_blue
+			return ImageMaster.card_power_bg_blue_large if large else ImageMaster.card_power_bg_blue
 		CardColor.PURPLE:
-			return ImageMaster.card_power_bg_purple
+			return ImageMaster.card_power_bg_purple_large if large else ImageMaster.card_power_bg_purple
 		CardColor.COLORLESS:
-			return ImageMaster.card_power_bg_colorless
+			return ImageMaster.card_power_bg_colorless_large if large else ImageMaster.card_power_bg_colorless
 		_:
 			push_error("Unknown card color: %s" % self.color)
 			return null
 
-func get_attack_portrait() -> AtlasRegion:
+func get_attack_portrait_frame(use_large: bool) -> AtlasRegion:
 	if self.rarity == CardRarity.UNCOMMON:
-		return ImageMaster.card_frame_attack_uncommon
+		return ImageMaster.card_frame_attack_uncommon_large if use_large else ImageMaster.card_frame_attack_uncommon
 	if self.rarity == CardRarity.RARE:
-		return ImageMaster.card_frame_attack_rare
-	return ImageMaster.card_frame_attack_common
+		return ImageMaster.card_frame_attack_rare_large if use_large else ImageMaster.card_frame_attack_rare
+	return ImageMaster.card_frame_attack_common_large if use_large else ImageMaster.card_frame_attack_common
 
-func get_skill_portrait() -> AtlasRegion:
+func get_skill_portrait_frame(use_large: bool) -> AtlasRegion:
 	if self.rarity == CardRarity.UNCOMMON:
-		return ImageMaster.card_frame_skill_uncommon
+		return ImageMaster.card_frame_skill_uncommon_large if use_large else ImageMaster.card_frame_skill_uncommon
 	if self.rarity == CardRarity.RARE:
-		return ImageMaster.card_frame_skill_rare
-	return ImageMaster.card_frame_skill_common
+		return ImageMaster.card_frame_skill_rare_large if use_large else ImageMaster.card_frame_skill_rare
+	return ImageMaster.card_frame_skill_common_large if use_large else ImageMaster.card_frame_skill_common
 
-func get_power_portrait() -> AtlasRegion:
+func get_power_portrait_frame(use_large: bool) -> AtlasRegion:
 	if self.rarity == CardRarity.UNCOMMON:
-		return ImageMaster.card_frame_power_uncommon
+		return ImageMaster.card_frame_power_uncommon_large if use_large else ImageMaster.card_frame_power_uncommon
 	if self.rarity == CardRarity.RARE:
-		return ImageMaster.card_frame_power_rare
-	return ImageMaster.card_frame_power_common
+		return ImageMaster.card_frame_power_rare_large if use_large else ImageMaster.card_frame_power_rare
+	return ImageMaster.card_frame_power_common_large if use_large else ImageMaster.card_frame_power_common
 
 
-static func get_cached_description_label(_card : AbstractCard) -> CardDescriptionLabel:
-	if not desc_label_by_card_id.has(_card.card_id):
-		desc_label_by_card_id.set(_card.card_id, CardDescriptionLabel.new(_card))
+#########################################################################
+# Static functions
+#########################################################################
+static func initialize():
+	IMG_WIDTH = 300.0 * Settings.scale
+	IMG_HEIGHT = 420.0 * Settings.scale
 
-	return desc_label_by_card_id[_card.card_id]
+	CN_DESC_BOX_WIDTH = IMG_WIDTH if Settings.BIG_TEXT_MODE else IMG_WIDTH
+	CARD_ENERGY_IMG_WIDTH = 24.0 * Settings.scale
+	# load default font
+	if Settings.lineBreakViaCharacter:
+		DESC_CHARACTER_WIDTH = ThemeHelper.normal_font_zhs.get_string_size("一").x
+	else:
+		DESC_CHARACTER_WIDTH = ThemeHelper.normal_font_zhs.get_string_size("a").x
+	
+	ui_string = CardGame.languagePack.get_ui_string("SingleCardViewPopup")
+	
+	# initialize atlas all needed
+	var cards_atlas_path: String = "res://arts/slay_the_spire/images/cards/cards.atlas"
+	var orb_atlas_path: String = "res://arts/slay_the_spire/images/orbs/orb.atlas"
+	
+	# load atlas data to 
+	card_atlas = TextureAtlas.load(cards_atlas_path)
+	orb_atlas = TextureAtlas.load(orb_atlas_path)
+	orb_red = orb_atlas.find_region("red");
+	orb_green = orb_atlas.find_region("green");
+	orb_blue = orb_atlas.find_region("blue");
+	orb_purple = orb_atlas.find_region("purple");
+	orb_card = orb_atlas.find_region("card");
+	orb_potion = orb_atlas.find_region("potion");
+	orb_relic = orb_atlas.find_region("relic");
+	orb_special = orb_atlas.find_region("special");
+
+static func get_card_desc_orb(card_color: CardColor) -> AtlasRegion:
+	match card_color:
+		CardColor.RED:
+			return orb_red
+		CardColor.GREEN:
+			return orb_green
+		CardColor.BLUE:
+			return orb_blue
+		CardColor.PURPLE:
+			return orb_purple
+
+	# push_error("Unknown card color: %s" % card_color)
+	return orb_purple
+
+static func get_card_cost_orb(card_color: CardColor, use_large: bool = false) -> AtlasRegion:
+	match card_color:
+		CardColor.RED:
+			return ImageMaster.card_red_orb_large if use_large else ImageMaster.card_red_orb
+		CardColor.GREEN:
+			return ImageMaster.card_green_orb_large if use_large else ImageMaster.card_green_orb
+		CardColor.BLUE:
+			return ImageMaster.card_blue_orb_large if use_large else ImageMaster.card_blue_orb
+		CardColor.PURPLE:
+			return ImageMaster.card_purple_orb_large if use_large else ImageMaster.card_purple_orb
+		CardColor.COLORLESS:
+			return ImageMaster.card_colorless_orb_large if use_large else ImageMaster.card_colorless_orb
+		CardColor.CURSE:
+			return ImageMaster.card_colorless_orb_large if use_large else ImageMaster.card_colorless_orb
+	return null
+	
+static func dedupe_keyword(keyword: String) -> String:
+	var retVal = GameDictionary.parent_word.get(keyword);
+	return retVal if retVal != null else keyword
+
+
+static func get_cached_small_orb_texture(card: AbstractCard) -> AtlasTexture:
+	if card == null:
+		return null
+	return get_cached_small_orb_texture_from_color(card.color)
+
+static func get_cached_small_orb_texture_from_color(cardcolor: CardColor) -> AtlasTexture:
+	var card_cost_orb_texture: AtlasRegion = get_card_desc_orb(cardcolor)
+	if card_cost_orb_texture == null:
+		return null
+	return get_cached_small_orb_texture_from_region(card_cost_orb_texture)
+
+static func get_cached_small_orb_texture_from_region(atlas_region: AtlasRegion) -> AtlasTexture:
+	if cached_orb_textures_by_region.has(atlas_region):
+		return cached_orb_textures_by_region[atlas_region]
+
+	var cost_orb_atlas_texture: AtlasTexture = AtlasTexture.new()
+	cost_orb_atlas_texture.atlas = atlas_region.texture
+	cost_orb_atlas_texture.region = Rect2(atlas_region.xy, atlas_region.size)
+	cost_orb_atlas_texture.filter_clip = true
+	cached_orb_textures_by_region.set(atlas_region, cost_orb_atlas_texture)
+
+	return cost_orb_atlas_texture
+# static func get_cached_description_label(_card: AbstractCard) -> CardDescriptionLabel:
+# 	# if not desc_label_by_card_id.has(_card.name):
+# 	# 	desc_label_by_card_id.set(_card.name, CardDescriptionLabel.new(_card))
+# 	if not desc_label_by_card_id.has(_card.card_id + _card.name):
+# 		desc_label_by_card_id.set(_card.name, CardDescriptionLabel.new(_card))
+# 	return desc_label_by_card_id[_card.name]

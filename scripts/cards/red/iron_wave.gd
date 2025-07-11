@@ -13,3 +13,11 @@ func _init() -> void:
 
 	self.base_damage = 5
 	self.base_block = 5
+
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(2)
+		upgrade_block(2)

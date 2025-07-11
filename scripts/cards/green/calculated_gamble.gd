@@ -12,3 +12,11 @@ func _init() -> void:
 	super("Calculated Gamble", card_string.name, "green/skill/calculated_gamble", 0, card_string.description, CardType.SKILL, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.NONE)
 
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self.exhaust = false
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

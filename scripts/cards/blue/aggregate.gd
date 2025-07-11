@@ -13,3 +13,12 @@ func _init() -> void:
 
 	self.base_magic_number = 4
 	self.magic_number = self.base_magic_number
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(-1)
+		
+# func make_copy() -> AbstractCard:
+# 	return Aggregate.new() 

@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Weave", card_string.name, "purple/attack/weave", 0, card_string.description, CardType.ATTACK, CardColor.PURPLE, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 4
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(2)

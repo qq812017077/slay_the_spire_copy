@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Dagger Throw", card_string.name, "green/attack/dagger_throw", 1, card_string.description, CardType.ATTACK, CardColor.GREEN, CardRarity.COMMON, CardTarget.ENEMY)
 
 	self.base_damage = 9
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

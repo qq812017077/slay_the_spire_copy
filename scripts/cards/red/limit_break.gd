@@ -12,3 +12,11 @@ func _init() -> void:
 	super("Limit Break", card_string.name, "red/skill/limit_break", 1, card_string.description, CardType.SKILL, CardColor.RED, CardRarity.RARE, CardTarget.SELF)
 
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self.exhaust = false
+		rawDescription = card_string.upgrade_description
+		initialize_description()

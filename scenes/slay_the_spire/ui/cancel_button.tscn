@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://wirqo3pgodbw"]
+
+[ext_resource type="Texture2D" uid="uid://bj6wskixhhjxa" path="res://arts/slay_the_spire/images/ui/top_panel/cancelButtonShadow.png" id="1_5uciq"]
+[ext_resource type="Script" uid="uid://cawy65rolfcma" path="res://scripts/ui/buttons/screen_button.gd" id="1_78iwf"]
+[ext_resource type="Texture2D" uid="uid://d1xkuxijyflk" path="res://arts/slay_the_spire/images/ui/top_panel/cancelButtonOutline.png" id="2_78iwf"]
+[ext_resource type="Texture2D" uid="uid://dodsxgfagnmts" path="res://arts/slay_the_spire/images/ui/top_panel/cancelButton.png" id="3_88est"]
+[ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="5_88est"]
+
+[node name="CancelButton" type="Control" node_paths=PackedStringArray("button", "button_tex", "outline_tex")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 291.0
+offset_bottom = 137.0
+mouse_filter = 2
+script = ExtResource("1_78iwf")
+button_type = 1
+button = NodePath("Button")
+button_tex = NodePath("ButtonTex")
+outline_tex = NodePath("Outline")
+
+[node name="Shadow" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 256.0
+mouse_filter = 2
+texture = ExtResource("1_5uciq")
+
+[node name="Outline" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 256.0
+mouse_filter = 2
+texture = ExtResource("2_78iwf")
+
+[node name="ButtonTex" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_88est")
+
+[node name="Button" type="Button" parent="." groups=["button"]]
+layout_mode = 0
+offset_left = -19.0
+offset_top = 15.0
+offset_right = 257.0
+offset_bottom = 122.0
+theme = ExtResource("5_88est")
+text = "返回"

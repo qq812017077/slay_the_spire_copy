@@ -1,0 +1,213 @@
+[gd_scene load_steps=14 format=3 uid="uid://bty6q3bkwfer5"]
+
+[ext_resource type="Script" uid="uid://cx66c4msdxhth" path="res://scripts/ui/cards/card_widget.gd" id="1_kkhy8"]
+[ext_resource type="PackedScene" uid="uid://bxaoyfh5kvwf7" path="res://scenes/slay_the_spire/cards/card_tip.tscn" id="2_o6dd1"]
+[ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="3_rbo4f"]
+[ext_resource type="Texture2D" uid="uid://b7x1y62d28myq" path="res://arts/slay_the_spire/images/cardui/cardui3.png" id="4_rbo4f"]
+[ext_resource type="Texture2D" uid="uid://b3tdqlybf25ai" path="res://arts/slay_the_spire/images/1024Portraits/red/power/barricade.png" id="5_rbo4f"]
+[ext_resource type="Texture2D" uid="uid://cmbmwoicqtwrp" path="res://arts/slay_the_spire/images/cardui/cardui.png" id="6_lhays"]
+[ext_resource type="Texture2D" uid="uid://4jogb3ev7tft" path="res://arts/slay_the_spire/images/cardui/large_card_orb.tres" id="8_k5pbp"]
+[ext_resource type="FontFile" uid="uid://poln5dbu12w4" path="res://arts/slay_the_spire/fonts/zhs/NotoSansMonoCJKsc-Regular.otf" id="9_sbhtd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qi0x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncnyf"]
+atlas = ExtResource("4_rbo4f")
+region = Rect2(1137, 367, 596, 837)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3kfy"]
+atlas = ExtResource("6_lhays")
+region = Rect2(2, 242, 536, 475)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6dd1"]
+atlas = ExtResource("6_lhays")
+region = Rect2(539, 55, 646, 142)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8jw2u"]
+
+[node name="PowerCard" type="Control" node_paths=PackedStringArray("card_container")]
+clip_children = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 596.0
+offset_bottom = 836.0
+pivot_offset = Vector2(298, 418)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_kkhy8")
+card_mode = 1
+card_container = NodePath("MarginContainer")
+card_tooltip_prefab = ExtResource("2_o6dd1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 420.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 420)
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("3_rbo4f")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0qi0x")
+
+[node name="BG_Texture" type="TextureRect" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_ncnyf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Upper" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.61
+mouse_filter = 2
+
+[node name="IconPart" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Upper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/IconPart"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Icon" type="Sprite2D" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/IconPart/Control"]
+position = Vector2(3, 12)
+texture = ExtResource("5_rbo4f")
+
+[node name="FramePart" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Upper"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = -1
+
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/FramePart"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Frame" type="Sprite2D" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/FramePart/Control"]
+position = Vector2(3, -34)
+texture = SubResource("AtlasTexture_e3kfy")
+
+[node name="CardType" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/FramePart/Control"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 158.0
+offset_right = 30.0
+offset_bottom = 197.0
+theme_override_colors/font_color = Color(0.352941, 0.352941, 0.352941, 1)
+theme_override_colors/font_shadow_color = Color(0.619608, 0.619608, 0.619608, 0.67451)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 30
+text = "能力"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BannerPart" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Upper"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_top = 20
+
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/BannerPart"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Banner" type="Sprite2D" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/BannerPart/Control"]
+position = Vector2(293, 79)
+texture = SubResource("AtlasTexture_o6dd1")
+
+[node name="CardName" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/BannerPart/Control"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -2.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 20)
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
+theme_override_colors/font_shadow_color = Color(0.454902, 0.454902, 0.454902, 1)
+theme_override_colors/font_outline_color = Color(0.34902, 0.337255, 0.309804, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "壁垒"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Lower" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Desc" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Lower"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -18.0
+offset_right = 1.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8jw2u")
+bbcode_enabled = true
+text = "造成8点伤害。
+给予2层[color=#d9b64c]易伤[/color]。"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CostOrb" type="TextureRect" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -45.0
+offset_right = 43.0
+offset_bottom = 26.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture = ExtResource("8_k5pbp")
+stretch_mode = 4
+
+[node name="Cost" type="Label" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -24.0
+offset_right = 76.0
+offset_bottom = 47.0
+theme_override_colors/font_outline_color = Color(0.228333, 0.218706, 0.199453, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_sbhtd")
+theme_override_font_sizes/font_size = 62
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1

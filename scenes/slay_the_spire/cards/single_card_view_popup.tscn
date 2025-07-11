@@ -1,0 +1,137 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyn41rnxs2r0r"]
+
+[ext_resource type="Script" uid="uid://2lwnreuvmrkp" path="res://scripts/ui/cards/single_card_view_popup.gd" id="1_ymmwd"]
+[ext_resource type="PackedScene" uid="uid://4mjksksdycec" path="res://scenes/slay_the_spire/cards/attack_card_large.tscn" id="2_owjci"]
+[ext_resource type="PackedScene" uid="uid://dadmgvu6ad6cm" path="res://scenes/slay_the_spire/cards/skill_card_large.tscn" id="3_bcdi1"]
+[ext_resource type="PackedScene" uid="uid://bty6q3bkwfer5" path="res://scenes/slay_the_spire/cards/power_card_large.tscn" id="3_ggxcm"]
+[ext_resource type="Texture2D" uid="uid://v327er14sm12" path="res://arts/slay_the_spire/images/ui/popupArrow.png" id="5_j7ud7"]
+[ext_resource type="PackedScene" uid="uid://p72l3e1cxm2c" path="res://scenes/slay_the_spire/ui/toggle.tscn" id="9_k6mk2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bcdi1"]
+
+[node name="SingleCardViewPopup" type="Control" node_paths=PackedStringArray("black_bg", "upgrade_toggle", "attack_card_large", "skill_card_large", "power_card_large", "pre_arrow", "next_arrow", "tip_container", "preview_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_ymmwd")
+black_bg = NodePath("BlackMask")
+upgrade_toggle = NodePath("UpgradeToggle")
+attack_card_large = NodePath("Cards/AttackCard")
+skill_card_large = NodePath("Cards/SkillCard")
+power_card_large = NodePath("Cards/PowerCard")
+pre_arrow = NodePath("Arrow/PreArrow")
+next_arrow = NodePath("Arrow/NextArrow")
+tip_container = NodePath("Tips")
+preview_container = NodePath("PreviewCard")
+
+[node name="BlackMask" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1600.0
+offset_top = -900.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_bcdi1")
+
+[node name="Cards" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="AttackCard" parent="Cards" instance=ExtResource("2_owjci")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 662.0
+offset_top = 122.0
+offset_right = 1258.0
+offset_bottom = 958.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SkillCard" parent="Cards" instance=ExtResource("3_bcdi1")]
+visible = false
+layout_mode = 0
+offset_left = 662.0
+offset_top = 122.0
+offset_right = 1258.0
+offset_bottom = 958.0
+
+[node name="PowerCard" parent="Cards" instance=ExtResource("3_ggxcm")]
+visible = false
+layout_mode = 0
+offset_left = 662.0
+offset_top = 122.0
+offset_right = 1258.0
+offset_bottom = 958.0
+
+[node name="UpgradeToggle" parent="." instance=ExtResource("9_k6mk2")]
+layout_mode = 0
+offset_left = 672.269
+offset_top = 987.995
+offset_right = 744.269
+offset_bottom = 1052.0
+
+[node name="Arrow" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="PreArrow" type="TextureRect" parent="Arrow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 462.0
+offset_top = 462.0
+offset_right = 618.0
+offset_bottom = 618.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("5_j7ud7")
+
+[node name="NextArrow" type="TextureRect" parent="Arrow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1302.0
+offset_top = 462.0
+offset_right = 1458.0
+offset_bottom = 618.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("5_j7ud7")
+flip_h = true
+
+[node name="Tips" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1320.0
+offset_top = 648.0
+offset_right = 1320.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="PreviewCard" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1320.0
+offset_top = 105.0
+offset_right = 1360.0
+offset_bottom = 145.0
+scale = Vector2(0.765, 0.765)

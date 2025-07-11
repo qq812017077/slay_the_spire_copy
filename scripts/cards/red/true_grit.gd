@@ -12,3 +12,11 @@ func _init() -> void:
 	super("True Grit", card_string.name, "red/skill/true_grit", 1, card_string.description, CardType.SKILL, CardColor.RED, CardRarity.COMMON, CardTarget.SELF)
 
 	self.base_block = 7
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(2)
+		rawDescription = card_string.upgrade_description
+		initialize_description()

@@ -14,3 +14,9 @@ func _init() -> void:
 	self.base_damage = 11
 	self.is_innate = true
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(4)

@@ -3,9 +3,12 @@ extends Object
 
 static var LOCALIZATION_DIR: String = "res://localization/"
 static var PERIOD = null
+static var COMMA = null
+static var characters: Dictionary = {} # string: CardString
 static var cards: Dictionary = {} # string: CardString
 static var keywords: Dictionary = {} # string: KeywordString
 static var ui: Dictionary = {} # string: KeywordString
+static var relics: Dictionary = {} # string: KeywordString
 static var break_chars = null
 
 
@@ -18,7 +21,12 @@ func _init():
 		Settings.GameLanguage.ZHS:
 			langPackDir = "res://localization/zhs"
 	
+	
+
 	# Load the localization files
+	var charactersPath: String = langPackDir + "/characters.json"
+	characters = load_json(charactersPath)
+
 	var cardPath: String = langPackDir + "/cards.json"
 	cards = load_json(cardPath)
 	
@@ -28,6 +36,9 @@ func _init():
 	var uiPath: String = langPackDir + "/ui.json"
 	ui = load_json(uiPath)
 	PERIOD = get_ui_string("Period").TEXT[0]
+	COMMA = get_ui_string("Comma").TEXT[0]
+	var relicPath: String = langPackDir + "/relics.json"
+	relics = load_json(relicPath)
 	print("initialized LocalizedString with %d cards and %d keywords." % [cards.size(), keywords.size()])
 	
 static func load_json(file_path: String) -> Dictionary:
@@ -68,3 +79,18 @@ func get_ui_string(uiName: String) -> UIString:
 		return null
 
 	return UIString.parse(ui[uiName])
+
+
+func get_character_string(characterName: String) -> CharacterString:
+	if not characters.has(characterName) or characters[characterName] == null:
+		push_error("character not found: " + characterName)
+		return null
+
+	return CharacterString.parse(characters[characterName])
+
+func get_relic_string(relicName: String) -> RelicString:
+	if not relics.has(relicName) or relics[relicName] == null:
+		push_error("relic not found: " + relicName)
+		return null
+
+	return RelicString.parse(relics[relicName])

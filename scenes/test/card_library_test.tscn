@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6at6uumkrilq"]
+
+[ext_resource type="PackedScene" uid="uid://b04je3p7tmt13" path="res://scenes/slay_the_spire/screens/main_menu/card_library_screen.tscn" id="1_nfgpb"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardLibraryScreen" parent="." instance=ExtResource("1_nfgpb")]
+layout_mode = 0
+scale = Vector2(0.833, 0.833)

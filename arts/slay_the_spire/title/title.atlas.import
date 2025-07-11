@@ -1,0 +1,15 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://d2cnsrift7pww"
+path="res://.godot/imported/title.atlas-0ea8fc6b3579cb032c03ed6250b8b339.spatlas"
+
+[deps]
+
+source_file="res://arts/slay_the_spire/title/title.atlas"
+dest_files=["res://.godot/imported/title.atlas-0ea8fc6b3579cb032c03ed6250b8b339.spatlas"]
+
+[params]
+
+normal_map_prefix="n"

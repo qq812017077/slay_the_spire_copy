@@ -14,3 +14,10 @@ func _init() -> void:
 	self.base_magic_number = 3
 	self.magic_number = self.base_magic_number
 	self.card_to_preview = Shiv.new()
+
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(1)

@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Finisher", card_string.name, "green/attack/finisher", 1, card_string.description, CardType.ATTACK, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 6
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(2)

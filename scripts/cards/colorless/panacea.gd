@@ -12,5 +12,11 @@ func _init() -> void:
 	super("Panacea", card_string.name, "colorless/skill/panacea", 0, card_string.description, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.SELF)
 
 	
-	self.base_magic_number = 10
+	self.base_magic_number = 1
 	self.magic_number = self.base_magic_number
+	self.exhaust = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(1)

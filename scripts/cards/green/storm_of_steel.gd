@@ -12,3 +12,12 @@ func _init() -> void:
 	super("Storm of Steel", card_string.name, "green/skill/storm_of_steel", 1, card_string.description, CardType.SKILL, CardColor.GREEN, CardRarity.RARE, CardTarget.NONE)
 
 	self.card_to_preview = Shiv.new()
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		card_to_preview.upgrade()
+		upgrade_magic_mumber(1)
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

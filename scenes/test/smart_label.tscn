@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh6j3blso5vik"]
+
+[ext_resource type="Script" uid="uid://cqqgshtjq1tvy" path="res://scripts/ui/extensions/smart_label.gd" id="1_b4ym4"]
+[ext_resource type="FontFile" uid="uid://rlbheu40m6dr" path="res://arts/slay_the_spire/fonts/card_desc_font.tres" id="2_p75cw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xmusp"]
+font = ExtResource("2_p75cw")
+
+[node name="SmartLabel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_b4ym4")
+label_setting = SubResource("LabelSettings_xmusp")
+metadata/_custom_type_script = "uid://cqqgshtjq1tvy"

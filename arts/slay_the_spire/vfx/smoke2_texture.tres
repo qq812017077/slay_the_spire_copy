@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://13k75s373mv7"]
+
+[ext_resource type="Texture2D" uid="uid://cdrrkskg3iqis" path="res://arts/slay_the_spire/vfx/vfx.png" id="1_smap4"]
+
+[resource]
+atlas = ExtResource("1_smap4")
+region = Rect2(1985, 379, 43, 55)

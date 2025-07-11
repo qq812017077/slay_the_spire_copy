@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvp31vsqcl4wa"]
+
+[ext_resource type="Script" uid="uid://cqqgshtjq1tvy" path="res://scripts/ui/extensions/smart_label.gd" id="1_5okel"]
+
+[node name="SmartLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "45678984512313213245678987888888878"
+script = ExtResource("1_5okel")
+metadata/_custom_type_script = "uid://cqqgshtjq1tvy"

@@ -12,3 +12,10 @@ func _init() -> void:
 	super("ForeignInfluence", card_string.name, "purple/skill/foreign_influence", 0, card_string.description, CardType.SKILL, CardColor.PURPLE, CardRarity.UNCOMMON, CardTarget.NONE)
 
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

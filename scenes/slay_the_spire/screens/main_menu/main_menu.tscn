@@ -1,0 +1,539 @@
+[gd_scene load_steps=45 format=3 uid="uid://hddv3rhp0jxa"]
+
+[ext_resource type="Script" uid="uid://btukpi07irhqb" path="res://scripts/ui/screens/main_menu_screen.gd" id="1_opj4r"]
+[ext_resource type="PackedScene" uid="uid://bnhbd2jkrp0b3" path="res://scenes/slay_the_spire/screens/dungeon_transition_screen.tscn" id="2_dsit2"]
+[ext_resource type="Script" uid="uid://b6qqk6whr8woe" path="res://scripts/scenes/title_background.gd" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://bfo6mjqjg2t7o" path="res://arts/slay_the_spire/images/ui/title_logo/eng.png" id="3_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://ct6ant5rte56j" path="res://arts/slay_the_spire/title/sky_texture.tres" id="4_wu84c"]
+[ext_resource type="Texture2D" uid="uid://cffi6bs2xqb62" path="res://arts/slay_the_spire/title/mg3bot_texture.tres" id="5_tkd2y"]
+[ext_resource type="Texture2D" uid="uid://do42040puwswe" path="res://arts/slay_the_spire/title/mg3top_texture.tres" id="6_snvon"]
+[ext_resource type="Texture2D" uid="uid://d27a5b8q3hlwc" path="res://arts/slay_the_spire/title/topglow_texture.tres" id="7_ntxpk"]
+[ext_resource type="Texture2D" uid="uid://b328k0ae3b6im" path="res://arts/slay_the_spire/title/botglow_texture.tres" id="7_q72jy"]
+[ext_resource type="Texture2D" uid="uid://c6xvsuvpstjxw" path="res://arts/slay_the_spire/title/topglow2_texture.tres" id="9_7ik80"]
+[ext_resource type="Texture2D" uid="uid://blak7hhlw1wgh" path="res://arts/slay_the_spire/vfx/smoke1_texture.tres" id="9_sjmfe"]
+[ext_resource type="Texture2D" uid="uid://13k75s373mv7" path="res://arts/slay_the_spire/vfx/smoke2_texture.tres" id="10_ehk0h"]
+[ext_resource type="Texture2D" uid="uid://dgx0ldlnwkvi3" path="res://arts/slay_the_spire/vfx/smoke3_texture.tres" id="11_k6rhl"]
+[ext_resource type="Texture2D" uid="uid://ct04ynh3irk73" path="res://arts/slay_the_spire/vfx/buffVFX1_texture.tres" id="13_squo2"]
+[ext_resource type="Texture2D" uid="uid://mh0kbm0t6813" path="res://arts/slay_the_spire/vfx/buffVFX2_texture.tres" id="14_lnbpc"]
+[ext_resource type="Texture2D" uid="uid://dr5e8tdfcmik0" path="res://arts/slay_the_spire/vfx/buffVFX3_texture.tres" id="15_opj4r"]
+[ext_resource type="PackedScene" uid="uid://b04je3p7tmt13" path="res://scenes/slay_the_spire/screens/main_menu/card_library_screen.tscn" id="16_d122p"]
+[ext_resource type="FontFile" uid="uid://dvunye02obai1" path="res://arts/slay_the_spire/fonts/Kreon-Bold.ttf" id="16_djuoj"]
+[ext_resource type="Script" uid="uid://bk70yee0u0o8d" path="res://scripts/ui/screens/menu_buttons.gd" id="16_dwita"]
+[ext_resource type="Script" uid="uid://c4l1k0oflkasq" path="res://scripts/ui/buttons/main_menu_button.gd" id="17_7ruae"]
+[ext_resource type="PackedScene" uid="uid://bbcxhe3kdmrqj" path="res://scenes/slay_the_spire/screens/main_menu/character_select_screen.tscn" id="18_ph1pj"]
+[ext_resource type="PackedScene" uid="uid://br8kmhmfggmt4" path="res://scenes/slay_the_spire/ui/options/confirm_popup.tscn" id="19_iwut7"]
+[ext_resource type="PackedScene" uid="uid://bfyifvawlr8ht" path="res://scenes/slay_the_spire/ui/options/settings_screen.tscn" id="23_vn6nm"]
+[ext_resource type="PackedScene" uid="uid://bqxwlgn6dpcca" path="res://scenes/slay_the_spire/screens/main_menu/menu_panel_screen.tscn" id="23_xip4e"]
+
+[sub_resource type="Curve" id="Curve_sjmfe"]
+_data = [Vector2(0, 0.301724), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ehk0h"]
+texture_mode = 1
+curve = SubResource("Curve_sjmfe")
+
+[sub_resource type="Gradient" id="Gradient_sjmfe"]
+colors = PackedColorArray(0.2, 0.2, 0.2, 1, 0.501961, 0.4, 0.301961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ehk0h"]
+gradient = SubResource("Gradient_sjmfe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ik80"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+spread = 5.0
+initial_velocity_min = 400.0
+initial_velocity_max = 1200.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 6.0
+scale_max = 8.0
+color_initial_ramp = SubResource("GradientTexture1D_ehk0h")
+alpha_curve = SubResource("CurveTexture_ehk0h")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_squo2"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_lnbpc"]
+_data = [Vector2(0, 1), 0.0, -0.0358499, 0, 0, Vector2(0.331148, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_opj4r"]
+texture_mode = 1
+curve = SubResource("Curve_lnbpc")
+
+[sub_resource type="Gradient" id="Gradient_squo2"]
+colors = PackedColorArray(0, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lnbpc"]
+gradient = SubResource("Gradient_squo2")
+
+[sub_resource type="Curve" id="Curve_squo2"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.06034), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lnbpc"]
+curve = SubResource("Curve_squo2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_squo2"]
+lifetime_randomness = 0.33
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 30.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_lnbpc")
+color_initial_ramp = SubResource("GradientTexture1D_lnbpc")
+alpha_curve = SubResource("CurveTexture_opj4r")
+
+[sub_resource type="Curve" id="Curve_dwita"]
+_data = [Vector2(0, 1), 0.0, -3.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwita"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ruae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iwut7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d122p"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_iwut7"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_gncdm"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("menu_buttons", "title_background", "character_select_screen", "menu_panel_screen", "card_library", "confirm_popup", "black_mask", "setting_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_opj4r")
+menu_buttons = NodePath("MenuButtons")
+title_background = NodePath("TitleBackground")
+character_select_screen = NodePath("ScreenPanels/CharacterSelect")
+menu_panel_screen = NodePath("ScreenPanels/MainMenuPanelScreen")
+card_library = NodePath("ScreenPanels/CardLibraryScreen")
+confirm_popup = NodePath("Popup/ConfirmPopup")
+black_mask = NodePath("BlackMask")
+setting_screen = NodePath("SettingsScreen")
+dungeon_prefab = ExtResource("2_dsit2")
+
+[node name="TitleBackground" type="Control" parent="." node_paths=PackedStringArray("sky_texture", "mg3Bot_texture", "mg3Top_texture", "topGlow_texture", "topGlow2_texture", "botGlow_texture", "title_logo_texture", "dust_container", "top_clouds_container", "mid_clouds_container")]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.833, 0.833)
+mouse_filter = 2
+script = ExtResource("2_ekxnf")
+slider = 0.0
+sky_texture = NodePath("SkyTex")
+mg3Bot_texture = NodePath("mg3BotTex")
+mg3Top_texture = NodePath("mg3TopTex")
+topGlow_texture = NodePath("topGlowTex")
+topGlow2_texture = NodePath("topGlow2Tex")
+botGlow_texture = NodePath("botGlowTex")
+title_logo_texture = NodePath("TitleLogoTex")
+dust_container = NodePath("SmokeContainer")
+top_clouds_container = NodePath("TopCloudsContainer")
+mid_clouds_container = NodePath("MidCloudsContainer")
+
+[node name="SkyTex" type="TextureRect" parent="TitleBackground"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1469.0
+mouse_filter = 2
+texture = ExtResource("4_wu84c")
+stretch_mode = 4
+
+[node name="mg3BotTex" type="TextureRect" parent="TitleBackground"]
+visible = false
+layout_mode = 0
+offset_top = -1140.0
+offset_right = 40.0
+offset_bottom = -1100.0
+mouse_filter = 2
+texture = ExtResource("5_tkd2y")
+
+[node name="mg3TopTex" type="TextureRect" parent="TitleBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("6_snvon")
+stretch_mode = 4
+
+[node name="botGlowTex" type="TextureRect" parent="TitleBackground"]
+layout_mode = 0
+offset_top = -1140.0
+offset_right = 1358.0
+offset_bottom = -413.0
+mouse_filter = 2
+texture = ExtResource("7_q72jy")
+
+[node name="topGlowTex" type="TextureRect" parent="TitleBackground"]
+layout_mode = 0
+offset_left = 255.0
+offset_right = 295.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("7_ntxpk")
+
+[node name="topGlow2Tex" type="TextureRect" parent="TitleBackground"]
+layout_mode = 0
+offset_left = 234.0
+offset_right = 274.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("9_7ik80")
+
+[node name="SmokeContainer" type="Control" parent="TitleBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Smoke1" type="GPUParticles2D" parent="TitleBackground/SmokeContainer"]
+position = Vector2(-193.277, 1002.4)
+emitting = false
+amount = 5
+texture = ExtResource("9_sjmfe")
+lifetime = 4.0
+visibility_rect = Rect2(0, 0, 1920, 100)
+process_material = SubResource("ParticleProcessMaterial_7ik80")
+
+[node name="Smoke2" type="GPUParticles2D" parent="TitleBackground/SmokeContainer"]
+position = Vector2(-193.277, 1002.4)
+emitting = false
+amount = 5
+texture = ExtResource("10_ehk0h")
+lifetime = 4.0
+visibility_rect = Rect2(0, 0, 1920, 100)
+process_material = SubResource("ParticleProcessMaterial_7ik80")
+
+[node name="Smoke3" type="GPUParticles2D" parent="TitleBackground/SmokeContainer"]
+position = Vector2(-193.277, 1002.4)
+emitting = false
+amount = 5
+texture = ExtResource("11_k6rhl")
+lifetime = 4.0
+visibility_rect = Rect2(0, 0, 1920, 100)
+process_material = SubResource("ParticleProcessMaterial_7ik80")
+
+[node name="TopCloudsContainer" type="Control" parent="TitleBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.20048
+offset_bottom = 1.20044
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MidCloudsContainer" type="Control" parent="TitleBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitleLogoTex" type="TextureRect" parent="TitleBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.8
+offset_top = -275.0
+offset_right = 341.2
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(340, 275)
+mouse_filter = 2
+texture = ExtResource("3_bqqt6")
+stretch_mode = 4
+
+[node name="bufferVFX1" type="GPUParticles2D" parent="TitleBackground/TitleLogoTex"]
+material = SubResource("CanvasItemMaterial_squo2")
+position = Vector2(404.01, 295.624)
+amount = 10
+texture = ExtResource("13_squo2")
+lifetime = 1.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_squo2")
+
+[node name="bufferVFX2" type="GPUParticles2D" parent="TitleBackground/TitleLogoTex"]
+material = SubResource("CanvasItemMaterial_squo2")
+position = Vector2(404.01, 295.624)
+amount = 10
+texture = ExtResource("14_lnbpc")
+lifetime = 1.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_squo2")
+
+[node name="bufferVFX3" type="GPUParticles2D" parent="TitleBackground/TitleLogoTex"]
+material = SubResource("CanvasItemMaterial_squo2")
+position = Vector2(404.01, 295.624)
+amount = 10
+texture = ExtResource("15_opj4r")
+lifetime = 1.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_squo2")
+
+[node name="Label" type="Label" parent="TitleBackground/TitleLogoTex"]
+layout_mode = 0
+offset_left = 425.619
+offset_top = 472.095
+offset_right = 465.619
+offset_bottom = 495.095
+theme_override_colors/font_color = Color(0.964706, 0.94902, 0.321569, 1)
+theme_override_colors/font_shadow_color = Color(0.192157, 0.211765, 0.207843, 1)
+theme_override_colors/font_outline_color = Color(0.425755, 0.324182, 0.0540476, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("16_djuoj")
+theme_override_font_sizes/font_size = 46
+text = "—Godot版"
+
+[node name="MenuButtons" type="Control" parent="." node_paths=PackedStringArray("quit_button", "patch_note_button", "settings_button", "stat_button", "info_button", "abadon_button", "continue_button", "play_button")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.833, 0.833)
+mouse_filter = 2
+script = ExtResource("16_dwita")
+START_POS = Vector2i(40, 950)
+SPACE_Y = 48
+circle_in_curve = SubResource("Curve_dwita")
+quit_button = NodePath("QuitButton")
+patch_note_button = NodePath("BatchNoteButton")
+settings_button = NodePath("SettingsButton")
+stat_button = NodePath("StatButton")
+info_button = NodePath("InfoButton")
+abadon_button = NodePath("AbandonRunButton")
+continue_button = NodePath("ResumeButton")
+play_button = NodePath("PlayButton")
+
+[node name="QuitButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = -135.0
+offset_top = 950.0
+offset_right = 165.0
+offset_bottom = 992.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7ruae")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iwut7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "退出"
+alignment = 0
+script = ExtResource("17_7ruae")
+click_result = 7
+
+[node name="BatchNoteButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = -215.0
+offset_top = 902.0
+offset_right = 85.0
+offset_bottom = 944.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "补丁内容清单"
+alignment = 0
+script = ExtResource("17_7ruae")
+click_result = 6
+
+[node name="SettingsButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = -295.0
+offset_top = 854.0
+offset_right = 5.0
+offset_bottom = 896.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "设定"
+alignment = 0
+script = ExtResource("17_7ruae")
+click_result = 5
+
+[node name="StatButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = -375.0
+offset_top = 806.0
+offset_right = -75.0
+offset_bottom = 848.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "统计内容"
+alignment = 0
+script = ExtResource("17_7ruae")
+click_result = 4
+
+[node name="InfoButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = -455.0
+offset_top = 758.0
+offset_right = -155.0
+offset_bottom = 800.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "百科大全"
+alignment = 0
+script = ExtResource("17_7ruae")
+click_result = 3
+
+[node name="AbandonRunButton" type="Button" parent="MenuButtons"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = 135.654
+offset_top = -325.382
+offset_right = 435.654
+offset_bottom = -283.382
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "放弃当前游戏"
+alignment = 0
+script = ExtResource("17_7ruae")
+click_result = 2
+
+[node name="ResumeButton" type="Button" parent="MenuButtons"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = 135.654
+offset_top = -325.382
+offset_right = 435.654
+offset_bottom = -283.382
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "继续"
+alignment = 0
+script = ExtResource("17_7ruae")
+click_result = 1
+
+[node name="PlayButton" type="Button" parent="MenuButtons"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_top = 230.0
+offset_right = 300.0
+offset_bottom = 272.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dwita")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d122p")
+text = "开始游戏"
+alignment = 0
+script = ExtResource("17_7ruae")
+
+[node name="BlackMask" type="TextureRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1600.0
+offset_top = -900.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_iwut7")
+
+[node name="ScreenPanels" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.833, 0.833)
+mouse_filter = 2
+
+[node name="MainMenuPanelScreen" parent="ScreenPanels" instance=ExtResource("23_xip4e")]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="CharacterSelect" parent="ScreenPanels" instance=ExtResource("18_ph1pj")]
+visible = false
+layout_mode = 0
+button_group = SubResource("ButtonGroup_gncdm")
+
+[node name="CardLibraryScreen" parent="ScreenPanels" instance=ExtResource("16_d122p")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsScreen" parent="." instance=ExtResource("23_vn6nm")]
+visible = false
+layout_mode = 0
+
+[node name="Popup" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.833, 0.833)
+mouse_filter = 2
+
+[node name="ConfirmPopup" parent="Popup" instance=ExtResource("19_iwut7")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

@@ -16,3 +16,9 @@ func _init() -> void:
 	# self.tags.append(CardTag.STARTER_STRIKE)
 
 	
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)
+	
+	

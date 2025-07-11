@@ -15,3 +15,10 @@ func _init() -> void:
 	self.exhaust = true
 	self.base_magic_number = 1
 	self.magic_number = self.base_magic_number
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(1)
+		rawDescription = card_string.upgrade_description
+		initialize_description()

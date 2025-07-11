@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://d27ttmyopxpoa"]
+
+[ext_resource type="Texture2D" uid="uid://cvrtc6ij4d2aq" path="res://arts/slay_the_spire/images/ui/cursors/gold2.png" id="1_p5t81"]
+[ext_resource type="Texture2D" uid="uid://brh2fy4jdyep5" path="res://arts/slay_the_spire/images/ui/cursors/magGlass2.png" id="1_y6s4v"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y6s4v")
+}],
+"loop": true,
+"name": &"clicked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p5t81")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

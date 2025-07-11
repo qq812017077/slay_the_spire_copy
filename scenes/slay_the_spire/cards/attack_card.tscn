@@ -1,245 +1,191 @@
-[gd_scene load_steps=9 format=3 uid="uid://brhvcimo2tlol"]
+[gd_scene load_steps=12 format=3 uid="uid://brgc3fkuwu2ik"]
 
-[ext_resource type="Script" uid="uid://cx66c4msdxhth" path="res://scripts/ui/card_widget.gd" id="1_hpg60"]
+[ext_resource type="Script" uid="uid://cx66c4msdxhth" path="res://scripts/ui/cards/card_widget.gd" id="1_hpg60"]
 [ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="2_srfjt"]
+[ext_resource type="PackedScene" uid="uid://bxaoyfh5kvwf7" path="res://scenes/slay_the_spire/cards/card_tip.tscn" id="2_xvgly"]
 [ext_resource type="Texture2D" uid="uid://bi8xi04c3qn4d" path="res://arts/slay_the_spire/images/cardui/card_bg.tres" id="3_lnqaa"]
 [ext_resource type="Texture2D" uid="uid://4aq74ujkxmdo" path="res://arts/slay_the_spire/images/cards/card_icon.tres" id="4_pj33l"]
 [ext_resource type="Texture2D" uid="uid://bjw8kfs7k2gu1" path="res://arts/slay_the_spire/images/cardui/card_frame.tres" id="5_7dppu"]
 [ext_resource type="Texture2D" uid="uid://cjqdwpduva844" path="res://arts/slay_the_spire/images/cardui/card_banner.tres" id="6_r434l"]
 [ext_resource type="Texture2D" uid="uid://w5grxcxjjrx5" path="res://arts/slay_the_spire/images/cardui/card_orb.tres" id="7_2t4yp"]
+[ext_resource type="FontFile" uid="uid://poln5dbu12w4" path="res://arts/slay_the_spire/fonts/zhs/NotoSansMonoCJKsc-Regular.otf" id="8_8jw2u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qi0x"]
 
-[node name="AttackCard" type="MarginContainer"]
-offset_right = 230.0
-offset_bottom = 322.0
-pivot_offset = Vector2(115, 161)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8jw2u"]
+
+[node name="AttackCard" type="Control" node_paths=PackedStringArray("card_container")]
+clip_children = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 420.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_filter = 0
 script = ExtResource("1_hpg60")
+card_container = NodePath("MarginContainer")
+card_tooltip_prefab = ExtResource("2_xvgly")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(230, 322)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 420.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 420)
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("2_srfjt")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_0qi0x")
 
-[node name="BG_Texture" type="TextureRect" parent="PanelContainer"]
+[node name="BG_Texture" type="TextureRect" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_lnqaa")
-expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Upper" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Upper" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.61
 mouse_filter = 2
 
-[node name="IconPart" type="MarginContainer" parent="PanelContainer/VBoxContainer/Upper"]
+[node name="IconPart" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Upper"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_bottom = 10
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Upper/IconPart"]
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/IconPart"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/Upper/IconPart/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.405
-offset_right = 19.405
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.99
-mouse_filter = 2
+[node name="Icon" type="Sprite2D" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/IconPart/Control"]
 texture = ExtResource("4_pj33l")
-expand_mode = 2
-stretch_mode = 4
 
-[node name="FramePart" type="MarginContainer" parent="PanelContainer/VBoxContainer/Upper"]
+[node name="FramePart" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Upper"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 45
+theme_override_constants/margin_top = 55
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = -1
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Upper/FramePart"]
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/FramePart"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Frame" type="TextureRect" parent="PanelContainer/VBoxContainer/Upper/FramePart/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 3.2
-mouse_filter = 2
+[node name="Frame" type="Sprite2D" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/FramePart/Control"]
+position = Vector2(0, 0.5)
 texture = ExtResource("5_7dppu")
-expand_mode = 2
 
-[node name="CardType" type="Label" parent="PanelContainer/VBoxContainer/Upper/FramePart/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.924
-anchor_right = 0.5
-anchor_bottom = 0.924
-offset_left = -25.0
-offset_top = -17.448
-offset_right = 25.0002
-offset_bottom = 17.5521
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(25, 17.5)
+[node name="CardType" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/FramePart/Control"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = 58.5
+offset_right = 28.0
+offset_bottom = 97.5
 theme_override_colors/font_color = Color(0.352941, 0.352941, 0.352941, 1)
-theme_override_colors/font_shadow_color = Color(0.619608, 0.619608, 0.619608, 0.831373)
+theme_override_colors/font_shadow_color = Color(0.619608, 0.619608, 0.619608, 0.67451)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 15
 text = "攻击"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BannerPart" type="MarginContainer" parent="PanelContainer/VBoxContainer/Upper"]
+[node name="BannerPart" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Upper"]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/margin_top = 20
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/Upper/BannerPart"]
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/BannerPart"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="Banner" type="TextureRect" parent="PanelContainer/VBoxContainer/Upper/BannerPart/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -115.0
-offset_top = -18.505
-offset_right = 115.0
-offset_bottom = 32.0523
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.1, 1.1)
-pivot_offset = Vector2(115, 25)
-mouse_filter = 2
+[node name="Banner" type="Sprite2D" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/BannerPart/Control"]
+position = Vector2(147, 37.5)
 texture = ExtResource("6_r434l")
-expand_mode = 5
-stretch_mode = 4
 
-[node name="CardName" type="Label" parent="PanelContainer/VBoxContainer/Upper/BannerPart/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -4.96
-offset_right = 0.889999
-offset_bottom = -4.96
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(115.445, 27)
+[node name="CardName" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Upper/BannerPart/Control"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 1.0
+offset_right = 250.0
+offset_bottom = 41.0
+pivot_offset = Vector2(100, 20)
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
 theme_override_colors/font_shadow_color = Color(0.454902, 0.454902, 0.454902, 1)
 theme_override_colors/font_outline_color = Color(0.34902, 0.337255, 0.309804, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 40
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
 text = "痛击"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="Lower" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Lower" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
-[node name="Desc" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Lower"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.94902, 0.913725, 0.843137, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/shadow_offset_x = 3
-theme_override_font_sizes/normal_font_size = 16
+[node name="Desc" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer/Lower"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8jw2u")
 bbcode_enabled = true
 text = "造成8点伤害。
-给予2层[color=#d9b64c]易伤。
-"
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
+给予2层[color=#d9b64c]易伤[/color]。"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="CostOrb" type="TextureRect" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.06
-anchor_top = 0.034
-anchor_right = 0.06
-anchor_bottom = 0.034
-offset_left = -27.0
-offset_top = -23.948
-offset_right = 44.0
-offset_bottom = 47.052
-scale = Vector2(0.76, 0.76)
+[node name="CostOrb" type="TextureRect" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = -21.0
+offset_right = 56.0
+offset_bottom = 50.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 texture = ExtResource("7_2t4yp")
-expand_mode = 1
 stretch_mode = 4
 
-[node name="Cost" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -117.0
-offset_top = -166.83
-offset_right = -86.0
-offset_bottom = -130.83
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Cost" type="Label" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = -21.0
+offset_right = 56.0
+offset_bottom = 50.0
 theme_override_colors/font_outline_color = Color(0.228333, 0.218706, 0.199453, 1)
 theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 26
-text = "2"
+theme_override_fonts/font = ExtResource("8_8jw2u")
+theme_override_font_sizes/font_size = 36
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxaoyfh5kvwf7"]
+
+[ext_resource type="Script" uid="uid://c7i5i0hgauttb" path="res://scripts/ui/cards/card_tip.gd" id="1_w807c"]
+[ext_resource type="Texture2D" uid="uid://cvt64vwvirb3r" path="res://arts/slay_the_spire/images/ui/tip/tip.png" id="2_gr8jn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w807c"]
+texture = ExtResource("2_gr8jn")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+
+[node name="CardTip" type="PanelContainer" node_paths=PackedStringArray("keyword_name", "keyword_desc")]
+custom_minimum_size = Vector2(320, 48)
+offset_right = 320.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_w807c")
+script = ExtResource("1_w807c")
+keyword_name = NodePath("VBoxContainer/Keyword")
+keyword_desc = NodePath("VBoxContainer/KeywordDesc")
+metadata/_custom_type_script = "uid://c7i5i0hgauttb"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Keyword" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Space" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="KeywordDesc" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 61.035)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 0

@@ -15,3 +15,8 @@ func _init() -> void:
 	self.is_multi_damage = true
 	self.base_magic_number = 1
 	self.magic_number = self.base_magic_number
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

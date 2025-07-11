@@ -12,3 +12,8 @@ func _init() -> void:
 	super("Double Energy", card_string.name, "blue/skill/double_energy", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.UNCOMMON, CardTarget.SELF)
 
 	self.exhaust = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(0)

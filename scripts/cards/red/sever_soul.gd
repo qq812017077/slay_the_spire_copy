@@ -13,3 +13,9 @@ func _init() -> void:
 
 
 	self.base_damage = 16
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(6)

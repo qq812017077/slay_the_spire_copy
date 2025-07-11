@@ -15,3 +15,8 @@ func _init() -> void:
 	self.magic_number = self.base_magic_number
 	self.base_damage = 7
 	# self.tags.append(CardTag.STRIKE)
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(2)

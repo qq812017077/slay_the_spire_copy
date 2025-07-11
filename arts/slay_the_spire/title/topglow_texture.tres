@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d27a5b8q3hlwc"]
+
+[ext_resource type="Texture2D" uid="uid://hpcxrarmxg0s" path="res://arts/slay_the_spire/title/title6.png" id="1_c32sh"]
+
+[resource]
+atlas = ExtResource("1_c32sh")
+region = Rect2(1831, 138, 158, 289)

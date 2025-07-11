@@ -36,8 +36,8 @@ static func parse_atlas(atlas_dir: String, atlas_data: String) -> Array:
 	atlas_data = atlas_data.replace("\r\n", "\n")
 	var data_blocks: PackedStringArray = atlas_data.split("\n\n")
 
-	var textures_by_name: Dictionary = {} # String : Texture2D
-	var regions_by_name: Dictionary = {} # String : AtlasRegion
+	var _textures_by_name: Dictionary = {} # String : Texture2D
+	var _regions_by_name: Dictionary = {} # String : AtlasRegion
 	
 	var space_regex: RegEx = RegEx.new()
 	var global_attr_regex : RegEx= RegEx.new()
@@ -59,7 +59,7 @@ static func parse_atlas(atlas_dir: String, atlas_data: String) -> Array:
 
 		# each block represents data of an image sheet
 		var filename = content_lines[0].strip_edges()
-		if not filename.ends_with('.png'):
+		if not filename.ends_with('.png') && not filename.ends_with('.jpg') :
 			push_error("Invalid filename format: %s" % filename)
 			continue
 		
@@ -69,7 +69,7 @@ static func parse_atlas(atlas_dir: String, atlas_data: String) -> Array:
 		if texture == null:
 			push_error("Failed to load texture: %s" % filename)
 			continue
-		textures_by_name.set(filename, texture)
+		_textures_by_name.set(filename, texture)
 		
 		var cur_atlas_region: AtlasRegion = null
 		for line in content_lines:
@@ -81,7 +81,7 @@ static func parse_atlas(atlas_dir: String, atlas_data: String) -> Array:
 #					var img_size = Vector2i(attr_value.split(',')[0].to_int(), attr_value.split(',')[1].to_int())
 			if sprite_name_regex.search(line):
 				if cur_atlas_region != null:
-					regions_by_name.set(cur_atlas_region.name, cur_atlas_region)
+					_regions_by_name.set(cur_atlas_region.name, cur_atlas_region)
 
 				cur_atlas_region = AtlasRegion.new(texture)
 				cur_atlas_region.name = line
@@ -91,6 +91,6 @@ static func parse_atlas(atlas_dir: String, atlas_data: String) -> Array:
 				var attr_value: String = sprite_attr_match.get_string(2)
 				cur_atlas_region.set_attr(attr_key, attr_value)
 		# whole block is read, save the last sprite
-		regions_by_name.set(cur_atlas_region.name, cur_atlas_region)
+		_regions_by_name.set(cur_atlas_region.name, cur_atlas_region)
 		
-	return [textures_by_name, regions_by_name]
+	return [_textures_by_name, _regions_by_name]

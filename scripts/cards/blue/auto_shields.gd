@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Auto Shields", card_string.name, "blue/skill/auto_shields", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.UNCOMMON, CardTarget.SELF)
 
 	self.base_block = 11
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(4)
+		

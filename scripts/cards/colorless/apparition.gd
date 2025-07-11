@@ -13,3 +13,10 @@ func _init() -> void:
 
 	self.exhaust = true
 	self.is_ethereal = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		rawDescription = card_string.upgrade_description
+		initialize_description()
+		is_ethereal = false

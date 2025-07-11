@@ -8,4 +8,4 @@ texture_margin_left = 25.0
 texture_margin_top = 30.0
 texture_margin_right = 25.0
 texture_margin_bottom = 30.0
-region_rect = Rect2(3, 22.0639, 49, 114.388)
+region_rect = Rect2(3, 32, 49, 98)

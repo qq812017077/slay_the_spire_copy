@@ -10,3 +10,9 @@ func _init() -> void:
 	if card_string == null:
 		card_string = CardGame.languagePack.get_card_string(ID)
 	super("ChargeBattery", card_string.name, "blue/skill/charge_battery", 0, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.COMMON, CardTarget.NONE)
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(3)

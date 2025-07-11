@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Multi-Cast", card_string.name, "blue/skill/multicast", -1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.RARE, CardTarget.NONE)
 
 	self.show_evoke_value = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		rawDescription = card_string.upgrade_description
+		initialize_description()

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d2sqyl6ou7u8u" path="res://scripts/core/card_manager.gd" id="1_htrw1"]
 [ext_resource type="Script" uid="uid://f40etcioaujp" path="res://scripts/hand_container.gd" id="2_htrw1"]
 [ext_resource type="PackedScene" uid="uid://dg37v5wgu73m7" path="res://scenes/player.tscn" id="3_osnhv"]
-[ext_resource type="PackedScene" uid="uid://brhvcimo2tlol" path="res://scenes/slay_the_spire/cards/attack_card.tscn" id="4_5mf5x"]
+[ext_resource type="PackedScene" uid="uid://brhvcimo2tlol" path="res://scenes/slay_the_spire/cards/attack_card_small.tscn" id="4_5mf5x"]
 
 [sub_resource type="Curve2D" id="Curve2D_537il"]
 _data = {

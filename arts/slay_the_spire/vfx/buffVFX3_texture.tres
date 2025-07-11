@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dr5e8tdfcmik0"]
+
+[ext_resource type="Texture2D" uid="uid://cdrrkskg3iqis" path="res://arts/slay_the_spire/vfx/vfx.png" id="1_5ok7h"]
+
+[resource]
+atlas = ExtResource("1_5ok7h")
+region = Rect2(1870, 1529, 23, 26)
+filter_clip = true

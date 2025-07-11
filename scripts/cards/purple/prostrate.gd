@@ -15,3 +15,9 @@ func _init() -> void:
 	self.magic_number = self.base_magic_number
 	self.base_block = 4
 	self.block = self.base_block
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(1)

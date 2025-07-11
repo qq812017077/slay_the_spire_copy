@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://p72l3e1cxm2c"]
+
+[ext_resource type="Script" uid="uid://dvtj540duorm1" path="res://scripts/ui/buttons/tick_toggle.gd" id="1_lbomi"]
+[ext_resource type="Texture2D" uid="uid://d1pgnxcfy5vl4" path="res://arts/slay_the_spire/images/ui/checkbox.png" id="1_n5l04"]
+[ext_resource type="Texture2D" uid="uid://wnbup46vaj2x" path="res://arts/slay_the_spire/images/ui/tick.png" id="2_lbomi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eeyc2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dki22"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gl3lr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mvmag"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qysyg"]
+
+[node name="UpgradeToggle" type="HBoxContainer" node_paths=PackedStringArray("tick_icon", "button")]
+offset_right = 72.0
+offset_bottom = 64.001
+mouse_filter = 0
+script = ExtResource("1_lbomi")
+tick_icon = NodePath("Tick")
+button = NodePath("Button")
+hover_color = Color(0.52549, 0.8, 0.913725, 1)
+
+[node name="Checkbox2" type="Sprite2D" parent="."]
+texture = ExtResource("1_n5l04")
+centered = false
+region_rect = Rect2(10, 10, 45, 45)
+
+[node name="Tick" type="Sprite2D" parent="."]
+texture = ExtResource("2_lbomi")
+centered = false
+region_rect = Rect2(2, 17, 62, 40)
+
+[node name="Checkbox" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(101, 64)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eeyc2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dki22")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gl3lr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mvmag")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qysyg")
+toggle_mode = true

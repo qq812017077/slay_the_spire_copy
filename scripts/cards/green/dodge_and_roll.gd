@@ -12,3 +12,10 @@ func _init() -> void:
 	super("Dodge and Roll", card_string.name, "green/skill/dodge_and_roll", 1, card_string.description, CardType.SKILL, CardColor.GREEN, CardRarity.COMMON, CardTarget.SELF)
 	
 	self.base_block = 4
+
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(2)

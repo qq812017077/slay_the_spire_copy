@@ -14,3 +14,11 @@ func _init() -> void:
 	
 	self.base_magic_number = 5
 	self.magic_number = self.base_magic_number
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self_retain = true
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

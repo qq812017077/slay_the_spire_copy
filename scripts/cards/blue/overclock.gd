@@ -15,3 +15,8 @@ func _init() -> void:
 	self.magic_number = self.base_magic_number
 
 	# self.cards_to_preview = Burn.new()
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(1)

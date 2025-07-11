@@ -12,3 +12,10 @@ func _init() -> void:
 	super("Terror", card_string.name, "green/skill/terror", 1, card_string.description, CardType.SKILL, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.exhaust = true
+
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(0)

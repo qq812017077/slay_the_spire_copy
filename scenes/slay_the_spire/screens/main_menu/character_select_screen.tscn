@@ -1,0 +1,129 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbcxhe3kdmrqj"]
+
+[ext_resource type="Script" uid="uid://75iwcs37w51j" path="res://scripts/ui/screens/character_select_screen.gd" id="1_vqs2c"]
+[ext_resource type="PackedScene" uid="uid://ddxl2fnk5ccwb" path="res://scenes/slay_the_spire/ui/confirm_button.tscn" id="2_vqs2c"]
+[ext_resource type="PackedScene" uid="uid://wirqo3pgodbw" path="res://scenes/slay_the_spire/ui/cancel_button.tscn" id="3_c0xr2"]
+[ext_resource type="PackedScene" uid="uid://7j6x0171bb8q" path="res://scenes/slay_the_spire/ui/character_option.tscn" id="5_t8708"]
+[ext_resource type="ButtonGroup" uid="uid://bcgxwgyb76c4x" path="res://scenes/slay_the_spire/screens/main_menu/character_button_group.tres" id="5_x3m2p"]
+[ext_resource type="PackedScene" uid="uid://cx3gkv2208uhs" path="res://scenes/slay_the_spire/ui/character_info_container.tscn" id="6_x3m2p"]
+
+[node name="CharacterSelectScreen" type="Control" node_paths=PackedStringArray("cancel_button", "confirm_button", "character_bg", "choose_character_label", "options", "character_infos_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_vqs2c")
+cancel_button = NodePath("CancelButton")
+confirm_button = NodePath("ConfirmButton")
+character_bg = NodePath("CharacterBG")
+choose_character_label = NodePath("ChooseCharacterMsg")
+button_group = ExtResource("5_x3m2p")
+options = [NodePath("HBoxContainer/CharacterOption"), NodePath("HBoxContainer/CharacterOption2"), NodePath("HBoxContainer/CharacterOption3"), NodePath("HBoxContainer/CharacterOption4")]
+character_infos_container = NodePath("CharacterInfosContainer")
+
+[node name="CharacterBG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -9.0
+offset_right = -16.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="CancelButton" parent="." instance=ExtResource("3_c0xr2")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_bottom = 0.0
+grow_vertical = 0
+
+[node name="ConfirmButton" parent="." instance=ExtResource("2_vqs2c")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -256.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -96.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 49
+alignment = 1
+
+[node name="CharacterOption" parent="HBoxContainer" node_paths=PackedStringArray("character_info_container") instance=ExtResource("5_t8708")]
+layout_mode = 2
+character_info_container = NodePath("../../CharacterInfosContainer/CharacterInfo")
+
+[node name="CharacterOption2" parent="HBoxContainer" node_paths=PackedStringArray("character_info_container") instance=ExtResource("5_t8708")]
+layout_mode = 2
+character_info_container = NodePath("../../CharacterInfosContainer/CharacterInfo2")
+player_type = 1
+
+[node name="CharacterOption3" parent="HBoxContainer" node_paths=PackedStringArray("character_info_container") instance=ExtResource("5_t8708")]
+layout_mode = 2
+character_info_container = NodePath("../../CharacterInfosContainer/CharacterInfo3")
+player_type = 2
+
+[node name="CharacterOption4" parent="HBoxContainer" node_paths=PackedStringArray("character_info_container") instance=ExtResource("5_t8708")]
+layout_mode = 2
+character_info_container = NodePath("../../CharacterInfosContainer/CharacterInfo4")
+player_type = 3
+
+[node name="ChooseCharacterMsg" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = 48.0
+offset_right = 288.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "选择你的角色"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterInfosContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="CharacterInfo" parent="CharacterInfosContainer" instance=ExtResource("6_x3m2p")]
+layout_mode = 0
+
+[node name="CharacterInfo2" parent="CharacterInfosContainer" instance=ExtResource("6_x3m2p")]
+layout_mode = 0
+
+[node name="CharacterInfo3" parent="CharacterInfosContainer" instance=ExtResource("6_x3m2p")]
+layout_mode = 0
+
+[node name="CharacterInfo4" parent="CharacterInfosContainer" instance=ExtResource("6_x3m2p")]
+layout_mode = 0

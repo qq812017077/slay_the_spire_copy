@@ -12,3 +12,8 @@ func _init() -> void:
 	super("Defend_B", card_string.name, "blue/skill/defend", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.BASIC, CardTarget.SELF)
 
 	self.base_block = 5
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(3)

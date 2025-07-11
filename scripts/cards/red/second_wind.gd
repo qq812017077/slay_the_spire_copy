@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Second Wind", card_string.name, "red/skill/second_wind", 1, card_string.description, CardType.SKILL, CardColor.RED, CardRarity.UNCOMMON, CardTarget.SELF)
 
 	self.base_block = 5
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(2)

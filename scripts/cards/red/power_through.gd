@@ -14,3 +14,9 @@ func _init() -> void:
 
 	self.base_block = 15
 	self.card_to_preview = Wound.new()
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(5)

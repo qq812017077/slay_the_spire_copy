@@ -203,7 +203,7 @@ repeat: none
 512/card_colorless_orb
   rotate: false
   xy: 1978, 1536
-  size: 68, 68
+  size: 65, 65
   orig: 512, 512
   offset: 91, 413
   index: -1

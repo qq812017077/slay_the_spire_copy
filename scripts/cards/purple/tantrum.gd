@@ -17,3 +17,9 @@ func _init() -> void:
 	self.magic_number = self.base_magic_number
 	self.shuffle_back_into_draw_pile = true
 	
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(1)

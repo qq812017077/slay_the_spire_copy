@@ -13,3 +13,11 @@ func _init() -> void:
 
 	self.base_damage = 12
 	self.times_upgrades = 0
+
+
+func upgrade() -> void:
+	upgraded = true
+	upgrade_damage(4 + times_upgrades)
+	times_upgrades+=1
+	name = card_string.name + "+" + str(times_upgrades)
+	

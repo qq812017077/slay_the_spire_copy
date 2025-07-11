@@ -12,3 +12,9 @@ func _init() -> void:
 	super("BowlingBash", card_string.name, "purple/attack/bowling_bash", 1, card_string.description, CardType.ATTACK, CardColor.PURPLE, CardRarity.COMMON, CardTarget.ENEMY)
 
 	self.base_damage = 7
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

@@ -13,3 +13,10 @@ func _init() -> void:
 
 	self.card_to_preview = Expunger.new()
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

@@ -13,3 +13,9 @@ func _init() -> void:
 
 	self.is_ethereal = true
 	self.base_block = 10
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(3)

@@ -13,3 +13,11 @@ func _init() -> void:
 
 	self.base_block = 3
 	self.exhaust = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(2)
+		exhaust = false
+		rawDescription = card_string.upgrade_description
+		initialize_description()

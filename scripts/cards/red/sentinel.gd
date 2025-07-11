@@ -13,3 +13,11 @@ func _init() -> void:
 
 
 	self.base_block = 5
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(3)
+		rawDescription = card_string.upgrade_description
+		initialize_description()

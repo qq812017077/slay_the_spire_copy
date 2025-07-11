@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Deflect", card_string.name, "green/skill/deflect", 0, card_string.description, CardType.SKILL, CardColor.GREEN, CardRarity.COMMON, CardTarget.SELF)
 
 	self.base_block = 4
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(3)

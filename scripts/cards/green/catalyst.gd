@@ -12,3 +12,10 @@ func _init() -> void:
 	super("Catalyst", card_string.name, "green/skill/catalyst", 1, card_string.description, CardType.SKILL, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

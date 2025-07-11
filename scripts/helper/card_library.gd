@@ -21,9 +21,7 @@ static var curse_cards: int = 0
 static var total_cards_count: int = 0
 
 
-
 static func initialize() -> void:
-
 	add_red_cards()
 	add_green_cards()
 	add_blue_cards()
@@ -111,7 +109,6 @@ static func add_red_cards() -> void:
 	add_card(Disarm.new())
 
 
-
 	add_card(Combust.new())
 	add_card(SpotWeakness.new())
 	add_card(Evolve.new())
@@ -143,6 +140,17 @@ static func add_red_cards() -> void:
 	add_card(Bludgeon.new())
 	
 static func add_green_cards() -> void:
+	# common 
+	add_card(Neutralize.new())
+	add_card(StrikeGreen.new())
+	add_card(Survivor.new())
+	add_card(DefendGreen.new())
+	add_card(Deflect.new())
+
+	add_card(BladeDance.new())
+	add_card(Slice.new())
+
+	# 
 	add_card(Accuracy.new())
 	add_card(Acrobatics.new())
 	add_card(Adrenaline.new())
@@ -153,7 +161,6 @@ static func add_green_cards() -> void:
 	add_card(Backflip.new())
 	add_card(Backstab.new())
 	add_card(Bane.new())
-	add_card(BladeDance.new())
 	add_card(Blur.new())
 	add_card(BouncingFlask.new())
 	add_card(BulletTime.new())
@@ -170,8 +177,6 @@ static func add_green_cards() -> void:
 	add_card(DaggerThrow.new())
 	add_card(Dash.new())
 	add_card(DeadlyPoison.new())
-	add_card(DefendGreen.new())
-	add_card(Deflect.new())
 	add_card(DieDieDie.new())
 	add_card(Distraction.new())
 	add_card(DodgeAndRoll.new())
@@ -192,7 +197,6 @@ static func add_green_cards() -> void:
 	add_card(LegSweep.new())
 	add_card(Malaise.new())
 	add_card(MasterfulStab.new())
-	add_card(Neutralize.new())
 	add_card(Nightmare.new())
 	add_card(NoxiousFumes.new())
 	add_card(Outmaneuver.new())
@@ -206,11 +210,8 @@ static func add_green_cards() -> void:
 	add_card(RiddleWithHoles.new())
 	add_card(Setup.new())
 	add_card(Skewer.new())
-	add_card(Slice.new())
 	add_card(StormOfSteel.new())
-	add_card(StrikeGreen.new())
 	add_card(SuckerPunch.new())
-	add_card(Survivor.new())
 	add_card(Tactician.new())
 	add_card(Terror.new())
 	add_card(ToolsOfTheTrade.new())
@@ -528,5 +529,3 @@ static func generate_cards() -> void:
 		# end	
 		file.close()
 		print("Generated card script: " + file_path)
-
-

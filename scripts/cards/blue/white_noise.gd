@@ -12,3 +12,8 @@ func _init() -> void:
 	super("White Noise", card_string.name, "blue/skill/white_noise", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.UNCOMMON, CardTarget.NONE)
 
 	self.exhaust = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(0)

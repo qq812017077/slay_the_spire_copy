@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Masterful Stab", card_string.name, "green/attack/masterful_stab", 0, card_string.description, CardType.ATTACK, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 12
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(4)

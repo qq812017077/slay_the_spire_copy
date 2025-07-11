@@ -20,3 +20,11 @@ func _init() -> void:
 	self.exhaust = true
 
 	self.tags.append(CardTag.HEALING)
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(1)
+		upgrade_block(2)
+		upgrade_magic_mumber(5)

@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Riddle With Holes", card_string.name, "green/attack/riddle_with_holes", 2, card_string.description, CardType.ATTACK, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 3
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(1)

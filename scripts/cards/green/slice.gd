@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Slice", card_string.name, "green/attack/slice", 0, card_string.description, CardType.ATTACK, CardColor.GREEN, CardRarity.COMMON, CardTarget.ENEMY)
 
 	self.base_damage = 6
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

@@ -12,3 +12,9 @@ func _init() -> void:
 	super("SignatureMove", card_string.name, "purple/attack/signature_move", 2, card_string.description, CardType.ATTACK, CardColor.PURPLE, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 30
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(10)

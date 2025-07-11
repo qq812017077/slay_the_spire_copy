@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Dualcast", card_string.name, "blue/skill/dualcast", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.BASIC, CardTarget.NONE)
 
 	self.show_evoke_value = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(0)

@@ -12,3 +12,9 @@ func _init() -> void:
 	super("Heel Hook", card_string.name, "green/attack/heel_hook", 1, card_string.description, CardType.ATTACK, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY)
 
 	self.base_damage = 5
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

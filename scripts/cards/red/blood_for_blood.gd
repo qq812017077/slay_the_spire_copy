@@ -13,3 +13,12 @@ func _init() -> void:
 
 
 	self.base_damage = 18
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(cost -1)
+		if cost < 0:
+			cost = 0
+		upgrade_damage(4)

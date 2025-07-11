@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://cx3gkv2208uhs"]
+
+[ext_resource type="Script" uid="uid://b52kdy68dchh4" path="res://scripts/ui/extensions/character_info_container.gd" id="1_025ib"]
+[ext_resource type="Texture2D" uid="uid://dr0m6kduy766k" path="res://arts/slay_the_spire/images/ui/top_panel/panelHeart.png" id="2_b6cdg"]
+[ext_resource type="Texture2D" uid="uid://bq1payuul4c3l" path="res://arts/slay_the_spire/images/ui/top_panel/panelGoldBag.png" id="3_o6ntc"]
+[ext_resource type="Script" uid="uid://cqqgshtjq1tvy" path="res://scripts/ui/extensions/smart_label.gd" id="4_thylf"]
+[ext_resource type="FontFile" uid="uid://rlbheu40m6dr" path="res://arts/slay_the_spire/fonts/card_desc_font.tres" id="5_5djh4"]
+[ext_resource type="Texture2D" uid="uid://b25iumnr1mwed" path="res://arts/slay_the_spire/images/relics/outline/burningBlood.png" id="6_lnlq7"]
+[ext_resource type="Texture2D" uid="uid://btekvarl0nws2" path="res://arts/slay_the_spire/images/relics/burningBlood.png" id="7_gb3r0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_emuej"]
+font = ExtResource("5_5djh4")
+
+[sub_resource type="LabelSettings" id="LabelSettings_v714o"]
+font = ExtResource("5_5djh4")
+
+[node name="CharacterInfo" type="Control" node_paths=PackedStringArray("character_name", "hp_icon", "hp_info", "coin_icon", "coin_info", "description", "relic_outlint_icon", "relic_icon", "relic_name", "relic_description")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_025ib")
+character_name = NodePath("CharacterName")
+hp_icon = NodePath("HPIcon")
+hp_info = NodePath("HPInfo")
+coin_icon = NodePath("CoinIcon")
+coin_info = NodePath("CoinInfo")
+description = NodePath("SmartDescription")
+relic_outlint_icon = NodePath("RelicOutlineIcon")
+relic_icon = NodePath("RelicIcon")
+relic_name = NodePath("RelicName")
+relic_description = NodePath("RelicDescription")
+
+[node name="CharacterName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 282.0
+offset_right = 648.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 64
+text = "铁甲战士"
+vertical_alignment = 1
+
+[node name="HPIcon" type="Sprite2D" parent="."]
+position = Vector2(225, 443)
+texture = ExtResource("2_b6cdg")
+
+[node name="HPInfo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 413.0
+offset_right = 356.0
+offset_bottom = 469.0
+theme_override_font_sizes/font_size = 19
+text = "生命：80/80"
+vertical_alignment = 1
+
+[node name="CoinIcon" type="Sprite2D" parent="."]
+position = Vector2(420, 442)
+texture = ExtResource("3_o6ntc")
+
+[node name="CoinInfo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 453.0
+offset_top = 413.0
+offset_right = 559.0
+offset_bottom = 469.0
+theme_override_font_sizes/font_size = 19
+text = "金币：80/80"
+vertical_alignment = 1
+
+[node name="SmartDescription" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 210.0
+offset_top = 474.0
+offset_right = 610.0
+offset_bottom = 545.0
+mouse_filter = 2
+script = ExtResource("4_thylf")
+label_setting = SubResource("LabelSettings_emuej")
+metadata/_custom_type_script = "uid://cqqgshtjq1tvy"
+
+[node name="RelicOutlineIcon" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.0627451)
+position = Vector2(225, 591)
+texture = ExtResource("6_lnlq7")
+
+[node name="RelicIcon" type="Sprite2D" parent="."]
+position = Vector2(225, 591)
+texture = ExtResource("7_gb3r0")
+
+[node name="RelicName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 553.0
+offset_right = 462.0
+offset_bottom = 590.0
+text = "燃烧之血"
+vertical_alignment = 1
+
+[node name="RelicDescription" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 278.0
+offset_top = 590.0
+offset_right = 778.0
+offset_bottom = 627.0
+mouse_filter = 2
+script = ExtResource("4_thylf")
+text = "在战斗结束时，回复6点生命"
+label_setting = SubResource("LabelSettings_v714o")
+metadata/_custom_type_script = "uid://cqqgshtjq1tvy"

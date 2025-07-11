@@ -10,3 +10,10 @@ func _init() -> void:
 	if card_string == null:
 		card_string = CardGame.languagePack.get_card_string(ID)
 	super("Enlightenment", card_string.name, "colorless/skill/enlightenment", 0, card_string.description, CardType.SKILL, CardColor.COLORLESS, CardRarity.UNCOMMON, CardTarget.SELF)
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		rawDescription = card_string.upgrade_description
+		initialize_description()

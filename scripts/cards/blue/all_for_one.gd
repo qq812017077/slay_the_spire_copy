@@ -12,3 +12,11 @@ func _init() -> void:
 	super("All For One", card_string.name, "blue/attack/all_for_one", 2, card_string.description, CardType.ATTACK, CardColor.BLUE, CardRarity.RARE, CardTarget.ENEMY)
 
 	self.base_damage = 10
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(4)
+		
+# func make_copy() -> AbstractCard:
+# 	return AllForOne.new() 

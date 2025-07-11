@@ -13,3 +13,9 @@ func _init() -> void:
 
 	self.base_block = 5
 	self.tags.append(CardTag.STARTER_DEFEND)
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(3)

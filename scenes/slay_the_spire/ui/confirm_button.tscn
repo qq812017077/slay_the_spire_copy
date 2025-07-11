@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddxl2fnk5ccwb"]
+
+[ext_resource type="Script" uid="uid://cawy65rolfcma" path="res://scripts/ui/buttons/screen_button.gd" id="1_0e508"]
+[ext_resource type="Texture2D" uid="uid://c2ojqnfjloedf" path="res://arts/slay_the_spire/images/ui/top_panel/confirmButtonShadow.png" id="1_5wpm0"]
+[ext_resource type="Texture2D" uid="uid://0ox5lq0bo8ma" path="res://arts/slay_the_spire/images/ui/top_panel/confirmButtonOutline.png" id="2_0e508"]
+[ext_resource type="Texture2D" uid="uid://doxdcchkfnros" path="res://arts/slay_the_spire/images/ui/top_panel/confirmButton.png" id="3_xiyyv"]
+
+[node name="ConfirmButton" type="Control" node_paths=PackedStringArray("button", "button_tex", "outline_tex")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 256.0
+script = ExtResource("1_0e508")
+button = NodePath("Button")
+button_tex = NodePath("ButtonTex")
+outline_tex = NodePath("Outline")
+
+[node name="Shadow" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_5wpm0")
+
+[node name="Outline" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_0e508")
+
+[node name="ButtonTex" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_xiyyv")
+
+[node name="Button" type="Button" parent="." groups=["button"]]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 19.0
+offset_right = 534.0
+offset_bottom = 126.0
+text = "确认"

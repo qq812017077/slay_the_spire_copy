@@ -13,3 +13,9 @@ func _init() -> void:
 
 	self.base_block = 8
 	self.block = self.base_block
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(4)

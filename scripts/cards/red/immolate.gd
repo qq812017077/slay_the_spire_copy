@@ -14,3 +14,9 @@ func _init() -> void:
 	self.base_damage = 21
 	self.is_multi_damage = true
 	self.card_to_preview = Burn.new()
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(7)

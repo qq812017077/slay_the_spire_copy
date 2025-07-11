@@ -14,3 +14,9 @@ func _init() -> void:
 	self.show_evoke_value = true
 	self.show_evoke_orb_count = 3
 	self.exhaust = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		rawDescription = card_string.upgrade_description
+		initialize_description()

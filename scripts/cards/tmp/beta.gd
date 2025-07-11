@@ -13,3 +13,9 @@ func _init() -> void:
 
 	self.card_to_preview = Omega.new()
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(1)

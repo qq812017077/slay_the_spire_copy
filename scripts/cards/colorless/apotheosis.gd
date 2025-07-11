@@ -12,3 +12,8 @@ func _init() -> void:
 	super("Apotheosis", card_string.name, "colorless/skill/apotheosis", 2, card_string.description, CardType.SKILL, CardColor.COLORLESS, CardRarity.RARE, CardTarget.NONE)
 
 	self.exhaust = true
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(1)

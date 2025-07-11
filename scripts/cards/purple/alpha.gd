@@ -12,3 +12,10 @@ func _init() -> void:
 	super("Alpha", card_string.name, "purple/skill/alpha", 1, card_string.description, CardType.SKILL, CardColor.PURPLE, CardRarity.RARE, CardTarget.NONE)
 
 	self.card_to_preview = Beta.new()
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self.is_innate = true
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

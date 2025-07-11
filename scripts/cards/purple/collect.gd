@@ -14,3 +14,10 @@ func _init() -> void:
 	self.card_to_preview = Miracle.new()
 	self.card_to_preview.upgrade()
 	self.exhaust = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

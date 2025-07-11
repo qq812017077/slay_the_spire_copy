@@ -14,3 +14,10 @@ func _init() -> void:
 	
 	self.base_magic_number = 2
 	self.magic_number = self.base_magic_number
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		target = CardTarget.ALL_ENEMIES
+		rawDescription = card_string.upgrade_description
+		initialize_description()

@@ -14,3 +14,9 @@ func _init() -> void:
 	self.card_to_preview = ThroughViolence.new()
 
 	self.base_damage = 10
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(5)

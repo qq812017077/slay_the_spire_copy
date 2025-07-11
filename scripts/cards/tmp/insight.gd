@@ -16,3 +16,9 @@ func _init() -> void:
 	self.magic_number = self.base_magic_number
 	self.exhaust = true
 	self.self_retain = true
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_magic_mumber(1)

@@ -12,3 +12,8 @@ func _init() -> void:
 	super("Rebound", card_string.name, "blue/attack/rebound", 1, card_string.description, CardType.ATTACK, CardColor.BLUE, CardRarity.COMMON, CardTarget.ENEMY)
 
 	self.base_damage = 9
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

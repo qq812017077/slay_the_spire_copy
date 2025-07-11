@@ -11,3 +11,10 @@ func _init() -> void:
 		card_string = CardGame.languagePack.get_card_string(ID)
 	super("MasterReality", card_string.name, "purple/power/master_reality", 1, card_string.description, CardType.POWER, CardColor.PURPLE, CardRarity.RARE, CardTarget.SELF)
 
+
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(0)

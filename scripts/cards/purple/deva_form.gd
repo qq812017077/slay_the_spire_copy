@@ -14,3 +14,11 @@ func _init() -> void:
 	self.is_ethereal = true
 	self.base_magic_number = 1
 	self.magic_number = self.base_magic_number
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		is_ethereal = false
+		self.rawDescription = card_string.upgrade_description
+		initialize_description()

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://7j6x0171bb8q"]
+
+[ext_resource type="Texture2D" uid="uid://cpofte74b6vie" path="res://arts/slay_the_spire/images/ui/character_select/ironcladButton.png" id="1_c03ef"]
+[ext_resource type="Script" uid="uid://o6jvdpn2bmli" path="res://scripts/ui/buttons/character_option.gd" id="1_hf4um"]
+[ext_resource type="Texture2D" uid="uid://cjud0mrtydh27" path="res://arts/slay_the_spire/images/ui/character_select/highlightButton2.png" id="2_ek5ep"]
+
+[node name="CharacterOption" type="Button" node_paths=PackedStringArray("highlight", "player_icon") groups=["button"]]
+custom_minimum_size = Vector2(200, 200)
+offset_right = 200.0
+offset_bottom = 200.0
+toggle_mode = true
+script = ExtResource("1_hf4um")
+highlight = NodePath("Highlight")
+player_icon = NodePath("Icon")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+texture = ExtResource("2_ek5ep")
+centered = false
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_c03ef")
+centered = false

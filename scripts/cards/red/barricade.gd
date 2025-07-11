@@ -11,3 +11,12 @@ func _init() -> void:
 		card_string = CardGame.languagePack.get_card_string(ID)
 	super("Barricade", card_string.name, "red/power/barricade" , 3, card_string.description, CardType.POWER, CardColor.RED, CardRarity.RARE, CardTarget.SELF)
 
+
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_base_cost(2)
+		# self.rawDescription = card_string.upgrade_description
+		# initialize_description()

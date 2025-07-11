@@ -26,6 +26,6 @@ static func initialize(languagePack: LocalizedString) -> void:
 static func create_dictionary_entry(names: Array, desc: String) -> void:
 	for name in names:
 		if not keywords.has(name):
-			keywords[name] = desc
+			keywords.set(name, desc)
 			parent_word.set(name, names[0])
 	

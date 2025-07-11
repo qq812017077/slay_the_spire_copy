@@ -13,3 +13,9 @@ func _init() -> void:
 
 	self.base_damage = 7
 	self.card_to_preview = Dazed.new()
+
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_damage(3)

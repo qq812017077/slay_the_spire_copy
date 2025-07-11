@@ -12,3 +12,8 @@ func _init() -> void:
 	super("Conserve Battery", card_string.name, "blue/skill/charge_battery", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.COMMON, CardTarget.SELF)
 
 	self.base_block = 7
+
+func upgrade() -> void:
+	if not upgraded:
+		upgrade_name()
+		upgrade_block(3)

@@ -1,7 +1,149 @@
-[gd_scene format=3 uid="uid://ciqst2hk1cggq"]
+[gd_scene load_steps=10 format=3 uid="uid://ciqst2hk1cggq"]
 
-[node name="DungeonMapScreen" type="Control"]
+[ext_resource type="Script" uid="uid://bo031765nyb35" path="res://scripts/ui/screens/dungeon_map_screen.gd" id="1_yvre1"]
+[ext_resource type="Texture2D" uid="uid://hvmp58vw4gpx" path="res://arts/slay_the_spire/images/ui/map/mapTop.png" id="2_rhb7y"]
+[ext_resource type="Texture2D" uid="uid://cyklbgokfmvun" path="res://arts/slay_the_spire/images/ui/map/mapMid.png" id="3_7dal4"]
+[ext_resource type="Texture2D" uid="uid://blr6rqqrxjvyv" path="res://arts/slay_the_spire/images/ui/map/mapBot.png" id="3_xooni"]
+[ext_resource type="Texture2D" uid="uid://dtky1rcpy2xn" path="res://arts/slay_the_spire/images/ui/map/mapBlend.png" id="5_05dyw"]
+[ext_resource type="Texture2D" uid="uid://dskib6f0tptgw" path="res://arts/slay_the_spire/images/ui/map/legend2.png" id="6_5fhye"]
+[ext_resource type="Script" uid="uid://e6gu2rgelmru" path="res://scripts/ui/dungeon/legend.gd" id="6_f4mlj"]
+[ext_resource type="PackedScene" uid="uid://b1usvd6jsext7" path="res://scenes/slay_the_spire/map/legend_item.tscn" id="8_s5c0s"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_05dyw"]
+
+[node name="DungeonMapScreen" type="Control" node_paths=PackedStringArray("top", "mid", "bot", "blend1", "blend2", "legend", "container", "room_container", "edge_container")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_yvre1")
+slider = 1.0
+top = NodePath("MapBG/MapTop")
+mid = NodePath("MapBG/MapMid")
+bot = NodePath("MapBG/MapBot")
+blend1 = NodePath("MapBG/MapBlend")
+blend2 = NodePath("MapBG/MapBlend2")
+legend = NodePath("Lengend")
+container = NodePath("Container")
+room_container = NodePath("Container/RoomContainer")
+edge_container = NodePath("Container/EdgeContainer")
+
+[node name="BlackBG" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.803922)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1600.0
+offset_top = -900.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_05dyw")
+
+[node name="MapBG" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MapTop" type="Sprite2D" parent="MapBG"]
+position = Vector2(0, 350)
+texture = ExtResource("2_rhb7y")
+centered = false
+
+[node name="MapMid" type="Sprite2D" parent="MapBG"]
+position = Vector2(0, 1400)
+texture = ExtResource("3_7dal4")
+centered = false
+
+[node name="MapBot" type="Sprite2D" parent="MapBG"]
+position = Vector2(0, 2451)
+texture = ExtResource("3_xooni")
+centered = false
+
+[node name="MapBlend" type="Sprite2D" parent="MapBG"]
+position = Vector2(0, 1150)
+texture = ExtResource("5_05dyw")
+centered = false
+
+[node name="MapBlend2" type="Sprite2D" parent="MapBG"]
+position = Vector2(0, 2240)
+texture = ExtResource("5_05dyw")
+centered = false
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="EdgeContainer" type="Control" parent="Container"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="RoomContainer" type="Control" parent="Container"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Lengend" type="Control" parent="." node_paths=PackedStringArray("banner", "legend_item_container")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -89.0
+offset_bottom = -49.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_f4mlj")
+legend_item_prefab = ExtResource("8_s5c0s")
+banner = NodePath("Banner")
+legend_item_container = NodePath("VBoxContainer")
+
+[node name="LegendIcon" type="Sprite2D" parent="Lengend"]
+position = Vector2(-240, 0)
+texture = ExtResource("6_5fhye")
+
+[node name="Banner" type="Label" parent="Lengend"]
+custom_minimum_size = Vector2(300, 55)
+layout_mode = 0
+offset_left = -388.0
+offset_top = -201.0
+offset_right = -88.0
+offset_bottom = -146.0
+theme_override_font_sizes/font_size = 38
+text = "图例"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lengend"]
+layout_mode = 0
+offset_left = -365.0
+offset_top = -136.0
+offset_right = -325.0
+offset_bottom = -96.0
+mouse_filter = 2
+theme_override_constants/separation = -5
+
+[node name="TipCursor" type="Control" parent="Lengend"]
+anchors_preset = 0
+offset_left = -384.0
+offset_top = 292.0
+offset_right = -344.0
+offset_bottom = 332.0

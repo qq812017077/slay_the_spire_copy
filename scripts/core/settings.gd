@@ -1,7 +1,7 @@
 class_name Settings
 extends Object
 
-enum GameLanguage { ENG, ZHS }
+enum GameLanguage {ENG, ZHS}
 
 
 # version
@@ -19,7 +19,7 @@ static var x_scale: float
 static var y_scale: float
 
 static var HEIGHT: int
-static var WIDTH: int 
+static var WIDTH: int
 
 #
 static var BIG_TEXT_MODE: bool = false
@@ -37,13 +37,14 @@ static var is_backgrounded: bool = false
 
 # game setting
 static var MASTER_VOLUME: float = 1 # 主音量
-static var MUSIC_VOLUME: float = 1  # 音乐音量
-static var SOUND_VOLUME: float = 1	# 音效音量
+static var MUSIC_VOLUME: float = 1 # 音乐音量
+static var SOUND_VOLUME: float = 1 # 音效音量
 
 # game
 static var game_seed: int = -1
 static var seedSet: bool = false
 
+static var SCROLL_SPEED: float = 0
 static func initialize(reloaded: bool = false) -> void:
 	print("Initializing Settings...")
 	initialize_display(reloaded)
@@ -76,6 +77,7 @@ static func initialize_display(_reloaded: bool = false) -> void:
 		y_scale = scale
 	print("Screen size: %s, Scale: %f" % [screenSize, scale])
 
+	SCROLL_SPEED = 50 * scale
 	
 static func initialize_game_config(_reloaded: bool = false) -> void:
 	gameConfig = ConfigFile.new()
@@ -92,8 +94,7 @@ static func initialize_game_config(_reloaded: bool = false) -> void:
 		push_error("Failed to save settings.cfg")
 	
 
-
-static func set_language(key: GameLanguage, initial: bool) ->void :
+static func set_language(key: GameLanguage, initial: bool) -> void:
 	language = key
 	if initial:
 		match language:
@@ -107,7 +108,6 @@ static func set_language(key: GameLanguage, initial: bool) ->void :
 				removeAtoZSort = true;
 
 static func set_language_by_string(keyStr: String, initial: bool) -> void:
-	
 	match keyStr:
 		"ENG":
 			set_language(GameLanguage.ENG, initial)
@@ -118,7 +118,6 @@ static func set_language_by_string(keyStr: String, initial: bool) -> void:
 			set_language(GameLanguage.ZHS, initial)
 
 
-static func set_seed() -> void:
+static func set_random_seed() -> void:
 	game_seed = SeedHelper.generate_unoffensive_seed()
 	seedSet = false
-	pass

@@ -1,8 +1,8 @@
 [gd_scene load_steps=45 format=3 uid="uid://hddv3rhp0jxa"]
 
-[ext_resource type="Script" uid="uid://btukpi07irhqb" path="res://scripts/ui/screens/main_menu_screen.gd" id="1_opj4r"]
-[ext_resource type="PackedScene" uid="uid://bnhbd2jkrp0b3" path="res://scenes/slay_the_spire/screens/dungeon_transition_screen.tscn" id="2_dsit2"]
+[ext_resource type="Script" uid="uid://btukpi07irhqb" path="res://scripts/ui/screens/menu/main_menu_screen.gd" id="1_opj4r"]
 [ext_resource type="Script" uid="uid://b6qqk6whr8woe" path="res://scripts/scenes/title_background.gd" id="2_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://bjwv1rd61l48r" path="res://scenes/slay_the_spire/screens/dungeon.tscn" id="2_uging"]
 [ext_resource type="Texture2D" uid="uid://bfo6mjqjg2t7o" path="res://arts/slay_the_spire/images/ui/title_logo/eng.png" id="3_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://ct6ant5rte56j" path="res://arts/slay_the_spire/title/sky_texture.tres" id="4_wu84c"]
 [ext_resource type="Texture2D" uid="uid://cffi6bs2xqb62" path="res://arts/slay_the_spire/title/mg3bot_texture.tres" id="5_tkd2y"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dr5e8tdfcmik0" path="res://arts/slay_the_spire/vfx/buffVFX3_texture.tres" id="15_opj4r"]
 [ext_resource type="PackedScene" uid="uid://b04je3p7tmt13" path="res://scenes/slay_the_spire/screens/main_menu/card_library_screen.tscn" id="16_d122p"]
 [ext_resource type="FontFile" uid="uid://dvunye02obai1" path="res://arts/slay_the_spire/fonts/Kreon-Bold.ttf" id="16_djuoj"]
-[ext_resource type="Script" uid="uid://bk70yee0u0o8d" path="res://scripts/ui/screens/menu_buttons.gd" id="16_dwita"]
+[ext_resource type="Script" uid="uid://bk70yee0u0o8d" path="res://scripts/ui/screens/menu/menu_buttons.gd" id="16_dwita"]
 [ext_resource type="Script" uid="uid://c4l1k0oflkasq" path="res://scripts/ui/buttons/main_menu_button.gd" id="17_7ruae"]
 [ext_resource type="PackedScene" uid="uid://bbcxhe3kdmrqj" path="res://scenes/slay_the_spire/screens/main_menu/character_select_screen.tscn" id="18_ph1pj"]
 [ext_resource type="PackedScene" uid="uid://br8kmhmfggmt4" path="res://scenes/slay_the_spire/ui/options/confirm_popup.tscn" id="19_iwut7"]
@@ -126,7 +126,7 @@ card_library = NodePath("ScreenPanels/CardLibraryScreen")
 confirm_popup = NodePath("Popup/ConfirmPopup")
 black_mask = NodePath("BlackMask")
 setting_screen = NodePath("SettingsScreen")
-dungeon_prefab = ExtResource("2_dsit2")
+dungeon_prefab = ExtResource("2_uging")
 
 [node name="TitleBackground" type="Control" parent="." node_paths=PackedStringArray("sky_texture", "mg3Bot_texture", "mg3Top_texture", "topGlow_texture", "topGlow2_texture", "botGlow_texture", "title_logo_texture", "dust_container", "top_clouds_container", "mid_clouds_container")]
 z_index = -10
@@ -519,6 +519,7 @@ layout_mode = 1
 [node name="SettingsScreen" parent="." instance=ExtResource("23_vn6nm")]
 visible = false
 layout_mode = 0
+scale = Vector2(0.833, 0.833)
 
 [node name="Popup" type="Control" parent="."]
 anchors_preset = 0

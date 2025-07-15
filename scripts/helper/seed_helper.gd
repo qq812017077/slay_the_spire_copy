@@ -32,5 +32,5 @@ static func get_seed(seed_str: String) -> int:
 
 static func generate_unoffensive_seed() -> int:
     var rng = RandomNumberGenerator.new()
-    rng.seed = Time.get_ticks_usec()
+    rng.seed = int(Time.get_unix_time_from_system()) + Time.get_ticks_usec()
     return get_seed(get_string(rng.randi()))

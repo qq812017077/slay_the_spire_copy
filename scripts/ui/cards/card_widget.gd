@@ -193,7 +193,7 @@ func _process(delta: float) -> void:
 	
 func _process_hovering(_delta: float) -> void:
 	if enable_card_tip:
-		CardGame.cardtip.render_tip(self)
+		CardGame.tip.render_tip_for_card(self)
 
 func _process_holding(_delta: float) -> void:
 	pass
@@ -250,7 +250,7 @@ func _on_mouse_exit() -> void:
 	current_card_state = ECardState.WAITED
 	
 	if enable_card_tip:
-		CardGame.cardtip.remove_tip_rendering()
+		CardGame.tip.remove_tip_rendering()
 	# print("is wating:", name)
 
 func _handle_mouse_pressed() -> void:
@@ -352,7 +352,6 @@ static func get_cached_orb_texture(color: AbstractCard.CardColor, cardmode: Card
 	cached_orb_textures_by_region.set(card_orb_texture, orb_atlas_texture)
 	
 	return orb_atlas_texture
-
 
 static func allocate_by_type(card_type: Global.CardType) -> CardWidget:
 	var widget: CardWidget

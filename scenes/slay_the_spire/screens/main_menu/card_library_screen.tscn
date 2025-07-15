@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d2xsq4vnwwm3w" path="res://arts/slay_the_spire/images/ui/card_library/greenTab.png" id="1_3il74"]
 [ext_resource type="Texture2D" uid="uid://darv4lj7071sb" path="res://arts/slay_the_spire/images/ui/card_library/redTab.png" id="1_7ny8j"]
 [ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="1_8ntxm"]
-[ext_resource type="Script" uid="uid://qr665s5ofd43" path="res://scripts/ui/screens/card_library_screen.gd" id="1_v566g"]
+[ext_resource type="Script" uid="uid://qr665s5ofd43" path="res://scripts/ui/screens/menu/card_library_screen.gd" id="1_v566g"]
 [ext_resource type="PackedScene" uid="uid://brgc3fkuwu2ik" path="res://scenes/slay_the_spire/cards/attack_card.tscn" id="3_pofnb"]
 [ext_resource type="PackedScene" uid="uid://b2nqidlefvbch" path="res://scenes/slay_the_spire/cards/skill_card.tscn" id="3_y706e"]
 [ext_resource type="Texture2D" uid="uid://bmf6vnoay6xwv" path="res://arts/slay_the_spire/images/ui/card_library/blueTab.png" id="4_jve6k"]

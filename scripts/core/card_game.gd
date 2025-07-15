@@ -8,12 +8,13 @@ enum GameState {
 }
 
 var main_menu_screen: MainMenuScreen = null
+var dungeon_main_screen: DungeonMainScreen = null
 var playerConfig: ConfigFile
 var languagePack: LocalizedString = null
 var state: GameState = GameState.MENU
 
 # nodes
-var cardtip: CardTipMaster = null
+var tip: TipMaster = null
 var camera: Camera2D = null
 var music: MusicMaster = null
 var sound: SoundMaster = null
@@ -22,12 +23,13 @@ var mouse_cursor: MouseCursor = null
 var black_mask: BlackMask = null
 # custom resource
 var interpolation: Interpolation = null
+
+# current dungeon
+var cur_dungeon: AbstractDungeons = null
 func _ready() -> void:
 	# Initialize the game settings and player configuration
 	initialize()
-
 	load_resources()
-
 	create_nodes()
 
 
@@ -45,21 +47,29 @@ func initialize() -> void:
 	AbstractCard.initialize()
 	AbstractPlayer.initialize()
 	AbstractRelic.initialize()
-	MainMenuScreen.initialize()
+	AbstractDungeons.initialize()
+
 	CardLibrary.initialize()
 	RelicLibrary.initialize()
 	CharacterManager.initialize()
 
-	DungeonTransitionScreen.initialize()
+	# dungeons
+	SceneLibrary.initialize()
+	MainMenuScreen.initialize()
+	DungeonMainScreen.initialize()
+
+	
+	if not Settings.seedSet:
+		Settings.set_random_seed()
 func exist_saved_game() -> bool:
 	return false
 
 func create_nodes() -> void:
 	var screenSize = Vector2i(Settings.WIDTH, Settings.HEIGHT)
 
-	cardtip = CardTipMaster.new()
-	cardtip.name = "CardTipMaster"
-	add_child(cardtip)
+	tip = TipMaster.new()
+	tip.name = "TipMaster"
+	add_child(tip)
 
 	camera = Camera2D.new()
 	camera.name = "Camera2D"
@@ -105,3 +115,7 @@ func enable_input(group_name: String) -> void:
 	for node in get_tree().get_nodes_in_group(group_name):
 		if node is Control:
 			(node as Control).mouse_filter = Control.MOUSE_FILTER_STOP
+
+func load_new_dungeon(dungeon_prefab: PackedScene) -> void:
+	var dungeon = dungeon_prefab.instantiate()
+	get_parent().add_child(dungeon)

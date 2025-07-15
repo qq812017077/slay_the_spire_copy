@@ -14,7 +14,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-scale = Vector2(0.833, 0.833)
 mouse_filter = 2
 script = ExtResource("1_8f25w")
 game_settings_button = NodePath("GameSettingButton")

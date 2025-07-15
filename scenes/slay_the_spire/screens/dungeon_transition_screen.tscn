@@ -1,16 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnhbd2jkrp0b3"]
+[gd_scene load_steps=2 format=3 uid="uid://bnhbd2jkrp0b3"]
 
 [ext_resource type="Script" uid="uid://c8jpp085ke1b1" path="res://scripts/ui/screens/dungeon_transition_screen.gd" id="1_f51rc"]
-[ext_resource type="PackedScene" uid="uid://bfyifvawlr8ht" path="res://scenes/slay_the_spire/ui/options/settings_screen.tscn" id="2_uuw25"]
 
-[node name="DungeonTransitionScreen" type="Control"]
+[node name="DungeonTransitionScreen" type="Control" node_paths=PackedStringArray("level_num", "level_name")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 script = ExtResource("1_f51rc")
+level_num = NodePath("LevelNum")
+level_name = NodePath("LevelName")
 
-[node name="Label" type="Label" parent="."]
+[node name="LevelNum" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -193.0
+offset_right = 132.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "第一阶段"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelName" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -18,16 +38,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -105.0
-offset_top = -40.0
+offset_top = -96.5
 offset_right = 105.0
-offset_bottom = 40.0
+offset_bottom = -5.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 66
-text = "新场景"
+text = "塔底"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="SettingsScreen" parent="." instance=ExtResource("2_uuw25")]
-visible = false
-layout_mode = 0

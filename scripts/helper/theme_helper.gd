@@ -19,7 +19,7 @@ static var RED_TEXT_COLOR = Color.from_string("#ff6563ff", Color.RED)
 static var GREEN_TEXT_COLOR = Color.from_string("#66ff66ff", Color.GREEN)
 static var BLUE_TEXT_COLOR = Color.from_string("#4fc1ffff", Color.BLUE)
 static var PURPLE_COLOR = Color.from_string("#ad37daff", Color.PURPLE)
-
+static var AVAILABLE_COLOR = Color(0.09, 0.13, 0.17, 1.0)
 # font
 static var normal_font_eng: Font = null
 static var bold_font_eng: Font = null

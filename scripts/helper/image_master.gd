@@ -64,9 +64,9 @@ static var card_skill_bg_blue_large: AtlasRegion = null
 static var card_power_bg_blue_large: AtlasRegion = null
 static var card_blue_orb_large: AtlasRegion = null
 
-static var card_attack_bg_colorless_large : AtlasRegion = null 
-static var card_skill_bg_colorless_large : AtlasRegion = null
-static var card_power_bg_colorless_large : AtlasRegion = null
+static var card_attack_bg_colorless_large: AtlasRegion = null
+static var card_skill_bg_colorless_large: AtlasRegion = null
+static var card_power_bg_colorless_large: AtlasRegion = null
 static var card_skill_bg_black_large: AtlasRegion = null
 static var card_colorless_orb_large: AtlasRegion = null
 
@@ -117,15 +117,56 @@ static var TP_GOLD: Texture2D = null
 static var TP_FLOOR: Texture2D = null
 static var TP_ASCENSION: Texture2D = null
 
+# map
+static var map_node_event: Texture2D = null
+static var map_node_event_outline: Texture2D = null
+static var map_node_elite: Texture2D = null
+static var map_node_elite_outline: Texture2D = null
+static var map_node_enemy: Texture2D = null
+static var map_node_enemy_outline: Texture2D = null
+static var map_node_rest: Texture2D = null
+static var map_node_rest_outline: Texture2D = null
+static var map_node_treasure: Texture2D = null
+static var map_node_treasure_outline: Texture2D = null
+static var map_node_merchant: Texture2D = null
+static var map_node_merchant_outline: Texture2D = null
+static var map_legend: Texture2D = null
+
+static var map_dot: Texture2D = null
+
 static var relic_images: Dictionary = {}
 static var relic_outline_images: Dictionary = {}
 
+# enemy
+static var boss_level1_gurdian_img: Texture2D = null
+static var boss_level1_gurdian_outline: Texture2D = null
+static var boss_level1_hexaghost_img: Texture2D = null
+static var boss_level1_hexaghost_outline: Texture2D = null
+static var boss_level1_slime_img: Texture2D = null
+static var boss_level1_slime_outline: Texture2D = null
+static var boss_level2_collector_img: Texture2D = null
+static var boss_level2_collector_outline: Texture2D = null
+static var boss_level2_automaton_img: Texture2D = null
+static var boss_level2_automaton_outline: Texture2D = null
+static var boss_level2_champ_img: Texture2D = null
+static var boss_level2_champ_outline: Texture2D = null
+static var boss_level3_awakened_img: Texture2D = null
+static var boss_level3_awakened_outline: Texture2D = null
+static var boss_level3_timeeater_img: Texture2D = null
+static var boss_level3_timeeater_outline: Texture2D = null
+static var boss_level3_donu_img: Texture2D = null
+static var boss_level3_donu_outline: Texture2D = null
+static var boss_level_end_heart_img: Texture2D = null
+static var boss_level_end_heart_outline: Texture2D = null
 static func initialize() -> void:
 	initialize_card_ui()
 	initialize_portrait_img()
 	initialize_panel_ui()
-
 	initialize_settings_ui()
+
+	initialize_map_ui()
+
+	initialize_enemy_ui()
 
 static func initialize_settings_ui() -> void:
 	pass
@@ -280,7 +321,50 @@ static func initialize_panel_ui() -> void:
 	TP_ASCENSION = load("res://arts/slay_the_spire/images/ui/top_panel/ascension.png")
 
 
-static func loadPortraitImg(url:String) -> Texture2D:
+static func initialize_map_ui() -> void:
+	map_node_event = load("res://arts/slay_the_spire/images/ui/map/event.png")
+	map_node_event_outline = load("res://arts/slay_the_spire/images/ui/map/eventOutline.png")
+	map_node_elite = load("res://arts/slay_the_spire/images/ui/map/elite.png")
+	map_node_elite_outline = load("res://arts/slay_the_spire/images/ui/map/eliteOutline.png")
+	map_node_enemy = load("res://arts/slay_the_spire/images/ui/map/monster.png")
+	map_node_enemy_outline = load("res://arts/slay_the_spire/images/ui/map/monsterOutline.png")
+	map_node_rest = load("res://arts/slay_the_spire/images/ui/map/rest.png")
+	map_node_rest_outline = load("res://arts/slay_the_spire/images/ui/map/restOutline.png")
+	map_node_treasure = load("res://arts/slay_the_spire/images/ui/map/chest.png")
+	map_node_treasure_outline = load("res://arts/slay_the_spire/images/ui/map/chestOutline.png")
+	map_node_merchant = load("res://arts/slay_the_spire/images/ui/map/shop.png")
+	map_node_merchant_outline = load("res://arts/slay_the_spire/images/ui/map/shopOutline.png")
+	map_legend = load("res://arts/slay_the_spire/images/ui/map/legend2.png")
+
+	map_dot = load("res://arts/slay_the_spire/images/ui/map/dot1.png")
+
+static func initialize_enemy_ui() -> void:
+	boss_level1_gurdian_img = load("res://arts/slay_the_spire/images/ui/map/boss/guardian.png")
+	boss_level1_gurdian_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/guardian.png")
+	boss_level1_hexaghost_img = load("res://arts/slay_the_spire/images/ui/map/boss/hexaghost.png")
+	boss_level1_hexaghost_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/hexaghost.png")
+	boss_level1_slime_img = load("res://arts/slay_the_spire/images/ui/map/boss/slime.png")
+	boss_level1_slime_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/slime.png")
+
+	boss_level2_collector_img = load("res://arts/slay_the_spire/images/ui/map/boss/collector.png")
+	boss_level2_collector_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/collector.png")
+	boss_level2_automaton_img = load("res://arts/slay_the_spire/images/ui/map/boss/automaton.png")
+	boss_level2_automaton_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/automaton.png")
+	boss_level2_champ_img = load("res://arts/slay_the_spire/images/ui/map/boss/champ.png")
+	boss_level2_champ_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/champ.png")
+	
+	boss_level3_awakened_img = load("res://arts/slay_the_spire/images/ui/map/boss/awakened.png")
+	boss_level3_awakened_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/awakened.png")
+	boss_level3_timeeater_img = load("res://arts/slay_the_spire/images/ui/map/boss/timeeater.png")
+	boss_level3_timeeater_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/timeeater.png")
+	boss_level3_donu_img = load("res://arts/slay_the_spire/images/ui/map/boss/donu.png")
+	boss_level3_donu_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/donu.png")
+	
+	boss_level_end_heart_img = load("res://arts/slay_the_spire/images/ui/map/boss/heart.png")
+	boss_level_end_heart_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/heart.png")
+	pass
+
+static func loadPortraitImg(url: String) -> Texture2D:
 	return load("res://arts/slay_the_spire/images/1024Portraits/" + url + ".png")
 
 static func loadRelicImg(setId: String, imgName: String) -> void:
@@ -293,3 +377,50 @@ static func getRelicImg(setId: String) -> Texture2D:
 
 static func getRelicOutlineImg(setId: String) -> Texture2D:
 	return relic_outline_images[setId]
+
+static func get_boss_img(bossKey: String) -> Texture2D:
+	match bossKey:
+		MonsterHelper.BOSS_LEVEL1_SLIME:
+			return boss_level1_slime_img
+		MonsterHelper.BOSS_LEVEL1_GUARDIAN:
+			return boss_level1_gurdian_img
+		MonsterHelper.BOSS_LEVEL1_HEXAGHOST:
+			return boss_level1_hexaghost_img
+		MonsterHelper.BOSS_LEVEL2_AUTOMATON:
+			return boss_level2_automaton_img
+		MonsterHelper.BOSS_LEVEL2_CHAMP:
+			return boss_level2_champ_img
+		MonsterHelper.BOSS_LEVEL2_COLLECTOR:
+			return boss_level2_collector_img
+		MonsterHelper.BOSS_LEVEL3_AWAKENED_ONE:
+			return boss_level3_awakened_img
+		MonsterHelper.BOSS_LEVEL3_TIME_EATER:
+			return boss_level3_timeeater_img
+		MonsterHelper.BOSS_LEVEL3_DONU_AND_DECA:
+			return boss_level3_donu_img
+	push_error("{0} has not implemented.".format([bossKey]))
+	return null
+
+static func get_boss_img_outline(bossKey: String) -> Texture2D:
+	match bossKey:
+		MonsterHelper.BOSS_LEVEL1_SLIME:
+			return boss_level1_slime_outline
+		MonsterHelper.BOSS_LEVEL1_GUARDIAN:
+			return boss_level1_gurdian_outline
+		MonsterHelper.BOSS_LEVEL1_HEXAGHOST:
+			return boss_level1_hexaghost_outline
+		MonsterHelper.BOSS_LEVEL2_AUTOMATON:
+			return boss_level2_automaton_outline
+		MonsterHelper.BOSS_LEVEL2_CHAMP:
+			return boss_level2_champ_outline
+		MonsterHelper.BOSS_LEVEL2_COLLECTOR:
+			return boss_level2_collector_outline
+		MonsterHelper.BOSS_LEVEL3_AWAKENED_ONE:
+			return boss_level3_awakened_outline
+		MonsterHelper.BOSS_LEVEL3_TIME_EATER:
+			return boss_level3_timeeater_outline
+		MonsterHelper.BOSS_LEVEL3_DONU_AND_DECA:
+			return boss_level3_donu_outline
+	
+	push_error("{0} has not implemented.".format([bossKey]))
+	return null

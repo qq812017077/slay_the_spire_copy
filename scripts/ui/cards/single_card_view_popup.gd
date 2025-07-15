@@ -114,7 +114,7 @@ func recycle_tip_and_preview() -> void:
 		if cardtip == null:
 			continue
 		cardtip.clear_content()
-		CardGame.cardtip.recycle_tooltip(cardtip)
+		CardGame.tip.recycle_tooltip(cardtip)
 	tooltips = []
 	if preview != null:
 		CardWidget.recycle(preview)
@@ -127,12 +127,12 @@ func refresh_tip_and_preview(cardwidget: CardWidget) -> void:
 	for keyword in cur_card.keywords:
 		if not GameDictionary.keywords.has(keyword):
 			continue
-		var tooltip: CardTip = CardGame.cardtip.get_idle_tooltip()
+		var tooltip: CardTip = CardGame.tip.get_idle_tooltip()
 		tooltip.rendering_front(Global.SINGLE_POPUP_Z_INDEX + 1)
 		tooltip.set_content(keyword, GameDictionary.keywords[keyword])
 		tooltip.visible = true
 		tooltip.position = cur_pos
-		cur_pos.y += tooltip.get_global_rect().size.y + CardTipMaster.OFFSET_Y
+		cur_pos.y += tooltip.get_global_rect().size.y + TipMaster.OFFSET_Y
 		tooltips.append(tooltip)
 	
 	if cur_card.card_to_preview != null:

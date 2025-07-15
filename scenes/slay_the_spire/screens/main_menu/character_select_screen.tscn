@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbcxhe3kdmrqj"]
 
-[ext_resource type="Script" uid="uid://75iwcs37w51j" path="res://scripts/ui/screens/character_select_screen.gd" id="1_vqs2c"]
+[ext_resource type="Script" uid="uid://75iwcs37w51j" path="res://scripts/ui/screens/menu/character_select_screen.gd" id="1_vqs2c"]
 [ext_resource type="PackedScene" uid="uid://ddxl2fnk5ccwb" path="res://scenes/slay_the_spire/ui/confirm_button.tscn" id="2_vqs2c"]
 [ext_resource type="PackedScene" uid="uid://wirqo3pgodbw" path="res://scenes/slay_the_spire/ui/cancel_button.tscn" id="3_c0xr2"]
 [ext_resource type="PackedScene" uid="uid://7j6x0171bb8q" path="res://scenes/slay_the_spire/ui/character_option.tscn" id="5_t8708"]

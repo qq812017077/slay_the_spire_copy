@@ -1,6 +1,10 @@
-[gd_resource type="Resource" script_class="Interpolation" load_steps=3 format=3 uid="uid://b50quuyr607tc"]
+[gd_resource type="Resource" script_class="Interpolation" load_steps=4 format=3 uid="uid://b50quuyr607tc"]
 
 [ext_resource type="Script" uid="uid://brvgho8c2qgcw" path="res://scripts/resources/Interpolation.gd" id="1_upp8p"]
+
+[sub_resource type="Curve" id="Curve_u6a80"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.499089, 0.496972), 3.08753, 3.08753, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_upp8p"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -9,4 +13,5 @@ point_count = 2
 [resource]
 script = ExtResource("1_upp8p")
 fade = SubResource("Curve_upp8p")
+exp10 = SubResource("Curve_u6a80")
 metadata/_custom_type_script = "uid://brvgho8c2qgcw"

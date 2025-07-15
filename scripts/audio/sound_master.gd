@@ -29,6 +29,20 @@ func _init() -> void:
 	sfx_map.set("SELECT_WATCHER", load_stream("watcher/STS_SFX_Watcher-Select_v2.ogg"))
 
 
+	# map
+	sfx_map.set("MAP_CLOSE", load_stream("map/SOTE_SFX_UI_Parchment_1_v2.ogg"))
+	sfx_map.set("MAP_HOVER_1", load_stream("map/SOTE_SFX_MapHover_1_v1.ogg"))
+	sfx_map.set("MAP_HOVER_2", load_stream("map/SOTE_SFX_MapHover_2_v1.ogg"))
+	sfx_map.set("MAP_HOVER_3", load_stream("map/SOTE_SFX_MapHover_3_v1.ogg"))
+	sfx_map.set("MAP_HOVER_4", load_stream("map/SOTE_SFX_MapHover_4_v1.ogg"))
+	sfx_map.set("MAP_OPEN", load_stream("map/SOTE_SFX_Map_1_v3.ogg"))
+	sfx_map.set("MAP_OPEN_2", load_stream("map/SOTE_SFX_Map_2_v3.ogg"))
+	sfx_map.set("MAP_SELECT_1", load_stream("map/SOTE_SFX_MapSelect_1_v1.ogg"))
+	sfx_map.set("MAP_SELECT_2", load_stream("map/SOTE_SFX_MapSelect_2_v1.ogg"))
+	sfx_map.set("MAP_SELECT_3", load_stream("map/SOTE_SFX_MapSelect_3_v1.ogg"))
+	sfx_map.set("MAP_SELECT_4", load_stream("map/SOTE_SFX_MapSelect_4_v1.ogg"))
+
+
 func _ready() -> void:
 	for _i in range(playersN):
 		var player: SoundPlayer = SoundPlayer.new()

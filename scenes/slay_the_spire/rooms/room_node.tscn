@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dr8kpi8xaq4pg"]
+
+[ext_resource type="Script" uid="uid://u8leg7b7sw57" path="res://scripts/ui/dungeon/room_node_widget.gd" id="1_g788a"]
+[ext_resource type="Texture2D" uid="uid://6ut5gxm7vra3" path="res://arts/slay_the_spire/images/ui/map/monsterOutline.png" id="2_rcore"]
+[ext_resource type="Texture2D" uid="uid://cqjhomv2jtorp" path="res://arts/slay_the_spire/images/ui/map/monster.png" id="2_vvvth"]
+[ext_resource type="SpriteFrames" uid="uid://ci8ujb5hfa77d" path="res://arts/resources/map_circle.tres" id="4_5tilr"]
+
+[node name="RoomNode" type="Control" node_paths=PackedStringArray("input_container", "img_outline", "img", "circle_anim_player")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_g788a")
+input_container = NodePath("InputContainer")
+img_outline = NodePath("ImgOutline")
+img = NodePath("Img")
+circle_anim_player = NodePath("CircleAnimPlayer")
+
+[node name="InputContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="ImgOutline" type="Sprite2D" parent="."]
+texture = ExtResource("2_rcore")
+
+[node name="Img" type="Sprite2D" parent="."]
+texture = ExtResource("2_vvvth")
+
+[node name="CircleAnimPlayer" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.3, 1.3)
+sprite_frames = ExtResource("4_5tilr")
+frame = 4
+frame_progress = 1.0
+
+[node name="Info" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 31.0
+offset_top = 100.0
+offset_right = 98.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 20

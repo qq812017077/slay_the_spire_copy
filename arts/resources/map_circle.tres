@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://ci8ujb5hfa77d"]
+
+[ext_resource type="Texture2D" uid="uid://munntevb30d8" path="res://arts/slay_the_spire/images/ui/map/circle1.png" id="1_lxu44"]
+[ext_resource type="Texture2D" uid="uid://bc76j5tr7gohd" path="res://arts/slay_the_spire/images/ui/map/circle2.png" id="2_sid3t"]
+[ext_resource type="Texture2D" uid="uid://ca1bp13hpfmvi" path="res://arts/slay_the_spire/images/ui/map/circle3.png" id="3_1o56p"]
+[ext_resource type="Texture2D" uid="uid://chx62yftjmnj0" path="res://arts/slay_the_spire/images/ui/map/circle4.png" id="4_h3vth"]
+[ext_resource type="Texture2D" uid="uid://bdkgrjy2b6fw2" path="res://arts/slay_the_spire/images/ui/map/circle5.png" id="5_yr8kw"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lxu44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sid3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1o56p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h3vth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yr8kw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]

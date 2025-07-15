@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjwv1rd61l48r"]
+
+[ext_resource type="Script" uid="uid://1xg53ewt5dkt" path="res://scripts/ui/screens/dungeon_main_screen.gd" id="1_asgwx"]
+[ext_resource type="PackedScene" uid="uid://bnhbd2jkrp0b3" path="res://scenes/slay_the_spire/screens/dungeon_transition_screen.tscn" id="1_wo6ee"]
+[ext_resource type="PackedScene" uid="uid://b877xf08pys47" path="res://scenes/slay_the_spire/screens/dungeon_room_screen.tscn" id="2_feunk"]
+[ext_resource type="PackedScene" uid="uid://ciqst2hk1cggq" path="res://scenes/slay_the_spire/screens/dungeon_map_screen.tscn" id="2_tieqw"]
+[ext_resource type="PackedScene" uid="uid://bfyifvawlr8ht" path="res://scenes/slay_the_spire/ui/options/settings_screen.tscn" id="3_jc3qg"]
+[ext_resource type="PackedScene" uid="uid://br8kmhmfggmt4" path="res://scenes/slay_the_spire/ui/options/confirm_popup.tscn" id="4_o65b6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_asgwx"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ipfvg"]
+
+[node name="Dungeon" type="Control" node_paths=PackedStringArray("dungeon_map_screen", "dungeon_transition_screen")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.833, 0.833)
+script = ExtResource("1_asgwx")
+dungeon_map_screen = NodePath("Screens/DungeonMapScreen")
+dungeon_transition_screen = NodePath("Screens/DungeonTransitionScreen")
+
+[node name="BlackBG" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1600.0
+offset_top = -900.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_asgwx")
+
+[node name="Screens" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1.20048
+offset_right = 41.2005
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="DungeonRoomScreen" parent="Screens" instance=ExtResource("2_feunk")]
+layout_mode = 0
+
+[node name="DungeonMapScreen" parent="Screens" instance=ExtResource("2_tieqw")]
+visible = false
+layout_mode = 1
+
+[node name="DungeonTransitionScreen" parent="Screens" instance=ExtResource("1_wo6ee")]
+visible = false
+layout_mode = 1
+
+[node name="BlackMask" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_ipfvg")
+
+[node name="SettingsScreen" parent="." instance=ExtResource("3_jc3qg")]
+visible = false
+layout_mode = 0
+
+[node name="ConfirmPopup" parent="." instance=ExtResource("4_o65b6")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

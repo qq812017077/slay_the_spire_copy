@@ -24,7 +24,7 @@ static var tab_types: Array = [TabType.RED, TabType.GREEN, TabType.BLUE, TabType
 
 @export_group("Scroll")
 @export var scroll_container: ScrollContainer = null
-@export var v_slider: VSlider = null
+@export var v_slider: VerticalSlider = null
 @export_group("")
 
 @export_group("Tab")
@@ -55,7 +55,6 @@ var cancel_click_event: Callable
 var cur_scroll_max_value: float = 0
 var slider_step: float = 0
 var grabber_height: float = 0
-var target_slider_percent: float = 1
 
 func _ready() -> void:
 	initialized = false
@@ -72,11 +71,6 @@ func _ready() -> void:
 		scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
 		scroll_container.get_v_scroll_bar().allow_greater = true
 
-	# v_slider
-	v_slider.gui_input.connect(_on_slider_gui_input)
-	var grabber = v_slider.get_theme_icon("grabber", "VSlider")
-	if grabber != null:
-		grabber_height = grabber.get_height()
 
 	gui_input.connect(_on_screen_gui_input)
 	upgrade_toggle_button.toggled.connect(_on_upgrade_toggle_button_clicked)
@@ -103,9 +97,7 @@ func _process(delta: float) -> void:
 				card.scale = NORMAL_SCALE
 			card.z_index = 0
 	
-	var target_value = (v_slider.max_value - v_slider.min_value) * target_slider_percent
-	v_slider.value = MathHelper.lerp_snap(v_slider.value, target_value, delta * 12)
-	scroll_container.scroll_vertical = int((100.0 - v_slider.value) * slider_step)
+	scroll_container.scroll_vertical = roundi((100.0 - v_slider.value) * slider_step)
 
 func open(cancel_event: Callable = Callable()) -> void:
 	self.show()
@@ -302,10 +294,9 @@ func set_tab_index(idx: int, force: bool = false) -> void:
 	cur_scroll_max_value = scroll_container.get_v_scroll_bar().max_value
 	var page_size = scroll_container.size.y
 	slider_step = (cur_scroll_max_value - page_size * 2 / 3) / (v_slider.max_value - v_slider.min_value)
-
-	target_slider_percent = 1
-	v_slider.value = 100
-	# v_slider.value = (v_slider.max_value - v_slider.min_value) * target_slider_percent
+	
+	
+	v_slider.set_slider_percent(1)
 
 	# print("cur_max_value:", cur_max_value)
 func _on_tab_clicked() -> void:
@@ -331,19 +322,11 @@ func _cancel_clicked() -> void:
 func _on_screen_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var input_event = event as InputEventMouseButton
-		var step: float = scroll_container.size.y / cur_scroll_max_value * 0.1
+		var step: float = scroll_container.size.y / cur_scroll_max_value * 0.05
 		if input_event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			target_slider_percent = clamp(target_slider_percent + step, 0, 1)
+			v_slider.target_slider_percent = clamp(v_slider.target_slider_percent + step, 0, 1)
 		if input_event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			target_slider_percent = clamp(target_slider_percent - step, 0, 1)
-	
-func _on_slider_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouse:
-		var input_event = event as InputEventMouse
-		if input_event.button_mask == MOUSE_BUTTON_LEFT:
-			# print("position:", input_event.position)
-			var percent = clamp((input_event.position.y - grabber_height * 0.5) / (v_slider.size.y - grabber_height), 0.0, 1.0)
-			target_slider_percent = 1 - percent
+			v_slider.target_slider_percent = clamp(v_slider.target_slider_percent - step, 0, 1)
 
 func _on_upgrade_toggle_button_clicked(_toggle_on: bool) -> void:
 	CardGame.sound.single_play("UI_CLICK_1", -0.2)
@@ -393,5 +376,5 @@ func _on_set_sort_type(sort_type: CardLibSortHeader.SortType, ascending_order: b
 
 func _on_cardwidget_clicked(cardwidget: CardWidget) -> void:
 	if not initialized:
-		return 
+		return
 	single_card_popup.open(cardwidget, visible_cards, upgrade_toggle_button.button_pressed)

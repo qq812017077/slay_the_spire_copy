@@ -29,8 +29,8 @@ container = NodePath("Container")
 room_container = NodePath("Container/RoomContainer")
 edge_container = NodePath("Container/EdgeContainer")
 
-[node name="BlackBG" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 0.803922)
+[node name="BlackBG" type="TextureRect" parent="." groups=["map"]]
+modulate = Color(0, 0, 0, 0.901961)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,7 +43,7 @@ offset_right = 1600.0
 offset_bottom = 900.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 0
 texture = SubResource("CanvasTexture_05dyw")
 
 [node name="MapBG" type="Control" parent="."]
@@ -147,3 +147,4 @@ offset_left = -384.0
 offset_top = 292.0
 offset_right = -344.0
 offset_bottom = 332.0
+mouse_filter = 2

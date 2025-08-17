@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlc2rfklm05xi"]
+
+[ext_resource type="Script" uid="uid://c4swakk5k4ujl" path="res://scripts/ui/buttons/take_button.gd" id="1_2da2u"]
+[ext_resource type="Texture2D" uid="uid://c0gcq5ifvk1c1" path="res://arts/slay_the_spire/images/ui/reward/takeAll.png" id="2_xs0ph"]
+
+[node name="TakeButton" type="Control" node_paths=PackedStringArray("icon", "btn_name")]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_2da2u")
+icon = NodePath("TakeAll")
+btn_name = NodePath("Name")
+
+[node name="TakeAll" type="Sprite2D" parent="."]
+position = Vector2(150, 35)
+texture = ExtResource("2_xs0ph")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 70.0
+horizontal_alignment = 1
+vertical_alignment = 1

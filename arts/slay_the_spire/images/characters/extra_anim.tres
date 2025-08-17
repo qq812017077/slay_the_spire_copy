@@ -1,0 +1,749 @@
+[gd_resource type="SpriteFrames" load_steps=182 format=3 uid="uid://bnd0wyl3eac2i"]
+
+[ext_resource type="Texture2D" uid="uid://bfolmsp77cek5" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_00.png" id="1_315fx"]
+[ext_resource type="Texture2D" uid="uid://detswcty2idcd" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_01.png" id="2_oy0cu"]
+[ext_resource type="Texture2D" uid="uid://blkopoaaaywop" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_02.png" id="3_pafux"]
+[ext_resource type="Texture2D" uid="uid://7g562hd3rnre" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_03.png" id="4_a1g4q"]
+[ext_resource type="Texture2D" uid="uid://wimweoi6duma" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_04.png" id="5_yx8f1"]
+[ext_resource type="Texture2D" uid="uid://b5joicxs1g6ha" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_05.png" id="6_ygnf4"]
+[ext_resource type="Texture2D" uid="uid://eexinxgoxtuy" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_06.png" id="7_v1is5"]
+[ext_resource type="Texture2D" uid="uid://dq0ikdtux7lg0" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_07.png" id="8_cnnxy"]
+[ext_resource type="Texture2D" uid="uid://b12ly36k58cel" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_08.png" id="9_8s21m"]
+[ext_resource type="Texture2D" uid="uid://bffw7ig1ah3eg" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_09.png" id="10_5knen"]
+[ext_resource type="Texture2D" uid="uid://dnow41igg88si" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_10.png" id="11_2dia0"]
+[ext_resource type="Texture2D" uid="uid://d2ydopgwvwlqk" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_11.png" id="12_mdawx"]
+[ext_resource type="Texture2D" uid="uid://c7s4bfkjm0i0b" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_12.png" id="13_abr22"]
+[ext_resource type="Texture2D" uid="uid://bm6j7drxkv18i" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_13.png" id="14_oodvq"]
+[ext_resource type="Texture2D" uid="uid://ft4357l1ocfn" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_14.png" id="15_r1n46"]
+[ext_resource type="Texture2D" uid="uid://crnyx8gorgll2" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_15.png" id="16_mansf"]
+[ext_resource type="Texture2D" uid="uid://csigqtes3a2xr" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_16.png" id="17_qyfqp"]
+[ext_resource type="Texture2D" uid="uid://gttlvohiw10j" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_17.png" id="18_cgtc0"]
+[ext_resource type="Texture2D" uid="uid://8x1v15g8e8tg" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_18.png" id="19_3oskw"]
+[ext_resource type="Texture2D" uid="uid://cgaget0ejssaj" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_19.png" id="20_a1754"]
+[ext_resource type="Texture2D" uid="uid://b83p1bmwehlx5" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_20.png" id="21_0vurk"]
+[ext_resource type="Texture2D" uid="uid://dv1mybhpsrkce" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_21.png" id="22_0aj84"]
+[ext_resource type="Texture2D" uid="uid://lik6588vi45t" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_22.png" id="23_a48p2"]
+[ext_resource type="Texture2D" uid="uid://blmro1863bc20" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_23.png" id="24_efqjj"]
+[ext_resource type="Texture2D" uid="uid://b48mr3li4qbvn" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_24.png" id="25_hhr3m"]
+[ext_resource type="Texture2D" uid="uid://bpnqrm0xccdax" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_25.png" id="26_beuha"]
+[ext_resource type="Texture2D" uid="uid://ko47keuuqy42" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_26.png" id="27_ciuho"]
+[ext_resource type="Texture2D" uid="uid://txhekv7e0xoy" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_27.png" id="28_tj8uy"]
+[ext_resource type="Texture2D" uid="uid://b3t4q54cxhiwp" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_28.png" id="29_k17nk"]
+[ext_resource type="Texture2D" uid="uid://dun5nigw4cu4e" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_29.png" id="30_yiluq"]
+[ext_resource type="Texture2D" uid="uid://dtnjmlmwvrhy5" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_30.png" id="31_2twi4"]
+[ext_resource type="Texture2D" uid="uid://btljjs5kqtxan" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_31.png" id="32_nhp3n"]
+[ext_resource type="Texture2D" uid="uid://c3hajbqmvat5f" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_32.png" id="33_uwae4"]
+[ext_resource type="Texture2D" uid="uid://blbokatr830hq" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_33.png" id="34_u07fy"]
+[ext_resource type="Texture2D" uid="uid://cfadqbtvg1108" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_34.png" id="35_7xqmf"]
+[ext_resource type="Texture2D" uid="uid://hx53nihkemyw" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_35.png" id="36_x6msk"]
+[ext_resource type="Texture2D" uid="uid://cs2nacsnicfxo" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_36.png" id="37_vrmr3"]
+[ext_resource type="Texture2D" uid="uid://b01wcu16tfn6l" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_37.png" id="38_pxlrh"]
+[ext_resource type="Texture2D" uid="uid://jth75q8ltmki" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_38.png" id="39_syu44"]
+[ext_resource type="Texture2D" uid="uid://bit1j1mob4cn8" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_39.png" id="40_0cvk2"]
+[ext_resource type="Texture2D" uid="uid://coto7hl4n8my8" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_40.png" id="41_xpc80"]
+[ext_resource type="Texture2D" uid="uid://lnse4lmlupu5" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_41.png" id="42_ptv2i"]
+[ext_resource type="Texture2D" uid="uid://cd6dkxvye5tje" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_42.png" id="43_p5wkc"]
+[ext_resource type="Texture2D" uid="uid://dvxaavkk8oaon" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_43.png" id="44_ayh2m"]
+[ext_resource type="Texture2D" uid="uid://bbwjxmocpgg6f" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_44.png" id="45_n6dhg"]
+[ext_resource type="Texture2D" uid="uid://dbf5ynxyouoyg" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_45.png" id="46_wbqs6"]
+[ext_resource type="Texture2D" uid="uid://dtnfxctkw6io7" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_46.png" id="47_liodp"]
+[ext_resource type="Texture2D" uid="uid://b22hiwblhok" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_47.png" id="48_5huch"]
+[ext_resource type="Texture2D" uid="uid://i4k404q6fdg" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_48.png" id="49_ibace"]
+[ext_resource type="Texture2D" uid="uid://bcglqt3f2dt4o" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_49.png" id="50_y0vll"]
+[ext_resource type="Texture2D" uid="uid://cmqwnw0fpq4q0" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_50.png" id="51_7ggt6"]
+[ext_resource type="Texture2D" uid="uid://c3yq8lb11l6ou" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_51.png" id="52_b1054"]
+[ext_resource type="Texture2D" uid="uid://ckdmyvw0ddhyt" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_52.png" id="53_q6im7"]
+[ext_resource type="Texture2D" uid="uid://d4ch2knhryfo0" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_53.png" id="54_gawml"]
+[ext_resource type="Texture2D" uid="uid://b4y8jy31dvq8i" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_54.png" id="55_d7qbw"]
+[ext_resource type="Texture2D" uid="uid://x422y8tja5f" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_55.png" id="56_gp1s1"]
+[ext_resource type="Texture2D" uid="uid://bg6xxbv5oi01g" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_56.png" id="57_tijjk"]
+[ext_resource type="Texture2D" uid="uid://1xo4y301a8lw" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_57.png" id="58_frtyl"]
+[ext_resource type="Texture2D" uid="uid://cirlow5bs56rr" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_58.png" id="59_shfcj"]
+[ext_resource type="Texture2D" uid="uid://40burmkak44v" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_59.png" id="60_x6axr"]
+[ext_resource type="Texture2D" uid="uid://caxj8va1mkomm" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_60.png" id="61_cp5dr"]
+[ext_resource type="Texture2D" uid="uid://cxhj7ter1tdgo" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_61.png" id="62_hhvn5"]
+[ext_resource type="Texture2D" uid="uid://b5twnlcwduhnn" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_62.png" id="63_jnufq"]
+[ext_resource type="Texture2D" uid="uid://ce5stq6nxrh4o" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_63.png" id="64_f18wa"]
+[ext_resource type="Texture2D" uid="uid://7b1atnjtbq2v" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_64.png" id="65_b71tm"]
+[ext_resource type="Texture2D" uid="uid://cpmmqg0cuh0pb" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_65.png" id="66_3lfa0"]
+[ext_resource type="Texture2D" uid="uid://dagiv8p4by21l" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_66.png" id="67_7cncq"]
+[ext_resource type="Texture2D" uid="uid://b1pywmtrdsntw" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_67.png" id="68_lte4j"]
+[ext_resource type="Texture2D" uid="uid://cafessoe5dqf0" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_68.png" id="69_scqw5"]
+[ext_resource type="Texture2D" uid="uid://d4hmw8g7acb67" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_69.png" id="70_qeyta"]
+[ext_resource type="Texture2D" uid="uid://dm6iqdb322kv1" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_70.png" id="71_vqet0"]
+[ext_resource type="Texture2D" uid="uid://603boef8d6so" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Calm_71.png" id="72_l66qh"]
+[ext_resource type="Texture2D" uid="uid://b7u2ewrp4uldb" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_000.png" id="73_2gavy"]
+[ext_resource type="Texture2D" uid="uid://diwgjx35mx015" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-None_0.png" id="73_bsfrw"]
+[ext_resource type="Texture2D" uid="uid://dx40i6lr76u0j" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Wrath_0.png" id="73_yx8f1"]
+[ext_resource type="Texture2D" uid="uid://b85jag5et438l" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_001.png" id="74_bsfrw"]
+[ext_resource type="Texture2D" uid="uid://u3o3y42hjqj7" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Wrath_1.png" id="74_ygnf4"]
+[ext_resource type="Texture2D" uid="uid://bb6yla1t7s61e" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_002.png" id="75_ewm2a"]
+[ext_resource type="Texture2D" uid="uid://ct5546q0lnxls" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Wrath_2.png" id="75_v1is5"]
+[ext_resource type="Texture2D" uid="uid://cyyqrlh145vy6" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Wrath_3.png" id="76_cnnxy"]
+[ext_resource type="Texture2D" uid="uid://djyle3s6r8pc0" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_003.png" id="76_uoohw"]
+[ext_resource type="Texture2D" uid="uid://cc3hww4ecgkjx" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_004.png" id="77_5tpf6"]
+[ext_resource type="Texture2D" uid="uid://cea8nsj4vyibn" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_005.png" id="78_wbtbk"]
+[ext_resource type="Texture2D" uid="uid://n528hbpjuvf1" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_006.png" id="79_xuwq1"]
+[ext_resource type="Texture2D" uid="uid://dgewkxbm6tog0" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_007.png" id="80_ghcqr"]
+[ext_resource type="Texture2D" uid="uid://cf103thslkuny" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_008.png" id="81_vbblq"]
+[ext_resource type="Texture2D" uid="uid://b3bfh7thh1ep4" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_009.png" id="82_34ukg"]
+[ext_resource type="Texture2D" uid="uid://b1dpx2m2yns2w" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_010.png" id="83_m885c"]
+[ext_resource type="Texture2D" uid="uid://cx0uwbuslu5wm" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_011.png" id="84_yxm6h"]
+[ext_resource type="Texture2D" uid="uid://chqc0oo3dknv3" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_012.png" id="85_u63yl"]
+[ext_resource type="Texture2D" uid="uid://dwbpjo8i43oym" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_013.png" id="86_jo0rc"]
+[ext_resource type="Texture2D" uid="uid://lq2lktyx8n1f" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_014.png" id="87_dpxs6"]
+[ext_resource type="Texture2D" uid="uid://bgyyneyt3nty1" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_015.png" id="88_dk1vr"]
+[ext_resource type="Texture2D" uid="uid://5nlr2urio1ns" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_016.png" id="89_ns2wm"]
+[ext_resource type="Texture2D" uid="uid://dojfhbt3fljdv" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_017.png" id="90_trv6i"]
+[ext_resource type="Texture2D" uid="uid://brpvix74a8x3v" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_018.png" id="91_yv7je"]
+[ext_resource type="Texture2D" uid="uid://6a42hwb1o161" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_019.png" id="92_ekkgn"]
+[ext_resource type="Texture2D" uid="uid://qhqfs1ubndgx" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_020.png" id="93_jdbfh"]
+[ext_resource type="Texture2D" uid="uid://cnqyma7lqpkfi" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_021.png" id="94_qry0r"]
+[ext_resource type="Texture2D" uid="uid://bmhnbqv3kdnyu" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_022.png" id="95_fil5c"]
+[ext_resource type="Texture2D" uid="uid://brbquow45u10m" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_023.png" id="96_tknxh"]
+[ext_resource type="Texture2D" uid="uid://d0cg4bo8tyhqd" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_024.png" id="97_1h4yg"]
+[ext_resource type="Texture2D" uid="uid://48bmkt04siyl" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_025.png" id="98_hgb0m"]
+[ext_resource type="Texture2D" uid="uid://ct6lli8jrpjws" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_026.png" id="99_0k5q4"]
+[ext_resource type="Texture2D" uid="uid://bl1l0ybdc0nhm" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_027.png" id="100_dy28y"]
+[ext_resource type="Texture2D" uid="uid://cj5ryrx8xjn6b" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_028.png" id="101_410tv"]
+[ext_resource type="Texture2D" uid="uid://qhr1qfu4wi0f" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_029.png" id="102_0ksyi"]
+[ext_resource type="Texture2D" uid="uid://deybu4no38e54" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_030.png" id="103_ma15r"]
+[ext_resource type="Texture2D" uid="uid://biierpk361e7b" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_031.png" id="104_7rbt5"]
+[ext_resource type="Texture2D" uid="uid://dsiykp8102d3c" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_032.png" id="105_fuirx"]
+[ext_resource type="Texture2D" uid="uid://bgndcjtrdfond" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_033.png" id="106_8p240"]
+[ext_resource type="Texture2D" uid="uid://ckkg1e6ubp5lf" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_034.png" id="107_jt1gh"]
+[ext_resource type="Texture2D" uid="uid://dj52bl1ng04rb" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_035.png" id="108_lseti"]
+[ext_resource type="Texture2D" uid="uid://drw7bl8go22w6" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_036.png" id="109_v5ig4"]
+[ext_resource type="Texture2D" uid="uid://du7iu53wy1apl" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_037.png" id="110_65lrx"]
+[ext_resource type="Texture2D" uid="uid://bmwd34pirg6ga" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_038.png" id="111_gtdwa"]
+[ext_resource type="Texture2D" uid="uid://dvsytnuukmxo3" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_039.png" id="112_swusm"]
+[ext_resource type="Texture2D" uid="uid://106378fs40ql" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_040.png" id="113_pg0kk"]
+[ext_resource type="Texture2D" uid="uid://byc55yv17r6v2" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_041.png" id="114_daeu3"]
+[ext_resource type="Texture2D" uid="uid://bw3f758aovppg" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_042.png" id="115_exjkj"]
+[ext_resource type="Texture2D" uid="uid://dfdsrdw1msya7" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_043.png" id="116_5ny75"]
+[ext_resource type="Texture2D" uid="uid://cnmrefciwi610" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_044.png" id="117_bjbeb"]
+[ext_resource type="Texture2D" uid="uid://ck45ku7r6faai" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_045.png" id="118_e47xa"]
+[ext_resource type="Texture2D" uid="uid://hll6f3trd8gq" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_046.png" id="119_1ddxb"]
+[ext_resource type="Texture2D" uid="uid://dbqckoc8ltfsb" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_047.png" id="120_jgcos"]
+[ext_resource type="Texture2D" uid="uid://ce0fj4qpb4v00" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_048.png" id="121_rut60"]
+[ext_resource type="Texture2D" uid="uid://b3rq8h41g516r" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_049.png" id="122_8swsc"]
+[ext_resource type="Texture2D" uid="uid://wmoyk5nvfotl" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_050.png" id="123_t6uqs"]
+[ext_resource type="Texture2D" uid="uid://caxlmcw5h4a13" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_051.png" id="124_bjp3u"]
+[ext_resource type="Texture2D" uid="uid://cuhx2dgu7cpjb" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_052.png" id="125_mo45r"]
+[ext_resource type="Texture2D" uid="uid://nhsu44y4li8p" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_053.png" id="126_sek2j"]
+[ext_resource type="Texture2D" uid="uid://dd50wcobpwhi6" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_054.png" id="127_m0vak"]
+[ext_resource type="Texture2D" uid="uid://bemcmy3sjyfgs" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_055.png" id="128_fruaj"]
+[ext_resource type="Texture2D" uid="uid://bnarubtsy36ol" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_056.png" id="129_di2bk"]
+[ext_resource type="Texture2D" uid="uid://b4uiukiqyow2e" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_057.png" id="130_8x38h"]
+[ext_resource type="Texture2D" uid="uid://b25hauo3h35rl" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_058.png" id="131_psi72"]
+[ext_resource type="Texture2D" uid="uid://cpgmpb23q087e" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_059.png" id="132_re4qt"]
+[ext_resource type="Texture2D" uid="uid://cm7g2ci2oce0m" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_060.png" id="133_q15dj"]
+[ext_resource type="Texture2D" uid="uid://xruwsmyl5xab" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_061.png" id="134_61ydf"]
+[ext_resource type="Texture2D" uid="uid://cr25041rpgnm3" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_062.png" id="135_giik6"]
+[ext_resource type="Texture2D" uid="uid://cgls7x5snjsyh" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_063.png" id="136_n0rct"]
+[ext_resource type="Texture2D" uid="uid://bcty56rba8q1q" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_064.png" id="137_mueqd"]
+[ext_resource type="Texture2D" uid="uid://dtbcx26yjjash" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_065.png" id="138_2nvl7"]
+[ext_resource type="Texture2D" uid="uid://olcl00qsi1sg" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_066.png" id="139_7ya2f"]
+[ext_resource type="Texture2D" uid="uid://dskwa02ruw1lk" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_067.png" id="140_bk48i"]
+[ext_resource type="Texture2D" uid="uid://c54b8fcwith4t" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_068.png" id="141_iaqia"]
+[ext_resource type="Texture2D" uid="uid://blnm2srii0yco" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_069.png" id="142_op42x"]
+[ext_resource type="Texture2D" uid="uid://cbu215r4lorck" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_070.png" id="143_h6u4m"]
+[ext_resource type="Texture2D" uid="uid://baji6xq7h2j2h" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_071.png" id="144_obvo6"]
+[ext_resource type="Texture2D" uid="uid://b8kf46pd6dgwm" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_072.png" id="145_s8rhl"]
+[ext_resource type="Texture2D" uid="uid://dymokgjhsgn0f" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_073.png" id="146_lo5p1"]
+[ext_resource type="Texture2D" uid="uid://b40o84eimyqj5" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_074.png" id="147_f6c2t"]
+[ext_resource type="Texture2D" uid="uid://fqopjy0yijl7" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_075.png" id="148_wovk5"]
+[ext_resource type="Texture2D" uid="uid://cxrxyjghgaelf" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_076.png" id="149_uud7o"]
+[ext_resource type="Texture2D" uid="uid://ch65rj4ce1fo7" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_077.png" id="150_d1acb"]
+[ext_resource type="Texture2D" uid="uid://tqqmhbdmi4y6" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_078.png" id="151_1jh8t"]
+[ext_resource type="Texture2D" uid="uid://dwcdr48r5op3r" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_079.png" id="152_of1hi"]
+[ext_resource type="Texture2D" uid="uid://b2ua05tlb4dim" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_080.png" id="153_2eog8"]
+[ext_resource type="Texture2D" uid="uid://i5rbxib51rsw" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_081.png" id="154_b2qcd"]
+[ext_resource type="Texture2D" uid="uid://dtou4vbv25rlw" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_082.png" id="155_1j5ie"]
+[ext_resource type="Texture2D" uid="uid://ctaq244xf0cwx" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_083.png" id="156_0jv2a"]
+[ext_resource type="Texture2D" uid="uid://dlomklejmvw1e" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_084.png" id="157_6j7nq"]
+[ext_resource type="Texture2D" uid="uid://qq2qkwr5rlpd" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_085.png" id="158_ucqkg"]
+[ext_resource type="Texture2D" uid="uid://cbh2t56sjm55a" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_086.png" id="159_1yj2u"]
+[ext_resource type="Texture2D" uid="uid://daoesfbnfxtst" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_087.png" id="160_bqgrp"]
+[ext_resource type="Texture2D" uid="uid://b6eao7u34bj0s" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_088.png" id="161_4j1ty"]
+[ext_resource type="Texture2D" uid="uid://cjjkp341op5g3" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_089.png" id="162_1fuh8"]
+[ext_resource type="Texture2D" uid="uid://b3wlghc3s8ntf" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_090.png" id="163_jusay"]
+[ext_resource type="Texture2D" uid="uid://d0rtv0keg76sm" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_091.png" id="164_myqya"]
+[ext_resource type="Texture2D" uid="uid://cwbiumw6rbhjo" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_092.png" id="165_oejlx"]
+[ext_resource type="Texture2D" uid="uid://bv8hljlb744b4" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_093.png" id="166_kdp85"]
+[ext_resource type="Texture2D" uid="uid://ct067kju4i7n6" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_094.png" id="167_qrh6u"]
+[ext_resource type="Texture2D" uid="uid://onqlb46ut4cp" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_095.png" id="168_kkbiv"]
+[ext_resource type="Texture2D" uid="uid://calfe80wkba65" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_096.png" id="169_irv4v"]
+[ext_resource type="Texture2D" uid="uid://ooo8sfu1bcah" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_097.png" id="170_pcl8b"]
+[ext_resource type="Texture2D" uid="uid://vjxpq4fnmcys" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_098.png" id="171_pepba"]
+[ext_resource type="Texture2D" uid="uid://udf8pvgcpgp6" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_099.png" id="172_i8b5a"]
+[ext_resource type="Texture2D" uid="uid://dxb8gujn4fh1p" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_100.png" id="173_sl7t6"]
+[ext_resource type="Texture2D" uid="uid://bmyosg8t7x1tj" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_101.png" id="174_5mujl"]
+[ext_resource type="Texture2D" uid="uid://82dc5ktxspvg" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_102.png" id="175_u57aw"]
+[ext_resource type="Texture2D" uid="uid://66xvu8oyph57" path="res://arts/slay_the_spire/images/characters/anims/watcher/eye_anim/skeleton-Divinity_103.png" id="176_b3ql5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_315fx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_oy0cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pafux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a1g4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yx8f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ygnf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v1is5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cnnxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8s21m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5knen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2dia0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mdawx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_abr22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_oodvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r1n46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_mansf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qyfqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_cgtc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3oskw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_a1754")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_0vurk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0aj84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_a48p2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_efqjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_hhr3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_beuha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ciuho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_tj8uy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_k17nk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_yiluq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_2twi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_nhp3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_uwae4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_u07fy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_7xqmf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_x6msk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_vrmr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_pxlrh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_syu44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_0cvk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_xpc80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ptv2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_p5wkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_ayh2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_n6dhg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_wbqs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_liodp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_5huch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_ibace")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_y0vll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_7ggt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_b1054")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_q6im7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_gawml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_d7qbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_gp1s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_tijjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_frtyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_shfcj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_x6axr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_cp5dr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_hhvn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_jnufq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_f18wa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_b71tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_3lfa0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_7cncq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_lte4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_scqw5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_qeyta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_vqet0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_l66qh")
+}],
+"loop": true,
+"name": &"calm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("73_bsfrw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("73_2gavy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_bsfrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_ewm2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_uoohw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_5tpf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_wbtbk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_xuwq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_ghcqr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_vbblq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_34ukg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_m885c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_yxm6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_u63yl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_jo0rc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_dpxs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_dk1vr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_ns2wm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_trv6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_yv7je")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_ekkgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_jdbfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_qry0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_fil5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_tknxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_1h4yg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_hgb0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_0k5q4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_dy28y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_410tv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_0ksyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_ma15r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_7rbt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_fuirx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_8p240")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_jt1gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_lseti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_v5ig4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_65lrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_gtdwa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_swusm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_pg0kk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_daeu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_exjkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_5ny75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_bjbeb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_e47xa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_1ddxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_jgcos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_rut60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_8swsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_t6uqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_bjp3u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_mo45r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_sek2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_m0vak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_fruaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_di2bk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_8x38h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_psi72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_re4qt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_q15dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_61ydf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_giik6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_n0rct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_mueqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_2nvl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_7ya2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_bk48i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_iaqia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_op42x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_h6u4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_obvo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_s8rhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_lo5p1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_f6c2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_wovk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_uud7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_d1acb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_1jh8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_of1hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_2eog8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_b2qcd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_1j5ie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_0jv2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_6j7nq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_ucqkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_1yj2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_bqgrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_4j1ty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_1fuh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_jusay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_myqya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_oejlx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_kdp85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_qrh6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_kkbiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_irv4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_pcl8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_pepba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_i8b5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_sl7t6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_5mujl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_u57aw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_b3ql5")
+}],
+"loop": true,
+"name": &"divinity",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("73_yx8f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_ygnf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_v1is5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_cnnxy")
+}],
+"loop": true,
+"name": &"wrath",
+"speed": 5.0
+}]

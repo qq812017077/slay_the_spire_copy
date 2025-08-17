@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://ic06kfvmoxk"]
+
+[ext_resource type="PackedScene" uid="uid://brgc3fkuwu2ik" path="res://scenes/slay_the_spire/cards/attack_card.tscn" id="1_1tcih"]
+
+[node name="ScrollContainer" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="AttackCard" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard2" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard3" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard4" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard5" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard6" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard7" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard8" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard9" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard10" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard11" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard12" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard13" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard14" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2
+
+[node name="AttackCard15" parent="GridContainer" instance=ExtResource("1_1tcih")]
+layout_mode = 2

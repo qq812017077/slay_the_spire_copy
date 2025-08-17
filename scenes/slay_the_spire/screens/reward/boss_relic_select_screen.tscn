@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgjkieo6t3sp7"]
+
+[ext_resource type="Texture2D" uid="uid://rqvxllgnmk34" path="res://arts/slay_the_spire/images/ui/bossRelicScreenOverlay.png" id="1_bp3fy"]
+[ext_resource type="PackedScene" uid="uid://wirqo3pgodbw" path="res://scenes/slay_the_spire/ui/cancel_button.tscn" id="1_dndud"]
+[ext_resource type="Script" uid="uid://c1j4qkebdbrc8" path="res://scripts/ui/screens/reward/boss_relic_select_screen.gd" id="1_u0gql"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_o3svg"]
+
+[node name="BossRelicSelectScreen" type="Control" node_paths=PackedStringArray("black_mask", "relic_bg", "cancel_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_u0gql")
+black_mask = NodePath("BlackBG")
+relic_bg = NodePath("BossRelicScreenOverlay")
+cancel_button = NodePath("CancelButton")
+
+[node name="BlackBG" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+z_index = -10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1600.0
+offset_top = -900.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("CanvasTexture_o3svg")
+
+[node name="BossRelicScreenOverlay" type="Sprite2D" parent="."]
+position = Vector2(440, 32)
+texture = ExtResource("1_bp3fy")
+centered = false
+
+[node name="Relics" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="CancelButton" parent="." instance=ExtResource("1_dndud")]
+layout_mode = 0
+offset_top = 824.0
+offset_bottom = 961.0

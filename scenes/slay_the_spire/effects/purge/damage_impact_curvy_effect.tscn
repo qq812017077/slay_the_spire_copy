@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://den33c2yf425q"]
+
+[ext_resource type="Script" uid="uid://dl7co87ituqqw" path="res://scripts/effects/particle/combat/damage_impact_curvy_particle_effec.gd" id="1_05mdh"]
+[ext_resource type="Texture2D" uid="uid://movlm26sr0m6" path="res://arts/slay_the_spire/vfx/upgrade/strike_line.tres" id="1_5pgc7"]
+[ext_resource type="Shader" uid="uid://ddq2saxsyrklb" path="res://shaders/damage_impact_curvy_effect.gdshader" id="2_63o12"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_63o12"]
+blend_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5mv3"]
+shader = ExtResource("2_63o12")
+shader_parameter/color = Vector4(1, 1, 1, 1)
+shader_parameter/initial_rot_angle = Vector2(0, 360)
+shader_parameter/lifetime_randomness = 0.23
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/emission_box_extents = Vector3(1, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05mdh"]
+shader = ExtResource("2_63o12")
+shader_parameter/color = Vector4(1, 1, 1, 1)
+shader_parameter/initial_rot_angle = Vector2(0, 360)
+shader_parameter/lifetime_randomness = 0.23
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/emission_box_extents = Vector3(1, 1, 0)
+
+[node name="DamageImpactCurvyEffect" type="Control" node_paths=PackedStringArray("normal_particle", "rarity_particle")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_05mdh")
+normal_particle = NodePath("NormalParticle2D")
+rarity_particle = NodePath("RarityParticle2D")
+
+[node name="NormalParticle2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_63o12")
+emitting = false
+amount = 16
+texture = ExtResource("1_5pgc7")
+lifetime = 1.1
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_p5mv3")
+
+[node name="RarityParticle2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_63o12")
+emitting = false
+texture = ExtResource("1_5pgc7")
+lifetime = 1.1
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_05mdh")

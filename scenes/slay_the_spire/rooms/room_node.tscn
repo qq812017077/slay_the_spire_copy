@@ -15,7 +15,7 @@ img_outline = NodePath("ImgOutline")
 img = NodePath("Img")
 circle_anim_player = NodePath("CircleAnimPlayer")
 
-[node name="InputContainer" type="Control" parent="."]
+[node name="InputContainer" type="Control" parent="." groups=["map"]]
 anchors_preset = 0
 offset_left = -64.0
 offset_top = -64.0

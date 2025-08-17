@@ -1,22 +1,71 @@
 class_name AbstractPlayer
-extends Node
-
-
+extends Object
 enum PlayerType {IRONCLAD, THE_SILENT, DEFECT, WATCHER}
-
-var type: PlayerType
 
 static func initialize():
 	pass
 
-func _init(_type: PlayerType) -> void:
-	type = _type
 
+var type: PlayerType
+var idle_animation: String = "idle"
+var hit_animation: String = "hit"
+var shoulder_img: Texture2D = null
+var shoulder2_img: Texture2D = null
+
+var starting_max_health: int = 0
+var max_health: int = 0
+var current_health: int = 0
+var master_max_orbs: int = 0
+var energy: int = 0
+var master_hand_size: int = 0
+var gold: int = 0
+
+var master_decks: CardGroup = CardGroup.new(CardGroup.CardGroupType.MASTER_DECK)
+var draw_pile: CardGroup = CardGroup.new(CardGroup.CardGroupType.DRAW_PILE)
+var hand: CardGroup = CardGroup.new(CardGroup.CardGroupType.HAND)
+var discard_pile: CardGroup = CardGroup.new(CardGroup.CardGroupType.DISCARD_PILE)
+var exhaust_pile: CardGroup = CardGroup.new(CardGroup.CardGroupType.EXHAUST_PILE)
+
+
+func _init(_type: PlayerType, _idle_animation: String, _hit_animation: String) -> void:
+	type = _type
+	idle_animation = _idle_animation
+	hit_animation = _hit_animation
+	master_max_orbs = 3
+	gold = 99
+	master_hand_size = 10
+	
 func new_instance() -> AbstractPlayer:
 	return null
 
 func get_character_info() -> CharacterInfo:
 	return null
+
+func get_starting_deck() -> Array[String]:
+	return []
+
+func get_upgradeable_cards() -> Array[AbstractCard]:
+	return master_decks.group.filter(
+		func(card: AbstractCard) -> bool:
+			return card.is_upgradable()
+	)
+func get_purgeable_cards() -> Array[AbstractCard]:
+	return master_decks.group.filter(
+		func(card: AbstractCard) -> bool:
+			return card.is_purgeable()
+	)
+
+func gain_gold(gold_amt: int) -> void:
+	gold += gold_amt
+func use_gold(gold_amt: int) -> void:
+	gold -= gold_amt
+func initialize_starting_deck() -> void:
+	var cards: Array[String] = get_starting_deck()
+	for card_name in cards:
+		master_decks.add_to_top(CardLibrary.get_card(card_name).make_copy())
+
+func get_card_trail_color() -> Color:
+	return Color.WHITE
 
 static func get_character_name(player_type: PlayerType) -> String:
 	match player_type:

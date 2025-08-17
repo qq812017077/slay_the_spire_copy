@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://kfqc4c2q1yfp"]
+
+[ext_resource type="Script" uid="uid://dtqwyuyelt8yn" path="res://scripts/effects/upgrade_hammer_imprint_effect.gd" id="1_fuc7m"]
+[ext_resource type="Texture2D" uid="uid://hfh3btlydmd2" path="res://arts/slay_the_spire/vfx/upgrade/hammer_impact.tres" id="2_30v6v"]
+
+[node name="HammerImpactEffect" type="Node2D" node_paths=PackedStringArray("hammer_img", "hammer_glow_img")]
+script = ExtResource("1_fuc7m")
+hammer_img = NodePath("HammerEffect")
+hammer_glow_img = NodePath("HammerGlowEffect")
+
+[node name="HammerEffect" type="Sprite2D" parent="."]
+texture = ExtResource("2_30v6v")
+
+[node name="HammerGlowEffect" type="Sprite2D" parent="."]
+texture = ExtResource("2_30v6v")

@@ -178,6 +178,11 @@ _color: CardColor, _rarity: CardRarity, _target: CardTarget, dType: DamageInfo.D
 func upgrade() -> void:
 	pass
 
+func is_upgradable() -> bool:
+	return not upgraded and type != CardType.CURSE and type != CardType.STATUS
+
+func is_purgeable() -> bool:
+	return true
 func make_copy() -> AbstractCard:
 	var copy: AbstractCard = null
 	var script: Script = self.get_script()
@@ -582,6 +587,22 @@ static func initialize():
 	orb_potion = orb_atlas.find_region("potion");
 	orb_relic = orb_atlas.find_region("relic");
 	orb_special = orb_atlas.find_region("special");
+
+static func get_price(card: AbstractCard) -> int:
+	match card.rarity:
+		CardRarity.COMMON:
+			return 50
+		CardRarity.UNCOMMON:
+			return 75
+		CardRarity.RARE:
+			return 150
+		CardRarity.SPECIAL:
+			return 9999
+		CardRarity.CURSE:
+			return 0
+		CardRarity.BASIC:
+			return 9999
+	return 9999
 
 static func get_card_desc_orb(card_color: CardColor) -> AtlasRegion:
 	match card_color:

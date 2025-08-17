@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm5d3nrlse4p6"]
+
+[ext_resource type="Script" uid="uid://cw6donhf8pcb" path="res://scripts/effects/card/card_trail_effect.gd" id="1_qigvi"]
+[ext_resource type="Texture2D" uid="uid://6otqffne2b3a" path="res://arts/slay_the_spire/vfx/trail/trail.tres" id="1_xs173"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qigvi"]
+blend_mode = 1
+
+[node name="CardTrailEffect" type="Node2D"]
+script = ExtResource("1_qigvi")
+metadata/_custom_type_script = "uid://cw6donhf8pcb"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_qigvi")
+texture = ExtResource("1_xs173")

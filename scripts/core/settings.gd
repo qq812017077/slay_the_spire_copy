@@ -18,11 +18,14 @@ static var scale: float
 static var x_scale: float
 static var y_scale: float
 
+const DEFAULT_WIDTH: int = 1920
+const DEFAULT_HEIGHT: int = 1080
 static var HEIGHT: int
 static var WIDTH: int
 
 #
 static var BIG_TEXT_MODE: bool = false
+static var FAST_MODE: bool = false
 
 # line settings 
 static var manualLineBreak: bool = false
@@ -34,7 +37,7 @@ static var removeAtoZSort: bool = false
 
 # 
 static var is_backgrounded: bool = false
-
+static var is_end_less: bool = false
 # game setting
 static var MASTER_VOLUME: float = 1 # 主音量
 static var MUSIC_VOLUME: float = 1 # 音乐音量
@@ -121,3 +124,6 @@ static func set_language_by_string(keyStr: String, initial: bool) -> void:
 static func set_random_seed() -> void:
 	game_seed = SeedHelper.generate_unoffensive_seed()
 	seedSet = false
+
+static func is_standard_run() -> bool:
+	return true

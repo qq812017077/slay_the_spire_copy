@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AnimLibrary" load_steps=3 format=3 uid="uid://bau2a0qsicpex"]
+
+[ext_resource type="SpriteFrames" uid="uid://cuv8tos14f78u" path="res://arts/slay_the_spire/images/npcs/neow/animation/neow.tres" id="1_cnits"]
+[ext_resource type="Script" uid="uid://clwtyd0ko6j1d" path="res://scripts/resources/anim_library.gd" id="1_m2uue"]
+
+[resource]
+script = ExtResource("1_m2uue")
+neow_anim = ExtResource("1_cnits")

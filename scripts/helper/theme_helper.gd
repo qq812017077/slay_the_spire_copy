@@ -13,6 +13,7 @@ const TWO_THIRDS_TRANSPARENT_BLACK_COLOR = Color(0.0, 0.0, 0.0, 0.66);
 const HALF_TRANSPARENT_BLACK_COLOR = Color(0.0, 0.0, 0.0, 0.5);
 const QUARTER_TRANSPARENT_BLACK_COLOR = Color(0.0, 0.0, 0.0, 0.25);
 
+static var DARK_GREY_COLOR = Color.from_string("#333333ff", Color.DARK_GRAY)
 static var GOLD_COLOR = Color.from_string("#EFC851FF", Color.GOLD)
 static var CREAM_COLOR = Color.from_string("#fef5e1ff", Color.MINT_CREAM)
 static var RED_TEXT_COLOR = Color.from_string("#ff6563ff", Color.RED)
@@ -91,7 +92,17 @@ static var character_desc_outline_size: int = 0
 static var character_desc_shadow_offset_x: int = 4
 static var character_desc_shadow_offset_y: int = 0
 
+static var button_label_settings: LabelSettings
+static var char_desc_label_settings: LabelSettings
+static var panel_name_label_settings: LabelSettings
 static var card_title_label_setting: LabelSettings
+static var top_panel_info_label_settings: LabelSettings
+static var lose_power_label_settings: LabelSettings
+static var tip_body_label_settings: LabelSettings
+static var top_panel_amount_label_settings: LabelSettings
+static var card_desc_font_N_label_settigns: LabelSettings
+static var dialog_option_label_settings: LabelSettings
+static var tip_header_label_settings: LabelSettings
 static func initialize():
 	# font load
 	normal_font_eng = load("res://arts/slay_the_spire/fonts/Kreon-Regular.ttf")
@@ -130,7 +141,7 @@ static func initialize():
 	panel_info_shadow_offset_y = try_get_constant(theme, "shadow_offset_y", "PanelInfo", 3)
 
 	# card title
-	initialize_card_title()
+	initialize_label_settings()
 
 	# desc
 	card_desc_normal_color = theme.get_color("normal_color", "CardDescriptionLabel")
@@ -147,7 +158,27 @@ static func initialize():
 	tab_font_normal_color = theme.get_color("tab_font_normal_color", "CardLibraryScreen")
 	tab_font_selected_color = theme.get_color("tab_font_selected_color", "CardLibraryScreen")
 
-static func initialize_card_title() -> void:
+static func initialize_label_settings() -> void:
+	button_label_settings = LabelSettings.new()
+	button_label_settings.font = get_regular_font()
+	button_label_settings.font_size = 32
+	button_label_settings.font_color = Color.WHITE
+	button_label_settings.outline_color = HALF_TRANSPARENT_BLACK_COLOR
+	button_label_settings.outline_size = 12
+	button_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	button_label_settings.shadow_offset = Vector2(3, 3)
+	button_label_settings.shadow_size = 10
+
+
+	char_desc_label_settings = LabelSettings.new()
+	char_desc_label_settings.font = get_regular_font()
+	char_desc_label_settings.font_size = 30
+	char_desc_label_settings.font_color = Color.WHITE
+	char_desc_label_settings.outline_color = Color(0.35, 0.35, 0.35, 1)
+	char_desc_label_settings.outline_size = 0
+	char_desc_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	char_desc_label_settings.shadow_offset = Vector2(4, 4)
+
 	card_title_font_size = theme.get_font_size("font_size", "CardTitle") if theme.has_font_size("font_size", "CardTitle") else 32
 	card_title_label_setting = LabelSettings.new()
 	card_title_label_setting.font = get_regular_font()
@@ -157,7 +188,86 @@ static func initialize_card_title() -> void:
 	card_title_label_setting.outline_size = 4
 	card_title_label_setting.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
 	card_title_label_setting.shadow_offset = Vector2(3, 3)
-	
+
+	top_panel_info_label_settings = LabelSettings.new()
+	top_panel_info_label_settings.font = get_bold_font()
+	top_panel_info_label_settings.font_size = 26
+	top_panel_info_label_settings.font_color = GOLD_COLOR
+	top_panel_info_label_settings.outline_color = DARK_GREY_COLOR
+	top_panel_info_label_settings.outline_size = 10
+	top_panel_info_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	top_panel_info_label_settings.shadow_offset = Vector2(2, 2)
+	top_panel_info_label_settings.shadow_size = 10
+
+	lose_power_label_settings = LabelSettings.new()
+	lose_power_label_settings.font = get_regular_font()
+	lose_power_label_settings.font_size = 36
+	lose_power_label_settings.font_color = GOLD_COLOR
+	lose_power_label_settings.outline_color = Color(0.3, 0.3, 0.3, 1)
+	lose_power_label_settings.outline_size = 18
+	lose_power_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	lose_power_label_settings.shadow_offset = Vector2(3, 3)
+	lose_power_label_settings.shadow_size = 10
+
+	tip_body_label_settings = LabelSettings.new()
+	tip_body_label_settings.font = get_regular_font()
+	tip_body_label_settings.font_size = 22
+	tip_body_label_settings.font_color = CREAM_COLOR
+	tip_body_label_settings.outline_color = Color(0.4, 0.1, 0.1, 1)
+	tip_body_label_settings.outline_size = 0
+	tip_body_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	tip_body_label_settings.shadow_offset = Vector2(3, 3)
+	tip_body_label_settings.shadow_size = 10
+
+	panel_name_label_settings = LabelSettings.new()
+	panel_name_label_settings.font = get_regular_font()
+	panel_name_label_settings.font_size = 34
+	panel_name_label_settings.font_color = CREAM_COLOR
+	panel_name_label_settings.outline_color = Color(0.4, 0.1, 0.1, 1)
+	panel_name_label_settings.outline_size = 0
+	panel_name_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	panel_name_label_settings.shadow_offset = Vector2(3, 3)
+	panel_name_label_settings.shadow_size = 10
+
+	top_panel_amount_label_settings = LabelSettings.new()
+	top_panel_amount_label_settings.font = get_regular_font()
+	top_panel_amount_label_settings.font_size = 24
+	top_panel_amount_label_settings.font_color = Color.WHITE
+	top_panel_amount_label_settings.outline_color = Color(0.1, 0.1, 0.1, 0.5)
+	top_panel_amount_label_settings.outline_size = 10
+	top_panel_amount_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	top_panel_amount_label_settings.shadow_offset = Vector2(3, 3)
+	top_panel_amount_label_settings.shadow_size = 10
+
+	card_desc_font_N_label_settigns = LabelSettings.new()
+	card_desc_font_N_label_settigns.font = get_regular_font()
+	card_desc_font_N_label_settigns.font_size = 24
+	card_desc_font_N_label_settigns.font_color = Color.WHITE
+	card_desc_font_N_label_settigns.outline_color = Color(0.1, 0.1, 0.1, 0.5)
+	card_desc_font_N_label_settigns.outline_size = 0
+	card_desc_font_N_label_settigns.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	card_desc_font_N_label_settigns.shadow_offset = Vector2(1, 1)
+	card_desc_font_N_label_settigns.shadow_size = 5
+
+	dialog_option_label_settings = LabelSettings.new()
+	dialog_option_label_settings.font = get_regular_font()
+	dialog_option_label_settings.font_size = 30
+	dialog_option_label_settings.font_color = Color.WHITE
+	dialog_option_label_settings.outline_color = Color.hex(0x42514dff)
+	dialog_option_label_settings.outline_size = 0
+	dialog_option_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	dialog_option_label_settings.shadow_offset = Vector2(3, 3)
+	dialog_option_label_settings.shadow_size = 10
+
+	tip_header_label_settings = LabelSettings.new()
+	tip_header_label_settings.font = get_bold_font()
+	tip_header_label_settings.font_size = 23
+	tip_header_label_settings.font_color = Color.WHITE
+	tip_header_label_settings.outline_color = DARK_GREY_COLOR
+	tip_header_label_settings.outline_size = 2
+	tip_header_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	tip_header_label_settings.shadow_offset = Vector2(2, 2)
+	tip_header_label_settings.shadow_size = 10
 
 static func try_get_constant(targettheme: Theme, name: StringName, theme_type: StringName, default: int) -> int:
 	return targettheme.get_font_size(name, theme_type) if targettheme.has_font_size(name, theme_type) else default
@@ -197,6 +307,37 @@ static func get_italic_font() -> Font:
 		return italic_font_zhs
 	
 	return italic_font_eng
+
+static func apply_label_font_style_with_settings(label: Label, settings: LabelSettings, font_color: Color) -> void:
+	label.add_theme_font_override("font", settings.font)
+
+	label.add_theme_color_override("font_color", font_color)
+	label.add_theme_font_size_override("font_size", settings.font_size)
+
+	label.add_theme_color_override("font_outline_color", settings.outline_color)
+	label.add_theme_constant_override("outline_size", settings.outline_size)
+	
+	label.add_theme_color_override("font_shadow_color", settings.shadow_color)
+	label.add_theme_constant_override("shadow_offset_x", int(settings.shadow_offset.x))
+	label.add_theme_constant_override("shadow_offset_y", int(settings.shadow_offset.y))
+	label.add_theme_constant_override("shadow_outline_size", int(settings.shadow_size))
+
+static func apply_rich_label_font_style_with_settings(rich_label: RichTextLabel, settings: LabelSettings, font_color: Color, line_separation: int = 0) -> void:
+	rich_label.add_theme_font_override("normal_font", settings.font)
+	rich_label.add_theme_font_size_override("normal_font_size", settings.font_size)
+
+	rich_label.add_theme_color_override("default_color", font_color)
+
+	rich_label.add_theme_color_override("font_outline_color", settings.outline_color)
+	rich_label.add_theme_constant_override("outline_size", settings.outline_size)
+	
+	rich_label.add_theme_color_override("font_shadow_color", settings.shadow_color)
+	rich_label.add_theme_constant_override("shadow_offset_x", int(settings.shadow_offset.x))
+	rich_label.add_theme_constant_override("shadow_offset_y", int(settings.shadow_offset.y))
+	rich_label.add_theme_constant_override("shadow_outline_size", int(settings.shadow_size))
+
+	rich_label.add_theme_constant_override("line_separation", line_separation)
+
 
 static func apply_label_font_style_with(label: Label, dict: Dictionary = {}) -> void:
 	var label_font: Font = dict.get("font", get_regular_font())

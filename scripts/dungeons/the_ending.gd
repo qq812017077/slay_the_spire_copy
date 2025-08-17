@@ -15,6 +15,7 @@ static func initialize():
 func _init() -> void:
 	super (TEXT[0], ID, null, [])
 
+	fade_color = Color.hex(0x140a1eff)
 	generate_map(self)
 	
 	var boss_room: BossRoom = boss_room_node.room as BossRoom

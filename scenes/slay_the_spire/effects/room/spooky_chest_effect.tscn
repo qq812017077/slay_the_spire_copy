@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://81mtyhjkusnb"]
+
+[ext_resource type="Script" uid="uid://0jkcqi2ir8tm" path="res://scripts/effects/particle/spookier_chest_effect.gd" id="1_yvkpx"]
+[ext_resource type="Texture2D" uid="uid://cg3htod3aoih7" path="res://arts/slay_the_spire/vfx/fog/smoke_3_vfx_tex.tres" id="2_w4q0r"]
+[ext_resource type="Texture2D" uid="uid://blhgb1qho8tby" path="res://arts/slay_the_spire/vfx/fog/smoke_1_vfx_tex.tres" id="3_28wsn"]
+[ext_resource type="Texture2D" uid="uid://bfoegrogftgug" path="res://arts/slay_the_spire/vfx/fog/smoke_2_vfx_tex.tres" id="4_xvxex"]
+
+[sub_resource type="Curve" id="Curve_yvkpx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.297436, 0.382023), 0.0, 0.0, 0, 0, Vector2(0.707692, 0.393258), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_w4q0r"]
+curve = SubResource("Curve_yvkpx")
+
+[sub_resource type="Gradient" id="Gradient_yvkpx"]
+colors = PackedColorArray(0.301961, 0.4, 0.4, 1, 0.67451, 0.901961, 0.901961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w4q0r"]
+gradient = SubResource("Gradient_yvkpx")
+
+[sub_resource type="Curve" id="Curve_w4q0r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_28wsn"]
+curve_x = SubResource("Curve_w4q0r")
+
+[sub_resource type="Curve" id="Curve_28wsn"]
+_data = [Vector2(0, 0.47191), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xvxex"]
+curve = SubResource("Curve_28wsn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yvkpx"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -30.0
+initial_velocity_max = 30.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+directional_velocity_min = -50.0
+directional_velocity_max = 50.0
+directional_velocity_curve = SubResource("CurveXYZTexture_28wsn")
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(0, 0, 0)
+scale_min = 1.6
+scale_max = 2.4
+scale_curve = SubResource("CurveTexture_xvxex")
+color_initial_ramp = SubResource("GradientTexture1D_w4q0r")
+alpha_curve = SubResource("CurveTexture_w4q0r")
+
+[node name="SpookyChestEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yvkpx")
+
+[node name="SmokeParticle3" type="GPUParticles2D" parent="."]
+amount = 15
+texture = ExtResource("2_w4q0r")
+lifetime = 7.0
+process_material = SubResource("ParticleProcessMaterial_yvkpx")
+
+[node name="SmokeParticle" type="GPUParticles2D" parent="."]
+amount = 15
+texture = ExtResource("3_28wsn")
+lifetime = 7.0
+process_material = SubResource("ParticleProcessMaterial_yvkpx")
+
+[node name="SmokeParticle2" type="GPUParticles2D" parent="."]
+amount = 15
+texture = ExtResource("4_xvxex")
+lifetime = 7.0
+process_material = SubResource("ParticleProcessMaterial_yvkpx")

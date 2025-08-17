@@ -42,22 +42,30 @@ var click_timer: float = 0.0
 
 @onready var info_label: Label = $Info
 func _ready() -> void:
+	input_container.mouse_entered.connect(_on_mouse_entered)
+	input_container.mouse_exited.connect(_on_mouse_exited)
+	input_container.gui_input.connect(_on_gui_input)
+
+	reset()
+
+	if info_label:
+		info_label.queue_free()
+
+func reset() -> void:
+	for edge in edge_widgets:
+		edge.queue_free()
+	edge_widgets.clear()
+	
 	circle_anim_player.stop()
 	circle_anim_player.frame = 0
 	circle_anim_player.visible = false
 
 	circle_anim_player.rotation_degrees = randf_range(0, 360)
-
 	jitter_offset.x = randf_range(-JITTER.x, JITTER.x)
 	jitter_offset.y = randf_range(-JITTER.y, JITTER.y)
 	img_outline.modulate.a = 0
-
-	input_container.mouse_entered.connect(_on_mouse_entered)
-	input_container.mouse_exited.connect(_on_mouse_exited)
-	input_container.gui_input.connect(_on_gui_input)
 	oscillate_timer = randf_range(0, 6.28)
-	if info_label:
-		info_label.queue_free()
+	state = RoomState.UNAVAILABLE
 
 func _process(delta: float) -> void:
 	if not highlight:
@@ -99,8 +107,7 @@ func load_room_node(_room_node: MapRoomNode) -> void:
 	# for edge in room_node.edge_widgets:
 	# 	edge_info += "({0}, {1}) ".format([edge.dst.x, edge.dst.y])
 	# info_label.text = coord_info + "\n" + parent_info + "\n" + edge_info
-func dispose() -> void:
-	edge_widgets.clear()
+
 	
 
 func set_highlight(_highlight: bool) -> void:
@@ -200,6 +207,7 @@ func _on_mouse_exited() -> void:
 			img.modulate = NOT_TAKEN_COLOR
 
 func play_hover_sound() -> void:
+	print("play hover sound")
 	var roll = randi_range(0, 3)
 	CardGame.sound.single_play(HOVER_SOUNDS[roll])
 

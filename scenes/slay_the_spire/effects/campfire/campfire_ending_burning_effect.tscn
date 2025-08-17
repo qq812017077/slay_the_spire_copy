@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://j4lvnk8oqtea"]
+
+[ext_resource type="Texture2D" uid="uid://cc0t2rm6nhffw" path="res://arts/slay_the_spire/vfx/campfire_burning/glow_spark_vfx_tex.tres" id="1_aolb3"]
+[ext_resource type="Texture2D" uid="uid://tfs0wfx3sgh" path="res://arts/slay_the_spire/vfx/campfire_burning/glow_spark_2_vfx_tex.tres" id="2_0pthm"]
+
+[sub_resource type="Curve" id="Curve_aolb3"]
+_data = [Vector2(0.0146199, 0.79711), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0pthm"]
+curve = SubResource("Curve_aolb3")
+
+[sub_resource type="Gradient" id="Gradient_aolb3"]
+colors = PackedColorArray(1, 0.501961, 0.2, 1, 1, 0.901961, 0.501961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0pthm"]
+gradient = SubResource("Gradient_aolb3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aolb3"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(960, 1180, 0)
+emission_shape = 3
+emission_box_extents = Vector3(960, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 700.0
+linear_accel_max = 3000.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+scale_min = 1.5
+scale_max = 4.0
+color_initial_ramp = SubResource("GradientTexture1D_0pthm")
+alpha_curve = SubResource("CurveTexture_0pthm")
+
+[node name="CampfireEndingBurningEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 26
+texture = ExtResource("1_aolb3")
+process_material = SubResource("ParticleProcessMaterial_aolb3")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 13
+texture = ExtResource("2_0pthm")
+process_material = SubResource("ParticleProcessMaterial_aolb3")

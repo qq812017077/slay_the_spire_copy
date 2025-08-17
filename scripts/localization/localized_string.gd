@@ -8,12 +8,13 @@ static var characters: Dictionary = {} # string: CardString
 static var cards: Dictionary = {} # string: CardString
 static var keywords: Dictionary = {} # string: KeywordString
 static var ui: Dictionary = {} # string: KeywordString
+static var events: Dictionary = {} # string: EventString
 static var relics: Dictionary = {} # string: KeywordString
 static var break_chars = null
 
 
 func _init():
-	var langPackDir : String
+	var langPackDir: String
 	
 	match Settings.language:
 		Settings.GameLanguage.ENG:
@@ -22,7 +23,6 @@ func _init():
 			langPackDir = "res://localization/zhs"
 	
 	
-
 	# Load the localization files
 	var charactersPath: String = langPackDir + "/characters.json"
 	characters = load_json(charactersPath)
@@ -35,6 +35,10 @@ func _init():
 	
 	var uiPath: String = langPackDir + "/ui.json"
 	ui = load_json(uiPath)
+
+	var eventPath: String = langPackDir + "/events.json"
+	events = load_json(eventPath)
+	
 	PERIOD = get_ui_string("Period").TEXT[0]
 	COMMA = get_ui_string("Comma").TEXT[0]
 	var relicPath: String = langPackDir + "/relics.json"
@@ -50,7 +54,7 @@ static func load_json(file_path: String) -> Dictionary:
 	var content = file.get_as_text()
 	file.close()
 	
-	var json :JSON = JSON.new()
+	var json: JSON = JSON.new()
 	var parse_error = json.parse(content)
 	if parse_error != OK:
 		push_error("Failed to parse JSON: " + json.get_error_message())
@@ -80,6 +84,12 @@ func get_ui_string(uiName: String) -> UIString:
 
 	return UIString.parse(ui[uiName])
 
+func get_event_string(eventName: String) -> EventString:
+	if not events.has(eventName) or events[eventName] == null:
+		push_error("event not found: " + eventName)
+		return null
+
+	return EventString.parse(events[eventName])
 
 func get_character_string(characterName: String) -> CharacterString:
 	if not characters.has(characterName) or characters[characterName] == null:

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmdqtt5u7yw87"]
+
+[ext_resource type="Texture2D" uid="uid://c6h68rlhvamd1" path="res://arts/slay_the_spire/images/npcs/merchantObjects.png" id="1_50sfx"]
+[ext_resource type="Script" uid="uid://100n5srniv4a" path="res://scripts/ui/dungeon/rooms/shop_ui.gd" id="1_612rh"]
+[ext_resource type="SpriteFrames" uid="uid://cwon6n6gnq6gv" path="res://arts/slay_the_spire/images/npcs/merchant/animation/merchant.tres" id="2_xh7b6"]
+
+[node name="ShopUI" type="Control" node_paths=PackedStringArray("merchant", "merchant_objects", "merchant_player")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_612rh")
+merchant = NodePath("Merchant")
+merchant_objects = NodePath("Merchant/MerchantObjects")
+merchant_player = NodePath("Merchant/Character")
+
+[node name="Merchant" type="Control" parent="."]
+custom_minimum_size = Vector2(456, 256)
+anchors_preset = 0
+offset_left = 1107.0
+offset_top = 625.0
+offset_right = 1147.0
+offset_bottom = 665.0
+
+[node name="MerchantObjects" type="Sprite2D" parent="Merchant"]
+position = Vector2(-43, -285)
+texture = ExtResource("1_50sfx")
+centered = false
+
+[node name="Character" type="AnimatedSprite2D" parent="Merchant"]
+position = Vector2(141, -22)
+sprite_frames = ExtResource("2_xh7b6")
+animation = &"idle"
+frame_progress = 0.975727
+centered = false

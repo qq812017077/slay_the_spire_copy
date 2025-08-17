@@ -1,9 +1,22 @@
-[gd_scene format=3 uid="uid://sben3tpbwlnw"]
+[gd_scene load_steps=2 format=3 uid="uid://sben3tpbwlnw"]
 
-[node name="EventRoom" type="Control"]
+[sub_resource type="GDScript" id="GDScript_l68ps"]
+script/source = "class_name EventRoomWidget
+extends Control
+
+
+@export var event_panel: Sprite2D = null
+
+
+func _ready() -> void:
+	# event_panel.texture = ImageMaster.event_room_panel
+	pass
+"
+
+[node name="EventRoom" type="Control" node_paths=PackedStringArray("event_panel")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = SubResource("GDScript_l68ps")
+event_panel = NodePath("")

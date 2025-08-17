@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc67klt0o2b3a"]
+
+[ext_resource type="Theme" uid="uid://c66o12lhnitju" path="res://arts/themes/card_theme.tres" id="1_2r7r8"]
+[ext_resource type="StyleBox" uid="uid://ccard7ipssy3f" path="res://arts/themes/scroll.tres" id="1_ia7ms"]
+[ext_resource type="Texture2D" uid="uid://oev4h2hwlj5g" path="res://arts/slay_the_spire/images/ui/menu/scrollBar/scrollBarTrain.png" id="1_ulhoe"]
+[ext_resource type="Script" uid="uid://eoesl8lid0w2" path="res://scripts/ui/sliders/vertical_slider.gd" id="4_6ani5"]
+
+[node name="VSlider" type="VSlider"]
+offset_right = 50.0
+offset_bottom = 855.0
+theme = ExtResource("1_2r7r8")
+theme_override_icons/grabber = ExtResource("1_ulhoe")
+theme_override_icons/grabber_highlight = ExtResource("1_ulhoe")
+theme_override_icons/grabber_disabled = ExtResource("1_ulhoe")
+theme_override_styles/slider = ExtResource("1_ia7ms")
+step = 0.01
+value = 100.0
+allow_lesser = true
+editable = false
+scrollable = false
+script = ExtResource("4_6ani5")
+metadata/_custom_type_script = "uid://eoesl8lid0w2"

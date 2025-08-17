@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://ks1ykd8jv0yj"]
+
+[ext_resource type="Script" uid="uid://byot8hgo6yt85" path="res://scripts/ui/screens/shop_screen.gd" id="1_fnwy0"]
+[ext_resource type="PackedScene" uid="uid://d2e76ffvyjjk3" path="res://scenes/slay_the_spire/ui/rooms/price.tscn" id="2_5r1qo"]
+[ext_resource type="Texture2D" uid="uid://dhu16rf1wfsii" path="res://arts/slay_the_spire/images/npcs/rug/zhs.png" id="2_j70ih"]
+[ext_resource type="Texture2D" uid="uid://uos51ctvikne" path="res://arts/slay_the_spire/images/npcs/purge/zhs.png" id="3_kahol"]
+[ext_resource type="PackedScene" uid="uid://wirqo3pgodbw" path="res://scenes/slay_the_spire/ui/cancel_button.tscn" id="4_j3spd"]
+[ext_resource type="Texture2D" uid="uid://d2jrgm6hgx4n3" path="res://arts/slay_the_spire/images/npcs/merchantHand.png" id="5_7hya5"]
+
+[node name="ShopScreen" type="Control" node_paths=PackedStringArray("bg", "remove_service_img", "hand", "price_container", "colored_cards_container", "colorless_cards_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_fnwy0")
+bg = NodePath("Content/Rug")
+remove_service_img = NodePath("Content/RemoveService/RemoveService2")
+hand = NodePath("MerchantHand")
+price_prefab = ExtResource("2_5r1qo")
+price_container = NodePath("Content/PriceContainer")
+colored_cards_container = NodePath("Content/ColoredCards")
+colorless_cards_container = NodePath("Content/ColorlessCards")
+
+[node name="Content" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -42.0
+offset_bottom = -42.0
+mouse_filter = 2
+
+[node name="Rug" type="Sprite2D" parent="Content"]
+texture = ExtResource("2_j70ih")
+centered = false
+
+[node name="RemoveService" type="Control" parent="Content"]
+anchors_preset = 0
+offset_left = 1432.0
+offset_top = 618.0
+offset_right = 1730.0
+offset_bottom = 1036.0
+
+[node name="Shadow" type="Sprite2D" parent="Content/RemoveService"]
+modulate = Color(0, 0, 0, 0.301961)
+position = Vector2(10, 10)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_kahol")
+centered = false
+region_enabled = true
+region_rect = Rect2(106, 47, 298, 418)
+
+[node name="RemoveService2" type="Sprite2D" parent="Content/RemoveService"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_kahol")
+centered = false
+region_enabled = true
+region_rect = Rect2(106, 47, 298, 418)
+
+[node name="ColoredCards" type="Control" parent="Content"]
+anchors_preset = 0
+offset_left = 283.0
+offset_top = 188.475
+offset_right = 1683.0
+offset_bottom = 228.475
+mouse_filter = 2
+
+[node name="ColorlessCards" type="Control" parent="Content"]
+anchors_preset = 0
+offset_left = 283.0
+offset_top = 629.479
+offset_right = 783.0
+offset_bottom = 669.479
+mouse_filter = 2
+
+[node name="PriceContainer" type="Control" parent="Content"]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="CancelButton" parent="." instance=ExtResource("4_j3spd")]
+layout_mode = 0
+offset_top = 801.921
+offset_bottom = 938.921
+
+[node name="MerchantHand" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(893, 96)
+texture = ExtResource("5_7hya5")
+offset = Vector2(0, -480)

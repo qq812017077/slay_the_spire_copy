@@ -1,2 +1,7 @@
 class_name AbstractMonster
-extends Node
+extends Object
+
+
+static func initialize() -> void:
+    
+    pass

@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx40q2pibgksu"]
+
+[ext_resource type="Script" uid="uid://g276osdwca1t" path="res://scripts/core/overlay_menu.gd" id="1_y35mc"]
+[ext_resource type="PackedScene" uid="uid://dsykqi2m5q2ma" path="res://scenes/slay_the_spire/ui/proceed_button.tscn" id="2_qchas"]
+[ext_resource type="PackedScene" uid="uid://wirqo3pgodbw" path="res://scenes/slay_the_spire/ui/cancel_button.tscn" id="3_xfcnc"]
+[ext_resource type="PackedScene" uid="uid://ddxl2fnk5ccwb" path="res://scenes/slay_the_spire/ui/confirm_button.tscn" id="3_yhopr"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xfcnc"]
+
+[node name="OverlayMenu" type="Control" node_paths=PackedStringArray("black_mask", "cancel_button", "confirm_button", "proceed_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_y35mc")
+black_mask = NodePath("Black")
+cancel_button = NodePath("CancelButton")
+confirm_button = NodePath("ConfirmButton")
+proceed_button = NodePath("ProceedButton")
+metadata/_custom_type_script = "uid://g276osdwca1t"
+
+[node name="Black" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = SubResource("CanvasTexture_xfcnc")
+
+[node name="CancelButton" parent="." instance=ExtResource("3_xfcnc")]
+layout_mode = 0
+offset_top = 824.0
+offset_bottom = 961.0
+
+[node name="ConfirmButton" parent="." instance=ExtResource("3_yhopr")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -256.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ProceedButton" parent="." instance=ExtResource("2_qchas")]
+layout_mode = 0
+offset_left = 1408.0
+offset_top = 536.615
+offset_right = 1920.0
+offset_bottom = 1048.61

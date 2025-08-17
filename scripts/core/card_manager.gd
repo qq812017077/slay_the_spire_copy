@@ -19,7 +19,7 @@ extends Control
 ## card factory scene
 @export var card_factory_scene: PackedScene
 
-var card_factory: CardFactory
+# var card_factory: CardFactory
 var card_container_dict : Dictionary = {}
 var history := []
 
@@ -38,15 +38,15 @@ func _ready() -> void:
 		push_error("card_factory_scene is not assigned!")
 		return
 		
-	if card_factory == null:
-		push_error("card_factory is not initialized!")
-		return 
+	# if card_factory == null:
+	# 	push_error("card_factory is not initialized!")
+	# 	return 
 		
-	card_factory.card_size = card_size
-	card_factory.card_asset_dir = card_asset_dir
-	card_factory.card_info_dir = card_info_dir
-	card_factory.back_image = back_image
-	card_factory.preload_card_data()
+	# card_factory.card_size = card_size
+	# card_factory.card_asset_dir = card_asset_dir
+	# card_factory.card_info_dir = card_info_dir
+	# card_factory.back_image = back_image
+	# card_factory.preload_card_data()
 	
 
 func add_card_container(id:int, card_container: CardContainer) -> void:
@@ -83,13 +83,13 @@ func _pre_process_exported_variables() -> bool:
 		push_error("CardFactory is not assigned! Please set it in the CardManager Inspector.")
 		return false
 	
-	var factory_instance = card_factory_scene.instantiate() as CardFactory
-	if factory_instance == null:
-		push_error("Failed to create an instance of CardFactory! CardManager imported an incorrect card factory scene.")
-		return false
+	# var factory_instance = card_factory_scene.instantiate() as CardFactory
+	# if factory_instance == null:
+	# 	push_error("Failed to create an instance of CardFactory! CardManager imported an incorrect card factory scene.")
+	# 	return false
 
-	add_child(factory_instance)
-	card_factory = factory_instance
+	# add_child(factory_instance)
+	# card_factory = factory_instance
 	return true
 	
 	

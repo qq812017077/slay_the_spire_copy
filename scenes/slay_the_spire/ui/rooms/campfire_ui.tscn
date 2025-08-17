@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://n1rlfh0wactx"]
+
+[ext_resource type="Script" uid="uid://ciwvclc0emv8f" path="res://scripts/ui/dungeon/rooms/campfire_ui.gd" id="1_f4rmu"]
+[ext_resource type="PackedScene" uid="uid://dvp5dl0dj6rc2" path="res://scenes/slay_the_spire/effects/campfire/campfire_bubble_effect.tscn" id="2_jvspf"]
+[ext_resource type="PackedScene" uid="uid://b7685kmkhdd5p" path="res://scenes/slay_the_spire/effects/campfire/campfire_sleep_over_effect.tscn" id="3_guefa"]
+[ext_resource type="PackedScene" uid="uid://clmwng3lrvf5q" path="res://scenes/slay_the_spire/effects/campfire/campfire_burning_effect.tscn" id="3_y6nsb"]
+[ext_resource type="PackedScene" uid="uid://cbh7l7ngpt80e" path="res://scenes/slay_the_spire/ui/rooms/campfire_option.tscn" id="4_8f42b"]
+
+[node name="CampfireUI" type="Control" node_paths=PackedStringArray("campfire_burning_effect", "campfire_bubble_effect", "option_desc")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_f4rmu")
+campfire_bubble_effect_prefab = ExtResource("2_jvspf")
+campfire_burning_effect = NodePath("CampfireBurningEffect")
+campfire_bubble_effect = NodePath("CampfireBubbleEffect")
+option_prefab = ExtResource("4_8f42b")
+option_desc = NodePath("OptionDesc")
+campfire_sleep_over_effect_prefab = ExtResource("3_guefa")
+
+[node name="CampfireBurningEffect" parent="." instance=ExtResource("3_y6nsb")]
+layout_mode = 1
+offset_left = 1465.0
+offset_top = 773.0
+offset_right = 1465.0
+offset_bottom = 773.0
+
+[node name="CampfireBubbleEffect" parent="." instance=ExtResource("2_jvspf")]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 418.0
+offset_right = 960.0
+offset_bottom = 418.0
+
+[node name="Options" type="HFlowContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -325.114
+offset_right = 300.0
+offset_bottom = 363.886
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+alignment = 1
+
+[node name="CampfireOption" parent="Options" instance=ExtResource("4_8f42b")]
+layout_mode = 2
+
+[node name="CampfireOption2" parent="Options" instance=ExtResource("4_8f42b")]
+layout_mode = 2
+
+[node name="CampfireOption3" parent="Options" instance=ExtResource("4_8f42b")]
+layout_mode = 2
+
+[node name="CampfireOption4" parent="Options" instance=ExtResource("4_8f42b")]
+layout_mode = 2
+
+[node name="OptionDesc" type="Label" parent="."]
+layout_mode = 0
+offset_left = 878.0
+offset_top = 429.772
+offset_right = 918.0
+offset_bottom = 452.772
+text = "升级你牌组中的一张牌"
+horizontal_alignment = 1
+vertical_alignment = 1

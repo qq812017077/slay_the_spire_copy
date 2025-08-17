@@ -1,0 +1,48 @@
+class_name PlayerWidget
+extends Control
+
+@export var animated_sprite: AnimatedSprite2D = null
+@export var shoulder: Sprite2D = null
+var player: AbstractPlayer = null
+var target_shoulder_pos_x: float = 0
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if animated_sprite == null:
+		animated_sprite = $AnimatedSprite2D
+	
+	# if animated_sprite != null:
+	# 	animated_sprite.play("idle")
+	# else:
+	# 	push_error("AnimatedSprite2D not found in player scene.")
+
+
+func _process(delta: float) -> void:
+	shoulder.position.x = MathHelper.lerp_snap(shoulder.position.x, target_shoulder_pos_x, delta * 5)
+
+func load(_player: AbstractPlayer) -> void:
+	player = _player
+	
+	play_idle_animation()
+
+func play_idle_animation() -> void:
+	animated_sprite.play(player.idle_animation)
+
+func play_hit_animation() -> void:
+	animated_sprite.play(player.hit_animation)
+
+func get_into_combat() -> void:
+	animated_sprite.visible = true
+	shoulder.visible = false
+
+func get_into_campfire(fade_in: bool = true) -> void:
+	animated_sprite.visible = false
+	shoulder.visible = true
+	shoulder.texture = player.shoulder_img
+	if fade_in:
+		shoulder.position.x = -300
+
+	# shoulder.texture = player.shoulder2_img
+
+func get_into_event() -> void:
+	animated_sprite.visible = false
+	shoulder.visible = false

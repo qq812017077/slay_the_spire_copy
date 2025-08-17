@@ -13,10 +13,18 @@ func _init() -> void:
 	# menu
 	sfx_map.set("WIND", load_stream("SOTE_SFX_WindAmb_v1.ogg"))
 	
+	# neow
+	sfx_map.set("VO_NEOW_1A", load_stream("neow/STS_VO_Neow_1a.ogg"))
+	sfx_map.set("VO_NEOW_1B", load_stream("neow/STS_VO_Neow_1b.ogg"))
+	sfx_map.set("VO_NEOW_2A", load_stream("neow/STS_VO_Neow_2a.ogg"))
+	sfx_map.set("VO_NEOW_2B", load_stream("neow/STS_VO_Neow_2b.ogg"))
+	sfx_map.set("VO_NEOW_3A", load_stream("neow/STS_VO_Neow_3a.ogg"))
+	sfx_map.set("VO_NEOW_3B", load_stream("neow/STS_VO_Neow_3b.ogg"))
+
 	# ui
 	sfx_map.set("UI_CLICK_1", load_stream("ui/SOTE_SFX_UIClick_1_v2.wav"))
 	sfx_map.set("UI_CLICK_2", load_stream("ui/SOTE_SFX_UIClick_2_v2.wav"))
-	sfx_map.set("UI_HOVER", load_stream("ui/SOTE_SFX_UIClick_2_v2.wav"))
+	sfx_map.set("UI_HOVER", load_stream("ui/SOTE_SFX_UIHover_v2.wav"))
 	
 	sfx_map.set("DECK_CLOSE", load_stream("ui/SOTE_SFX_UI_Parchment_2_v1.ogg"));
 	sfx_map.set("DECK_OPEN", load_stream("ui/SOTE_SFX_UI_Parchment_3_v1.ogg"));
@@ -42,7 +50,41 @@ func _init() -> void:
 	sfx_map.set("MAP_SELECT_3", load_stream("map/SOTE_SFX_MapSelect_3_v1.ogg"))
 	sfx_map.set("MAP_SELECT_4", load_stream("map/SOTE_SFX_MapSelect_4_v1.ogg"))
 
+	# room
+	sfx_map.set("REST_FIRE_DRY", load_stream("room/SOTE_SFX_RestFireDry_v2.ogg"))
+	sfx_map.set("REST_FIRE_WET", load_stream("room/SOTE_SFX_RestFireWet_v2.ogg"))
 
+	sfx_map.set("SHOP_OPEN", load_stream("room/SOTE_SFX_ShopRugOpen_v1.ogg"))
+	sfx_map.set("SHOP_CLOSE", load_stream("room/SOTE_SFX_ShopRugClose_v1.ogg"))
+	sfx_map.set("SHOP_BUY", load_stream("room/SOTE_SFX_CashRegister.ogg"))
+
+	sfx_map.set("SLEEP_1-1", load_stream("room/STS_SleepJingle_1a_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_1-2", load_stream("room/STS_SleepJingle_1b_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_1-3", load_stream("room/STS_SleepJingle_1c_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_2-1", load_stream("room/STS_SleepJingle_2a_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_2-2", load_stream("room/STS_SleepJingle_2b_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_2-3", load_stream("room/STS_SleepJingle_2c_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_3-1", load_stream("room/STS_SleepJingle_3a_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_3-2", load_stream("room/STS_SleepJingle_3b_NewMix_v1.ogg"))
+	sfx_map.set("SLEEP_3-3", load_stream("room/STS_SleepJingle_3c_NewMix_v1.ogg"))
+
+	sfx_map.set("CHEST_OPEN", load_stream("room/SOTE_SFX_ChestOpen_v2.ogg"))
+
+
+	# gold
+	sfx_map.set("GOLD_GAIN", load_stream("gold/SOTE_SFX_Gold_RR1_v3.ogg"))
+	sfx_map.set("GOLD_GAIN_2", load_stream("gold/SOTE_SFX_Gold_RR2_v3.ogg"))
+	sfx_map.set("GOLD_GAIN_3", load_stream("gold/SOTE_SFX_Gold_RR3_v3.ogg"))
+	sfx_map.set("GOLD_GAIN_4", load_stream("gold/SOTE_SFX_Gold_RR4_v3.ogg"))
+	sfx_map.set("GOLD_GAIN_5", load_stream("gold/SOTE_SFX_Gold_RR5_v3.ogg"))
+	sfx_map.set("GOLD_JINGLE", load_stream("gold/SOTE_SFX_Gold_v1.ogg"))
+	# card
+	sfx_map.set("CARD_BURN", load_stream("card/STS_SFX_BurnCard_v1.ogg"))
+	sfx_map.set("CARD_EXHAUST", load_stream("card/SOTE_SFX_ExhaustCard.ogg"))
+	sfx_map.set("CARD_REJECT", load_stream("card/SOTE_SFX_CardReject_v1.ogg"))
+	sfx_map.set("CARD_SELECT", load_stream("card/SOTE_SFX_CardSelect_v2.ogg"))
+	sfx_map.set("CARD_OBTAIN", load_stream("card/SOTE_SFX_ObtainCard_v2.ogg"))
+	sfx_map.set("CARD_UPGRADE", load_stream("card/SOTE_SFX_UpgradeCard_v1.ogg"))
 func _ready() -> void:
 	for _i in range(playersN):
 		var player: SoundPlayer = SoundPlayer.new()
@@ -65,12 +107,16 @@ func play(sound_name: String, loop: bool) -> SoundPlayer:
 		elif sfx_map[sound_name] is AudioStreamWAV:
 			(sfx_map[sound_name] as AudioStreamWAV).loop_mode = AudioStreamWAV.LOOP_FORWARD if loop else AudioStreamWAV.LOOP_DISABLED
 			sound = sfx_map[sound_name]
-		var player: SoundPlayer = get_idle_player()
+		var player: SoundPlayer = null
+		if running_players_by_name.has(sound_name):
+			recycle_player(running_players_by_name[sound_name])
+		player = get_idle_player()
 		player.stream = sound
 		player.name = sound_name
 		player.is_loop = loop
 		running_players_by_name.set(player.name, player)
 		player.play()
+		# print("play:", sound_name)
 		return player
 	else:
 		push_error("missing sound", sound_name)
@@ -113,6 +159,8 @@ func get_idle_player() -> SoundPlayer:
 	return player
 
 func recycle_player(player: SoundPlayer) -> void:
+	if player == null:
+		return
 	player.kill()
 	player.stream = null
 	remove_child(player)

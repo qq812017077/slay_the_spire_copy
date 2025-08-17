@@ -1,23 +1,161 @@
-[gd_scene format=3 uid="uid://bgqowskwv2lb3"]
+[gd_scene load_steps=18 format=3 uid="uid://bgqowskwv2lb3"]
 
-[node name="BottomScene" type="Control"]
+[ext_resource type="Script" uid="uid://c14qsp818x0m7" path="res://scripts/scenes/bottom_scene.gd" id="1_ns5ni"]
+[ext_resource type="Texture2D" uid="uid://bgee0u48tddef" path="res://arts/slay_the_spire/scenes/bottomScene/bg.tres" id="2_a1edh"]
+[ext_resource type="Texture2D" uid="uid://bevn8kk3ul1ko" path="res://arts/slay_the_spire/scenes/bottomScene/mg.tres" id="3_lubwx"]
+[ext_resource type="Texture2D" uid="uid://cou4115ad8d7f" path="res://arts/slay_the_spire/scenes/bottomScene/solid_wall.tres" id="4_pb053"]
+[ext_resource type="Texture2D" uid="uid://b3ljjbawy0wnp" path="res://arts/slay_the_spire/scenes/bottomScene/hollow_wall.tres" id="5_v3jp5"]
+[ext_resource type="Texture2D" uid="uid://bkx6xj7k5mr4j" path="res://arts/slay_the_spire/scenes/bottomScene/left_wall.tres" id="6_jipsn"]
+[ext_resource type="Texture2D" uid="uid://duv0bbx7owcjd" path="res://arts/slay_the_spire/scenes/bottomScene/ceiling.tres" id="7_fqt2g"]
+[ext_resource type="Texture2D" uid="uid://27qqpkrhl7hy" path="res://arts/slay_the_spire/scenes/bottomScene/ceiling_mod1.tres" id="8_xtdtw"]
+[ext_resource type="Texture2D" uid="uid://wg5lv5jj32bt" path="res://arts/slay_the_spire/scenes/bottomScene/ceiling_mod2.tres" id="9_dtlrm"]
+[ext_resource type="Texture2D" uid="uid://cf5qijh32ebnq" path="res://arts/slay_the_spire/scenes/bottomScene/ceiling_mod3.tres" id="10_oua0d"]
+[ext_resource type="Texture2D" uid="uid://bewm38dw08xvp" path="res://arts/slay_the_spire/scenes/bottomScene/ceiling_mod4.tres" id="11_g24di"]
+[ext_resource type="Texture2D" uid="uid://dxyjfogrq7mfb" path="res://arts/slay_the_spire/scenes/bottomScene/ceiling_mod5.tres" id="12_c1en5"]
+[ext_resource type="Texture2D" uid="uid://bfpi6a7krrapy" path="res://arts/slay_the_spire/scenes/bottomScene/ceiling_mod6.tres" id="13_h84ae"]
+[ext_resource type="Texture2D" uid="uid://7kt1v0pjaldm" path="res://arts/slay_the_spire/scenes/bottomScene/fg.tres" id="14_fqt2g"]
+[ext_resource type="PackedScene" uid="uid://byn42k2ajlhx" path="res://scenes/slay_the_spire/effects/torch_effect.tscn" id="14_oua0d"]
+[ext_resource type="PackedScene" uid="uid://xiwol5isocyp" path="res://scenes/slay_the_spire/effects/dust_effect.tscn" id="14_xtdtw"]
+[ext_resource type="PackedScene" uid="uid://bphjp2i0mqqou" path="res://scenes/slay_the_spire/effects/bottom_fog_effect.tscn" id="15_dtlrm"]
+
+[node name="BottomScene" type="Control" node_paths=PackedStringArray("mg_sprite", "left_wall_sprite", "hollow_wall_sprite", "solid_wall_sprite", "ceiling_sprite", "ceilingMod1_sprite", "ceilingMod2_sprite", "ceilingMod3_sprite", "ceilingMod4_sprite", "ceilingMod5_sprite", "ceilingMod6_sprite", "dust_effect", "fog_effect", "torch_container", "fg_sprite", "bg_sprite")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
+script = ExtResource("1_ns5ni")
+mg_sprite = NodePath("CombatRoom/MG")
+left_wall_sprite = NodePath("CombatRoom/LeftWall")
+hollow_wall_sprite = NodePath("CombatRoom/HollowWall")
+solid_wall_sprite = NodePath("CombatRoom/SolidWall")
+ceiling_sprite = NodePath("CombatRoom/Ceiling")
+ceilingMod1_sprite = NodePath("CombatRoom/CeilingMod1")
+ceilingMod2_sprite = NodePath("CombatRoom/CeilingMod2")
+ceilingMod3_sprite = NodePath("CombatRoom/CeilingMod3")
+ceilingMod4_sprite = NodePath("CombatRoom/CeilingMod4")
+ceilingMod5_sprite = NodePath("CombatRoom/CeilingMod5")
+ceilingMod6_sprite = NodePath("CombatRoom/CeilingMod6")
+dust_effect = NodePath("CombatRoom/Effects/DustEffect")
+fog_effect = NodePath("CombatRoom/Effects/BottomFogEffect")
+torch_container = NodePath("CombatRoom/Effects/Torches")
+torch_effect_prefab = ExtResource("14_oua0d")
+fg_sprite = NodePath("CombatRoom/FG")
+bg_sprite = NodePath("CombatRoom/BG")
 
-[node name="Combat" type="Control" parent="."]
+[node name="CombatRoom" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Compfire" type="Control" parent="."]
+[node name="BG" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+texture = ExtResource("2_a1edh")
+centered = false
+
+[node name="MG" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+texture = ExtResource("3_lubwx")
+centered = false
+
+[node name="SolidWall" type="Sprite2D" parent="CombatRoom"]
+visible = false
+z_index = -1
+position = Vector2(203, 13)
+texture = ExtResource("4_pb053")
+offset = Vector2(882, 447)
+
+[node name="HollowWall" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+position = Vector2(0, -281.465)
+texture = ExtResource("5_v3jp5")
+centered = false
+offset = Vector2(607, 423)
+
+[node name="LeftWall" type="Sprite2D" parent="CombatRoom"]
+visible = false
+z_index = -1
+position = Vector2(0, -288)
+texture = ExtResource("6_jipsn")
+centered = false
+offset = Vector2(315, 434)
+
+[node name="Ceiling" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+texture = ExtResource("7_fqt2g")
+centered = false
+
+[node name="CeilingMod1" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+position = Vector2(1386.55, -1.20048)
+texture = ExtResource("8_xtdtw")
+centered = false
+
+[node name="CeilingMod2" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+position = Vector2(1016.81, 0)
+texture = ExtResource("9_dtlrm")
+centered = false
+
+[node name="CeilingMod3" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+position = Vector2(1297.72, 13.2053)
+texture = ExtResource("10_oua0d")
+centered = false
+
+[node name="CeilingMod4" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+position = Vector2(1189.68, 6.0024)
+texture = ExtResource("11_g24di")
+centered = false
+
+[node name="CeilingMod5" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+position = Vector2(744.298, 6.0024)
+texture = ExtResource("12_c1en5")
+centered = false
+
+[node name="CeilingMod6" type="Sprite2D" parent="CombatRoom"]
+z_index = -1
+position = Vector2(1613.45, 6.0024)
+texture = ExtResource("13_h84ae")
+centered = false
+
+[node name="Effects" type="Control" parent="CombatRoom"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Event" type="Control" parent="."]
+[node name="DustEffect" parent="CombatRoom/Effects" instance=ExtResource("14_xtdtw")]
+layout_mode = 0
+
+[node name="BottomFogEffect" parent="CombatRoom/Effects" instance=ExtResource("15_dtlrm")]
+layout_mode = 0
+
+[node name="Torches" type="Control" parent="CombatRoom/Effects"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FG" type="Sprite2D" parent="CombatRoom"]
+position = Vector2(0, 839.136)
+texture = ExtResource("14_fqt2g")
+centered = false
+
+[node name="CampfireRoom" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EventRoom" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RoomContent" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

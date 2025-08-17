@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2e76ffvyjjk3"]
+
+[ext_resource type="Texture2D" uid="uid://dfh0dge2xx0lj" path="res://arts/slay_the_spire/images/ui/top_panel/gold.png" id="1_a338w"]
+[ext_resource type="Script" uid="uid://bkhj8swfjdc7i" path="res://scripts/ui/dungeon/rooms/price_widget.gd" id="1_b3j3g"]
+
+[node name="Price" type="HBoxContainer" node_paths=PackedStringArray("price")]
+custom_minimum_size = Vector2(120, 0)
+offset_right = 96.0
+offset_bottom = 64.0
+mouse_filter = 2
+alignment = 1
+script = ExtResource("1_b3j3g")
+price = NodePath("PriceAmt")
+
+[node name="Gold" type="Control" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GoldIcon" type="Sprite2D" parent="Gold"]
+texture = ExtResource("1_a338w")
+centered = false
+
+[node name="PriceAmt" type="Label" parent="."]
+layout_mode = 2
+text = "125"

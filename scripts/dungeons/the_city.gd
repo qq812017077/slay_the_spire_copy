@@ -15,6 +15,7 @@ static func initialize():
 func _init() -> void:
 	super (TEXT[0], ID, null, [])
 
+	fade_color = Color.hex(0x0a1e1eff)
 	generate_map(self)
 	
 	var boss_room: BossRoom = boss_room_node.room as BossRoom
@@ -56,3 +57,18 @@ func generate_enemies() -> void:
 	boss_list.append(MonsterHelper.BOSS_LEVEL2_AUTOMATON)
 	boss_list.append(MonsterHelper.BOSS_LEVEL2_CHAMP)
 	boss_list.append(MonsterHelper.BOSS_LEVEL2_COLLECTOR)
+
+
+func init_boss() -> void:
+	pass
+func init_event_list() -> void:
+	event_list.append(BigFish.ID)
+
+
+func init_shrine_list() -> void:
+	shrine_list.append(GoldShrine.ID)
+	pass
+func init_card_pool() -> void:
+	pass
+func init_potions() -> void:
+	pass

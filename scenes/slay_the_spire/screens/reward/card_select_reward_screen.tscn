@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf2bi0st325wf"]
+
+[ext_resource type="Script" uid="uid://2wbqxt68kynk" path="res://scripts/ui/screens/reward/card_select_reward_screen.gd" id="1_jiy8b"]
+[ext_resource type="PackedScene" uid="uid://dlc2rfklm05xi" path="res://scenes/slay_the_spire/ui/take_button.tscn" id="2_2kckk"]
+
+[node name="CardSelectRewardScreen" type="Control" node_paths=PackedStringArray("btn_container", "skip_btn", "singing_bowl_btn")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_jiy8b")
+btn_container = NodePath("HBoxContainer")
+skip_btn = NodePath("HBoxContainer/SkipButton")
+singing_bowl_btn = NodePath("HBoxContainer/SingingBowlButton")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = 298.0
+offset_right = 327.0
+offset_bottom = 368.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="SkipButton" parent="HBoxContainer" instance=ExtResource("2_2kckk")]
+layout_mode = 2
+
+[node name="Space" type="Control" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SingingBowlButton" parent="HBoxContainer" instance=ExtResource("2_2kckk")]
+visible = false
+layout_mode = 2

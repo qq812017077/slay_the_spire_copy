@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://53gupc6qaski" path="res://scripts/ui/dungeon/legend_item.gd" id="1_byv1x"]
 [ext_resource type="Texture2D" uid="uid://c4moty0kkxpxn" path="res://arts/slay_the_spire/images/ui/map/event.png" id="1_rk2dm"]
 
-[node name="LegendItem" type="HBoxContainer" node_paths=PackedStringArray("legend_icon", "legend_name")]
+[node name="LegendItem" type="HBoxContainer" node_paths=PackedStringArray("legend_icon", "legend_name") groups=["map"]]
 custom_minimum_size = Vector2(200, 0)
 theme_override_constants/separation = 15
 script = ExtResource("1_byv1x")

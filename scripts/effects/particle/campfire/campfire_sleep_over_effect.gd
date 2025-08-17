@@ -1,0 +1,3 @@
+class_name CampfireSleepOverEffect
+extends AbstractParticleEffect
+

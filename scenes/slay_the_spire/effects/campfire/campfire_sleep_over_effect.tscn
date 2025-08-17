@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7685kmkhdd5p"]
+
+[ext_resource type="Script" uid="uid://c7lwvjn0yq8g4" path="res://scripts/effects/particle/campfire/campfire_sleep_over_effect.gd" id="1_jj55t"]
+[ext_resource type="Texture2D" uid="uid://blak7hhlw1wgh" path="res://arts/slay_the_spire/vfx/smoke1_texture.tres" id="2_w5yje"]
+[ext_resource type="Texture2D" uid="uid://13k75s373mv7" path="res://arts/slay_the_spire/vfx/smoke2_texture.tres" id="3_rvq1p"]
+[ext_resource type="Texture2D" uid="uid://dgx0ldlnwkvi3" path="res://arts/slay_the_spire/vfx/smoke3_texture.tres" id="4_nivo2"]
+
+[sub_resource type="Curve" id="Curve_ariap"]
+_data = [Vector2(0, 0.0337079), 0.0, 3.33287, 0, 0, Vector2(0.495575, 0.505618), 0.0, 0.0, 0, 0, Vector2(0.986726, 0.0337079), -3.17416, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fowyi"]
+curve = SubResource("Curve_ariap")
+
+[sub_resource type="Gradient" id="Gradient_ariap"]
+colors = PackedColorArray(0.501961, 0.470588, 0.431373, 1, 0.701961, 0.670588, 0.631373, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fowyi"]
+gradient = SubResource("Gradient_ariap")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vdo0e"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(960, 540, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1010, 980, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 16.0
+scale_max = 30.0
+color_initial_ramp = SubResource("GradientTexture1D_fowyi")
+alpha_curve = SubResource("CurveTexture_fowyi")
+
+[node name="CampfireSleepOverEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_jj55t")
+
+[node name="Smoke" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("2_w5yje")
+lifetime = 2.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_vdo0e")
+
+[node name="Smoke2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("3_rvq1p")
+lifetime = 2.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_vdo0e")
+
+[node name="Smoke3" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("4_nivo2")
+lifetime = 2.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_vdo0e")

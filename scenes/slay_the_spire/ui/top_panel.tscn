@@ -1,0 +1,276 @@
+[gd_scene load_steps=16 format=3 uid="uid://duh8h1fbis0o1"]
+
+[ext_resource type="Script" uid="uid://b4ri1w76abgwh" path="res://scripts/ui/dungeon/top_panel.gd" id="1_bgci6"]
+[ext_resource type="Texture2D" uid="uid://qwr3dtt50kll" path="res://arts/slay_the_spire/images/ui/top_panel/bar.png" id="1_iotr4"]
+[ext_resource type="Texture2D" uid="uid://ouwbbpubwi1l" path="res://arts/slay_the_spire/images/ui/top_panel/key_slots.png" id="2_b0j6p"]
+[ext_resource type="Texture2D" uid="uid://cdm4b8pe05hb1" path="res://arts/slay_the_spire/images/ui/top_panel/key_red.png" id="3_473ha"]
+[ext_resource type="Texture2D" uid="uid://c0pcyi36d5ugj" path="res://arts/slay_the_spire/images/ui/top_panel/key_green.png" id="4_0vs8c"]
+[ext_resource type="Texture2D" uid="uid://bd0tofw0364v5" path="res://arts/slay_the_spire/images/ui/top_panel/key_blue.png" id="5_01syh"]
+[ext_resource type="Texture2D" uid="uid://dr0m6kduy766k" path="res://arts/slay_the_spire/images/ui/top_panel/panelHeart.png" id="6_0vs8c"]
+[ext_resource type="Texture2D" uid="uid://bq1payuul4c3l" path="res://arts/slay_the_spire/images/ui/top_panel/panelGoldBag.png" id="7_01syh"]
+[ext_resource type="Texture2D" uid="uid://csp0uum1x85f7" path="res://arts/slay_the_spire/images/potion/potion_placeholder.png" id="9_e2pxk"]
+[ext_resource type="Texture2D" uid="uid://drr3q8bn413hn" path="res://arts/slay_the_spire/images/ui/top_panel/floor.png" id="10_v6glo"]
+[ext_resource type="Texture2D" uid="uid://dgmysmse1xvg3" path="res://arts/slay_the_spire/images/ui/top_panel/ascension.png" id="11_fnaev"]
+[ext_resource type="Texture2D" uid="uid://cxg8s2ucy81pw" path="res://arts/slay_the_spire/images/ui/top_panel/deck.png" id="12_73jhd"]
+[ext_resource type="Texture2D" uid="uid://l00g3rnsbmjs" path="res://arts/slay_the_spire/images/ui/timerIcon.png" id="12_haej0"]
+[ext_resource type="Texture2D" uid="uid://bel1c7q2qmad8" path="res://arts/slay_the_spire/images/ui/top_panel/map.png" id="12_mkkft"]
+[ext_resource type="Texture2D" uid="uid://hgnlpptuarqr" path="res://arts/slay_the_spire/images/ui/top_panel/settings.png" id="14_se64x"]
+
+[node name="TopPanel" type="Control" node_paths=PackedStringArray("keys_container", "user_name", "character_name", "panel_heart", "health_info", "panel_gold", "gold_info", "potions", "floor_icon", "floor_num", "ascension_icon", "ascension_level", "play_time", "map", "deck", "deck_amount", "setting")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 64.0
+script = ExtResource("1_bgci6")
+keys_container = NodePath("Keys")
+user_name = NodePath("Name/UserName")
+character_name = NodePath("Name/CharacterName")
+panel_heart = NodePath("HP/PanelHeart")
+health_info = NodePath("HP/HealthAmt")
+panel_gold = NodePath("Gold/PanelGoldBag")
+gold_info = NodePath("Gold/GoldAmt")
+potions = [NodePath("Potions/Potion"), NodePath("Potions/Potion2"), NodePath("Potions/Potion3"), NodePath("Potions/Potion4"), NodePath("Potions/Potion5")]
+floor_icon = NodePath("DungeonInfo/Floor")
+floor_num = NodePath("DungeonInfo/FloorNum")
+ascension_icon = NodePath("DungeonInfo/Ascension")
+ascension_level = NodePath("DungeonInfo/AscensionLevel")
+play_time = NodePath("PlayTime/PlayTime")
+map = NodePath("TopRightIcons/Map")
+deck = NodePath("TopRightIcons/Deck/DeckIcon")
+deck_amount = NodePath("TopRightIcons/Deck/DeckAmount")
+setting = NodePath("TopRightIcons/Settings")
+
+[node name="Bar" type="Sprite2D" parent="."]
+texture = ExtResource("1_iotr4")
+centered = false
+
+[node name="Keys" type="Control" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 72.0
+offset_bottom = 64.0
+mouse_filter = 2
+
+[node name="KeySlot" type="TextureRect" parent="Keys"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_b0j6p")
+
+[node name="KeyRed" type="Sprite2D" parent="Keys"]
+visible = false
+texture = ExtResource("3_473ha")
+centered = false
+
+[node name="KeyGreen" type="Sprite2D" parent="Keys"]
+visible = false
+texture = ExtResource("4_0vs8c")
+centered = false
+
+[node name="KeyBlue" type="Sprite2D" parent="Keys"]
+visible = false
+texture = ExtResource("5_01syh")
+centered = false
+
+[node name="Name" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 79.0
+offset_top = -20.0
+offset_right = 119.0
+offset_bottom = 20.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="UserName" type="Label" parent="Name"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text_overrun_behavior = 3
+
+[node name="CharacterName" type="Label" parent="Name"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "故障机器人"
+text_overrun_behavior = 3
+
+[node name="HP" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 293.0
+offset_right = 413.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="PanelHeart" type="TextureRect" parent="HP"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_0vs8c")
+
+[node name="HealthAmt" type="Label" parent="HP"]
+layout_mode = 2
+text = "57/68"
+
+[node name="Gold" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_right = 578.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="PanelGoldBag" type="TextureRect" parent="Gold"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_01syh")
+
+[node name="GoldAmt" type="Label" parent="Gold"]
+layout_mode = 2
+text = "99"
+
+[node name="Potions" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 587.0
+offset_right = 627.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Potion" type="TextureRect" parent="Potions"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_e2pxk")
+
+[node name="Potion2" type="TextureRect" parent="Potions"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_e2pxk")
+
+[node name="Potion3" type="TextureRect" parent="Potions"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_e2pxk")
+
+[node name="Potion4" type="TextureRect" parent="Potions"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_e2pxk")
+
+[node name="Potion5" type="TextureRect" parent="Potions"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_e2pxk")
+
+[node name="DungeonInfo" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(169, 0)
+layout_mode = 0
+offset_left = 924.0
+offset_right = 964.0
+offset_bottom = 40.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Floor" type="TextureRect" parent="DungeonInfo"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("10_v6glo")
+
+[node name="FloorNum" type="Label" parent="DungeonInfo"]
+layout_mode = 2
+text = "99"
+
+[node name="Ascension" type="TextureRect" parent="DungeonInfo"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("11_fnaev")
+
+[node name="AscensionLevel" type="Label" parent="DungeonInfo"]
+layout_mode = 2
+text = "1"
+
+[node name="PlayTime" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -32.0
+offset_right = -240.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Timer" type="TextureRect" parent="PlayTime"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("12_haej0")
+
+[node name="PlayTime" type="Label" parent="PlayTime"]
+layout_mode = 2
+text = "20:00"
+
+[node name="TopRightIcons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="Map" type="TextureRect" parent="TopRightIcons"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("12_mkkft")
+
+[node name="Deck" type="Control" parent="TopRightIcons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DeckIcon" type="TextureRect" parent="TopRightIcons/Deck"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+texture = ExtResource("12_73jhd")
+
+[node name="DeckAmount" type="Label" parent="TopRightIcons/Deck"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 30.0
+offset_right = 69.0
+offset_bottom = 53.0
+text = "12"
+
+[node name="Settings" type="TextureRect" parent="TopRightIcons"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("14_se64x")
+
+[node name="Relics" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 83.0
+offset_right = 40.0
+offset_bottom = 123.0
+mouse_filter = 2
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2

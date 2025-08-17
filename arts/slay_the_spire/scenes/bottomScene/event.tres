@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://koxe2liipnau"]
+
+[ext_resource type="Texture2D" uid="uid://cr8cp1x1wotr4" path="res://arts/slay_the_spire/scenes/bottomScene/scene3.jpg" id="1_fv2t4"]
+
+[resource]
+atlas = ExtResource("1_fv2t4")
+region = Rect2(0, 0, 1920, 1136)

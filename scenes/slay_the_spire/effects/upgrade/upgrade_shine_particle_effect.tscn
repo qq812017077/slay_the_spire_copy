@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg0f1dnaufa0u"]
+
+[ext_resource type="Script" uid="uid://dj78urb701g52" path="res://scripts/effects/particle/upgrade_shine_particle_effect.gd" id="1_04w5r"]
+[ext_resource type="Texture2D" uid="uid://movlm26sr0m6" path="res://arts/slay_the_spire/vfx/upgrade/strike_line.tres" id="2_en0mh"]
+[ext_resource type="Shader" uid="uid://rp57eiggtah0" path="res://shaders/upgrade_shine_particle_effect.gdshader" id="3_bwkox"]
+[ext_resource type="Texture2D" uid="uid://dpy8s6sowvyxv" path="res://arts/slay_the_spire/vfx/upgrade/grow_spark.tres" id="4_hac51"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vtc7j"]
+blend_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtc7j"]
+shader = ExtResource("3_bwkox")
+shader_parameter/initial_rot_angle = Vector2(0, 360)
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/emission_box_extents = Vector3(1, 1, 0)
+shader_parameter/gravity = 3000.0
+shader_parameter/floor_range = Vector2(50, 300)
+
+[node name="UpgradeShineParticleEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_04w5r")
+
+[node name="StrikeLineEffect" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vtc7j")
+emitting = false
+amount = 15
+texture = ExtResource("2_en0mh")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_vtc7j")
+
+[node name="GrowSparkEffect" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_vtc7j")
+emitting = false
+amount = 15
+texture = ExtResource("4_hac51")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_vtc7j")

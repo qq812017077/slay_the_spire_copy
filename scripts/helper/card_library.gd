@@ -476,6 +476,25 @@ static func add_card(card: AbstractCard) -> void:
 	total_cards_count += 1
 	return
 
+static func add_player_card_to_pool(pool: Array[AbstractCard], player_type: AbstractPlayer.PlayerType):
+	var target_cards: Array[AbstractCard] = []
+	match player_type:
+		AbstractPlayer.PlayerType.IRONCLAD:
+			target_cards.assign(red_cards_by_id.values())
+		AbstractPlayer.PlayerType.THE_SILENT:
+			target_cards.assign(green_cards_by_id.values())
+		AbstractPlayer.PlayerType.DEFECT:
+			target_cards.assign(blue_cards_by_id.values())
+		AbstractPlayer.PlayerType.WATCHER:
+			target_cards.assign(purple_cards_by_id.values())
+	
+	for card: AbstractCard in target_cards:
+		if card != null and card.rarity != AbstractCard.CardRarity.BASIC:
+			pool.append(card.make_copy())
+
+
+static func get_card(card_name: String) -> AbstractCard:
+	return cards_by_id.get(card_name)
 
 static func generate_cards() -> void:
 	# print AbstractCard.card_atlas.regions_by_name

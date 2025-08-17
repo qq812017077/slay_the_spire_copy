@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://7vnx8mwyo167"]
+
+[ext_resource type="Script" uid="uid://cj370bnl7tlri" path="res://scripts/ui/dungeon/rooms/event_ui.gd" id="1_vwb4e"]
+[ext_resource type="PackedScene" uid="uid://dv08biiw44k3s" path="res://scenes/slay_the_spire/ui/rooms/dialog_option.tscn" id="2_7d5pg"]
+[ext_resource type="Texture2D" uid="uid://5a1s4vm8k8fk" path="res://arts/slay_the_spire/images/ui/event/roomTextPanel.png" id="2_kagtu"]
+[ext_resource type="Script" uid="uid://o3gevbxemxvq" path="res://scripts/ui/dungeon/events/generic_event_dialog.gd" id="3_3ygxl"]
+[ext_resource type="Texture2D" uid="uid://cm6sy6romtmw6" path="res://arts/slay_the_spire/images/ui/event/panel.png" id="4_4xfph"]
+[ext_resource type="Script" uid="uid://n6qxwve57qqk" path="res://scripts/ui/dungeon/events/room_event_dialog.gd" id="4_xhnmf"]
+[ext_resource type="Texture2D" uid="uid://dca4jut14i3mc" path="res://arts/slay_the_spire/images/ui/event/imgFrame.png" id="6_key1o"]
+
+[node name="EventUI" type="Control" node_paths=PackedStringArray("generic_event_dialog", "room_event_dialog")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_vwb4e")
+dialog_option_button_prefab = ExtResource("2_7d5pg")
+generic_event_dialog = NodePath("GenericEventDialog")
+room_event_dialog = NodePath("RoomEventDialog")
+
+[node name="EventRoomPanel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 119)
+texture = ExtResource("2_kagtu")
+centered = false
+
+[node name="EventRoomPanel2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 119.0
+offset_right = 1920.0
+offset_bottom = 419.0
+mouse_filter = 2
+texture = ExtResource("2_kagtu")
+expand_mode = 1
+
+[node name="GenericEventDialog" type="Control" parent="." node_paths=PackedStringArray("event_background_img", "img", "img_frame", "title", "rich_text_label", "options_container")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("3_3ygxl")
+event_background_img = NodePath("EventBackgroundImg")
+img = NodePath("Img")
+img_frame = NodePath("Img/ImgFrame")
+title = NodePath("Title")
+rich_text_label = NodePath("EventText")
+options_container = NodePath("Options")
+
+[node name="EventBackgroundImg" type="Sprite2D" parent="GenericEventDialog"]
+position = Vector2(66.5, 201)
+texture = ExtResource("4_4xfph")
+centered = false
+
+[node name="Title" type="Label" parent="GenericEventDialog"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 0
+offset_left = 150.0
+offset_top = 211.0
+offset_right = 190.0
+offset_bottom = 234.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Img" type="TextureRect" parent="GenericEventDialog"]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 0
+offset_left = 160.0
+offset_top = 357.0
+offset_right = 160.0
+offset_bottom = 357.0
+
+[node name="ImgFrame" type="Sprite2D" parent="GenericEventDialog/Img"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(300, 300)
+texture = ExtResource("6_key1o")
+
+[node name="EventText" type="RichTextLabel" parent="GenericEventDialog"]
+custom_minimum_size = Vector2(900, 500)
+layout_mode = 0
+offset_left = 816.0
+offset_top = 359.0
+offset_right = 856.0
+offset_bottom = 399.0
+mouse_filter = 2
+
+[node name="Options" type="Control" parent="GenericEventDialog"]
+anchors_preset = 0
+offset_left = 810.0
+offset_top = 891.0
+offset_right = 850.0
+offset_bottom = 931.0
+mouse_filter = 2
+
+[node name="RoomEventDialog" type="Control" parent="." node_paths=PackedStringArray("animated_npc", "options_container")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("4_xhnmf")
+animated_npc = NodePath("npc")
+options_container = NodePath("Options")
+
+[node name="Options" type="Control" parent="RoomEventDialog"]
+anchors_preset = 0
+offset_left = 204.0
+offset_top = 904.0
+offset_right = 244.0
+offset_bottom = 944.0
+mouse_filter = 2
+
+[node name="npc" type="AnimatedSprite2D" parent="RoomEventDialog"]
+position = Vector2(1543, 512)
+animation = &""

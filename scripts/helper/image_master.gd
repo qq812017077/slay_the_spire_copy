@@ -29,6 +29,10 @@ static var card_power_bg_colorless: AtlasRegion = null
 static var card_skill_bg_black: AtlasRegion = null
 static var card_colorless_orb: AtlasRegion = null
 
+static var card_attack_bg_silhouette: AtlasRegion = null
+static var card_skill_bg_silhouette: AtlasRegion = null
+static var card_power_bg_silhouette: AtlasRegion = null
+
 # frame
 static var card_frame_attack_common: AtlasRegion = null
 static var card_frame_attack_uncommon: AtlasRegion = null
@@ -44,6 +48,8 @@ static var card_frame_power_rare: AtlasRegion = null
 static var card_banner_common: AtlasRegion = null
 static var card_banner_uncommon: AtlasRegion = null
 static var card_banner_rare: AtlasRegion = null
+
+static var card_super_shadow: AtlasRegion = null
 
 # large for single card display
 # bg large
@@ -117,6 +123,18 @@ static var TP_GOLD: Texture2D = null
 static var TP_FLOOR: Texture2D = null
 static var TP_ASCENSION: Texture2D = null
 
+static var icon_clad_shoulder_img: Texture2D = null
+static var icon_clad_shoulder2_img: Texture2D = null
+static var the_silent_shoulder_img: Texture2D = null
+static var the_silent_shoulder2_img: Texture2D = null
+static var defect_shoulder_img: Texture2D = null
+static var defect_shoulder2_img: Texture2D = null
+static var watcher_shoulder_img: Texture2D = null
+static var watcher_shoulder2_img: Texture2D = null
+
+# 
+static var SELECT_BANNER: Texture2D = null
+
 # map
 static var map_node_event: Texture2D = null
 static var map_node_event_outline: Texture2D = null
@@ -137,6 +155,80 @@ static var map_dot: Texture2D = null
 static var relic_images: Dictionary = {}
 static var relic_outline_images: Dictionary = {}
 
+# reward
+static var reward_card_boss: Texture2D = null
+static var reward_card_normal: Texture2D = null
+static var reward_relic: Texture2D = null
+static var reward_potion: Texture2D = null
+static var reward_emerald_key: Texture2D = null
+static var reward_sapphire_key: Texture2D = null
+
+static var treasure_chest_small: Texture2D = null
+static var treasure_chest_small_opened: Texture2D = null
+static var treasure_chest_medium: Texture2D = null
+static var treasure_chest_medium_opened: Texture2D = null
+static var treasure_chest_large: Texture2D = null
+static var treasure_chest_large_opened: Texture2D = null
+static var treasure_chest_boss: Texture2D = null
+static var treasure_chest_boss_opened: Texture2D = null
+
+# potion
+static var potion_placeholder: Texture2D = null
+static var potion_ui_bg: Texture2D = null
+static var potion_ui_top: Texture2D = null
+static var potion_ui_bot: Texture2D = null
+static var potion_t: PotionTex = null
+static var potion_s: PotionTex = null
+static var potion_m: PotionTex = null
+static var potion_sphere: PotionTex = null
+static var potion_h: PotionTex = null
+static var potion_bottle: PotionTex = null
+static var potion_heart: PotionTex = null
+static var potion_snecko: PotionTex = null
+static var potion_fairy: PotionTex = null
+static var potion_ghost: PotionTex = null
+static var potion_jar: PotionTex = null
+static var potion_bolt: PotionTex = null
+static var potion_card: PotionTex = null
+static var potion_moon: PotionTex = null
+static var potion_spiky: PotionTex = null
+static var potion_eye: PotionTex = null
+static var potion_anvil: PotionTex = null
+
+# campfire
+static var campfire_rest_button: Texture2D = null
+static var campfire_smith_button: Texture2D = null
+static var campfire_toke_button: Texture2D = null
+static var campfire_train_button: Texture2D = null
+static var campfire_dig_button: Texture2D = null
+static var campfire_recall_button: Texture2D = null
+static var campfire_hover_button: Texture2D = null
+
+# event
+static var dialog_option_enable_button: Texture2D = null
+static var dialog_option_disable_button: Texture2D = null
+
+static var speech_bubble_img: Texture2D = null
+static var shop_speech_bubble_img: Texture2D = null
+
+static var event_img_frame: Texture2D = null
+static var event_room_panel: Texture2D = null
+static var event_button_enabled: Texture2D = null
+static var event_button_disabled: Texture2D = null
+
+static var event_img_big_fish: Texture2D = null
+static var event_img_cleric: Texture2D = null
+static var event_img_dead_adventurer: Texture2D = null
+static var event_img_golden_idol: Texture2D = null
+static var event_img_golden_wing: Texture2D = null
+static var event_img_goop_puddle: Texture2D = null
+static var event_img_living_wall: Texture2D = null
+static var event_img_mush_rooms: Texture2D = null
+static var event_img_scrap_ooze: Texture2D = null
+static var event_img_shine_lighting: Texture2D = null
+static var event_img_sss_serpert: Texture2D = null
+
+static var event_img_gold_shrine: Texture2D = null
 # enemy
 static var boss_level1_gurdian_img: Texture2D = null
 static var boss_level1_gurdian_outline: Texture2D = null
@@ -158,18 +250,33 @@ static var boss_level3_donu_img: Texture2D = null
 static var boss_level3_donu_outline: Texture2D = null
 static var boss_level_end_heart_img: Texture2D = null
 static var boss_level_end_heart_outline: Texture2D = null
+
+static var arrow_up: Texture2D = null
+static var arrow_down: Texture2D = null
+
 static func initialize() -> void:
+	initialize_menu_ui()
 	initialize_card_ui()
 	initialize_portrait_img()
 	initialize_panel_ui()
 	initialize_settings_ui()
 
 	initialize_map_ui()
-
+	initialize_campfire_ui()
+	initialize_event_ui()
 	initialize_enemy_ui()
+
+	initialize_character_ui()
+	initialize_potion_ui()
+
+	initialize_reward_ui()
 
 static func initialize_settings_ui() -> void:
 	pass
+
+static func initialize_menu_ui() -> void:
+	arrow_up = load("res://arts/slay_the_spire/images/ui/FilterArrowUp.png")
+	arrow_down = load("res://arts/slay_the_spire/images/ui/FilterArrowDown.png")
 
 static func initialize_card_ui() -> void:
 	var card_ui_atlas_path: String = "res://arts/slay_the_spire/images/cardui/cardui.atlas"
@@ -205,9 +312,10 @@ static func initialize_card_ui() -> void:
 	card_power_bg_colorless = card_ui_atlas.find_region("512/bg_power_gray")
 	card_colorless_orb = card_ui_atlas.find_region("512/card_colorless_orb")
 
-	#	CARD_ATTACK_BG_SILHOUETTE = card_ui_atlas.find_region("512/bg_attack_silhouette")
-	#	CARD_SKILL_BG_SILHOUETTE = card_ui_atlas.find_region("512/bg_skill_silhouette")
-	#	CARD_POWER_BG_SILHOUETTE = card_ui_atlas.find_region("512/bg_power_silhouette")
+	card_attack_bg_silhouette = card_ui_atlas.find_region("512/bg_attack_silhouette")
+	card_skill_bg_silhouette = card_ui_atlas.find_region("512/bg_skill_silhouette")
+	card_power_bg_silhouette = card_ui_atlas.find_region("512/bg_power_silhouette")
+
 	card_skill_bg_black = card_ui_atlas.find_region("512/bg_skill_black")
 	#	
 	card_frame_attack_common = card_ui_atlas.find_region("512/frame_attack_common")
@@ -223,7 +331,7 @@ static func initialize_card_ui() -> void:
 	card_banner_uncommon = card_ui_atlas.find_region("512/banner_uncommon")
 	card_banner_rare = card_ui_atlas.find_region("512/banner_rare")
 
-	#	CARD_SUPER_SHADOW = card_ui_atlas.find_region("512/card_super_shadow")
+	card_super_shadow = card_ui_atlas.find_region("512/card_super_shadow")
 	#	CARD_COMMON_FRAME_LEFT = card_ui_atlas.find_region("512/common_left")
 	#	CARD_COMMON_FRAME_MID = card_ui_atlas.find_region("512/common_center")
 	#	CARD_COMMON_FRAME_RIGHT = card_ui_atlas.find_region("512/common_right")
@@ -320,6 +428,7 @@ static func initialize_panel_ui() -> void:
 	TP_FLOOR = load("res://arts/slay_the_spire/images/ui/top_panel/floor.png")
 	TP_ASCENSION = load("res://arts/slay_the_spire/images/ui/top_panel/ascension.png")
 
+	SELECT_BANNER = load("res://arts/slay_the_spire/images/ui/selectBanner.png")
 
 static func initialize_map_ui() -> void:
 	map_node_event = load("res://arts/slay_the_spire/images/ui/map/event.png")
@@ -337,6 +446,40 @@ static func initialize_map_ui() -> void:
 	map_legend = load("res://arts/slay_the_spire/images/ui/map/legend2.png")
 
 	map_dot = load("res://arts/slay_the_spire/images/ui/map/dot1.png")
+
+static func initialize_campfire_ui() -> void:
+	campfire_rest_button = load("res://arts/slay_the_spire/images/ui/campfire/sleep.png")
+	campfire_smith_button = load("res://arts/slay_the_spire/images/ui/campfire/smith.png")
+	campfire_toke_button = load("res://arts/slay_the_spire/images/ui/campfire/toke.png")
+	campfire_train_button = load("res://arts/slay_the_spire/images/ui/campfire/train.png")
+	campfire_dig_button = load("res://arts/slay_the_spire/images/ui/campfire/dig.png")
+	campfire_recall_button = load("res://arts/slay_the_spire/images/ui/campfire/recall.png")
+	campfire_hover_button = load("res://arts/slay_the_spire/images/ui/campfire/outline.png")
+
+static func initialize_event_ui() -> void:
+	dialog_option_enable_button = load("res://arts/slay_the_spire/images/ui/event/enabledButton.png")
+	dialog_option_disable_button = load("res://arts/slay_the_spire/images/ui/event/disabledButton.png")
+
+	speech_bubble_img = load("res://arts/slay_the_spire/images/ui/dialog/speechBubble2.png")
+	shop_speech_bubble_img = load("res://arts/slay_the_spire/images/ui/dialog/speechBubble3.png")
+
+	event_img_frame = load("res://arts/slay_the_spire/images/ui/event/imgFrame.png")
+	event_room_panel = load("res://arts/slay_the_spire/images/ui/event/roomTextPanel.png")
+	event_button_enabled = load("res://arts/slay_the_spire/images/ui/event/enabledButton.png")
+	event_button_disabled = load("res://arts/slay_the_spire/images/ui/event/disabledButton.png")
+
+	event_img_big_fish = load("res://arts/slay_the_spire/images/events/fishing.jpg")
+	event_img_cleric = load("res://arts/slay_the_spire/images/events/cleric.jpg")
+	event_img_golden_idol = load("res://arts/slay_the_spire/images/events/goldenIdol.jpg")
+	event_img_golden_wing = load("res://arts/slay_the_spire/images/events/goldenWing.jpg")
+	event_img_goop_puddle = load("res://arts/slay_the_spire/images/events/goopPuddle.jpg")
+	event_img_living_wall = load("res://arts/slay_the_spire/images/events/livingWall.jpg")
+	event_img_scrap_ooze = load("res://arts/slay_the_spire/images/events/scrapOoze.jpg")
+	event_img_shine_lighting = load("res://arts/slay_the_spire/images/events/shiningLight.jpg")
+	event_img_sss_serpert = load("res://arts/slay_the_spire/images/events/liarsGame.jpg")
+	
+	
+	event_img_gold_shrine = load("res://arts/slay_the_spire/images/events/goldShrine.jpg")
 
 static func initialize_enemy_ui() -> void:
 	boss_level1_gurdian_img = load("res://arts/slay_the_spire/images/ui/map/boss/guardian.png")
@@ -364,6 +507,53 @@ static func initialize_enemy_ui() -> void:
 	boss_level_end_heart_outline = load("res://arts/slay_the_spire/images/ui/map/bossOutline/heart.png")
 	pass
 
+static func initialize_character_ui() -> void:
+	icon_clad_shoulder_img = load("res://arts/slay_the_spire/images/characters/ironclad/shoulder.png")
+	icon_clad_shoulder2_img = load("res://arts/slay_the_spire/images/characters/ironclad/shoulder2.png")
+	the_silent_shoulder_img = load("res://arts/slay_the_spire/images/characters/theSilent/shoulder.png")
+	the_silent_shoulder2_img = load("res://arts/slay_the_spire/images/characters/theSilent/shoulder2.png")
+	defect_shoulder_img = load("res://arts/slay_the_spire/images/characters/defect/shoulder.png")
+	defect_shoulder2_img = load("res://arts/slay_the_spire/images/characters/defect/shoulder2.png")
+	watcher_shoulder_img = load("res://arts/slay_the_spire/images/characters/watcher/shoulder.png")
+	watcher_shoulder2_img = load("res://arts/slay_the_spire/images/characters/watcher/shoulder2.png")
+
+static func initialize_potion_ui() -> void:
+	potion_placeholder = load("res://arts/slay_the_spire/images/potion/potion_placeholder.png")
+	potion_ui_bg = load("res://arts/slay_the_spire/images/ui/potionPopUp/bg.png")
+	potion_ui_top = load("res://arts/slay_the_spire/images/ui/potionPopUp/top.png")
+	potion_ui_bot = load("res://arts/slay_the_spire/images/ui/potionPopUp/bot.png")
+	potion_t = PotionTex.create_glass_potion("res://arts/slay_the_spire/images/potion/", "potion_t_")
+	potion_s = PotionTex.create_glass_potion("res://arts/slay_the_spire/images/potion/", "potion_s_")
+	potion_m = PotionTex.create_glass_potion("res://arts/slay_the_spire/images/potion/", "potion_m_")
+	potion_h = PotionTex.create_glass_potion("res://arts/slay_the_spire/images/potion/", "potion_h_")
+	potion_sphere = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/sphere/")
+	potion_bottle = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/bottle/")
+	potion_heart = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/heart/")
+	potion_snecko = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/snecko/")
+	potion_fairy = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/fairy/")
+	potion_ghost = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/ghost/")
+	potion_jar = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/jar/")
+	potion_bolt = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/bolt/")
+	potion_card = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/card/")
+	
+	potion_moon = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/moon/")
+	potion_spiky = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/spiky/")
+	potion_eye = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/eye/")
+	potion_anvil = PotionTex.create_body_potion("res://arts/slay_the_spire/images/potion/anvil/")
+	pass
+
+static func initialize_reward_ui() -> void:
+	treasure_chest_small = load("res://arts/slay_the_spire/images/npcs/smallChest.png")
+	treasure_chest_small_opened = load("res://arts/slay_the_spire/images/npcs/smallChestOpened.png")
+	treasure_chest_medium = load("res://arts/slay_the_spire/images/npcs/mediumChest.png")
+	treasure_chest_medium_opened = load("res://arts/slay_the_spire/images/npcs/mediumChestOpened.png")
+	treasure_chest_large = load("res://arts/slay_the_spire/images/npcs/largeChest.png")
+	treasure_chest_large_opened = load("res://arts/slay_the_spire/images/npcs/largeChestOpened.png")
+	treasure_chest_boss = load("res://arts/slay_the_spire/images/npcs/bossChest.png")
+	treasure_chest_boss_opened = load("res://arts/slay_the_spire/images/npcs/bossChestOpened.png")
+	
+	reward_card_boss = load("res://arts/slay_the_spire/images/ui/reward/bossCardReward.png")
+	reward_card_normal = load("res://arts/slay_the_spire/images/ui/reward/normalCardReward.png")
 static func loadPortraitImg(url: String) -> Texture2D:
 	return load("res://arts/slay_the_spire/images/1024Portraits/" + url + ".png")
 
@@ -423,4 +613,30 @@ static func get_boss_img_outline(bossKey: String) -> Texture2D:
 			return boss_level3_donu_outline
 	
 	push_error("{0} has not implemented.".format([bossKey]))
+	return null
+
+
+static func get_rug_image() -> Texture2D:
+	# match Settings.language:
+	match Settings.language:
+		Settings.GameLanguage.ENG:
+			return load("res://arts/slay_the_spire/images/npcs/rug/eng.png")
+		Settings.GameLanguage.ZHS:
+			return load("res://arts/slay_the_spire/images/npcs/rug/zhs.png")
+	return null
+
+static func get_remove_service_image() -> Texture2D:
+	match Settings.language:
+		Settings.GameLanguage.ENG:
+			return load("res://arts/slay_the_spire/images/npcs/purge/eng.png")
+		Settings.GameLanguage.ZHS:
+			return load("res://arts/slay_the_spire/images/npcs/purge/zhs.png")
+	return null
+
+static func get_sold_out_image() -> Texture2D:
+	match Settings.language:
+		Settings.GameLanguage.ENG:
+			return load("res://arts/slay_the_spire/images/npcs/sold_out/eng.png")
+		Settings.GameLanguage.ZHS:
+			return load("res://arts/slay_the_spire/images/npcs/sold_out/zhs.png")
 	return null

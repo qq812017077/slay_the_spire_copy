@@ -31,6 +31,8 @@ static func get_applicable_room_according_to_rule(map: Array[Array], node: MapRo
 	var siblings = get_sibling_nodes(map, node)
 
 	for room: AbstractRoom in room_list:
+		if room == null:
+			continue
 		if not elite_room_rule.satisify(node, room) or not rest_room_rule.satisify(node, room):
 			continue
 		if parent_room_rule.is_all_satisify(parents, room) and sibling_room_rule.is_all_satisify(siblings, room):

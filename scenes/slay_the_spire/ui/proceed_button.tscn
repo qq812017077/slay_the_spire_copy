@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsykqi2m5q2ma"]
+
+[ext_resource type="Script" uid="uid://dsvsfrucid1y2" path="res://scripts/ui/buttons/proceed_button.gd" id="1_gi1c8"]
+[ext_resource type="Texture2D" uid="uid://c2wnmg4v0obdp" path="res://arts/slay_the_spire/images/ui/top_panel/proceedButtonShadow.png" id="2_3je2t"]
+[ext_resource type="Texture2D" uid="uid://boj2521ote0gi" path="res://arts/slay_the_spire/images/ui/top_panel/proceedButtonOutline.png" id="3_bgxwf"]
+[ext_resource type="Texture2D" uid="uid://e237x8vbqtdw" path="res://arts/slay_the_spire/images/ui/top_panel/proceedButton.png" id="4_l1825"]
+
+[node name="ProceedButton" type="Control" node_paths=PackedStringArray("button", "button_tex", "outline_tex")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 512.0
+mouse_filter = 2
+script = ExtResource("1_gi1c8")
+button = NodePath("Button")
+button_tex = NodePath("ProceedButton")
+outline_tex = NodePath("ProceedButtonOutline")
+
+[node name="ProceedButtonShadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_3je2t")
+centered = false
+
+[node name="ProceedButtonOutline" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_bgxwf")
+
+[node name="ProceedButton" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("4_l1825")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 182.0
+offset_right = 408.0
+offset_bottom = 332.0
+text = "跳过奖励"

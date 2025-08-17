@@ -13,3 +13,22 @@ static func set_mouse_filter_recursion(node:Control, mouse_filter: Control.Mouse
 			continue
 		ctrl.mouse_filter = mouse_filter
 		set_mouse_filter_recursion(child, mouse_filter)
+
+
+static func rarity_sort_ascending(a: CardWidget, b: CardWidget):
+	return a.card.rarity < b.card.rarity
+
+static func rarity_sort_descending(a: CardWidget, b: CardWidget):
+	return a.card.rarity > b.card.rarity
+
+static func type_sort_ascending(a: CardWidget, b: CardWidget):
+	return a.card.type < b.card.type
+
+static func type_sort_descending(a: CardWidget, b: CardWidget):
+	return a.card.type > b.card.type
+
+static func cost_sort_ascending(a: CardWidget, b: CardWidget):
+	return a.card.cost < b.card.cost
+
+static func cost_sort_descending(a: CardWidget, b: CardWidget):
+	return a.card.cost > b.card.cost

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx4fs5juksbq8"]
+
+[ext_resource type="Script" uid="uid://cbrxs8sreahf3" path="res://scripts/ui/dynamic_banner.gd" id="1_t56jo"]
+[ext_resource type="Texture2D" uid="uid://coqusjl5qehlq" path="res://arts/slay_the_spire/images/ui/selectBanner.png" id="2_vahg6"]
+
+[node name="DynamicBanner" type="Control" node_paths=PackedStringArray("icon", "label")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 960.0
+offset_top = 239.0
+offset_right = 961.0
+offset_bottom = 240.0
+script = ExtResource("1_t56jo")
+icon = NodePath("Icon")
+label = NodePath("Label")
+metadata/_custom_type_script = "uid://cbrxs8sreahf3"
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.77084, 0.770839, 0.770839, 1)
+self_modulate = Color(0.894922, 0.894922, 0.894922, 1)
+texture = ExtResource("2_vahg6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -50.0
+offset_right = -40.0
+offset_bottom = -27.0
+pivot_offset = Vector2(80, 0)
+theme_override_font_sizes/font_size = 32
+text = "选择一张牌"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv08biiw44k3s"]
+
+[ext_resource type="Script" uid="uid://bb6m8qwbg0l2v" path="res://scripts/ui/dungeon/events/dialog_option_button.gd" id="1_d0k3l"]
+[ext_resource type="Texture2D" uid="uid://c1r1v8mjbq6h3" path="res://arts/slay_the_spire/images/ui/event/enabledButton.png" id="1_xduto"]
+
+[node name="DialogOption" type="Control" node_paths=PackedStringArray("button_img", "option_desc")]
+custom_minimum_size = Vector2(890, 77)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_d0k3l")
+button_img = NodePath("Icon")
+option_desc = NodePath("OptionDesc")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(446, 39)
+texture = ExtResource("1_xduto")
+
+[node name="OptionDesc" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -18.5
+offset_right = 845.0
+offset_bottom = 22.58
+grow_vertical = 2
+text = "大苏打的昂是打算"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b04je3p7tmt13"]
+[gd_scene load_steps=33 format=3 uid="uid://b04je3p7tmt13"]
 
 [ext_resource type="Texture2D" uid="uid://d2xsq4vnwwm3w" path="res://arts/slay_the_spire/images/ui/card_library/greenTab.png" id="1_3il74"]
 [ext_resource type="Texture2D" uid="uid://darv4lj7071sb" path="res://arts/slay_the_spire/images/ui/card_library/redTab.png" id="1_7ny8j"]
@@ -15,12 +15,13 @@
 [ext_resource type="Texture2D" uid="uid://qt8rfg6mll40" path="res://arts/slay_the_spire/images/ui/card_library/TabBar.tres" id="8_uio4d"]
 [ext_resource type="PackedScene" uid="uid://2rdfe2454iyw" path="res://scenes/slay_the_spire/cards/power_card.tscn" id="10_7clo3"]
 [ext_resource type="ButtonGroup" uid="uid://cxr4bjf0w1jif" path="res://arts/slay_the_spire/images/ui/card_library/tab_group.tres" id="13_8i2rw"]
-[ext_resource type="Script" uid="uid://kvhqo7uinots" path="res://scripts/ui/extensions/card_lib_sort_header.gd" id="14_qld7t"]
+[ext_resource type="Script" uid="uid://kvhqo7uinots" path="res://scripts/ui/extensions/sort_headers/card_lib_sort_header.gd" id="14_qld7t"]
 [ext_resource type="Texture2D" uid="uid://dpudrjctmgpcv" path="res://arts/slay_the_spire/images/ui/FilterArrowUp.png" id="16_8i2rw"]
 [ext_resource type="Texture2D" uid="uid://dcyeshwb085jb" path="res://arts/slay_the_spire/images/ui/card_library/tickbox_ticked.png" id="16_dcf3r"]
 [ext_resource type="Texture2D" uid="uid://kc4xb10krl0l" path="res://arts/slay_the_spire/images/ui/card_library/tickbox_unticked.png" id="17_8i2rw"]
 [ext_resource type="Texture2D" uid="uid://bcewy3ocbvufe" path="res://arts/slay_the_spire/images/ui/FilterArrowDown.png" id="17_dopji"]
 [ext_resource type="Script" uid="uid://bso61sp7q7mdh" path="res://scripts/ui/buttons/top_panel_toggle_button.gd" id="18_nfpkn"]
+[ext_resource type="PackedScene" uid="uid://bc67klt0o2b3a" path="res://scenes/slay_the_spire/ui/sliders/v_slider.tscn" id="22_5t3lu"]
 [ext_resource type="PackedScene" uid="uid://cyn41rnxs2r0r" path="res://scenes/slay_the_spire/cards/single_card_view_popup.tscn" id="22_rm2tl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pofnb"]
@@ -517,11 +518,11 @@ offset_right = 1294.0
 offset_bottom = 43.97
 texture = ExtResource("8_uio4d")
 script = ExtResource("14_qld7t")
-arrow_up = ExtResource("16_8i2rw")
-arrow_down = ExtResource("17_dopji")
 rarity_button = NodePath("HBoxContainer/CardRarity")
 type_button = NodePath("HBoxContainer/CardType")
 cost_button = NodePath("HBoxContainer/CardCost")
+arrow_up = ExtResource("16_8i2rw")
+arrow_down = ExtResource("17_dopji")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/TabColorBar/TabBarTexture"]
 layout_mode = 1
@@ -596,23 +597,6 @@ theme_override_constants/h_separation = 35
 theme_override_constants/v_separation = 30
 columns = 5
 
-[node name="VScrollBar" type="VScrollBar" parent="."]
-visible = false
-z_index = 999
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -168.0
-offset_top = -450.0
-offset_right = -118.0
-offset_bottom = 450.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 8
-
 [node name="CancelButton" parent="." instance=ExtResource("6_pofnb")]
 layout_mode = 1
 anchors_preset = 2
@@ -623,17 +607,12 @@ offset_right = 288.0
 offset_bottom = 0.0
 grow_vertical = 0
 
-[node name="VSlider" type="VSlider" parent="."]
+[node name="VSlider" parent="." instance=ExtResource("22_5t3lu")]
 layout_mode = 0
-offset_left = 1745.5
-offset_top = 143.0
-offset_right = 1795.5
-offset_bottom = 998.0
-step = 0.01
-value = 100.0
-allow_lesser = true
-editable = false
-scrollable = false
+offset_left = 1711.0
+offset_top = 155.0
+offset_right = 1761.0
+offset_bottom = 1010.0
 
 [node name="SingleCardViewPopup" parent="." instance=ExtResource("22_rm2tl")]
 visible = false

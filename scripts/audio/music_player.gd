@@ -34,18 +34,24 @@ func fade_out() -> void:
 	fade_timer = FADE_OUT_TIME
 
 func silence() -> void:
+	if is_slienced:
+		return
 	is_slienced = true
 	silence_timer = SILENCE_TIME
 	silence_start_time = SILENCE_TIME
 	silence_start_volume = volume_linear
 
 func silence_instantly() -> void:
+	if is_slienced:
+		return
 	is_slienced = true
 	silence_timer = 0.25
 	silence_start_time = 0.25
 	silence_start_volume = volume_linear
 
 func unsilence() -> void:
+	if not is_slienced:
+		return
 	is_slienced = false
 	fade_timer = FADE_IN_TIME
 

@@ -1,6 +1,19 @@
 class_name AbstractDungeons
 extends Object
 
+const MONSTER_RNG_SEED_OFFSET = 1
+const MAP_RNG_SEED_OFFSET = 2
+const EVENT_RNG_SEED_OFFSET = 3
+const MERCHANT_RNG_SEED_OFFSET = 4
+const CARD_RNG_SEED_OFFSET = 5
+const TREASURE_RNG_SEED_OFFSET = 6
+const RELIC_RNG_SEED_OFFSET = 7
+const POTION_RNG_SEED_OFFSET = 8
+const MONSTER_HP_RNG_SEED_OFFSET = 9
+const AI_RNG_SEED_OFFSET = 10
+const SHUFFLE_RNG_SEED_OFFSET = 11
+const CARD_RANDOM_RNG_SEED_OFFSET = 12
+const MISC_RNG_SEED_OFFSET = 13
 
 # random
 var monsterRng: RandomNumberGenerator
@@ -24,11 +37,18 @@ var player: AbstractPlayer
 var transformedCard: AbstractCard
 var eventBackgroundImg: TextureRect
 
-
-var boss_list: Array[String] = []
 var map: Array[Array] = []
 var boss_room_node: MapRoomNode = null
 var init_map_node: MapRoomNode = null
+var cur_room_node: MapRoomNode = null
+
+var monster_list: Array[String] = []
+var elite_list: Array[String] = []
+var boss_list: Array[String] = []
+var event_list: Array[String] = []
+var special_one_time_event_list: Array[String] = []
+var shrine_list: Array[String] = []
+
 # chance
 var cardUpgradedChance: float
 var colorlessRareChance: float
@@ -45,6 +65,10 @@ var commonRelicChance: float
 var uncommonRelicChance: float
 var rareRelicChance: float
 
+var shrineChance: float
+
+# 
+var fade_color: Color
 
 static func initialize() -> void:
 	Exordium.initialize()
@@ -60,6 +84,27 @@ func _init(_name: String, levelId: String, _player: AbstractPlayer, _event_list:
 	init_chances()
 	generate_seeds()
 	generate_enemies()
+	
+	init_boss()
+	init_event_list()
+	init_event_img()
+	init_shrine_list()
+	init_card_pool()
+	init_potions()
+
+
+func init_boss() -> void:
+	pass
+func init_event_list() -> void:
+	pass
+func init_event_img() -> void:
+	pass
+func init_shrine_list() -> void:
+	pass
+func init_card_pool() -> void:
+	pass
+func init_potions() -> void:
+	pass
 
 
 func init_chances() -> void:
@@ -76,28 +121,78 @@ func init_chances() -> void:
 	rareRelicChance = 17
 	colorlessRareChance = 0.3
 	cardUpgradedChance = 0.0
+	shrineChance = 0.25
 
 func generate_seeds() -> void:
 	mapRng = RandomNumberGenerator.new()
-	mapRng.seed = Settings.game_seed
+	mapRng.seed = Settings.game_seed + CardGame.dungeon_main_screen.floor_num
 	monsterRng = RandomNumberGenerator.new()
-	monsterRng.seed = Settings.game_seed + 1
+	monsterRng.seed = Settings.game_seed + 1  + CardGame.dungeon_main_screen.floor_num
 	eventRng = RandomNumberGenerator.new()
-	eventRng.seed = Settings.game_seed + 2
+	eventRng.seed = Settings.game_seed + 2  + CardGame.dungeon_main_screen.floor_num
 	merchantRng = RandomNumberGenerator.new()
-	merchantRng.seed = Settings.game_seed + 3
+	merchantRng.seed = Settings.game_seed + 3  + CardGame.dungeon_main_screen.floor_num
 	cardRng = RandomNumberGenerator.new()
-	cardRng.seed = Settings.game_seed + 4
+	cardRng.seed = Settings.game_seed + 4  + CardGame.dungeon_main_screen.floor_num
 	treasureRng = RandomNumberGenerator.new()
-	treasureRng.seed = Settings.game_seed + 5
+	treasureRng.seed = Settings.game_seed + 5  + CardGame.dungeon_main_screen.floor_num
 	relicRng = RandomNumberGenerator.new()
-	relicRng.seed = Settings.game_seed + 6
+	relicRng.seed = Settings.game_seed + 6  + CardGame.dungeon_main_screen.floor_num
 	potionRng = RandomNumberGenerator.new()
-	potionRng.seed = Settings.game_seed + 7
+	potionRng.seed = Settings.game_seed + 7  + CardGame.dungeon_main_screen.floor_num
 	monsterHpRng = RandomNumberGenerator.new()
-	monsterHpRng.seed = Settings.game_seed + 8
+	monsterHpRng.seed = Settings.game_seed + MONSTER_HP_RNG_SEED_OFFSET
 	aiRng = RandomNumberGenerator.new()
-	aiRng.seed = Settings.game_seed + 9
+	aiRng.seed = Settings.game_seed + AI_RNG_SEED_OFFSET
+	shuffleRng = RandomNumberGenerator.new()
+	shuffleRng.seed = Settings.game_seed + SHUFFLE_RNG_SEED_OFFSET
+	cardRandomRng = RandomNumberGenerator.new()
+	cardRandomRng.seed = Settings.game_seed + CARD_RANDOM_RNG_SEED_OFFSET
+	miscRng = RandomNumberGenerator.new()
+	miscRng.seed = Settings.game_seed + MISC_RNG_SEED_OFFSET
+
+func refresh_rng(floor_num: int) -> void:
+	monsterHpRng.seed = Settings.game_seed + floor_num + MONSTER_HP_RNG_SEED_OFFSET
+	aiRng.seed = Settings.game_seed + floor_num + AI_RNG_SEED_OFFSET
+	shuffleRng.seed = Settings.game_seed + floor_num + SHUFFLE_RNG_SEED_OFFSET
+	cardRandomRng.seed = Settings.game_seed + floor_num + CARD_RANDOM_RNG_SEED_OFFSET
+	miscRng.seed = Settings.game_seed + floor_num + MISC_RNG_SEED_OFFSET
+
+func random_upgrade() -> bool:
+	return randf() < cardUpgradedChance
+
+
+func generate_event() -> AbstractEvent:
+	var event_ret: AbstractEvent = null
+	if eventRng.randf() >= shrineChance:
+		event_ret = get_event()
+		if event_ret == null:
+			return get_shrine()
+		return event_ret
+	elif not shrine_list.is_empty() or not special_one_time_event_list.is_empty():
+		return get_shrine()
+	else:
+		if event_list.is_empty():
+			return null
+		
+		return get_event()
+
+func get_event() -> AbstractEvent:
+	var tmp = event_list.duplicate()
+	if tmp.size() == 0:
+		return get_shrine()
+	
+	var tmp_key: String = tmp[eventRng.randi_range(0, tmp.size() - 1)]
+	event_list.erase(tmp_key)
+	return EventLibrary.get_event(tmp_key)
+
+func get_shrine() -> AbstractEvent:
+	var tmp = shrine_list.duplicate()
+	if tmp.size() == 0:
+		return EventLibrary.get_default_event()
+	var tmp_key: String = tmp[eventRng.randi_range(0, tmp.size() - 1)]
+	shrine_list.erase(tmp_key)
+	return EventLibrary.get_event(tmp_key)
 
 func generate_enemies() -> void:
 	pass
@@ -112,6 +207,9 @@ func get_treasure_room_chance() -> float:
 
 func get_elite_room_chance() -> float:
 	return eliteRoomChance
+
+func is_boss_room() -> bool:
+	return cur_room_node != null and cur_room_node.room.type == AbstractRoom.RoomType.BOSS
 
 
 static func generate_map(cur_dungeon: AbstractDungeons, generate_boss: bool = true) -> void:

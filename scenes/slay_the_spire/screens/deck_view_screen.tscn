@@ -1,0 +1,186 @@
+[gd_scene load_steps=18 format=3 uid="uid://bsvk8xd7ii7ky"]
+
+[ext_resource type="Script" uid="uid://b2ntspdanchev" path="res://scripts/ui/screens/deck_view_screen.gd" id="1_nvfif"]
+[ext_resource type="Script" uid="uid://csvxl85g75u66" path="res://scripts/ui/extensions/sort_headers/master_deck_sort_header.gd" id="3_ugacs"]
+[ext_resource type="Script" uid="uid://d2xiv1q4a6otx" path="res://scripts/ui/cards/card_container.gd" id="5_u0alw"]
+[ext_resource type="PackedScene" uid="uid://diwerlwft1j3w" path="res://scenes/slay_the_spire/cards/card_upgrade_view_popup.tscn" id="8_3soi6"]
+[ext_resource type="PackedScene" uid="uid://c7kw2fk3t2ocr" path="res://scenes/slay_the_spire/cards/card_purge_view_popup.tscn" id="9_qbdev"]
+[ext_resource type="PackedScene" uid="uid://bc67klt0o2b3a" path="res://scenes/slay_the_spire/ui/sliders/v_slider.tscn" id="9_ugacs"]
+[ext_resource type="Texture2D" uid="uid://qt8rfg6mll40" path="res://arts/slay_the_spire/images/ui/card_library/TabBar.tres" id="10_k02l0"]
+[ext_resource type="Texture2D" uid="uid://dpudrjctmgpcv" path="res://arts/slay_the_spire/images/ui/FilterArrowUp.png" id="12_c2dlk"]
+[ext_resource type="PackedScene" uid="uid://cyn41rnxs2r0r" path="res://scenes/slay_the_spire/cards/single_card_view_popup.tscn" id="18_jahmq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qbdev"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ede6r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6h6ra"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rkf4v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fej5p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c0rhx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4hg5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cvo2n"]
+
+[node name="DeckViewScreen" type="Control" node_paths=PackedStringArray("black_bg", "tab_bar", "master_deck_sort_header", "scroll_container", "v_slider", "single_card_popup", "upgrade_card_popup", "purge_card_popup", "cards_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_nvfif")
+black_bg = NodePath("BlackMask")
+tab_bar = NodePath("ScrollContainer/VBoxContainer/TabColorBar")
+master_deck_sort_header = NodePath("ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader")
+scroll_container = NodePath("ScrollContainer")
+v_slider = NodePath("VSlider")
+single_card_popup = NodePath("SingleCardViewPopup")
+upgrade_card_popup = NodePath("CardUpgradeViewPopup")
+purge_card_popup = NodePath("CardPurgeViewPopup")
+cards_container = NodePath("ScrollContainer/VBoxContainer/CardsContainer")
+
+[node name="BlackMask" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1600.0
+offset_top = -900.0
+offset_right = 1600.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_qbdev")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 0
+offset_left = 328.0
+offset_top = 101.0
+offset_right = 1699.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="TabColorBar" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MasterSortHeader" type="TextureRect" parent="ScrollContainer/VBoxContainer/TabColorBar" node_paths=PackedStringArray("obtaing_order_button", "type_button", "cost_button")]
+self_modulate = Color(0.447059, 0.0862745, 0.0862745, 1)
+layout_mode = 2
+texture = ExtResource("10_k02l0")
+script = ExtResource("3_ugacs")
+obtaing_order_button = NodePath("HBoxContainer/CardOptaingOrder/CardOptainBtn")
+type_button = NodePath("HBoxContainer/CardType/CardTypeBtn")
+cost_button = NodePath("HBoxContainer/CardCost/CardCostBtn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -28.88
+offset_bottom = 27.12
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="CardOptaingOrder" type="CenterContainer" parent="ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardOptainBtn" type="Button" parent="ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader/HBoxContainer/CardOptaingOrder"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ede6r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_6h6ra")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rkf4v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fej5p")
+toggle_mode = true
+text = "获得顺序"
+icon = ExtResource("12_c2dlk")
+icon_alignment = 2
+
+[node name="CardType" type="CenterContainer" parent="ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardTypeBtn" type="Button" parent="ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader/HBoxContainer/CardType"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ede6r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_c0rhx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_i4hg5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fej5p")
+toggle_mode = true
+text = "类型"
+icon = ExtResource("12_c2dlk")
+icon_alignment = 2
+
+[node name="CardCost" type="CenterContainer" parent="ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardCostBtn" type="Button" parent="ScrollContainer/VBoxContainer/TabColorBar/MasterSortHeader/HBoxContainer/CardCost"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ede6r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_c0rhx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cvo2n")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fej5p")
+toggle_mode = true
+text = "耗能"
+icon = ExtResource("12_c2dlk")
+icon_alignment = 2
+
+[node name="VSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CardsContainer" type="Container" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("5_u0alw")
+h_separation = 35
+v_separation = 30
+columns = 5
+metadata/_custom_type_script = "uid://d2xiv1q4a6otx"
+
+[node name="VSlider" parent="." instance=ExtResource("9_ugacs")]
+layout_mode = 0
+offset_left = 1723.89
+offset_top = 144.058
+offset_right = 1773.89
+offset_bottom = 999.058
+
+[node name="SingleCardViewPopup" parent="." instance=ExtResource("18_jahmq")]
+visible = false
+layout_mode = 0
+
+[node name="CardUpgradeViewPopup" parent="." instance=ExtResource("8_3soi6")]
+visible = false
+layout_mode = 0
+
+[node name="CardPurgeViewPopup" parent="." instance=ExtResource("9_qbdev")]
+visible = false
+layout_mode = 0

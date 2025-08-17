@@ -21,6 +21,8 @@ var starting_pos: Vector2
 
 var is_hidden: bool = false
 var hover_flag: bool = false
+var timer: Timer = null
+var hide_timer: Timer = null
 func _ready() -> void:
 	ThemeHelper.clean_button_style(button)
 	ThemeHelper.apply_button_font_style_with_color(button, {"font_color": Color.hex(0xffeda7ff)})
@@ -51,13 +53,16 @@ func _process(delta: float) -> void:
 
 	if current_offset_x != target_offset_x:
 		current_offset_x = MathHelper.lerp_snap(current_offset_x, target_offset_x, delta * 9.0)
-	
+
 	if button_type == ScreenButtonType.CONFIRM:
 		position = starting_pos - Vector2(current_offset_x, 0)
 	else:
 		position = starting_pos + Vector2(current_offset_x, 0)
 
 func hide_button(instant: bool = false) -> void:
+	if timer != null:
+		timer.stop()
+	
 	if is_hidden:
 		return
 	# push_error("hiden")
@@ -66,8 +71,33 @@ func hide_button(instant: bool = false) -> void:
 	target_offset_x = HIDE_X
 	if instant:
 		current_offset_x = HIDE_X
+		modulate.a = 0.0
+	else:
+		if hide_timer == null:
+			hide_timer = Timer.new()
+			hide_timer.name = "ScreenButtonHideTimer"
+			add_child(hide_timer)
+			hide_timer.timeout.connect(func() -> void: modulate.a = 0.0)
+		hide_timer.start(1.0)
+
+func show_button_delay(delay_time_sec: float = 0.5) -> void:
+	if timer == null:
+		timer = Timer.new()
+		timer.name = "ScreenButtonTimer"
+		add_child(timer)
+		timer.timeout.connect(show_button)
+	timer.start(delay_time_sec)
+
+func show_button_with_name(label_name: String) -> void:
+	set_label(label_name)
+	show_button()
 
 func show_button() -> void:
+	# push_error("show_button")
+	if hide_timer != null and not hide_timer.is_stopped():
+		hide_timer.stop()
+	
+	modulate.a = 1.0
 	if not is_hidden:
 		return
 	# push_error("show")
@@ -75,5 +105,7 @@ func show_button() -> void:
 	button.disabled = false
 	target_offset_x = SHOW_X
 
+func set_label(text: String) -> void:
+	button.text = text
 func _on_button_click() -> void:
 	CardGame.sound.single_play("UI_CLICK_1").modify_volume(0.7)

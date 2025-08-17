@@ -173,16 +173,17 @@ func go_to_gameplay() -> void:
 	character_select_screen.confirm_button.hide_button()
 	fade_out_music()
 	
-	CardGame.black_mask.fade_in(load_gameplay)
+	CardGame.black_mask.fade_in(1.0, load_gameplay)
 	# if Settings.seed < 0:
 	# 	Settings.set_seed()
 	# else:
 	# 	Settings.seedSet = true
 
 func load_gameplay() -> void:
-	# 加载新场景，卸载当前节点相关内容
-	queue_free()
+	# 加载新场景
 	CardGame.load_new_dungeon(dungeon_prefab)
+	# 卸载当前节点相关内容
+	queue_free()
 
 func darken() -> void:
 	is_darken = true

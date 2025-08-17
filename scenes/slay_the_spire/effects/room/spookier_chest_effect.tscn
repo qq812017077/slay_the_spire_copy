@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=3 uid="uid://c63l7twfliihx"]
+
+[ext_resource type="Script" uid="uid://0jkcqi2ir8tm" path="res://scripts/effects/particle/spookier_chest_effect.gd" id="1_be2py"]
+[ext_resource type="Texture2D" uid="uid://blhgb1qho8tby" path="res://arts/slay_the_spire/vfx/fog/smoke_1_vfx_tex.tres" id="1_gp7g3"]
+[ext_resource type="Texture2D" uid="uid://bfoegrogftgug" path="res://arts/slay_the_spire/vfx/fog/smoke_2_vfx_tex.tres" id="2_g35es"]
+[ext_resource type="Texture2D" uid="uid://cg3htod3aoih7" path="res://arts/slay_the_spire/vfx/fog/smoke_3_vfx_tex.tres" id="3_be2py"]
+
+[sub_resource type="Curve" id="Curve_eibah"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.251282, 0.314607), 0.0, 0.0, 0, 0, Vector2(0.707692, 0.314607), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_g35es"]
+curve = SubResource("Curve_eibah")
+
+[sub_resource type="Gradient" id="Gradient_gp7g3"]
+offsets = PackedFloat32Array(0, 0.994083)
+colors = PackedColorArray(0.211765, 0.14902, 0.301961, 1, 0.901961, 0.811765, 0.901961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eibah"]
+gradient = SubResource("Gradient_gp7g3")
+
+[sub_resource type="Curve" id="Curve_ei0vk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.202247), -0.782505, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pxsp0"]
+curve = SubResource("Curve_ei0vk")
+
+[sub_resource type="Curve" id="Curve_gp7g3"]
+_data = [Vector2(0, 0.460674), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_eibah"]
+curve = SubResource("Curve_gp7g3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gp7g3"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 60.85
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+radial_velocity_min = 80.0
+radial_velocity_max = 120.0
+radial_velocity_curve = SubResource("CurveTexture_pxsp0")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -30.0
+radial_accel_max = -10.0
+scale_min = 1.5
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_eibah")
+color_initial_ramp = SubResource("GradientTexture1D_eibah")
+alpha_curve = SubResource("CurveTexture_g35es")
+
+[node name="SpookierChestEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_be2py")
+
+[node name="SmokeParticle3" type="GPUParticles2D" parent="."]
+amount = 15
+texture = ExtResource("3_be2py")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_gp7g3")
+
+[node name="SmokeParticle" type="GPUParticles2D" parent="."]
+amount = 15
+texture = ExtResource("1_gp7g3")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_gp7g3")
+
+[node name="SmokeParticle2" type="GPUParticles2D" parent="."]
+amount = 15
+texture = ExtResource("2_g35es")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_gp7g3")

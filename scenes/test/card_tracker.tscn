@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpgajj1wiws6s"]
+
+[ext_resource type="Script" uid="uid://b1gejiew4yq0k" path="res://scripts/test/card_movement.gd" id="1_wktpp"]
+
+[node name="CardMovement" type="Control" node_paths=PackedStringArray("line")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wktpp")
+line = NodePath("Line2D")
+t = 1.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(64, 46, 493, 551, 851, 421, 1127, 77)

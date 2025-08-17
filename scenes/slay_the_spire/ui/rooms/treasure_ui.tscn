@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh60bar22wm1c"]
+
+[ext_resource type="Script" uid="uid://m46firry02hn" path="res://scripts/ui/dungeon/rooms/treasure_ui.gd" id="1_cjtr3"]
+[ext_resource type="PackedScene" uid="uid://c63l7twfliihx" path="res://scenes/slay_the_spire/effects/room/spookier_chest_effect.tscn" id="2_iq7ek"]
+[ext_resource type="Texture2D" uid="uid://mpt6qidsn10h" path="res://arts/slay_the_spire/images/npcs/bossChest.png" id="2_xjwjc"]
+[ext_resource type="PackedScene" uid="uid://81mtyhjkusnb" path="res://scenes/slay_the_spire/effects/room/spooky_chest_effect.tscn" id="3_flw80"]
+
+[node name="TreasureUI" type="Control" node_paths=PackedStringArray("chest_sprite", "chest_btn")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_cjtr3")
+chest_sprite = NodePath("Chest")
+chest_btn = NodePath("Chest/InputChecker")
+boss_effect_prefab = ExtResource("2_iq7ek")
+normal_effect_prefab = ExtResource("3_flw80")
+
+[node name="Chest" type="Sprite2D" parent="."]
+position = Vector2(1313, 560)
+texture = ExtResource("2_xjwjc")
+
+[node name="InputChecker" type="Button" parent="Chest"]
+offset_left = -162.0
+offset_top = 17.0
+offset_right = 162.0
+offset_bottom = 227.0

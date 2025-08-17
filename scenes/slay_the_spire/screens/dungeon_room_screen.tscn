@@ -1,35 +1,76 @@
-[gd_scene load_steps=2 format=3 uid="uid://b877xf08pys47"]
+[gd_scene load_steps=13 format=3 uid="uid://b877xf08pys47"]
 
 [ext_resource type="Script" uid="uid://7rmfy6vifrq3" path="res://scripts/ui/screens/dungeon_room_screen.gd" id="1_3p215"]
+[ext_resource type="PackedScene" uid="uid://bgqowskwv2lb3" path="res://scenes/slay_the_spire/scenes/BottomScene.tscn" id="2_r3vk0"]
+[ext_resource type="PackedScene" uid="uid://n1rlfh0wactx" path="res://scenes/slay_the_spire/ui/rooms/campfire_ui.tscn" id="3_dmqmt"]
+[ext_resource type="PackedScene" uid="uid://b8158w6gux25d" path="res://scenes/slay_the_spire/scenes/city_scene.tscn" id="3_tahci"]
+[ext_resource type="Script" uid="uid://dn5375c5h573x" path="res://scripts/characters/player_widget.gd" id="3_vxldj"]
+[ext_resource type="SpriteFrames" uid="uid://dhy44tqi43o2p" path="res://arts/slay_the_spire/images/characters/player_anim.tres" id="4_4ujba"]
+[ext_resource type="PackedScene" uid="uid://cfulyde0da5lr" path="res://scenes/slay_the_spire/scenes/beyond_scene.tscn" id="4_osp2q"]
+[ext_resource type="PackedScene" uid="uid://cpj7v2adgk8c7" path="res://scenes/slay_the_spire/scenes/end_scene.tscn" id="5_8knfj"]
+[ext_resource type="Texture2D" uid="uid://bhhi6u88jgbjg" path="res://arts/slay_the_spire/images/characters/defect/shoulder.png" id="5_i8bs6"]
+[ext_resource type="PackedScene" uid="uid://7vnx8mwyo167" path="res://scenes/slay_the_spire/ui/rooms/event_ui.tscn" id="7_fer8d"]
+[ext_resource type="PackedScene" uid="uid://cmdqtt5u7yw87" path="res://scenes/slay_the_spire/ui/rooms/shop_ui.tscn" id="7_hx8xb"]
+[ext_resource type="PackedScene" uid="uid://bh60bar22wm1c" path="res://scenes/slay_the_spire/ui/rooms/treasure_ui.tscn" id="9_a5dpk"]
 
-[node name="DungeonRoomScreen" type="Control" node_paths=PackedStringArray("scene_container")]
+[node name="DungeonRoomScreen" type="Control" node_paths=PackedStringArray("player_widget", "scene_container", "campfire_ui", "event_ui", "shop_ui", "treasure_ui")]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 0
+offset_top = -2.0
 offset_right = 1920.0
-offset_bottom = 1080.0
+offset_bottom = 1078.0
 mouse_filter = 2
 script = ExtResource("1_3p215")
+bottom_scene_prefab = ExtResource("2_r3vk0")
+city_scene_prefab = ExtResource("3_tahci")
+beyond_scene_prefab = ExtResource("4_osp2q")
+ending_scene_prefab = ExtResource("5_8knfj")
+player_widget = NodePath("Player")
 scene_container = NodePath("SceneContainer")
+campfire_ui = NodePath("CampfireUI")
+event_ui = NodePath("EventUI")
+shop_ui = NodePath("ShopUI")
+treasure_ui = NodePath("TreasureUI")
 
 [node name="SceneContainer" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="EventPanel" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CampfireUI" parent="." instance=ExtResource("3_dmqmt")]
+visible = false
+layout_mode = 0
 
-[node name="CombatPanel" type="Control" parent="."]
+[node name="Player" type="Control" parent="." node_paths=PackedStringArray("animated_sprite", "shoulder")]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 440.0
+offset_top = 655.0
+offset_right = 480.0
+offset_bottom = 695.0
+script = ExtResource("3_vxldj")
+animated_sprite = NodePath("AnimatedSprite2D")
+shoulder = NodePath("../Shoulder")
+metadata/_custom_type_script = "uid://dn5375c5h573x"
 
-[node name="RewardPanel" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = ExtResource("4_4ujba")
+animation = &"iron_idle"
+
+[node name="Shoulder" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -56)
+texture = ExtResource("5_i8bs6")
+centered = false
+
+[node name="ShopUI" parent="." instance=ExtResource("7_hx8xb")]
+visible = false
+layout_mode = 0
+
+[node name="EventUI" parent="." instance=ExtResource("7_fer8d")]
+visible = false
+layout_mode = 0
+
+[node name="TreasureUI" parent="." instance=ExtResource("9_a5dpk")]
+visible = false
+layout_mode = 0

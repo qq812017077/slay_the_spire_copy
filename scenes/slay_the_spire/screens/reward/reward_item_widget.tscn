@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsf2ueinh85ws"]
+
+[ext_resource type="Script" uid="uid://djjthqrjuwenn" path="res://scripts/ui/screens/reward/reward_item_widget.gd" id="1_eu0yb"]
+[ext_resource type="Texture2D" uid="uid://dbrk0phnhiac7" path="res://arts/slay_the_spire/images/ui/reward/rewardListItemPanel.png" id="1_txdnl"]
+[ext_resource type="Texture2D" uid="uid://dfh0dge2xx0lj" path="res://arts/slay_the_spire/images/ui/top_panel/gold.png" id="2_klys0"]
+
+[node name="RewardItemWidget" type="Control" node_paths=PackedStringArray("reward_panel", "reward_icon", "reward_description")]
+custom_minimum_size = Vector2(464, 98)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 464.0
+offset_bottom = 98.0
+mouse_filter = 2
+script = ExtResource("1_eu0yb")
+reward_panel = NodePath("RewardPanel")
+reward_icon = NodePath("Icon")
+reward_description = NodePath("RewardDesc")
+
+[node name="RewardPanel" type="Sprite2D" parent="."]
+position = Vector2(232, 49)
+texture = ExtResource("1_txdnl")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 31.0
+offset_top = -32.0
+offset_right = 95.0
+offset_bottom = 32.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_klys0")
+
+[node name="RewardDesc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 110.0
+offset_top = -11.5
+offset_right = 150.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "描述"

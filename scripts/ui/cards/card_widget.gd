@@ -3,7 +3,7 @@ class_name CardWidget
 extends Control
 
 const Z_INDEX_OFFSET_WHEN_HOLDING = 1000
-
+const SELECT_SCALE: float = 0.75
 enum ECardState {WAITED, HOVERING, HOLDING, MOVING_TO_DESTINATION}
 enum CardMode {NORMAL, BIG}
 # cached pool
@@ -53,14 +53,18 @@ static var RATIO: float = 230.0 / 322.0
 var current_card_state: ECardState = ECardState.WAITED
 var card: AbstractCard = null
 var upgraded_card_library: AbstractCard = null
-
+var card_shadow: TextureRect = null
 var use_rich_text = false
 var card_description_richtextlabel: CardDescriptionRichTextLabel = null
 var card_description_label: CardDescriptionLabel = null
 
+var target_pos: Vector2 = Vector2(0, 0)
 var enable_card_tip = false
 
+var on_card_just_hovered: Callable
 var on_card_clicked: Callable
+
+var refresh_card_state_in_process = false
 
 static func _static_init() -> void:
 	attack_prefab = load("res://scenes/slay_the_spire/cards/attack_card.tscn")
@@ -85,6 +89,29 @@ func _ready() -> void:
 	CardHelper.set_mouse_filter_recursion(self, Control.MOUSE_FILTER_IGNORE)
 
 	refresh_card_style()
+func _process(delta: float) -> void:
+	if not is_visible_in_tree():
+		return
+	
+	if refresh_card_state_in_process:
+		refresh_card_state()
+
+	match current_card_state:
+		ECardState.HOVERING:
+			_process_hovering(delta)
+		ECardState.HOLDING:
+			_process_holding(delta)
+		ECardState.MOVING_TO_DESTINATION:
+			_process_moving_to_destination(delta)
+
+func refresh_card_state() -> void:
+	if not CardGame.is_focused:
+		return
+	var is_mouse_hovered: bool = Rect2(Vector2(), size).has_point(get_local_mouse_position())
+	if current_card_state == ECardState.WAITED and is_mouse_hovered:
+		set_card_hover()
+	elif current_card_state == ECardState.HOVERING and not is_mouse_hovered:
+		current_card_state = ECardState.WAITED
 
 func set_card_mode(_card_mode):
 	card_mode = _card_mode
@@ -120,6 +147,18 @@ func refresh_card_style() -> void:
 		card_description_label.set_anchors_preset(LayoutPreset.PRESET_FULL_RECT)
 		card_desc_container.add_child(card_description_label)
 
+func enable(refresh: bool = false) -> void:
+	# push_error("enable card:", name)
+	mouse_filter = Control.MOUSE_FILTER_STOP
+	process_mode = Node.PROCESS_MODE_INHERIT
+	current_card_state = ECardState.WAITED
+	if refresh:
+		refresh_card_state()
+
+func disable() -> void:
+	# push_error("disable card:", name)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	process_mode = Node.PROCESS_MODE_DISABLED
 
 func is_hovering() -> bool:
 	return current_card_state == ECardState.HOVERING
@@ -127,10 +166,11 @@ func is_hovering() -> bool:
 func set_cardscale(card_scale: float) -> void:
 	card_container.scale = Vector2(card_scale, card_scale)
 	custom_minimum_size = card_container.size * card_scale
+	set_size(custom_minimum_size)
 	pivot_offset = custom_minimum_size / 2
 
 
-func load_card(_card: AbstractCard, _upgrade: bool = false) -> void:
+func load_card(_card: AbstractCard, _upgrade: bool = false, create_shadow: bool = false) -> void:
 	if _card == null:
 		push_error("Card is null, cannot load.")
 		return
@@ -148,9 +188,22 @@ func load_card(_card: AbstractCard, _upgrade: bool = false) -> void:
 	card_orb_ui.size = orb_atlas.region.size
 	card_cost_ui.size = orb_atlas.region.size
 	card_cost_ui.position = card_orb_ui.position
-
+	if create_shadow:
+		add_shadow()
 	display(self.card)
-	
+
+func add_shadow(offset: Vector2 = Vector2(10, 10)) -> void:
+	if card_shadow == null:
+		card_shadow = card_bg.duplicate()
+		card_shadow.name = "shadow"
+		add_child(card_shadow)
+		move_child(card_shadow, 0)
+		card_shadow.scale = $MarginContainer.scale
+		card_shadow.modulate = Color(0, 0, 0, 0.3)
+	card_shadow.texture = card_bg.texture
+	card_shadow.visible = true
+	card_shadow.position = offset
+
 func display(vcard: AbstractCard) -> void:
 	card_name_ui.self_modulate = ThemeHelper.GREEN_TEXT_COLOR if vcard.upgraded else Color.WHITE
 	card_cost_ui.self_modulate = ThemeHelper.GREEN_TEXT_COLOR if vcard.upgraded_cost else Color.WHITE
@@ -178,23 +231,19 @@ func display_in_library(upgrade: bool, refresh: bool = false) -> void:
 	upgraded_card_library = null
 	display(card)
 
+func get_center_position() -> Vector2:
+	return position + size / 2
+
+func get_global_center_position() -> Vector2:
+	return global_position + size / 2
 '''
 ############ Event Methods ############
 '''
-func _process(delta: float) -> void:
-	# process card state
-	match current_card_state:
-		ECardState.HOVERING:
-			_process_hovering(delta)
-		ECardState.HOLDING:
-			_process_holding(delta)
-		ECardState.MOVING_TO_DESTINATION:
-			_process_moving_to_destination(delta)
-	
+
 func _process_hovering(_delta: float) -> void:
 	if enable_card_tip:
 		CardGame.tip.render_tip_for_card(self)
-
+	
 func _process_holding(_delta: float) -> void:
 	pass
 	
@@ -215,43 +264,22 @@ func _on_gui_input(event: InputEvent) -> void:
 
 		if mouse_event.is_released():
 			_handle_mouse_released()
-		
-		
+
+
 func _on_mouse_enter() -> void:
 	if current_card_state == ECardState.HOLDING:
 		return
-	current_card_state = ECardState.HOVERING
-
-	# print("card:", card.card_id, " [", card.name, "]")
-	# print("keywords:", card.keywords)
-	# if upgraded_card_library == null:
-	# 	print("card:", card.card_id, " [", card.name, "]")
-	# 	print("---	base_damage:", card.base_damage)
-	# 	print("---	base_block:", card.base_block)
-	# 	print("---	base_magic_number:", card.base_magic_number)
-	# else:
-	# 	print("card:", upgraded_card_library.card_id, " [", upgraded_card_library.name, "]")
-	# 	print("---	base_damage:", upgraded_card_library.base_damage)
-	# 	print("---	base_block:", upgraded_card_library.base_block)
-	# 	print("---	base_magic_number:", upgraded_card_library.base_magic_number)
-
-# func _make_custom_tooltip(for_text: String) -> Object:
-# 	if card.keywords.size() == 0:
-# 		return null
-# 	print("make tooltip")
-	
-# 	var tip : CardTip = card_tooltip_prefab.instantiate()
-# 	tip.keyword_desc.text = card.keywords[0]
-# 	return tip
+	if not refresh_card_state_in_process:
+		set_card_hover()
 
 func _on_mouse_exit() -> void:
 	if current_card_state == ECardState.HOLDING:
 		return
-	current_card_state = ECardState.WAITED
 	
+	if not refresh_card_state_in_process:
+		current_card_state = ECardState.WAITED
 	if enable_card_tip:
 		CardGame.tip.remove_tip_rendering()
-	# print("is wating:", name)
 
 func _handle_mouse_pressed() -> void:
 	if on_card_clicked.is_valid():
@@ -263,6 +291,12 @@ func _handle_mouse_released() -> void:
 	# print("Mouse released on card:", name)
 	current_card_state = ECardState.WAITED
 	pass
+
+func set_card_hover() -> void:
+	current_card_state = ECardState.HOVERING
+	if on_card_just_hovered.is_valid():
+		on_card_just_hovered.call(self)
+
 '''
 ############ Static Methods ############
 '''
@@ -353,15 +387,15 @@ static func get_cached_orb_texture(color: AbstractCard.CardColor, cardmode: Card
 	
 	return orb_atlas_texture
 
-static func allocate_by_type(card_type: Global.CardType) -> CardWidget:
+static func allocate_by_type(card_type: AbstractCard.CardType, parent: Node = null, card_scale: float = 1.0) -> CardWidget:
 	var widget: CardWidget
 	match card_type:
-		Global.CardType.ATTACK:
+		AbstractCard.CardType.ATTACK:
 			if attack_widgets_pool.is_empty():
 				widget = attack_prefab.instantiate() as CardWidget
 			else:
 				widget = attack_widgets_pool.pop_front()
-		Global.CardType.POWER:
+		AbstractCard.CardType.POWER:
 			if power_widgets_pool.is_empty():
 				widget = power_prefab.instantiate() as CardWidget
 			else:
@@ -373,7 +407,15 @@ static func allocate_by_type(card_type: Global.CardType) -> CardWidget:
 				widget = skill_widgets_pool.pop_front()
 	
 	widget.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	widget.enable()
 	widget.show()
+	widget.modulate.a = 1.0
+	widget.current_card_state = ECardState.WAITED
+	widget.scale = Vector2.ONE
+	if parent != null:
+		parent.add_child(widget)
+		widget.set_cardscale(Settings.scale * card_scale)
 	return widget
 
 static func preallocate() -> void:
@@ -396,33 +438,16 @@ static func preallocate() -> void:
 		widget.process_mode = Node.PROCESS_MODE_DISABLED
 		widget.hide()
 
-static func allocate(_card: AbstractCard) -> CardWidget:
-	var widget: CardWidget
-	match _card.type:
-		Global.CardType.ATTACK:
-			if attack_widgets_pool.is_empty():
-				widget = attack_prefab.instantiate() as CardWidget
-			else:
-				widget = attack_widgets_pool.pop_front()
-		Global.CardType.POWER:
-			if power_widgets_pool.is_empty():
-				widget = power_prefab.instantiate() as CardWidget
-			else:
-				widget = power_widgets_pool.pop_front()
-		_:
-			if skill_widgets_pool.is_empty():
-				widget = skill_prefab.instantiate() as CardWidget
-			else:
-				widget = skill_widgets_pool.pop_front()
-	
-	widget.process_mode = Node.PROCESS_MODE_INHERIT
-	widget.show()
+
+static func allocate(_card: AbstractCard, parent: Node, card_scale: float = 1.0) -> CardWidget:
+	var widget: CardWidget = allocate_by_type(_card.type, parent, card_scale)
 	widget.load_card(_card)
 	return widget
 
 static func recycle(widget: CardWidget) -> void:
 	if widget == null:
 		return
+	# push_error("card {0}'s parent is {1}".format([widget.name, widget.get_parent()]))
 	widget.get_parent().remove_child(widget)
 	match widget.card.type:
 		Global.CardType.ATTACK:
@@ -432,7 +457,23 @@ static func recycle(widget: CardWidget) -> void:
 		_:
 			skill_widgets_pool.append(widget)
 	
+	widget.on_card_clicked = Callable()
+	widget.on_card_just_hovered = Callable()
 	# for child in widget.card_desc_container.get_children():
 	# 	widget.card_desc_container.remove_child(child)
-	widget.process_mode = Node.PROCESS_MODE_DISABLED
+	widget.enable_card_tip = false
+	widget.rotation = 0
+	widget.disable()
 	widget.hide()
+	widget.z_index = Global.CARD_Z_INDEX
+	widget.refresh_card_state_in_process = false
+
+static func generate_cardwidgets(_cards: Array, parent: Node, card_scale: float = 1.0, create_shadow: bool = false) -> Array:
+	var output: Array = []
+	for cur_card in _cards:
+		var card_widget = CardWidget.allocate_by_type(cur_card.type)
+		card_widget.set_cardscale(Settings.scale * card_scale)
+		parent.add_child(card_widget)
+		output.append(card_widget)
+		card_widget.load_card(cur_card, false, create_shadow)
+	return output

@@ -1,0 +1,109 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8158w6gux25d"]
+
+[ext_resource type="Script" uid="uid://ckeol7wi26noe" path="res://scripts/scenes/city_scene.gd" id="1_sfml4"]
+
+[node name="CityScene" type="Control" node_paths=PackedStringArray("bgGlow_sprite", "bgGlow2_sprite", "bg2_sprite", "bg2Glow_sprite", "floor_sprite", "ceiling_sprite", "wall_sprite", "chains_sprite", "chainsGlow_sprite", "pillar1_sprite", "pillar2_sprite", "pillar3_sprite", "pillar4_sprite", "pillar5_sprite", "throne_sprite", "throneGlow_sprite", "mg_sprite", "mgGlow_sprite", "mg2_sprite", "fg_sprite", "fgGlow_sprite", "fg2_sprite", "bg_sprite")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_sfml4")
+bgGlow_sprite = NodePath("CombatRoom/BGGlow")
+bgGlow2_sprite = NodePath("CombatRoom/BGGlow2")
+bg2_sprite = NodePath("CombatRoom/BG2")
+bg2Glow_sprite = NodePath("CombatRoom/BG2Glow")
+floor_sprite = NodePath("CombatRoom/Floor")
+ceiling_sprite = NodePath("CombatRoom/Ceiling")
+wall_sprite = NodePath("CombatRoom/Wall")
+chains_sprite = NodePath("CombatRoom/Chains")
+chainsGlow_sprite = NodePath("CombatRoom/ChainsGlow")
+pillar1_sprite = NodePath("CombatRoom/Pillar1")
+pillar2_sprite = NodePath("CombatRoom/Pillar2")
+pillar3_sprite = NodePath("CombatRoom/Pillar3")
+pillar4_sprite = NodePath("CombatRoom/Pillar4")
+pillar5_sprite = NodePath("CombatRoom/Pillar5")
+throne_sprite = NodePath("CombatRoom/Throne")
+throneGlow_sprite = NodePath("CombatRoom/ThroneGlow")
+mg_sprite = NodePath("CombatRoom/MG")
+mgGlow_sprite = NodePath("CombatRoom/MGGlow")
+mg2_sprite = NodePath("CombatRoom/FG2")
+fg_sprite = NodePath("CombatRoom/FG")
+fgGlow_sprite = NodePath("CombatRoom/FGGlow")
+fg2_sprite = NodePath("CombatRoom/FG2")
+bg_sprite = NodePath("CombatRoom/BG")
+
+[node name="CombatRoom" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="Sprite2D" parent="CombatRoom"]
+
+[node name="BGGlow" type="Sprite2D" parent="CombatRoom"]
+
+[node name="BGGlow2" type="Sprite2D" parent="CombatRoom"]
+
+[node name="BG2" type="Sprite2D" parent="CombatRoom"]
+
+[node name="BG2Glow" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Floor" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Ceiling" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Wall" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Chains" type="Sprite2D" parent="CombatRoom"]
+
+[node name="ChainsGlow" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Pillar1" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Pillar2" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Pillar3" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Pillar4" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Pillar5" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Throne" type="Sprite2D" parent="CombatRoom"]
+
+[node name="ThroneGlow" type="Sprite2D" parent="CombatRoom"]
+
+[node name="MG" type="Sprite2D" parent="CombatRoom"]
+
+[node name="MGGlow" type="Sprite2D" parent="CombatRoom"]
+
+[node name="MG2" type="Sprite2D" parent="CombatRoom"]
+
+[node name="Effects" type="Control" parent="CombatRoom"]
+z_index = -1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FG" type="Sprite2D" parent="CombatRoom"]
+
+[node name="FGGlow" type="Sprite2D" parent="CombatRoom"]
+
+[node name="FG2" type="Sprite2D" parent="CombatRoom"]
+
+[node name="CampfireRoom" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EventRoom" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RoomContent" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -9,7 +9,7 @@ static var ID :String = "Dualcast"
 func _init() -> void:
 	if card_string == null:
 		card_string = CardGame.languagePack.get_card_string(ID)
-	super("Dualcast", card_string.name, "blue/skill/dualcast", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.BASIC, CardTarget.NONE)
+	super(ID, card_string.name, "blue/skill/dualcast", 1, card_string.description, CardType.SKILL, CardColor.BLUE, CardRarity.BASIC, CardTarget.NONE)
 
 	self.show_evoke_value = true
 

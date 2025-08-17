@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="slay_the_spire_godot"
-run/main_scene="uid://hddv3rhp0jxa"
+run/main_scene="uid://bjwv1rd61l48r"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://arts/slay_the_spire/audios/default_bus_layout.tres"
 
 [autoload]
 
@@ -25,6 +29,7 @@ CardGame="*res://scripts/core/card_game.gd"
 window/size/viewport_width=1600
 window/size/viewport_height=900
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 mouse_cursor/custom_image="uid://cvrtc6ij4d2aq"
 
 [dotnet]
@@ -34,6 +39,7 @@ project/assembly_name="slay_the_spire_godot"
 [global_group]
 
 button=""
+map=""
 
 [input]
 

@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvp5dl0dj6rc2"]
+
+[ext_resource type="Script" uid="uid://dctrwyjhcppfa" path="res://scripts/effects/particle/campfire/campfire_bubble_effect.gd" id="1_1howl"]
+[ext_resource type="Texture2D" uid="uid://blak7hhlw1wgh" path="res://arts/slay_the_spire/vfx/smoke1_texture.tres" id="1_3cxag"]
+[ext_resource type="Texture2D" uid="uid://13k75s373mv7" path="res://arts/slay_the_spire/vfx/smoke2_texture.tres" id="2_6oraw"]
+[ext_resource type="Material" uid="uid://c0e514ffj68hg" path="res://scenes/slay_the_spire/effects/campfire/campfire_bubble_effect.tres" id="3_hn4wq"]
+[ext_resource type="Texture2D" uid="uid://dgx0ldlnwkvi3" path="res://arts/slay_the_spire/vfx/smoke3_texture.tres" id="3_ilidu"]
+
+[node name="CampfireBubbleEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1howl")
+particle_process_material = ExtResource("3_hn4wq")
+
+[node name="Bubble" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("1_3cxag")
+lifetime = 20.0
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_hn4wq")
+
+[node name="Bubble2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("2_6oraw")
+lifetime = 20.0
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_hn4wq")
+
+[node name="Bubble3" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("3_ilidu")
+lifetime = 20.0
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_hn4wq")
+
+[node name="Bubble4" type="GPUParticles2D" parent="."]
+amount = 20
+texture = ExtResource("1_3cxag")
+lifetime = 20.0
+process_material = ExtResource("3_hn4wq")
+
+[node name="Bubble5" type="GPUParticles2D" parent="."]
+amount = 20
+texture = ExtResource("2_6oraw")
+lifetime = 20.0
+process_material = ExtResource("3_hn4wq")
+
+[node name="Bubble6" type="GPUParticles2D" parent="."]
+amount = 20
+texture = ExtResource("3_ilidu")
+lifetime = 20.0
+process_material = ExtResource("3_hn4wq")

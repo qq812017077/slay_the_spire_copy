@@ -12,6 +12,8 @@ var dots: Array[Sprite2D] = []
 var src_pos: Vector2 = Vector2.ZERO
 var dst_pos: Vector2 = Vector2.ZERO
 
+func _ready() -> void:
+    mouse_filter = MOUSE_FILTER_IGNORE
 
 func set_endpoints(_src: RoomNodeWidget, _dst: RoomNodeWidget, is_boss: bool = false) -> void:
     src_pos = _src.get_actual_position()

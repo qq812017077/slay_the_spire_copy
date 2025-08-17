@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbh7l7ngpt80e"]
+
+[ext_resource type="Script" uid="uid://b8fg0trbwbv2u" path="res://scripts/ui/buttons/campfire/campfire_option.gd" id="1_rppag"]
+[ext_resource type="Texture2D" uid="uid://c03iihnwr7uma" path="res://arts/slay_the_spire/images/ui/campfire/outline.png" id="2_1v4pt"]
+[ext_resource type="Texture2D" uid="uid://duqmdwvml7bmp" path="res://arts/slay_the_spire/images/ui/campfire/sleep.png" id="2_x72um"]
+
+[node name="CampfireOption" type="Control" node_paths=PackedStringArray("option_name", "img", "img_outline")]
+custom_minimum_size = Vector2(256, 230)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 230.0
+mouse_filter = 2
+script = ExtResource("1_rppag")
+option_name = NodePath("Label")
+img = NodePath("IconContainer/Icon")
+img_outline = NodePath("IconContainer/Outline")
+metadata/_custom_type_script = "uid://b8fg0trbwbv2u"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 234.78
+offset_bottom = 156.0
+
+[node name="IconContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 125.0
+offset_top = 83.0
+offset_right = 165.0
+offset_bottom = 158.0
+mouse_filter = 2
+
+[node name="Shadow" type="Control" parent="IconContainer"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Outline" type="Sprite2D" parent="IconContainer"]
+self_modulate = Color(1, 1, 1, 0)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_1v4pt")
+
+[node name="Icon" type="Sprite2D" parent="IconContainer"]
+texture = ExtResource("2_x72um")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 178.0
+offset_right = 150.0
+offset_bottom = 201.0
+theme_override_colors/font_color = Color(0.984314, 0.729412, 0, 1)
+text = "休息"
+horizontal_alignment = 1
+vertical_alignment = 1

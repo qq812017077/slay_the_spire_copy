@@ -2,6 +2,8 @@
 class_name DungeonMapScreen
 extends Control
 
+const OPEN_BG_COLOR: Color = Color(0.0, 0.0, 0.0, 0.8)
+const CLOSE_BG_COLOR: Color = Color(0.0, 0.0, 0.0, 0.0)
 const MAP_DST_Y: float = 150
 const CLICK_TIME: float = 0.25
 const SCROLL_WAIT_TIME: float = 1.0
@@ -59,7 +61,8 @@ var visible_room_node_widgets: Array[RoomNodeWidget] = []
 var room_node_widget_dict: Dictionary[MapRoomNode, RoomNodeWidget] = {}
 var room_widgets_by_room_type: Dictionary = {}
 var boss_room_widget: RoomNodeWidget = null
-var cur_room_node: MapRoomNode = null
+# var cur_room_node: MapRoomNode = null
+var is_opening: bool = false
 var map_alpha: float = 1.0
 var map_mid_dist: float = 0.0
 var is_ending: bool = false
@@ -69,8 +72,8 @@ var grabbed_start_y: float = 0
 
 var pre_room_phase: AbstractRoom.RoomPhase = AbstractRoom.RoomPhase.INCOMPLETE
 var cur_available_room_widgets: Array[RoomNodeWidget] = []
-@onready var map_bg = $MapBG
 
+var tween: Tween = null
 func _ready() -> void:
 	if container == null:
 		container = $Container
@@ -81,11 +84,13 @@ func _ready() -> void:
 	legend.on_item_mouse_entered = on_legend_item_mouse_entered
 	legend.on_item_mouse_exited = on_legend_item_mouse_exited
 	
+
 func _process(delta: float) -> void:
 	_update_scrolling_animation(delta)
-	_update_map_position(delta)
-	_update_node_state(delta)
+	_update_map_position()
+	# _update_node_state(delta)
 	
+	modulate.a = MathHelper.lerp_snap(modulate.a, map_alpha, delta * 12)
 
 func load_map(_dungeon: AbstractDungeons) -> void:
 	dungeon = _dungeon
@@ -122,12 +127,19 @@ func load_map(_dungeon: AbstractDungeons) -> void:
 			edge_widget.set_endpoints(src_widget, dst_widget, is_boss)
 
 
-	set_cur_room_node(dungeon.init_map_node)
-func open(play_scroll_animation: bool = false) -> void:
-	visible = true
-	is_ending = CardGame.cur_dungeon.id == TheEnding.ID
-	show_map()
+	set_cur_room_node(dungeon.init_map_node, false)
 
+func open(instant: bool = false, play_scroll_animation: bool = false) -> void:
+	is_opening = true
+	is_ending = CardGame.cur_dungeon.id == TheEnding.ID
+	# visible = true
+	show_map(instant)
+	CardGame.enable_input(Global.MAP_GROUP)
+
+	if randi_range(0, 1) == 0:
+		CardGame.sound.single_play("MAP_OPEN")
+	else:
+		CardGame.sound.single_play("MAP_OPEN_2")
 	if play_scroll_animation:
 		anim_scroll_wait_timer = 4.0
 		offset_y = MAP_SCROLL_UPPER
@@ -135,14 +147,26 @@ func open(play_scroll_animation: bool = false) -> void:
 	else:
 		anim_scroll_wait_timer = 0
 		offset_y = map_scroll_lower_limit
+		offset_y += dungeon.cur_room_node.y * MAP_DST_Y
 		target_offset_y = offset_y
-		
-func close() -> void:
-	visible = false
-	hide_map()
+	CardGame.dungeon_main_screen.dungeon_room_screen.close_effects()
+	CardGame.dungeon_main_screen.top_panel.on_map_open()
 
-func show_map() -> void:
+	
+func close(instant: bool = false) -> void:
+	is_opening = false
+	# visible = false
+	hide_map(instant)
+	CardGame.disable_input(Global.MAP_GROUP)
+	CardGame.sound.single_play("MAP_CLOSE")
+	
+	CardGame.dungeon_main_screen.dungeon_room_screen.open_effects()
+	CardGame.dungeon_main_screen.top_panel.on_map_close()
+
+func show_map(instant: bool = false) -> void:
 	map_alpha = 1.0
+	if instant:
+		modulate.a = 1.0
 	if is_ending:
 		map_scroll_lower_limit = MAP_UPPER_SCROLL_ENDING
 		map_mid_dist = -780
@@ -150,13 +174,24 @@ func show_map() -> void:
 		map_scroll_lower_limit = MAP_UPPER_SCROLL_DEFAULT
 		map_mid_dist = 1020
 
+	if tween != null and tween.is_running():
+		tween.stop()
+	tween = create_tween()
+	tween.tween_property($BlackBG, "modulate", OPEN_BG_COLOR, 0.3)
+
 func hide_map(instant: bool = false) -> void:
 	map_alpha = 0.0
 	if instant:
-		map_bg.modulate.a = 0
+		modulate.a = 0
+
+	
+	if tween != null and tween.is_running():
+		tween.stop()
+	tween = create_tween()
+	tween.tween_property($BlackBG, "modulate", CLOSE_BG_COLOR, 0.3)
 
 func is_anim_scrolling() -> bool:
-	return anim_scroll_wait_timer >= 0
+	return anim_scroll_wait_timer > 0
 
 func can_scroll_map() -> bool:
 	return not is_anim_scrolling()
@@ -168,54 +203,44 @@ func get_into_room(widget: RoomNodeWidget) -> void:
 ##################################
 # node function
 ##################################
-func set_cur_room_node(_node: MapRoomNode) -> void:
-	cur_room_node = _node
-	var row = cur_room_node.y
+func set_cur_room_node(new_node: MapRoomNode, enter_room: bool = true) -> void:
+	if dungeon.cur_room_node == new_node:
+		return
+	dungeon.cur_room_node = new_node
+	var row = dungeon.cur_room_node.y
 	if row != -1:
-		var cur_widget: RoomNodeWidget = room_node_widget_dict[cur_room_node]
+		var cur_widget: RoomNodeWidget = room_node_widget_dict[dungeon.cur_room_node]
 		cur_widget.set_room_state(RoomNodeWidget.RoomState.TAKEN)
 	pre_room_phase = AbstractRoom.RoomPhase.NONE
-var wait_timer: float = 0
-func _update_node_state(_delta: float):
-	if Engine.is_editor_hint():
-		return
-	if dungeon == null:
-		return
-	if pre_room_phase != cur_room_node.room.phase:
-		match cur_room_node.room.phase:
-			AbstractRoom.RoomPhase.COMBAT:
-				print("in combat...")
-				wait_timer = 1.0
-				# CardGame.dungeon_main_screen.open_screen(DungeonMainScreen.ScreenType.COMBAT)
-			AbstractRoom.RoomPhase.EVENT:
-				print("in event...")
-				wait_timer = 1.0
-			AbstractRoom.RoomPhase.INCOMPLETE:
-				print("in incomplete...")
-				wait_timer = 1.0
-			AbstractRoom.RoomPhase.COMPLETE:
-				print("in complete...")
-				cur_available_room_widgets.clear()
-				var row = cur_room_node.y
-				if row != -1:
-					var cur_widget: RoomNodeWidget = room_node_widget_dict[cur_room_node]
-					cur_widget.set_edges_active(true)
-				for edge in cur_room_node.edges:
-					var widget: RoomNodeWidget = null
-					if edge.dst.y > dungeon.map.size():
-						widget = boss_room_widget
-					else:
-						var next_node: MapRoomNode = dungeon.map[edge.dst.y][edge.dst.x]
-						widget = room_node_widget_dict[next_node]
-					widget.set_room_state(RoomNodeWidget.RoomState.AVAILABLE)
-					cur_available_room_widgets.append(widget)
+	# CardGame.dungeon_main_screen.dungeon_room_screen.get_into_next_room()
+	if enter_room:
+		CardGame.dungeon_main_screen.next_room_transition_start()
+
+# func _update_node_state(_delta: float):
+# 	if Engine.is_editor_hint():
+# 		return
+# 	if dungeon == null:
+# 		return
+# 	var cur_room_node: MapRoomNode = dungeon.cur_room_node
+# 	if pre_room_phase != cur_room_node.room.phase:
+# 		match cur_room_node.room.phase:
+# 			AbstractRoom.RoomPhase.COMBAT:
+# 				print("in combat...")
+# 				# CardGame.dungeon_main_screen.open_screen(DungeonMainScreen.ScreenType.COMBAT)
+# 			AbstractRoom.RoomPhase.EVENT:
+# 				print("in event...")
+# 			AbstractRoom.RoomPhase.INCOMPLETE:
+# 				print("in incomplete...")
+# 			AbstractRoom.RoomPhase.COMPLETE:
+# 				print("in complete...")
+# 				finish_cur_room_node()
 	
-	pre_room_phase = cur_room_node.room.phase
-	if cur_room_node.room.phase != AbstractRoom.RoomPhase.COMPLETE:
-		wait_timer -= _delta
-		if wait_timer < 0:
-			print("invoke")
-			cur_room_node.room.phase = AbstractRoom.RoomPhase.COMPLETE
+# 	pre_room_phase = cur_room_node.room.phase
+# 	if cur_room_node.room.phase != AbstractRoom.RoomPhase.COMPLETE:
+# 		wait_timer -= _delta
+# 		if wait_timer < 0:
+# 			print("invoke")
+# 			cur_room_node.room.phase = AbstractRoom.RoomPhase.COMPLETE
 
 ##################################
 # map function
@@ -224,6 +249,7 @@ func _update_scrolling_animation(delta: float) -> void:
 	if manual or Engine.is_editor_hint():
 		offset_y = MathHelper.lerp_snap(MAP_UPPER_SCROLL_DEFAULT, MAP_SCROLL_UPPER, slider)
 		return
+	
 	if target_offset_y < map_scroll_lower_limit:
 		target_offset_y = MathHelper.lerp_snap(target_offset_y, map_scroll_lower_limit, delta * 10)
 	elif target_offset_y > MAP_SCROLL_UPPER:
@@ -236,7 +262,7 @@ func _update_scrolling_animation(delta: float) -> void:
 	else:
 		offset_y = MathHelper.lerp_snap(offset_y, target_offset_y, delta * 12)
 
-func _update_map_position(delta: float) -> void:
+func _update_map_position() -> void:
 	# update bg
 	if manual or Engine.is_editor_hint():
 		top.position = Vector2(0, offset_y + MAP_OFFSET_Y)
@@ -246,8 +272,6 @@ func _update_map_position(delta: float) -> void:
 		blend2.position = Vector2(0, offset_y + MAP_OFFSET_Y + 1890)
 		return
 	
-	map_bg.modulate.a = MathHelper.lerp_snap(map_bg.modulate.a, map_alpha, delta * 12)
-	
 	top.position = Vector2(0, offset_y + MAP_OFFSET_Y)
 	mid.position = Vector2(0, MAP_HEIGHT + offset_y + MAP_OFFSET_Y)
 	bot.position = Vector2(0, MAP_HEIGHT + map_mid_dist + offset_y + MAP_OFFSET_Y + 1.0)
@@ -255,6 +279,25 @@ func _update_map_position(delta: float) -> void:
 	blend2.position = Vector2(0, offset_y + MAP_OFFSET_Y + 1890)
 	
 	container.position = Vector2(0, offset_y)
+
+
+func finish_cur_room_node() -> void:
+	cur_available_room_widgets.clear()
+	var cur_room_node: MapRoomNode = dungeon.cur_room_node
+	var row = cur_room_node.y
+	if row != -1:
+		var cur_widget: RoomNodeWidget = room_node_widget_dict[cur_room_node]
+		cur_widget.set_edges_active(true)
+	for edge in cur_room_node.edges:
+		var widget: RoomNodeWidget = null
+		if edge.dst.y > dungeon.map.size():
+			widget = boss_room_widget
+		else:
+			var next_node: MapRoomNode = dungeon.map[edge.dst.y][edge.dst.x]
+			widget = room_node_widget_dict[next_node]
+		widget.set_room_state(RoomNodeWidget.RoomState.AVAILABLE)
+		cur_available_room_widgets.append(widget)
+
 ##################################
 # event function
 ##################################
@@ -293,6 +336,7 @@ func _input(event: InputEvent) -> void:
 func on_legend_item_mouse_entered(item: LegendItem) -> void:
 	for widget in room_widgets_by_room_type[item.type]:
 		widget.set_highlight(true)
+
 func on_legend_item_mouse_exited(item: LegendItem) -> void:
 	for widget in room_widgets_by_room_type[item.type]:
 		widget.set_highlight(false)
@@ -318,7 +362,7 @@ func recycle(widget: RoomNodeWidget) -> void:
 	if widget == null:
 		return
 	widget.get_parent().remove_child(widget)
-	widget.dispose()
+	widget.reset()
 	room_node_pool.push_back(widget)
 	widget.process_mode = Node.PROCESS_MODE_DISABLED
 	widget.hide()

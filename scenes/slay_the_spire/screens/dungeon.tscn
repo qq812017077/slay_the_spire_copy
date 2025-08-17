@@ -1,28 +1,44 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjwv1rd61l48r"]
+[gd_scene load_steps=15 format=3 uid="uid://bjwv1rd61l48r"]
 
 [ext_resource type="Script" uid="uid://1xg53ewt5dkt" path="res://scripts/ui/screens/dungeon_main_screen.gd" id="1_asgwx"]
 [ext_resource type="PackedScene" uid="uid://bnhbd2jkrp0b3" path="res://scenes/slay_the_spire/screens/dungeon_transition_screen.tscn" id="1_wo6ee"]
 [ext_resource type="PackedScene" uid="uid://b877xf08pys47" path="res://scenes/slay_the_spire/screens/dungeon_room_screen.tscn" id="2_feunk"]
 [ext_resource type="PackedScene" uid="uid://ciqst2hk1cggq" path="res://scenes/slay_the_spire/screens/dungeon_map_screen.tscn" id="2_tieqw"]
+[ext_resource type="PackedScene" uid="uid://djrh4j0kumvy5" path="res://scenes/slay_the_spire/screens/reward/combat_reward_screen.tscn" id="3_h5mbi"]
 [ext_resource type="PackedScene" uid="uid://bfyifvawlr8ht" path="res://scenes/slay_the_spire/ui/options/settings_screen.tscn" id="3_jc3qg"]
+[ext_resource type="PackedScene" uid="uid://cf2bi0st325wf" path="res://scenes/slay_the_spire/screens/reward/card_select_reward_screen.tscn" id="4_dabma"]
 [ext_resource type="PackedScene" uid="uid://br8kmhmfggmt4" path="res://scenes/slay_the_spire/ui/options/confirm_popup.tscn" id="4_o65b6"]
+[ext_resource type="PackedScene" uid="uid://cgjkieo6t3sp7" path="res://scenes/slay_the_spire/screens/reward/boss_relic_select_screen.tscn" id="5_timdg"]
+[ext_resource type="PackedScene" uid="uid://ks1ykd8jv0yj" path="res://scenes/slay_the_spire/screens/shop_screen.tscn" id="6_0c3kw"]
+[ext_resource type="PackedScene" uid="uid://duh8h1fbis0o1" path="res://scenes/slay_the_spire/ui/top_panel.tscn" id="6_gm7vm"]
+[ext_resource type="PackedScene" uid="uid://cx40q2pibgksu" path="res://scenes/slay_the_spire/screens/overlay_menu.tscn" id="7_dyi8b"]
+[ext_resource type="PackedScene" uid="uid://bsvk8xd7ii7ky" path="res://scenes/slay_the_spire/screens/deck_view_screen.tscn" id="7_hblq6"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_asgwx"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_ipfvg"]
-
-[node name="Dungeon" type="Control" node_paths=PackedStringArray("dungeon_map_screen", "dungeon_transition_screen")]
+[node name="Dungeon" type="Control" node_paths=PackedStringArray("dungeon_room_screen", "combat_reward_screen", "card_select_reward_screen", "boss_relic_reward_screen", "dungeon_map_screen", "dungeon_transition_screen", "dungeon_shop_screen", "dungeon_deck_screen", "top_panel", "overlay_menu", "game_effect_container", "particle_effect_container")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 scale = Vector2(0.833, 0.833)
 script = ExtResource("1_asgwx")
+dungeon_room_screen = NodePath("Screens/DungeonRoomScreen")
+combat_reward_screen = NodePath("Screens/CombatRewardScreen")
+card_select_reward_screen = NodePath("Screens/CardSelectRewardScreen")
+boss_relic_reward_screen = NodePath("Screens/BossRelicSelectScreen")
 dungeon_map_screen = NodePath("Screens/DungeonMapScreen")
 dungeon_transition_screen = NodePath("Screens/DungeonTransitionScreen")
+dungeon_shop_screen = NodePath("Screens/ShopScreen")
+dungeon_deck_screen = NodePath("Screens/DeckViewScreen")
+top_panel = NodePath("TopPanel")
+overlay_menu = NodePath("OverlayMenu")
+game_effect_container = NodePath("GameEffect")
+particle_effect_container = NodePath("ParticleEffect")
 
 [node name="BlackBG" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 1)
+z_index = -10
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,7 +51,7 @@ offset_right = 1600.0
 offset_bottom = 900.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 0
 texture = SubResource("CanvasTexture_asgwx")
 
 [node name="Screens" type="Control" parent="."]
@@ -46,26 +62,55 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="DungeonRoomScreen" parent="Screens" instance=ExtResource("2_feunk")]
+z_index = -1
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 1080.0
+
+[node name="CardSelectRewardScreen" parent="Screens" instance=ExtResource("4_dabma")]
+visible = false
+layout_mode = 1
+
+[node name="CombatRewardScreen" parent="Screens" instance=ExtResource("3_h5mbi")]
+visible = false
+layout_mode = 0
+
+[node name="BossRelicSelectScreen" parent="Screens" instance=ExtResource("5_timdg")]
+visible = false
 layout_mode = 0
 
 [node name="DungeonMapScreen" parent="Screens" instance=ExtResource("2_tieqw")]
-visible = false
 layout_mode = 1
 
 [node name="DungeonTransitionScreen" parent="Screens" instance=ExtResource("1_wo6ee")]
-visible = false
 layout_mode = 1
 
-[node name="BlackMask" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ShopScreen" parent="Screens" instance=ExtResource("6_0c3kw")]
+visible = false
+layout_mode = 0
+
+[node name="DeckViewScreen" parent="Screens" instance=ExtResource("7_hblq6")]
+visible = false
+layout_mode = 0
+
+[node name="GameEffect" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 mouse_filter = 2
-texture = SubResource("CanvasTexture_ipfvg")
+
+[node name="TopPanel" parent="." instance=ExtResource("6_gm7vm")]
+z_index = 4
+layout_mode = 0
+
+[node name="OverlayMenu" parent="." instance=ExtResource("7_dyi8b")]
+layout_mode = 0
+
+[node name="ParticleEffect" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="SettingsScreen" parent="." instance=ExtResource("3_jc3qg")]
 visible = false

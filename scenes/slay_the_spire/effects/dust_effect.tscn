@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://xiwol5isocyp"]
+
+[ext_resource type="Texture2D" uid="uid://dbpue05lqcucy" path="res://arts/slay_the_spire/vfx/dust/dust1_vfx_tex.tres" id="1_qcisl"]
+[ext_resource type="Script" uid="uid://bgf0mqrjrash0" path="res://scripts/effects/particle/dust_effect.gd" id="1_vu0i3"]
+[ext_resource type="Texture2D" uid="uid://cikk0xljpdkj1" path="res://arts/slay_the_spire/vfx/dust/dust2_vfx_tex.tres" id="2_n4ld3"]
+[ext_resource type="Texture2D" uid="uid://df58rx1vgflnc" path="res://arts/slay_the_spire/vfx/dust/dust3_vfx_tex.tres" id="3_nj4pm"]
+[ext_resource type="Texture2D" uid="uid://dfbo3m1x4faqi" path="res://arts/slay_the_spire/vfx/dust/dust4_vfx_tex.tres" id="4_skmm3"]
+[ext_resource type="Texture2D" uid="uid://cs3uecls81yel" path="res://arts/slay_the_spire/vfx/dust/dust5_vfx_tex.tres" id="5_g5brx"]
+
+[sub_resource type="Curve" id="Curve_qcisl"]
+_data = [Vector2(0.00297619, 0.0253837), 0.0, 0.0, 0, 0, Vector2(0.494048, 0.600944), 0.0, 0.0, 0, 0, Vector2(0.997024, 0.00236118), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n4ld3"]
+curve = SubResource("Curve_qcisl")
+
+[sub_resource type="Gradient" id="Gradient_qcisl"]
+colors = PackedColorArray(0.701961, 0.701961, 0.701961, 1, 0.258824, 0.258824, 0.258824, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n4ld3"]
+gradient = SubResource("Gradient_qcisl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qcisl"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(960, 500, 0)
+emission_shape = 3
+emission_box_extents = Vector3(960, 300, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 30.0
+initial_velocity_min = -12.0
+initial_velocity_max = 12.0
+angular_velocity_min = -120.0
+angular_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+color_initial_ramp = SubResource("GradientTexture1D_n4ld3")
+alpha_curve = SubResource("CurveTexture_n4ld3")
+
+[node name="DustEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_vu0i3")
+
+[node name="Dust" type="GPUParticles2D" parent="."]
+texture = ExtResource("1_qcisl")
+lifetime = 5.0
+visibility_rect = Rect2(0, 0, 1920, 1080)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_qcisl")
+
+[node name="Dust2" type="GPUParticles2D" parent="."]
+texture = ExtResource("2_n4ld3")
+lifetime = 5.0
+visibility_rect = Rect2(0, 0, 1920, 1080)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_qcisl")
+
+[node name="Dust3" type="GPUParticles2D" parent="."]
+texture = ExtResource("3_nj4pm")
+lifetime = 5.0
+visibility_rect = Rect2(0, 0, 1920, 1080)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_qcisl")
+
+[node name="Dust4" type="GPUParticles2D" parent="."]
+texture = ExtResource("4_skmm3")
+lifetime = 5.0
+visibility_rect = Rect2(0, 0, 1920, 1080)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_qcisl")
+
+[node name="Dust5" type="GPUParticles2D" parent="."]
+texture = ExtResource("5_g5brx")
+lifetime = 5.0
+visibility_rect = Rect2(0, 0, 1920, 1080)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_qcisl")

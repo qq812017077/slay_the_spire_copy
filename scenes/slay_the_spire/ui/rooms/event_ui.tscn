@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7vnx8mwyo167"]
+[gd_scene load_steps=9 format=3 uid="uid://7vnx8mwyo167"]
 
 [ext_resource type="Script" uid="uid://cj370bnl7tlri" path="res://scripts/ui/dungeon/rooms/event_ui.gd" id="1_vwb4e"]
 [ext_resource type="PackedScene" uid="uid://dv08biiw44k3s" path="res://scenes/slay_the_spire/ui/rooms/dialog_option.tscn" id="2_7d5pg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cm6sy6romtmw6" path="res://arts/slay_the_spire/images/ui/event/panel.png" id="4_4xfph"]
 [ext_resource type="Script" uid="uid://n6qxwve57qqk" path="res://scripts/ui/dungeon/events/room_event_dialog.gd" id="4_xhnmf"]
 [ext_resource type="Texture2D" uid="uid://dca4jut14i3mc" path="res://arts/slay_the_spire/images/ui/event/imgFrame.png" id="6_key1o"]
+[ext_resource type="SpriteFrames" uid="uid://cuv8tos14f78u" path="res://arts/slay_the_spire/images/npcs/neow/animation/neow.tres" id="8_idk1s"]
 
 [node name="EventUI" type="Control" node_paths=PackedStringArray("generic_event_dialog", "room_event_dialog")]
 layout_mode = 3
@@ -36,6 +37,7 @@ texture = ExtResource("2_kagtu")
 expand_mode = 1
 
 [node name="GenericEventDialog" type="Control" parent="." node_paths=PackedStringArray("event_background_img", "img", "img_frame", "title", "rich_text_label", "options_container")]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -94,6 +96,7 @@ offset_bottom = 931.0
 mouse_filter = 2
 
 [node name="RoomEventDialog" type="Control" parent="." node_paths=PackedStringArray("animated_npc", "options_container")]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -112,4 +115,5 @@ mouse_filter = 2
 
 [node name="npc" type="AnimatedSprite2D" parent="RoomEventDialog"]
 position = Vector2(1543, 512)
-animation = &""
+sprite_frames = ExtResource("8_idk1s")
+animation = &"idle"

@@ -77,7 +77,7 @@ static func initialize():
 func _ready() -> void:
 	set_z_order()
 	CardGame.dungeon_main_screen = self
-	# load_new_dungeon(Exordium.ID, IronClad.ID)
+	load_new_dungeon(Exordium.ID, IronClad.ID)
 	pre_black_mask_state = CardGame.black_mask.state
 	
 	overlay_menu.cancel_button.button.pressed.connect(on_cancel_button_click)

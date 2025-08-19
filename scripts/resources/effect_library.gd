@@ -11,6 +11,7 @@ extends Resource
 @export_group("Room")
 @export var boss_chest_shine_effect_prefab: PackedScene
 @export var chest_shine_effect_prefab: PackedScene
+@export var speech_bubble_prefab: PackedScene
 @export_group("")
 
 @export_group("Combat")

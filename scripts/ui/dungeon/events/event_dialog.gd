@@ -20,7 +20,7 @@ var options: Array[DialogOptionButton] = []
 var words: Array[String] = []
 var word_timer: float = 0
 var text_done: bool = true
-var a_effect: DialogWord.AppearEffect = DialogWord.AppearEffect.NONE
+var a_effect: DialogText.AppearEffect = DialogText.AppearEffect.NONE
 var cur_word_index: int = 0
 
 func _ready() -> void:
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 func animate_in(_delta: float) -> void:
 	pass
 
-func update_body_text(_text: String, ae: DialogWord.AppearEffect = DialogWord.AppearEffect.BUMP_IN) -> void:
+func update_body_text(_text: String, ae: DialogText.AppearEffect = DialogText.AppearEffect.BUMP_IN) -> void:
 	var clean_text: String = _text.strip_edges().replace("\r\n", "\n")
 	# split text into words via multiple delimiters
 	words = split(clean_text, [' ', '\n', '\t'])
@@ -64,12 +64,12 @@ func body_text_effect(delta: float) -> void:
 				# new line
 				rich_text_label.newline()
 				return
-			var word_color: DialogWord.WordColor = identify_word_color(word)
-			if word_color != DialogWord.WordColor.DEFAULT:
+			var word_color: DialogText.TextColor = identify_word_color(word)
+			if word_color != DialogText.TextColor.DEFAULT:
 				word = word.substr(2)
 			
-			var word_effect: DialogWord.WordEffect = identify_word_effect(word)
-			if word_effect != DialogWord.WordEffect.NONE:
+			var word_effect: DialogText.TextEffect = identify_word_effect(word)
+			if word_effect != DialogText.TextEffect.NONE:
 				word = word.substr(1, word.length() - 2)
 			rich_text_label.append_text(word)
 			
@@ -78,8 +78,8 @@ func body_text_effect(delta: float) -> void:
 			words.clear()
 
 
-func create_dialog_word(text: String, _a_effect: DialogWord.AppearEffect, effect: DialogWord.WordEffect, color: DialogWord.WordColor, cur_len_width: float, cur_line: int) -> DialogWord:
-	var word: DialogWord = DialogWord.new()
+func create_dialog_text(text: String, _a_effect: DialogText.AppearEffect, effect: DialogText.TextEffect, color: DialogText.TextColor, cur_len_width: float, cur_line: int) -> DialogText:
+	var word: DialogText = DialogText.new()
 	
 	var pos: Vector2 = Vector2(DIALOG_MSG_X + cur_len_width, DIALOG_MSG_Y + LINE_SPACING * cur_line)
 	word.load_config(ThemeHelper.char_desc_label_settings, text, _a_effect, effect, color, pos, cur_line)
@@ -117,31 +117,31 @@ func clear_dialog_options() -> void:
 
 func clear_dialog() -> void:
 	pass
-static func identify_word_color(word: String) -> DialogWord.WordColor:
+static func identify_word_color(word: String) -> DialogText.TextColor:
 	if word[0] == "#":
 		match word[1]:
 			"r":
-				return DialogWord.WordColor.RED
+				return DialogText.TextColor.RED
 			"g":
-				return DialogWord.WordColor.GREEN
+				return DialogText.TextColor.GREEN
 			"b":
-				return DialogWord.WordColor.BLUE
+				return DialogText.TextColor.BLUE
 			"y":
-				return DialogWord.WordColor.GOLD
+				return DialogText.TextColor.GOLD
 			"p":
-				return DialogWord.WordColor.PURPLE
+				return DialogText.TextColor.PURPLE
 	
-	return DialogWord.WordColor.DEFAULT
+	return DialogText.TextColor.DEFAULT
 
-static func identify_word_effect(word: String) -> DialogWord.WordEffect:
+static func identify_word_effect(word: String) -> DialogText.TextEffect:
 	var word_len: int = word.length()
 	if word_len > 2:
 		if word[0] == "@" and word[word_len - 1] == "@":
-			return DialogWord.WordEffect.SNAKY
+			return DialogText.TextEffect.SNAKY
 		if word[0] == "~" and word[word_len - 1] == "~":
-			return DialogWord.WordEffect.WAVY
+			return DialogText.TextEffect.WAVY
 	
-	return DialogWord.WordEffect.NONE
+	return DialogText.TextEffect.NONE
 static func split(s: String, delimeters: Array, allow_empty: bool = true) -> Array[String]:
 	var parts: Array[String] = []
 	

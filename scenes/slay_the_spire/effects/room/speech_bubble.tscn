@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://faiwt6lju2cs"]
+[gd_scene load_steps=3 format=3 uid="uid://faiwt6lju2cs"]
 
 [ext_resource type="Script" uid="uid://0f4cfuwy0di1" path="res://scripts/effects/room/speech_bubble.gd" id="1_hg1s5"]
 [ext_resource type="Texture2D" uid="uid://b7hyi1cdippdc" path="res://arts/slay_the_spire/images/ui/dialog/speechBubble2.png" id="1_mxpo1"]
-[ext_resource type="Script" uid="uid://bs7e1b8soi6ir" path="res://scripts/ui/text_effects/effects/shaky_effect.gd" id="3_foffs"]
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_g545e"]
-script = ExtResource("3_foffs")
-metadata/_custom_type_script = "uid://bs7e1b8soi6ir"
 
 [node name="SpeechBubble" type="Node2D" node_paths=PackedStringArray("bubble_sprite", "bubble_shadow")]
 script = ExtResource("1_hg1s5")
@@ -19,13 +14,3 @@ texture = ExtResource("1_mxpo1")
 
 [node name="SpeechBubble" type="Sprite2D" parent="."]
 texture = ExtResource("1_mxpo1")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 417.0
-offset_top = 136.0
-offset_right = 701.0
-offset_bottom = 332.0
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "[shaky]大苏打倒萨[/shaky] 的是阿大撒的的昂是 打算 阿斯顿"
-custom_effects = [SubResource("RichTextEffect_g545e")]

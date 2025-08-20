@@ -1,20 +1,18 @@
 @tool
 class_name ShakyEffect
-extends RichTextEffect
+extends RichTextEffectBase
 
-const SHAKE_AMT: float = 2.0
 var bbcode := "shaky"
-var init_sec_time: float = 0.0
 
-func _init() -> void:
-	init_sec_time = Time.get_ticks_msec() / 1000.0
-	
 func _process_custom_fx(char_fx: CharFXTransform) -> bool:
+	var scale: float = char_fx.env.get("scale", 2.0)
+	var freq: float = char_fx.env.get("freq", 16.0)
 	
-	# print("char_fx.elapsed_time:",char_fx.elapsed_time)
-	# if char_fx.elapsed_time >= 10:
-	# 	char_fx.offset.x = randf_range(-SHAKE_AMT, SHAKE_AMT)
-	# 	char_fx.offset.y = randf_range(-SHAKE_AMT, SHAKE_AMT)
-	# 	char_fx.elapsed_time = 0.0
-	
-	return false
+	# print("label:", get_traisition_label().name)
+	# print("char_fx.relative_index:", char_fx.relative_index, " char_fx.range.x:", char_fx.range.x)
+	var t = char_fx.elapsed_time
+	var s = fmod((char_fx.relative_index + t) * PI * 1.25, TAU)
+	var p = sin(t * freq + char_fx.range.x) * .33
+	char_fx.offset.x += sin(s) * p * scale
+	char_fx.offset.y += cos(s) * p * scale
+	return true

@@ -1,5 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+.vscode/
+
 .nomedia
 
 # Godot-specific ignores

@@ -1,6 +1,6 @@
 @tool
 class_name WavyEffect
-extends RichTextEffect
+extends RichTextEffectBase
 
 const WAVY_DIST: float = 3.0
 

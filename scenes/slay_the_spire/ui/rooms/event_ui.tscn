@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7vnx8mwyo167"]
+[gd_scene load_steps=10 format=3 uid="uid://7vnx8mwyo167"]
 
 [ext_resource type="Script" uid="uid://cj370bnl7tlri" path="res://scripts/ui/dungeon/rooms/event_ui.gd" id="1_vwb4e"]
 [ext_resource type="PackedScene" uid="uid://dv08biiw44k3s" path="res://scenes/slay_the_spire/ui/rooms/dialog_option.tscn" id="2_7d5pg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cm6sy6romtmw6" path="res://arts/slay_the_spire/images/ui/event/panel.png" id="4_4xfph"]
 [ext_resource type="Script" uid="uid://n6qxwve57qqk" path="res://scripts/ui/dungeon/events/room_event_dialog.gd" id="4_xhnmf"]
 [ext_resource type="Texture2D" uid="uid://dca4jut14i3mc" path="res://arts/slay_the_spire/images/ui/event/imgFrame.png" id="6_key1o"]
+[ext_resource type="Script" uid="uid://br8vg635unfi0" path="res://scripts/ui/text_effects/rich_text_transition_label.gd" id="7_smgnd"]
 [ext_resource type="SpriteFrames" uid="uid://cuv8tos14f78u" path="res://arts/slay_the_spire/images/npcs/neow/animation/neow.tres" id="8_idk1s"]
 
 [node name="EventUI" type="Control" node_paths=PackedStringArray("generic_event_dialog", "room_event_dialog")]
@@ -36,7 +37,7 @@ mouse_filter = 2
 texture = ExtResource("2_kagtu")
 expand_mode = 1
 
-[node name="GenericEventDialog" type="Control" parent="." node_paths=PackedStringArray("event_background_img", "img", "img_frame", "title", "rich_text_label", "options_container")]
+[node name="GenericEventDialog" type="Control" parent="." node_paths=PackedStringArray("event_background_img", "img", "img_frame", "title", "rich_text_transition_label", "options_container")]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
@@ -47,7 +48,7 @@ event_background_img = NodePath("EventBackgroundImg")
 img = NodePath("Img")
 img_frame = NodePath("Img/ImgFrame")
 title = NodePath("Title")
-rich_text_label = NodePath("EventText")
+rich_text_transition_label = NodePath("EventText")
 options_container = NodePath("Options")
 
 [node name="EventBackgroundImg" type="Sprite2D" parent="GenericEventDialog"]
@@ -83,9 +84,11 @@ custom_minimum_size = Vector2(900, 500)
 layout_mode = 0
 offset_left = 816.0
 offset_top = 359.0
-offset_right = 856.0
-offset_bottom = 399.0
+offset_right = 1716.0
+offset_bottom = 859.0
 mouse_filter = 2
+script = ExtResource("7_smgnd")
+metadata/_custom_type_script = "uid://br8vg635unfi0"
 
 [node name="Options" type="Control" parent="GenericEventDialog"]
 anchors_preset = 0

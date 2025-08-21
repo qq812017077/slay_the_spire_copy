@@ -17,9 +17,9 @@ static var DARK_GREY_COLOR = Color.from_string("#333333ff", Color.DARK_GRAY)
 static var GOLD_COLOR = Color.from_string("#EFC851FF", Color.GOLD)
 static var CREAM_COLOR = Color.from_string("#fef5e1ff", Color.MINT_CREAM)
 static var RED_TEXT_COLOR = Color.from_string("#ff6563ff", Color.RED)
-static var GREEN_TEXT_COLOR = Color.from_string("#66ff66ff", Color.GREEN)
-static var BLUE_TEXT_COLOR = Color.from_string("#4fc1ffff", Color.BLUE)
-static var PURPLE_COLOR = Color.from_string("#ad37daff", Color.PURPLE)
+static var GREEN_TEXT_COLOR = Color.from_string("#7fff00ff", Color.GREEN)
+static var BLUE_TEXT_COLOR = Color.from_string("#87CEEBff", Color.BLUE)
+static var PURPLE_COLOR = Color.from_string("#EE82EEff", Color.PURPLE)
 static var AVAILABLE_COLOR = Color(0.09, 0.13, 0.17, 1.0)
 # font
 static var normal_font_eng: Font = null
@@ -103,6 +103,7 @@ static var top_panel_amount_label_settings: LabelSettings
 static var card_desc_font_N_label_settigns: LabelSettings
 static var dialog_option_label_settings: LabelSettings
 static var tip_header_label_settings: LabelSettings
+static var turn_num_settings: LabelSettings
 static func initialize():
 	# font load
 	normal_font_eng = load("res://arts/slay_the_spire/fonts/Kreon-Regular.ttf")
@@ -268,6 +269,16 @@ static func initialize_label_settings() -> void:
 	tip_header_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
 	tip_header_label_settings.shadow_offset = Vector2(2, 2)
 	tip_header_label_settings.shadow_size = 10
+
+	turn_num_settings = LabelSettings.new()
+	turn_num_settings.font = get_regular_font()
+	turn_num_settings.font_size = 32
+	turn_num_settings.font_color = Color.WHITE
+	turn_num_settings.outline_color = DARK_GREY_COLOR
+	turn_num_settings.outline_size = 0
+	turn_num_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	turn_num_settings.shadow_offset = Vector2(0, 0)
+	
 
 static func try_get_constant(targettheme: Theme, name: StringName, theme_type: StringName, default: int) -> int:
 	return targettheme.get_font_size(name, theme_type) if targettheme.has_font_size(name, theme_type) else default

@@ -90,15 +90,15 @@ func get_normal_font() -> Font:
 static func get_bbcode_color_prefix(color: TextColor) -> String:
 	match color:
 		TextColor.RED:
-			return "[color=#FF0000]"
+			return "[color=#FF6563]"
 		TextColor.GREEN:
-			return "[color=#00FF00]"
+			return "[color=#7FFF00]"
 		TextColor.BLUE:
-			return "[color=#0000FF]"
+			return "[color=#87CEEB]"
 		TextColor.GOLD:
-			return "[color=#FFD700]"
+			return "[color=#EFC851]"
 		TextColor.PURPLE:
-			return "[color=#800080]"
+			return "[color=#EE82EE]"
 		TextColor.WHITE:
 			return "[color=#FFFFFF]"
 	return ""

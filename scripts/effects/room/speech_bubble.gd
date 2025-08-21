@@ -6,7 +6,7 @@ const SCALE_INIT_TIME: float = 0.3
 const WAVY_DISTANCE: float = 2.0
 const SHADOW_OFFSET: float = 16.0
 
-enum BubbleType {SHOP, INFINITE}
+enum BubbleType {SHOP, INFINITE, DEFAULT}
 
 @export var bubble_sprite: Sprite2D
 @export var bubble_shadow: Sprite2D

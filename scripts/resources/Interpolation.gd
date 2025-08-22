@@ -10,6 +10,9 @@ func apply_fade(start: float, end: float, weight: float) -> float:
 func apply_swing_out(start: float, end: float, weight: float) -> float:
     return lerp(start, end, swing_out.sample(weight))
 
+func apply_circle_in(start: float, end: float, weight: float) -> float:
+    return MathHelper.lerp_snap(start, end, 1 - sqrt(1 - weight * weight))
+
 func _apply_exp(start: float, end: float, weight: float, exp_num: int = 1) -> float:
     if weight < 0.5:
         return MathHelper.lerp_snap(start, end, 0.5 * pow(weight * 2, exp_num))

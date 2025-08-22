@@ -6,6 +6,9 @@ var target_global_pos: Vector2 = Vector2(0, 0)
 var word_timer: float = 0.0
 var msg: String
 var appear_effect: RichTextTransitionLabel.AppearEffect
+
+var label_size: Vector2
+
 func _init(global_pos: Vector2, _duration: float, _msg: String, _appear_effect: RichTextTransitionLabel.AppearEffect):
     target_global_pos = global_pos
     duration = _duration
@@ -14,11 +17,20 @@ func _init(global_pos: Vector2, _duration: float, _msg: String, _appear_effect: 
     
 
 func _ready() -> void:
+    name = "SpeechTextEffect"
     rttl = RichTextTransitionLabel.new()
     add_child(rttl)
-    ThemeHelper.apply_rich_label_font_style_with_settings(rttl, ThemeHelper.turn_num_settings, Color.WHITE)
+    ThemeHelper.apply_rich_label_font_style_with_settings(rttl, ThemeHelper.turn_num_settings, ThemeHelper.DARK_GREY_COLOR)
     rttl.update_text_with_appear(msg, appear_effect)
-    rttl.set_global_position(target_global_pos)
+    # set_global_position(target_global_pos)
+    position = target_global_pos
+    rttl.size = label_size
+    rttl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    rttl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+
+
+func set_label_size(lsize: Vector2)->void:
+    label_size = lsize
 
 func _process(delta: float) -> void:
     duration -= delta
@@ -34,3 +46,4 @@ func _process(delta: float) -> void:
     if duration <= 0:
         is_done = true
         
+    position = target_global_pos

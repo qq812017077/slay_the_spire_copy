@@ -1,6 +1,8 @@
 class_name NeowEvent
 extends AbstractEvent
 
+const DIALOG_POS: Vector2 = Vector2(1050, AbstractDungeons.floorY - 240)
+
 static var character_string: CharacterString = null
 static var NAME: Array
 static var TEXT: Array
@@ -55,6 +57,7 @@ func setup_to_room_event_dialog(_room_event_dialog: RoomEventDialog) -> void:
 
 func talk(text: String) -> void:
 	print("talk:", text)
+	CardGame.dungeon_main_screen.add_game_effect(SpeechBubble.create_infinite_speech_bubble(DIALOG_POS, text))
 
 func on_option_selected(_option_slot: int) -> OptionResult:
 	print("screen_num:", screen_num)

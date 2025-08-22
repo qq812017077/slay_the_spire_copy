@@ -15,6 +15,8 @@ const SHUFFLE_RNG_SEED_OFFSET = 11
 const CARD_RANDOM_RNG_SEED_OFFSET = 12
 const MISC_RNG_SEED_OFFSET = 13
 
+const floorY :float= 1080 - 340
+
 # random
 var monsterRng: RandomNumberGenerator
 var mapRng: RandomNumberGenerator

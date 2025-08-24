@@ -1,5 +1,5 @@
 class_name AbstractMonster
-extends Object
+extends AbstractCreature
 
 
 static func initialize() -> void:

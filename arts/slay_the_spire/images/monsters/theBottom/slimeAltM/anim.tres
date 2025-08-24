@@ -1,8 +1,630 @@
-[gd_resource type="SpriteFrames" load_steps=0 format=3 uid="uid://dybwaywjl2wf2"]
+[gd_resource type="SpriteFrames" load_steps=155 format=3 uid="uid://dybwaywjl2wf2"]
+
+[ext_resource type="Texture2D" uid="uid://cjdqvh34v5iuu" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_00.png" id="1_2li3s"]
+[ext_resource type="Texture2D" uid="uid://q1udrormaiq2" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_01.png" id="2_6wvlm"]
+[ext_resource type="Texture2D" uid="uid://d1qt68upmd2id" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_02.png" id="3_dje28"]
+[ext_resource type="Texture2D" uid="uid://b50lmh8dusd1l" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_03.png" id="4_vvctt"]
+[ext_resource type="Texture2D" uid="uid://chkjsjfkuivto" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_04.png" id="5_k784q"]
+[ext_resource type="Texture2D" uid="uid://1camrs5xq2h3" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_05.png" id="6_cl3aw"]
+[ext_resource type="Texture2D" uid="uid://cmjpu0trwwuih" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_06.png" id="7_cck2b"]
+[ext_resource type="Texture2D" uid="uid://cu2jxvsca807c" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_07.png" id="8_wbttt"]
+[ext_resource type="Texture2D" uid="uid://cb7ql617cvb5i" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_08.png" id="9_vvhaw"]
+[ext_resource type="Texture2D" uid="uid://74sw0jm73i8j" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_09.png" id="10_pc8hw"]
+[ext_resource type="Texture2D" uid="uid://dc38s2y2661rv" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_10.png" id="11_nsuys"]
+[ext_resource type="Texture2D" uid="uid://drcid5s7plquf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_11.png" id="12_w0w7d"]
+[ext_resource type="Texture2D" uid="uid://dacxslihh6ic8" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_12.png" id="13_1j28k"]
+[ext_resource type="Texture2D" uid="uid://dholebja6qvl2" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_13.png" id="14_i2au8"]
+[ext_resource type="Texture2D" uid="uid://b5dticc5dvhpv" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_14.png" id="15_y1l1w"]
+[ext_resource type="Texture2D" uid="uid://3t1847c1x1tv" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_15.png" id="16_rkkew"]
+[ext_resource type="Texture2D" uid="uid://dedrnyhs16f7h" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_16.png" id="17_k5qaa"]
+[ext_resource type="Texture2D" uid="uid://qvs12btsvhao" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_17.png" id="18_mb5og"]
+[ext_resource type="Texture2D" uid="uid://du8apq7aeiiss" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_18.png" id="19_6py3f"]
+[ext_resource type="Texture2D" uid="uid://o43xmejxtr0p" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-hit_19.png" id="20_cy17u"]
+[ext_resource type="Texture2D" uid="uid://yqo7lnlwujbk" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_000.png" id="21_scho1"]
+[ext_resource type="Texture2D" uid="uid://bfhvbriqgcllf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_001.png" id="22_np8dc"]
+[ext_resource type="Texture2D" uid="uid://6dq2rl0oqoq6" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_002.png" id="23_rwhiy"]
+[ext_resource type="Texture2D" uid="uid://ckfxaej6kwcy8" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_003.png" id="24_c5lls"]
+[ext_resource type="Texture2D" uid="uid://nlm4bym2t7sj" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_004.png" id="25_v8fon"]
+[ext_resource type="Texture2D" uid="uid://cnkaab5seaf4k" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_005.png" id="26_732ay"]
+[ext_resource type="Texture2D" uid="uid://b25leqvykd68i" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_006.png" id="27_22ja4"]
+[ext_resource type="Texture2D" uid="uid://d3driyp64j22u" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_007.png" id="28_m3xy2"]
+[ext_resource type="Texture2D" uid="uid://cpvrloamx0bb7" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_008.png" id="29_sryg4"]
+[ext_resource type="Texture2D" uid="uid://culu8labemx1o" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_009.png" id="30_0yiq3"]
+[ext_resource type="Texture2D" uid="uid://bq7iilrckyj0m" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_010.png" id="31_l3m0p"]
+[ext_resource type="Texture2D" uid="uid://cgit6lx8pnenp" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_011.png" id="32_bjg23"]
+[ext_resource type="Texture2D" uid="uid://3cisacnq4frh" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_012.png" id="33_kx2wv"]
+[ext_resource type="Texture2D" uid="uid://c187swr7dwlnt" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_013.png" id="34_hwls3"]
+[ext_resource type="Texture2D" uid="uid://d24mgx2xdqbxm" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_014.png" id="35_yjbob"]
+[ext_resource type="Texture2D" uid="uid://e78oyhk83lvf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_015.png" id="36_7h4yh"]
+[ext_resource type="Texture2D" uid="uid://yy8a380wweat" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_016.png" id="37_1h03o"]
+[ext_resource type="Texture2D" uid="uid://hrbr514hykgf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_017.png" id="38_7ofnw"]
+[ext_resource type="Texture2D" uid="uid://cbhjuiuo1rr52" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_018.png" id="39_au5mq"]
+[ext_resource type="Texture2D" uid="uid://bjx3jniw2cwy6" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_019.png" id="40_5kheo"]
+[ext_resource type="Texture2D" uid="uid://bngs67s2kw03q" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_020.png" id="41_bxwwx"]
+[ext_resource type="Texture2D" uid="uid://bw2kbcq5ptl2d" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_021.png" id="42_38c8w"]
+[ext_resource type="Texture2D" uid="uid://dq5nqty8htqv6" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_022.png" id="43_1hso4"]
+[ext_resource type="Texture2D" uid="uid://bw51d0hh70j4e" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_023.png" id="44_2tk6d"]
+[ext_resource type="Texture2D" uid="uid://sy3nfxvyrfyk" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_024.png" id="45_dof28"]
+[ext_resource type="Texture2D" uid="uid://c74304t447fot" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_025.png" id="46_35nng"]
+[ext_resource type="Texture2D" uid="uid://cwtyhu1w7ym62" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_026.png" id="47_pnluy"]
+[ext_resource type="Texture2D" uid="uid://bp3ts72a0pwhd" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_027.png" id="48_5jmue"]
+[ext_resource type="Texture2D" uid="uid://t1aoaytqfq24" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_028.png" id="49_kilmf"]
+[ext_resource type="Texture2D" uid="uid://bbfhnsqhp5s6f" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_029.png" id="50_5cmky"]
+[ext_resource type="Texture2D" uid="uid://c4qyq2d1tq1tm" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_030.png" id="51_8r8k5"]
+[ext_resource type="Texture2D" uid="uid://5aecdnk04y5" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_031.png" id="52_xdyxe"]
+[ext_resource type="Texture2D" uid="uid://pnha0rkl62q0" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_032.png" id="53_j51j2"]
+[ext_resource type="Texture2D" uid="uid://du6mgywiyttbc" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_033.png" id="54_bhgtf"]
+[ext_resource type="Texture2D" uid="uid://cnlmlgfxidbny" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_034.png" id="55_5umaf"]
+[ext_resource type="Texture2D" uid="uid://el23u40i10mg" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_035.png" id="56_xd7im"]
+[ext_resource type="Texture2D" uid="uid://c022a0pdqfxap" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_036.png" id="57_8go4l"]
+[ext_resource type="Texture2D" uid="uid://cp04xbirs5m5j" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_037.png" id="58_wnfod"]
+[ext_resource type="Texture2D" uid="uid://ccus7vkp31u1l" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_038.png" id="59_7q7p8"]
+[ext_resource type="Texture2D" uid="uid://bw5bxi0dcqml6" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_039.png" id="60_wm5pv"]
+[ext_resource type="Texture2D" uid="uid://cmk6hksf8ybyo" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_040.png" id="61_y0vab"]
+[ext_resource type="Texture2D" uid="uid://bu7eb722i4gdg" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_041.png" id="62_csqcx"]
+[ext_resource type="Texture2D" uid="uid://dbjrgd61uwe8q" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_042.png" id="63_7lj5l"]
+[ext_resource type="Texture2D" uid="uid://gtc2h3227t06" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_043.png" id="64_bklmy"]
+[ext_resource type="Texture2D" uid="uid://dot6wgfa0rh6s" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_044.png" id="65_ybr7w"]
+[ext_resource type="Texture2D" uid="uid://bu0ix6lfe6htm" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_045.png" id="66_hamlp"]
+[ext_resource type="Texture2D" uid="uid://dewobey6tjldj" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_046.png" id="67_sxph2"]
+[ext_resource type="Texture2D" uid="uid://c1y1nukr7nng6" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_047.png" id="68_psv35"]
+[ext_resource type="Texture2D" uid="uid://cr62k5ss3n1qh" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_048.png" id="69_tpjp7"]
+[ext_resource type="Texture2D" uid="uid://cbve5fd0llwrp" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_049.png" id="70_dmdiq"]
+[ext_resource type="Texture2D" uid="uid://dcewy4q888qym" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_050.png" id="71_mvrq2"]
+[ext_resource type="Texture2D" uid="uid://ce448wo1ek36r" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_051.png" id="72_ui50t"]
+[ext_resource type="Texture2D" uid="uid://bkmiwwtgiv35s" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_052.png" id="73_ppmgx"]
+[ext_resource type="Texture2D" uid="uid://bdcc6wyx6vp5w" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_053.png" id="74_2g60l"]
+[ext_resource type="Texture2D" uid="uid://bpphykgsh2p18" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_054.png" id="75_jgpd2"]
+[ext_resource type="Texture2D" uid="uid://buxyxnrn2qud0" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_055.png" id="76_wewjp"]
+[ext_resource type="Texture2D" uid="uid://dc1il2os0hhlg" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_056.png" id="77_hrn27"]
+[ext_resource type="Texture2D" uid="uid://geh76lh4iah1" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_057.png" id="78_ijiy3"]
+[ext_resource type="Texture2D" uid="uid://dbcyw3pv6h6vr" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_058.png" id="79_7dvde"]
+[ext_resource type="Texture2D" uid="uid://gn67j2hqyydv" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_059.png" id="80_36lga"]
+[ext_resource type="Texture2D" uid="uid://bbg78swsnn8f5" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_060.png" id="81_inm1s"]
+[ext_resource type="Texture2D" uid="uid://bb7leltfwd1l2" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_061.png" id="82_vpy5u"]
+[ext_resource type="Texture2D" uid="uid://dr2iwdhst7q6r" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_062.png" id="83_1r4k2"]
+[ext_resource type="Texture2D" uid="uid://cdhp132ff6oto" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_063.png" id="84_dox1l"]
+[ext_resource type="Texture2D" uid="uid://dun5xttpmuqtk" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_064.png" id="85_fsguo"]
+[ext_resource type="Texture2D" uid="uid://hjkii4h26rs5" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_065.png" id="86_geq3i"]
+[ext_resource type="Texture2D" uid="uid://dfhv2ky2jhkq5" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_066.png" id="87_ve3gl"]
+[ext_resource type="Texture2D" uid="uid://b3pofvsjy36wo" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_067.png" id="88_40uds"]
+[ext_resource type="Texture2D" uid="uid://dgxegtpuw73sk" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_068.png" id="89_pf0mi"]
+[ext_resource type="Texture2D" uid="uid://q2heslfsw8wh" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_069.png" id="90_de0xk"]
+[ext_resource type="Texture2D" uid="uid://dv1o6acue1h2i" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_070.png" id="91_3rwvp"]
+[ext_resource type="Texture2D" uid="uid://5rkugbf038d3" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_071.png" id="92_ojmj3"]
+[ext_resource type="Texture2D" uid="uid://ds3v7q1mrispr" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_072.png" id="93_knoti"]
+[ext_resource type="Texture2D" uid="uid://ktfw5y2ky53m" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_073.png" id="94_he50h"]
+[ext_resource type="Texture2D" uid="uid://5idmrjq37kq8" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_074.png" id="95_2xxfs"]
+[ext_resource type="Texture2D" uid="uid://f5dsrqq7nw71" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_075.png" id="96_jfmaq"]
+[ext_resource type="Texture2D" uid="uid://caajg1pd68313" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_076.png" id="97_21pgt"]
+[ext_resource type="Texture2D" uid="uid://l21fjovcat3w" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_077.png" id="98_wgrqc"]
+[ext_resource type="Texture2D" uid="uid://brkwoma3dtiyf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_078.png" id="99_ltyds"]
+[ext_resource type="Texture2D" uid="uid://dwjlsq2xy5dao" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_079.png" id="100_sc4oy"]
+[ext_resource type="Texture2D" uid="uid://bul5qok8atejj" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_080.png" id="101_8y0gl"]
+[ext_resource type="Texture2D" uid="uid://cioeihh7j5qel" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_081.png" id="102_fukao"]
+[ext_resource type="Texture2D" uid="uid://2o5j57jcgp2n" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_082.png" id="103_5toio"]
+[ext_resource type="Texture2D" uid="uid://c8tmjann0mxfh" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_083.png" id="104_kjndw"]
+[ext_resource type="Texture2D" uid="uid://dwg4dc6ppb32f" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_084.png" id="105_djvut"]
+[ext_resource type="Texture2D" uid="uid://cqnoqihwry0j" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_085.png" id="106_f5f3o"]
+[ext_resource type="Texture2D" uid="uid://d10bd2ynrxw5k" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_086.png" id="107_qx7gm"]
+[ext_resource type="Texture2D" uid="uid://ct888qakr887s" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_087.png" id="108_cmpva"]
+[ext_resource type="Texture2D" uid="uid://bmtd4yr8pnmuf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_088.png" id="109_ltrv7"]
+[ext_resource type="Texture2D" uid="uid://hgrnn3ek7u04" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_089.png" id="110_5q245"]
+[ext_resource type="Texture2D" uid="uid://ca3o5pup2x2u1" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_090.png" id="111_r1w5p"]
+[ext_resource type="Texture2D" uid="uid://ctloem757xofq" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_091.png" id="112_vuvan"]
+[ext_resource type="Texture2D" uid="uid://drjlyt1m7ggsw" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_092.png" id="113_ntcxq"]
+[ext_resource type="Texture2D" uid="uid://bxah43k7a3rtn" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_093.png" id="114_n84c7"]
+[ext_resource type="Texture2D" uid="uid://ddsj070v8p0ev" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_094.png" id="115_8rrkh"]
+[ext_resource type="Texture2D" uid="uid://b5d4klms85wof" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_095.png" id="116_nfh33"]
+[ext_resource type="Texture2D" uid="uid://b7oto3x3t8065" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_096.png" id="117_7cp6c"]
+[ext_resource type="Texture2D" uid="uid://bmjlarwje5w8t" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_097.png" id="118_ckpw1"]
+[ext_resource type="Texture2D" uid="uid://bgl016qtux37k" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_098.png" id="119_21s4j"]
+[ext_resource type="Texture2D" uid="uid://ynea8obyw7d8" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_099.png" id="120_ixqjq"]
+[ext_resource type="Texture2D" uid="uid://bv1w6fu0tydf3" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_100.png" id="121_x7epl"]
+[ext_resource type="Texture2D" uid="uid://y1t2k8qsma5n" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_101.png" id="122_g23cv"]
+[ext_resource type="Texture2D" uid="uid://dmmv0x70quabh" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_102.png" id="123_jrkwq"]
+[ext_resource type="Texture2D" uid="uid://yaq07qw0efuf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_103.png" id="124_pytxo"]
+[ext_resource type="Texture2D" uid="uid://cnxo873v8tdkq" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_104.png" id="125_mk1ig"]
+[ext_resource type="Texture2D" uid="uid://7my5o3i1ncog" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_105.png" id="126_krbem"]
+[ext_resource type="Texture2D" uid="uid://1q17nd6pbyln" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_106.png" id="127_awxtt"]
+[ext_resource type="Texture2D" uid="uid://b1t2uihe5gx6m" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_107.png" id="128_pbqmr"]
+[ext_resource type="Texture2D" uid="uid://ceifcyqqawa37" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_108.png" id="129_shx0v"]
+[ext_resource type="Texture2D" uid="uid://q7bhtclxfllx" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_109.png" id="130_jjws4"]
+[ext_resource type="Texture2D" uid="uid://s0ok67c44jop" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_110.png" id="131_oxb41"]
+[ext_resource type="Texture2D" uid="uid://c70hsnbgf1lxa" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_111.png" id="132_xk3qj"]
+[ext_resource type="Texture2D" uid="uid://bydpdalu8mv13" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_112.png" id="133_pn6gi"]
+[ext_resource type="Texture2D" uid="uid://bqghw6t2m4qf4" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_113.png" id="134_ra00r"]
+[ext_resource type="Texture2D" uid="uid://cjm47ifokmus2" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_114.png" id="135_tlef0"]
+[ext_resource type="Texture2D" uid="uid://bq7888tr3bidd" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_115.png" id="136_ijcms"]
+[ext_resource type="Texture2D" uid="uid://bw53menf83b1i" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_116.png" id="137_s5k1y"]
+[ext_resource type="Texture2D" uid="uid://b53rxoneka0nb" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_117.png" id="138_hrfc0"]
+[ext_resource type="Texture2D" uid="uid://dskc8xbveaf8u" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_118.png" id="139_ctyaw"]
+[ext_resource type="Texture2D" uid="uid://0pywdwbqkxwx" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_119.png" id="140_rbiyj"]
+[ext_resource type="Texture2D" uid="uid://b8t8ig7pdlchw" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_120.png" id="141_uaix0"]
+[ext_resource type="Texture2D" uid="uid://c0sjmk5i7yjnu" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_121.png" id="142_0emm6"]
+[ext_resource type="Texture2D" uid="uid://bi4lxvnv8m1mv" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_122.png" id="143_50k7a"]
+[ext_resource type="Texture2D" uid="uid://cpd8oh10noqid" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_123.png" id="144_o1vdi"]
+[ext_resource type="Texture2D" uid="uid://b0k8qgmj0uqdf" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_124.png" id="145_qnsif"]
+[ext_resource type="Texture2D" uid="uid://bl777pf2qunuq" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_125.png" id="146_fqgcu"]
+[ext_resource type="Texture2D" uid="uid://cke8yaxbd8a57" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_126.png" id="147_t4eiq"]
+[ext_resource type="Texture2D" uid="uid://dcuj0xq7vwgd" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_127.png" id="148_ehn62"]
+[ext_resource type="Texture2D" uid="uid://dkbhy6rrrr2kd" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_128.png" id="149_des0x"]
+[ext_resource type="Texture2D" uid="uid://dc0jpc5vr6iw8" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_129.png" id="150_8s7yb"]
+[ext_resource type="Texture2D" uid="uid://cmj7gp5uoya3y" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_130.png" id="151_mretq"]
+[ext_resource type="Texture2D" uid="uid://cqxliheivus4b" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_131.png" id="152_0i0ad"]
+[ext_resource type="Texture2D" uid="uid://fp71r1ykhtgy" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_132.png" id="153_lof4b"]
+[ext_resource type="Texture2D" uid="uid://b51m3wlpfkc1q" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/animation/skeleton-idle_133.png" id="154_oynqw"]
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2li3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6wvlm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dje28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vvctt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k784q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cl3aw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cck2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wbttt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vvhaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pc8hw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nsuys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_w0w7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1j28k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_i2au8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_y1l1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_rkkew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_k5qaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_mb5og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_6py3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_cy17u")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_scho1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_np8dc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_rwhiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_c5lls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_v8fon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_732ay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_22ja4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_m3xy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_sryg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_0yiq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_l3m0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_bjg23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_kx2wv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_hwls3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_yjbob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_7h4yh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_1h03o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_7ofnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_au5mq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_5kheo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_bxwwx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_38c8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_1hso4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_2tk6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_dof28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_35nng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_pnluy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_5jmue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_kilmf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_5cmky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_8r8k5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_xdyxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_j51j2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_bhgtf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_5umaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_xd7im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_8go4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_wnfod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_7q7p8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_wm5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_y0vab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_csqcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_7lj5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_bklmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_ybr7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_hamlp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_sxph2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_psv35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_tpjp7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_dmdiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_mvrq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_ui50t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_ppmgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_2g60l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_jgpd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_wewjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_hrn27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_ijiy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_7dvde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_36lga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_inm1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_vpy5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_1r4k2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_dox1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_fsguo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_geq3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_ve3gl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_40uds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_pf0mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_de0xk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_3rwvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_ojmj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_knoti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_he50h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_2xxfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_jfmaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_21pgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_wgrqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_ltyds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_sc4oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_8y0gl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_fukao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_5toio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_kjndw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_djvut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_f5f3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_qx7gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_cmpva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_ltrv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_5q245")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_r1w5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_vuvan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_ntcxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_n84c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_8rrkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_nfh33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_7cp6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_ckpw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_21s4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_ixqjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_x7epl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_g23cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_jrkwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_pytxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_mk1ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_krbem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_awxtt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_pbqmr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_shx0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_jjws4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_oxb41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_xk3qj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_pn6gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_ra00r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_tlef0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_ijcms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_s5k1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_hrfc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_ctyaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_rbiyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_uaix0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_0emm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_50k7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_o1vdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_qnsif")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_fqgcu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_t4eiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_ehn62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_des0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_8s7yb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_mretq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_0i0ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_lof4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_oynqw")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 25.0

@@ -1,5 +1,5 @@
 class_name AbstractPlayer
-extends Object
+extends AbstractCreature
 enum PlayerType {IRONCLAD, THE_SILENT, DEFECT, WATCHER}
 
 static func initialize():
@@ -12,9 +12,6 @@ var hit_animation: String = "hit"
 var shoulder_img: Texture2D = null
 var shoulder2_img: Texture2D = null
 
-var starting_max_health: int = 0
-var max_health: int = 0
-var current_health: int = 0
 var master_max_orbs: int = 0
 var energy: int = 0
 var master_hand_size: int = 0

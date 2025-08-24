@@ -44,20 +44,17 @@ layout_mode = 0
 
 [node name="Player" type="Control" parent="." node_paths=PackedStringArray("animated_sprite", "shoulder")]
 anchors_preset = 0
-offset_left = 440.0
-offset_top = 655.0
-offset_right = 480.0
-offset_bottom = 695.0
 script = ExtResource("3_vxldj")
 animated_sprite = NodePath("AnimatedSprite2D")
-shoulder = NodePath("../Shoulder")
+shoulder = NodePath("Shoulder")
 metadata/_custom_type_script = "uid://dn5375c5h573x"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(440, 655)
 sprite_frames = ExtResource("4_4ujba")
 animation = &"iron_idle"
 
-[node name="Shoulder" type="Sprite2D" parent="."]
+[node name="Shoulder" type="Sprite2D" parent="Player"]
 visible = false
 position = Vector2(0, -56)
 texture = ExtResource("5_i8bs6")

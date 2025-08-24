@@ -51,25 +51,26 @@ func _init(is_done: bool = false) -> void:
 
 func setup_to_room_event_dialog(_room_event_dialog: RoomEventDialog) -> void:
 	_room_event_dialog.animated_npc.sprite_frames = CardGame.anim_library.neow_anim
-	_room_event_dialog.animated_npc.position = Vector2(1534, 455)
+	_room_event_dialog.animated_npc.position = Vector2(1534, 500)
 	_room_event_dialog.animated_npc.play("idle")
 	pass
 
 func talk(text: String) -> void:
 	print("talk:", text)
-	CardGame.dungeon_main_screen.add_game_effect(SpeechBubble.create_infinite_speech_bubble(DIALOG_POS, text))
+	CardGame.dungeon_main_screen.add_game_effect(SpeechBubble.create_infinite_speech_bubble(DIALOG_POS, text), false)
 
 func on_option_selected(_option_slot: int) -> OptionResult:
-	print("screen_num:", screen_num)
-	print("boss_count:", boss_count)
-
+	# print("screen_num:", screen_num)
+	# print("boss_count:", boss_count)
 	if screen_num == 0:
+		dismiss_bubble()
 		talk(TEXT[4])
 		if boss_count != 0:
 			return blessing()
 		else:
 			return mini_blessing()
 	elif screen_num == 1:
+		dismiss_bubble()
 		if boss_count == 0:
 			return mini_blessing()
 		else:
@@ -80,6 +81,7 @@ func on_option_selected(_option_slot: int) -> OptionResult:
 		else:
 			return OptionResult.ReturnMap
 	elif screen_num == 3:
+		dismiss_bubble()
 		screen_num = 99
 		match _option_slot:
 			0:
@@ -118,7 +120,7 @@ func on_option_selected(_option_slot: int) -> OptionResult:
 
 func blessing() -> OptionResult:
 	var result: OptionResult = OptionResult.new()
-
+	dismiss_bubble()
 	talk(TEXT[7])
 	neow_rewards.clear()
 	neow_rewards.append(NeowReward.create_by_category(0))
@@ -135,6 +137,7 @@ func blessing() -> OptionResult:
 
 func mini_blessing() -> OptionResult:
 	var result: OptionResult = OptionResult.new()
+	dismiss_bubble()
 	talk(TEXT[randi_range(4, 6)])
 
 	neow_rewards.clear()
@@ -147,10 +150,23 @@ func mini_blessing() -> OptionResult:
 	return result
 
 func daily_blessing() -> void:
+	dismiss_bubble()
 	return
 
 func endless_blessing() -> void:
+	dismiss_bubble()
 	return
+
+func dismiss_bubble() -> void:
+	for effect in CardGame.dungeon_main_screen.game_effect_list:
+		if effect is SpeechBubble and (effect as SpeechBubble).bubble_type == SpeechBubble.BubbleType.INFINITE:
+			(effect as SpeechBubble).dismiss()
+
+func clear() -> void:
+	for effect in CardGame.dungeon_main_screen.game_effect_list:
+		if effect is SpeechBubble and (effect as SpeechBubble).bubble_type == SpeechBubble.BubbleType.INFINITE:
+			(effect as SpeechBubble).dismiss(true)
+
 func play_sfx() -> void:
 	var roll = randi_range(0, 3)
 	if roll == 0:

@@ -1,6 +1,9 @@
 class_name ShopScreen
 extends Control
 
+const MIN_IDLE_MSG_TIME: float = 40.0
+const MAX_IDLE_MSG_TIME: float = 60.0
+
 const START_Y: float = -142 - Settings.DEFAULT_HEIGHT
 const OPEN_Y: float = -42
 const OPENING_SPEED: float = 5
@@ -12,7 +15,7 @@ const RM_PRICE_INCREASE_AMOUNT: int = 50
 static var character_string: CharacterString = null
 static var SHOP_NAMES: Array = []
 static var SHOP_TEXT: Array = []
-
+static var WELCOME_MSG: String = ""
 static var HOVERING_SCALE: Vector2 = Vector2(1.3, 1.3)
 static var NORMAL_SCALE: Vector2 = Vector2(1, 1)
 static var RECOVERING_SCALE: Vector2 = Vector2(0.8, 0.8)
@@ -21,7 +24,7 @@ static func initialize() -> void:
 	character_string = CardGame.languagePack.get_character_string("Shop Screen")
 	SHOP_NAMES = character_string.NAMES
 	SHOP_TEXT = character_string.TEXT
-
+	WELCOME_MSG = SHOP_NAMES[0]
 @export var bg: Sprite2D = null
 @export var remove_service_img: Sprite2D = null
 @export var hand: Sprite2D = null
@@ -35,6 +38,10 @@ static func initialize() -> void:
 @export var potions_container: Control = null
 @export_group("")
 
+var speech_timer: float = 0
+var speech_bubble: SpeechBubble = null
+var said_welcome: bool = false
+var idle_messages: Array = []
 
 var move_speed: float = 10
 var remove_img: Texture2D = null
@@ -83,7 +90,7 @@ func _process(delta: float) -> void:
 	update_cards(delta)
 	update_remove_service(delta)
 	update_hand(delta)
-
+	update_speech(delta)
 	
 	if not some_hovering:
 		hovering_timer -= delta
@@ -106,14 +113,15 @@ func update_cards(delta: float) -> void:
 				card.scale = MathHelper.vec2_lerp_snap(card.scale, HOVERING_SCALE, clamp_delta * move_speed * 10)
 			else:
 				card.scale = HOVERING_SCALE
-			card.z_index = 1
+			# if card.get_index() != card.get_parent().get_child_count() - 1:
+				# card.get_parent().move_child(card, -1)
+			card.move_to_front()
 		else:
 			if (card.scale - NORMAL_SCALE).length_squared() > Global.EPLISON:
 				# card.scale = card.scale.lerp(NORMAL_SCALE, delta * move_speed)
 				card.scale = MathHelper.vec2_lerp_snap(card.scale, NORMAL_SCALE, clamp_delta * move_speed)
 			else:
 				card.scale = NORMAL_SCALE
-			card.z_index = 0
 
 func update_remove_service(delta: float) -> void:
 	var clamp_delta = clamp(delta, 0.001, 0.02)
@@ -122,10 +130,10 @@ func update_remove_service(delta: float) -> void:
 		hovering_timer = 1.0
 		some_hovering = true
 		remove_service.scale = MathHelper.vec2_lerp_snap(remove_service.scale, HOVERING_SCALE, clamp_delta * move_speed * 10)
-		remove_service.z_index = 1
+		# remove_service.z_index = 1
 	else:
 		remove_service.scale = MathHelper.vec2_lerp_snap(remove_service.scale, NORMAL_SCALE, clamp_delta * move_speed)
-		remove_service.z_index = 0
+		# remove_service.z_index = 0
 
 func move_hand(pos: Vector2) -> void:
 	hand_target_pos = pos / Settings.scale + HAND_OFFSET
@@ -137,6 +145,34 @@ func update_hand(delta: float) -> void:
 			hand.position.y = MathHelper.lerp_snap(hand.position.y, hand_target_pos.y, delta * 6.0)
 		elif hand.position.y > hand_target_pos.y:
 			hand.position.y = MathHelper.lerp_snap(hand.position.y, hand_target_pos.y, delta * 1.5)
+
+func update_speech(delta: float) -> void:
+	if speech_bubble != null:
+		if speech_bubble.is_queued_for_deletion() or speech_bubble.is_done:
+			speech_bubble = null
+	
+	speech_timer -= delta
+	if speech_bubble == null and speech_timer <= 0.0:
+		speech_timer = randf_range(MIN_IDLE_MSG_TIME, MAX_IDLE_MSG_TIME)
+		if not said_welcome:
+			create_speech(WELCOME_MSG)
+			said_welcome = true
+			CardGame.dungeon_main_screen.dungeon_room_screen.shop_ui.welcome_sfx()
+		else:
+			CardGame.dungeon_main_screen.dungeon_room_screen.shop_ui.play_misc_sfx()
+			create_speech(get_idle_msg())
+
+func create_speech(msg: String) -> void:
+	var x = randf_range(660, 1260)
+	var y = 0
+	if speech_bubble != null:
+		speech_bubble.dismiss()
+	speech_bubble = SpeechBubble.create_shop_speech_bubble(Vector2(x, y), msg)
+	CardGame.dungeon_main_screen.add_game_effect(speech_bubble)
+
+func get_idle_msg() -> String:
+	return idle_messages.pick_random()
+
 
 func open() -> void:
 	if is_showing:
@@ -166,7 +202,9 @@ func close() -> void:
 	content.position.y = START_Y
 	hand.position = HAND_INIT_POS
 	hand_target_pos = hand.position
-
+	if speech_bubble != null and not speech_bubble.is_done: 
+		speech_bubble.dismiss()
+	
 func load_card_and_price(colored_cards: Array, colorless_cards: Array) -> void:
 	for card: CardWidget in cardwidgets:
 		card_price_mapping[card].queue_free()
@@ -200,7 +238,7 @@ func init_card(_cardwidgets: Array) -> void:
 		cur_x_pos += card.size.x + H_SEPARATION
 
 		card.on_card_clicked = self._on_card_widget_clicked
-
+	
 func init_shop_ui() -> void:
 	rm_available = true
 
@@ -216,7 +254,7 @@ func set_rm_available(available: bool) -> void:
 
 func purge_card() -> void:
 	rm_available = false
-	CardGame.dungeon_main_screen.player.use_gold(rm_price)
+	CardGame.dungeon_main_screen.player.lose_gold(rm_price)
 	rm_price += RM_PRICE_INCREASE_AMOUNT
 	refresh_price_color()
 
@@ -230,7 +268,8 @@ func refresh_price_color() -> void:
 func _on_card_widget_clicked(card_widget: CardWidget) -> void:
 	var price_widget: PriceWidget = card_price_mapping[card_widget]
 	if CardGame.dungeon_main_screen.player.gold >= price_widget.priceAmt:
-		CardGame.dungeon_main_screen.player.use_gold(price_widget.priceAmt)
+		CardGame.dungeon_main_screen.player.lose_gold(price_widget.priceAmt)
+		CardGame.sound.single_play("SHOP_BUY")
 		var obtain_timer = get_tree().create_timer(0.1)
 		obtain_timer.timeout.connect(func() -> void:
 			card_widget.scale = NORMAL_SCALE
@@ -239,11 +278,51 @@ func _on_card_widget_clicked(card_widget: CardWidget) -> void:
 			cardwidgets.erase(card_widget)
 			CardGame.soul.obtain_card(card_widget)
 			)
-	
+		play_buy_sfx()
+		create_speech(get_buy_msg())
+	else:
+		speech_timer = randf_range(MIN_IDLE_MSG_TIME, MAX_IDLE_MSG_TIME)
+		play_cant_buy_sfx()
+		create_speech(get_cant_buy_msg())
 	refresh_price_color()
+
 func _on_rm_service_pressed() -> void:
 	if not rm_available:
 		return
 	refresh_price_color()
 	if CardGame.dungeon_main_screen.player.gold >= rm_price:
 		CardGame.dungeon_main_screen.open_screen(DungeonMainScreen.ScreenType.PURGE_DECK_VIEW)
+
+
+
+func set_msg(msg_list: Array) -> void:
+	idle_messages = msg_list
+
+func set_default_msg() -> void:
+	idle_messages = SHOP_TEXT
+
+func play_buy_sfx() -> void:
+	var roll: int = randi_range(0, 2)
+	if roll == 0:
+		CardGame.sound.single_play("VO_MERCHANT_KA")
+	elif roll == 1:
+		CardGame.sound.single_play("VO_MERCHANT_KB")
+	else:
+		CardGame.sound.single_play("VO_MERCHANT_KC")
+func play_cant_buy_sfx() -> void:
+	var roll: int = randi_range(0, 2)
+	if roll == 0:
+		CardGame.sound.single_play("VO_MERCHANT_2A")
+	elif roll == 1:
+		CardGame.sound.single_play("VO_MERCHANT_2B")
+	else:
+		CardGame.sound.single_play("VO_MERCHANT_2C")
+
+func get_cant_buy_msg() -> String:
+	var msg_list : Array = [SHOP_NAMES[1], SHOP_NAMES[2], SHOP_NAMES[3], SHOP_NAMES[4], SHOP_NAMES[5], SHOP_NAMES[6]]
+
+	return msg_list.pick_random()
+
+func get_buy_msg() -> String:
+	var msg_list : Array = [SHOP_NAMES[7], SHOP_NAMES[8], SHOP_NAMES[9], SHOP_NAMES[10], SHOP_NAMES[11]]
+	return msg_list.pick_random()

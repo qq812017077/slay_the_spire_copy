@@ -57,7 +57,7 @@ func get_purgeable_cards() -> Array[AbstractCard]:
 
 func gain_gold(gold_amt: int) -> void:
 	gold += gold_amt
-func use_gold(gold_amt: int) -> void:
+func lose_gold(gold_amt: int) -> void:
 	gold -= gold_amt
 func initialize_starting_deck() -> void:
 	var cards: Array[String] = get_starting_deck()

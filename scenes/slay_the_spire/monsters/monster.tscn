@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://fkdvdoxjrbx6"]
+
+[ext_resource type="SpriteFrames" uid="uid://sxe5qo2nxoi7" path="res://arts/slay_the_spire/images/monsters/theBottom/anim.tres" id="1_bo2ap"]
+
+[node name="Monster" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_bo2ap")
+animation = &"jaw_worm_idle"

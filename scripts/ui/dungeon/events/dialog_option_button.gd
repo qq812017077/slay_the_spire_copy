@@ -30,6 +30,7 @@ func _ready() -> void:
 	btn.mouse_exited.connect(_on_button_mouse_exited)
 	btn.button_down.connect(_on_button_down)
 	btn.button_up.connect(_on_button_up)
+
 func _process(delta: float) -> void:
 	update_animation(delta)
 

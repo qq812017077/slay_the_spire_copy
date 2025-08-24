@@ -160,7 +160,6 @@ func load_scene() -> void:
 	chainsGlow_sprite.material = MaterialLibrary.add_material
 	fgGlow_sprite.material = MaterialLibrary.add_material
 
-
 func randomize_scene(rng: RandomNumberGenerator) -> void:
 	overlay_color = Color(rng.randf_range(0.8, 0.9), rng.randf_range(0.8, 0.9), rng.randf_range(0.95, 1.0), 1)
 	has_flies = rng.randi_range(0, 1) == 0

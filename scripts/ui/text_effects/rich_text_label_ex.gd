@@ -8,6 +8,9 @@ enum TextColor {DEFAULT, RED, GREEN, BLUE, GOLD, PURPLE, WHITE}
 var parsed_words: Array[String] = []
 var loaded_effects: Array[String] = []
 
+func _ready() -> void:
+	mouse_filter = MOUSE_FILTER_IGNORE
+
 func update_text(raw_text: String) -> void:
 	
 	clear()
@@ -26,6 +29,8 @@ func generate_bbcode(raw_text: String) -> String:
 	parsed_words.clear()
 	var bbcode: String = ""
 	for word: String in words:
+		if word == "":
+			continue
 		if word == "NL":
 			bbcode += "\n"
 			parsed_words.append("\n")

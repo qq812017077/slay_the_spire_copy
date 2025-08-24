@@ -13,9 +13,10 @@ const EPLISON: float = 0.00005
 # layer
 const BLACKBG_Z_INDEX = -10
 
+const ROOM_Z_INDEX = -1
+
 const CARD_Z_INDEX = 0
 const DEFAULT_Z_INDEX = 0
-
 # menu
 const TAB_Z_INDEX = 1
 

@@ -587,7 +587,11 @@ static func clean_button_style(button: BaseButton) -> void:
 	button.add_theme_stylebox_override("hover_pressed", STYLE_BOX_EMPTY)
 	button.add_theme_stylebox_override("pressed", STYLE_BOX_EMPTY)
 	button.add_theme_stylebox_override("normal", STYLE_BOX_EMPTY)
+
+static func clean_rich_text_style(rtl: RichTextLabel) -> void:
+	rtl.scroll_active = false
 	
+
 static func initialize_richtextlabel_style(label: RichTextLabel) -> void:
 	label.bbcode_enabled = true
 	label.threaded = true

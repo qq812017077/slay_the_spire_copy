@@ -81,7 +81,6 @@ offset_top = 801.921
 offset_bottom = 938.921
 
 [node name="MerchantHand" type="Sprite2D" parent="."]
-z_index = 1
 position = Vector2(893, 96)
 texture = ExtResource("5_7hya5")
 offset = Vector2(0, -480)

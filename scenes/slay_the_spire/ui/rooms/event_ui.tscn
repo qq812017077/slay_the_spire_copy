@@ -117,6 +117,7 @@ offset_bottom = 944.0
 mouse_filter = 2
 
 [node name="npc" type="AnimatedSprite2D" parent="RoomEventDialog"]
+z_index = -1
 position = Vector2(1543, 512)
 sprite_frames = ExtResource("8_idk1s")
 animation = &"idle"

@@ -19,6 +19,9 @@ func _init(_type: EventType, _title: String, _body: String, _img: Texture2D) -> 
 func is_finished() -> bool:
 	return false
 
+func clear() -> void:
+	pass
+
 func init_room_event(_room_event_dialog: RoomEventDialog) -> void:
 	pass
 

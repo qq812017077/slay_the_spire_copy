@@ -56,9 +56,6 @@ texture = SubResource("CanvasTexture_asgwx")
 
 [node name="Screens" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 1.20048
-offset_right = 41.2005
-offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="DungeonRoomScreen" parent="Screens" instance=ExtResource("2_feunk")]
@@ -79,23 +76,24 @@ layout_mode = 0
 visible = false
 layout_mode = 0
 
-[node name="DungeonMapScreen" parent="Screens" instance=ExtResource("2_tieqw")]
-layout_mode = 1
-
-[node name="DungeonTransitionScreen" parent="Screens" instance=ExtResource("1_wo6ee")]
-layout_mode = 1
-
 [node name="ShopScreen" parent="Screens" instance=ExtResource("6_0c3kw")]
 visible = false
 layout_mode = 0
+
+[node name="DungeonMapScreen" parent="Screens" instance=ExtResource("2_tieqw")]
+layout_mode = 1
 
 [node name="DeckViewScreen" parent="Screens" instance=ExtResource("7_hblq6")]
 visible = false
 layout_mode = 0
 
+[node name="DungeonTransitionScreen" parent="Screens" instance=ExtResource("1_wo6ee")]
+layout_mode = 1
+
 [node name="GameEffect" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -1.20048
+offset_right = 38.7995
 offset_bottom = 40.0
 mouse_filter = 2
 

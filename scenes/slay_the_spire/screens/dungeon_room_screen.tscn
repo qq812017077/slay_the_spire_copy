@@ -63,14 +63,14 @@ position = Vector2(0, -56)
 texture = ExtResource("5_i8bs6")
 centered = false
 
+[node name="TreasureUI" parent="." instance=ExtResource("9_a5dpk")]
+visible = false
+layout_mode = 0
+
 [node name="ShopUI" parent="." instance=ExtResource("7_hx8xb")]
 visible = false
 layout_mode = 0
 
 [node name="EventUI" parent="." instance=ExtResource("7_fer8d")]
-visible = false
-layout_mode = 0
-
-[node name="TreasureUI" parent="." instance=ExtResource("9_a5dpk")]
 visible = false
 layout_mode = 0

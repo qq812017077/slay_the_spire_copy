@@ -21,6 +21,25 @@ func _init() -> void:
 	sfx_map.set("VO_NEOW_3A", load_stream("neow/STS_VO_Neow_3a.ogg"))
 	sfx_map.set("VO_NEOW_3B", load_stream("neow/STS_VO_Neow_3b.ogg"))
 
+	# merchant
+	sfx_map.set("VO_MERCENARY_1A", load_stream("npc/merchant/STS_VO_Mercenary_1a.ogg"))
+	sfx_map.set("VO_MERCENARY_1B", load_stream("npc/merchant/STS_VO_Mercenary_1b.ogg"))
+	sfx_map.set("VO_MERCENARY_2A", load_stream("npc/merchant/STS_VO_Mercenary_2a.ogg"))
+	sfx_map.set("VO_MERCENARY_3A", load_stream("npc/merchant/STS_VO_Mercenary_3a.ogg"))
+	sfx_map.set("VO_MERCENARY_3B", load_stream("npc/merchant/STS_VO_Mercenary_3b.ogg"))
+	sfx_map.set("VO_MERCHANT_2A", load_stream("npc/merchant/STS_VO_Merchant_2a.ogg"))
+	sfx_map.set("VO_MERCHANT_2B", load_stream("npc/merchant/STS_VO_Merchant_2b.ogg"))
+	sfx_map.set("VO_MERCHANT_2C", load_stream("npc/merchant/STS_VO_Merchant_2c.ogg"))
+	sfx_map.set("VO_MERCHANT_3A", load_stream("npc/merchant/STS_VO_Merchant_3a.ogg"))
+	sfx_map.set("VO_MERCHANT_3B", load_stream("npc/merchant/STS_VO_Merchant_3b.ogg"))
+	sfx_map.set("VO_MERCHANT_3C", load_stream("npc/merchant/STS_VO_Merchant_3c.ogg"))
+	sfx_map.set("VO_MERCHANT_KA", load_stream("npc/merchant/STS_VO_Merchant_Kekeke_a.ogg"))
+	sfx_map.set("VO_MERCHANT_KB", load_stream("npc/merchant/STS_VO_Merchant_Kekeke_b.ogg"))
+	sfx_map.set("VO_MERCHANT_KC", load_stream("npc/merchant/STS_VO_Merchant_Kekeke_c.ogg"))
+	sfx_map.set("VO_MERCHANT_MA", load_stream("npc/merchant/STS_VO_Merchant_Mlyah_a.ogg"))
+	sfx_map.set("VO_MERCHANT_MB", load_stream("npc/merchant/STS_VO_Merchant_Mlyah_b.ogg"))
+	sfx_map.set("VO_MERCHANT_MC", load_stream("npc/merchant/STS_VO_Merchant_Mlyah_c.ogg"))
+
 	# ui
 	sfx_map.set("UI_CLICK_1", load_stream("ui/SOTE_SFX_UIClick_1_v2.wav"))
 	sfx_map.set("UI_CLICK_2", load_stream("ui/SOTE_SFX_UIClick_2_v2.wav"))

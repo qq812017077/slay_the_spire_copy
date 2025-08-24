@@ -40,7 +40,7 @@ func display_next_word() -> void:
 	next_display_idx += 1
 
 
-func update_text_with_appear(raw_text: String, ae : AppearEffect):
+func update_text_with_appear(raw_text: String, ae: AppearEffect):
 	clear()
 	unload_effects()
 
@@ -57,7 +57,7 @@ func update_text_with_appear(raw_text: String, ae : AppearEffect):
 	var bbcode: String = generate_bbcode(raw_text)
 	# print("final:", global_bbcode_prefix + bbcode + global_bbcode_suffix)
 	append_text(global_bbcode_prefix + bbcode + global_bbcode_suffix)
-
+	# print("bbcode:", bbcode)
 	reset()
 
 func reset() -> void:

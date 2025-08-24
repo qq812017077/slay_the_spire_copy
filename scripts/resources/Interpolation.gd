@@ -2,16 +2,22 @@ class_name Interpolation
 extends Resource
 
 @export var fade: Curve
+@export var swing_in: Curve
 @export var swing_out: Curve
 
 func apply_fade(start: float, end: float, weight: float) -> float:
     return MathHelper.lerp_snap(start, end, fade.sample(weight))
+
+func apply_swing_in(start: float, end: float, weight: float) -> float:
+    return lerp(start, end, swing_in.sample(weight))
 
 func apply_swing_out(start: float, end: float, weight: float) -> float:
     return lerp(start, end, swing_out.sample(weight))
 
 func apply_circle_in(start: float, end: float, weight: float) -> float:
     return MathHelper.lerp_snap(start, end, 1 - sqrt(1 - weight * weight))
+
+
 
 func _apply_exp(start: float, end: float, weight: float, exp_num: int = 1) -> float:
     if weight < 0.5:

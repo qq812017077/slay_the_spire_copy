@@ -33,6 +33,9 @@ func open(event: AbstractEvent) -> void:
 	
 func close() -> void:
 	visible = false
+	if cur_event!= null:
+		cur_event.clear()
+		cur_event = null 
 
 func _on_option_button_click(option_button: DialogOptionButton) -> void:
 	var result: OptionResult = cur_event.on_option_selected(option_button.slot)

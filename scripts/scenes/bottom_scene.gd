@@ -101,7 +101,6 @@ func load_scene() -> void:
 	set_texture(fg_sprite, fg)
 
 
-
 func open_combat_room() -> void:
 	for room: Control in rooms:
 		room.visible = true if room == combat_room else false

@@ -55,7 +55,17 @@ func set_type_by_symbol(symbol: String) -> void:
 func on_player_entry():
 	pass
 
-
+func apply_end_of_turn_relic():
+	for relic in CardGame.dungeon_main_screen.player.relics:
+		relic.on_player_end_turn()
+	for blight in CardGame.dungeon_main_screen.player.blights:
+		blight.on_player_end_turn()
+	
+func apply_end_of_turn_pre_card_powers():
+	for power : AbstractPower in CardGame.dungeon_main_screen.player.powers:
+		# power.at_end_()
+		pass
+	
 func get_card_rarity(roll: int) -> AbstractCard.CardRarity:
 	return get_card_rarity_with_alter_prob(roll, true)
 

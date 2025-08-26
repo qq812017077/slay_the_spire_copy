@@ -65,3 +65,11 @@ func playLandingSFX() -> void:
 			CardGame.sound.single_play("RELIC_DROP_MAGICAL")
 			return
 	CardGame.sound.single_play("RELIC_DROP_CLINK")
+
+
+
+func on_turn_start():
+	pass
+# events
+func on_player_end_turn():
+	pass

@@ -41,6 +41,7 @@ var pre_black_mask_state: BlackMask.FadeState = BlackMask.FadeState.IDLE
 @export var game_effect_container: Control = null
 @export var particle_effect_container: Control = null
 
+var action_manager: GameActionManager = GameActionManager.new()
 var game_effect_list: Array[AbstractGameEffect] = []
 var particle_effect_list: Array[AbstractParticleEffect] = []
 
@@ -86,6 +87,8 @@ func _ready() -> void:
 	overlay_menu.proceed_button.button.mouse_entered.connect(_on_proceed_button_mouse_entered)
 
 func _process(_delta: float) -> void:
+	action_manager.update(_delta)
+	
 	_update_fading()
 	_update_room_state()
 	_update_effects()

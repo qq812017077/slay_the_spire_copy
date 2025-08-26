@@ -297,6 +297,9 @@ func get_description() -> Array[DescriptionLine]:
 # 	return self.card_description_label
 
 
+func trigger_on_end_of_turn_for_playing_cards():
+	pass
+
 ##############################
 # functions for inner use
 ##############################

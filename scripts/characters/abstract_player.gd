@@ -17,6 +17,8 @@ var energy: int = 0
 var master_hand_size: int = 0
 var gold: int = 0
 
+var orbs: Array[AbstractOrb] = []
+
 var master_decks: CardGroup = CardGroup.new(CardGroup.CardGroupType.MASTER_DECK)
 var draw_pile: CardGroup = CardGroup.new(CardGroup.CardGroupType.DRAW_PILE)
 var hand: CardGroup = CardGroup.new(CardGroup.CardGroupType.HAND)
@@ -64,6 +66,11 @@ func initialize_starting_deck() -> void:
 func get_card_trail_color() -> Color:
 	return Color.WHITE
 
+
+func on_end_of_turn():
+	for c: AbstractCard in hand.group:
+		c.trigger_on_end_of_turn_for_playing_cards()
+
 static func get_character_name(player_type: PlayerType) -> String:
 	match player_type:
 		PlayerType.IRONCLAD:
@@ -76,6 +83,7 @@ static func get_character_name(player_type: PlayerType) -> String:
 			return ""
 
 	return ""
+
 static func get_character_relic(player_type: PlayerType) -> AbstractRelic:
 	match player_type:
 		PlayerType.IRONCLAD:

@@ -25,6 +25,7 @@ var screen_shake: ScreenShake = null
 var mouse_cursor: MouseCursor = null
 var black_mask: BlackMask = null
 var effectlist_container: Control = null
+
 # custom resource
 var interpolation: Interpolation = null
 var effect_library: EffectLibrary = null
@@ -89,6 +90,7 @@ func exist_saved_game() -> bool:
 
 func create_nodes() -> void:
 	var screenSize = Vector2i(Settings.WIDTH, Settings.HEIGHT)
+
 	soul = SoulMaster.new()
 	soul.name = "SoulMaster"
 	add_child(soul)

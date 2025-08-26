@@ -56,7 +56,7 @@ func get_next_action():
 
 			if card_queue[0].random_target:
 				card_queue[0].monster = CardGame.dungeon_main_screen.get_random_monster()
-
+			
 func execute_action(delta: float):
 	if cur_action and not cur_action.is_done:
 		cur_action.update(delta)
@@ -70,6 +70,8 @@ func execute_action(delta: float):
 			CardGame.dungeon_main_screen.refresh_player()
 			has_control = false
 		using_card = false
+
+
 
 
 func add_to_bottom(action: AbstractGameAction):
@@ -106,6 +108,16 @@ func remove_from_queue(c: AbstractCard) -> void:
 	if idx != -1:
 		card_queue.remove_at(idx)
 
+func clear_post_combat_actions() -> void:
+	# remove all actions that are not combat actions
+	var i: int = 0
+	while i < actions.size():
+		# if actions[i] is HealAction or actions[i] is GainBlockAction or actions[i] is UseCardAction:
+		# 	continue
+		if actions[i].action_type == AbstractGameAction.ActionType.DAMAGE:
+			continue
+		actions.remove_at(i)
+		i -= 1
 
 func call_end_of_turn_actions():
 	var room : AbstractRoom = CardGame.dungeon_main_screen.dungeon.cur_room_node.room

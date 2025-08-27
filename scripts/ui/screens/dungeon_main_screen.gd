@@ -131,23 +131,6 @@ func _update_room_state() -> void:
 	# if cur_room_node.room.phase != AbstractRoom.RoomPhase.COMPLETE:
 	# 	cur_room_node.room.phase = AbstractRoom.RoomPhase.COMPLETE
 
-func _update_effects() -> void:
-	var i = game_effect_list.size() - 1
-	while i >= 0:
-		var effect: AbstractGameEffect = game_effect_list[i]
-		if effect.is_done:
-			game_effect_list.remove_at(i)
-			if not effect.can_recycle:
-				effect.queue_free()
-		i -= 1
-
-	i = particle_effect_list.size() - 1
-	while i >= 0:
-		var effect: AbstractParticleEffect = particle_effect_list[i]
-		if effect.is_done:
-			particle_effect_list.remove_at(i)
-			effect.queue_free()
-		i -= 1
 
 func load_new_dungeon(dungeon_id: String, player_id: String, _ascension_level: int = 0) -> void:
 	if dungeon_id == Exordium.ID:
@@ -235,6 +218,11 @@ func load_next_dungeon(dungeon_id: String) -> void:
 func set_ascension_level(level: int) -> void:
 	ascension_level = level
 	is_ascension_mode = level > 0
+
+
+# ******************************************************
+# Screen Functions
+# ******************************************************
 
 func open_screen(screen_type: ScreenType, instant: bool = true) -> void:
 	match screen_type:
@@ -423,6 +411,29 @@ func next_room_transition() -> void:
 func set_z_order() -> void:
 	$BlackBG.z_index = Global.BLACKBG_Z_INDEX
 
+
+# ******************************************************
+# Effect Functions
+# ******************************************************
+
+func _update_effects() -> void:
+	var i = game_effect_list.size() - 1
+	while i >= 0:
+		var effect: AbstractGameEffect = game_effect_list[i]
+		if effect.is_done:
+			game_effect_list.remove_at(i)
+			if not effect.can_recycle:
+				effect.queue_free()
+		i -= 1
+
+	i = particle_effect_list.size() - 1
+	while i >= 0:
+		var effect: AbstractParticleEffect = particle_effect_list[i]
+		if effect.is_done:
+			particle_effect_list.remove_at(i)
+			effect.queue_free()
+		i -= 1
+
 func add_game_effect(game_effect: AbstractGameEffect, edit_z_index: bool = true) -> void:
 	game_effect_list.append(game_effect)
 	if edit_z_index:
@@ -442,6 +453,13 @@ func add_particle_effect(particle_effect: AbstractParticleEffect, edit_z_index: 
 
 	if play:
 		particle_effect.play()
+
+
+func show_map() -> void:
+	open_screen(ScreenType.MAP, true)
+# ******************************************************
+# Event Functions
+# ******************************************************
 
 func on_top_panel_map_button_click() -> void:
 	if cur_screen == ScreenType.MAP:
@@ -522,8 +540,6 @@ func on_proceed_click() -> void:
 	else:
 		show_map()
 
-func show_map() -> void:
-	open_screen(ScreenType.MAP, true)
 
 func show_proceed_button_if_needed() -> void:
 	if card_select_reward_screen.visible:
@@ -548,6 +564,10 @@ func _on_proceed_button_mouse_entered() -> void:
 	if combat_reward_screen.is_show:
 		combat_reward_screen.flash()
 
+
+# ******************************************************
+# Card Functions
+# ******************************************************
 func get_reward_cards() -> Array[AbstractCard]:
 	var cards: Array[AbstractCard] = []
 	var num_cards: int = 3
@@ -670,3 +690,18 @@ func initialize_card_pool() -> void:
 	for card: AbstractCard in curse_cards:
 		if card != null and card.card_id != Necronomicurse.ID and card.card_id != AscendersBane.ID and card.card_id != CurseOfTheBell.ID and card.card_id != Pride.ID:
 			curse_card_pool.add_to_top(card)
+
+
+# ******************************************************
+# Monster Functions
+# ******************************************************
+func get_cur_monsters() -> MonsterGroup:
+	return dungeon.cur_room_node.room.monsters
+
+
+# ******************************************************
+# Room Functions
+# ******************************************************
+
+func get_cur_room() -> AbstractRoom:
+	return dungeon.cur_room_node.room

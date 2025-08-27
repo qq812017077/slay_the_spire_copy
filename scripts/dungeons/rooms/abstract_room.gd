@@ -20,6 +20,9 @@ var base_uncommon_card_chance: int = 37
 var rare_card_chance: int = base_rare_card_chance
 var uncommon_card_chance: int = base_uncommon_card_chance
 
+# monster
+var monsters: MonsterGroup = null
+var skip_monster_turn: bool = false
 # event
 var event: AbstractEvent = null
 

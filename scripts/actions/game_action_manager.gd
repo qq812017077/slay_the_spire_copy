@@ -10,6 +10,8 @@ var pre_turn_actions: Array[AbstractGameAction] = []
 var card_queue: Array[CardQueueItem] = []
 var monster_queue: Array[MonsterQueueItem] = []
 
+var cards_played_this_turn: Array[AbstractCard] = []
+var cards_played_this_combat: Array[AbstractCard] = []
 var cur_action: AbstractGameAction = null
 var previous_action: AbstractGameAction = null
 
@@ -21,6 +23,9 @@ var has_control: bool = false
 var is_combating: bool :
 	get:
 		return CardGame.dungeon_main_screen.dungeon.cur_room_node.room.phase == AbstractRoom.RoomPhase.COMBAT
+
+
+var monster_attacks_queued: bool = false
 
 func update(delta: float) -> void:
 	match phase:
@@ -54,9 +59,75 @@ func get_next_action():
 		if card:
 			card.is_in_auto_play = card_queue[0].auto_play_card
 
-			if card_queue[0].random_target:
-				card_queue[0].monster = CardGame.dungeon_main_screen.get_random_monster()
+			var player: AbstractPlayer = CardGame.dungeon_main_screen.player
+			var room_monster: MonsterGroup = CardGame.dungeon_main_screen.get_cur_monsters()
+			if card.random_target:
+				card.monster = room_monster.get_raondom_monster(null, true, 
+				CardGame.dungeon_main_screen.dungeon.cardRandomRng)
 			
+			if card.can_use(player, card.monster) or card.dont_trigger_on_use_card:
+				can_play_card = true
+				
+				if card.free_to_play():
+					card.free_to_play_once = true
+				card.energy_on_use = card_queue[0].energy_on_use
+				if card.is_in_auto_play:
+					card.ignore_energy_on_use = true
+				else:
+					card.ignore_energy_on_use = card_queue[0].ignore_energy_total
+				
+				if not card.dont_trigger_on_use_card:
+					for p: AbstractPower in player.powers:
+						p.on_play_card(card, card_queue[0].monster)
+					
+					for m: AbstractMonster in room_monster.monsters:
+						for p: AbstractPower in m.powers:
+							p.on_play_card(card, card_queue[0].monster)
+
+					for r: AbstractRelic in player.relics:
+						r.on_play_card(card, card_queue[0].monster)
+					
+					for b: AbstracBlight in player.blights:
+						b.on_play_card(card, card_queue[0].monster)
+					
+
+					for c: AbstractCard in player.hand.group:
+						c.on_play_card(card, card_queue[0].monster)
+					
+					for c: AbstractCard in player.discard_pile.group:
+						c.on_play_card(card, card_queue[0].monster)
+					
+
+					for c: AbstractCard in player.draw_pile.group:
+						c.on_play_card(card, card_queue[0].monster)
+					
+					player.cards_played_count_this_turn += 1
+					cards_played_this_turn.append(card)
+					cards_played_this_combat.append(card)
+				
+				if card.target == AbstractCard.CardTarget.ENEMY and (card_queue[0].monster == null or card_queue[0].monster.is_dead_or_escaped()):
+
+					if card_queue[0].monster == null:
+						pass
+				else:
+					player.use_card(card, card_queue[0].monster, card_queue[0].energy_on_use)
+			else:
+				pass
+			
+			card_queue.pop_front()
+			if not can_play_card and card != null and card.is_in_auto_play:
+				card.dont_trigger_on_use_card = true
+				add_to_bottom(UseCardAction.new(card))
+	elif not monster_attacks_queued:
+		monster_attacks_queued = true
+		if CardGame.dungeon_main_screen.get_cur_room().skip_monster_turn:
+			CardGame.dungeon_main_screen.get_cur_room().monsters.queue_monsters()
+	
+	elif not monster_queue.is_empty():
+		var monster: AbstractMonster = monster_queue[0].monster
+		if not monster.is_dead_or_escaped() or monster.half_dead:
+			if monster.intent != AbstractMonster.Intent.NONE
+				pass
 func execute_action(delta: float):
 	if cur_action and not cur_action.is_done:
 		cur_action.update(delta)

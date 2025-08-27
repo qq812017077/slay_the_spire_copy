@@ -19,6 +19,11 @@ var gold: int = 0
 
 var orbs: Array[AbstractOrb] = []
 
+var relics: Array[AbstractRelic] = []
+var blights: Array[AbstracBlight] = []
+
+var cards_played_count_this_turn: int = 0
+
 var master_decks: CardGroup = CardGroup.new(CardGroup.CardGroupType.MASTER_DECK)
 var draw_pile: CardGroup = CardGroup.new(CardGroup.CardGroupType.DRAW_PILE)
 var hand: CardGroup = CardGroup.new(CardGroup.CardGroupType.HAND)
@@ -58,6 +63,13 @@ func gain_gold(gold_amt: int) -> void:
 	gold += gold_amt
 func lose_gold(gold_amt: int) -> void:
 	gold -= gold_amt
+
+func has_relic(relic_id: String) -> bool:
+	for relic : AbstractRelic in relics:
+		if relic.relicId == relic_id:
+			return true
+	return false
+
 func initialize_starting_deck() -> void:
 	var cards: Array[String] = get_starting_deck()
 	for card_name in cards:

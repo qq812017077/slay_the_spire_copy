@@ -65,6 +65,7 @@ static var orb_relic: AtlasRegion = null
 static var orb_special: AtlasRegion = null
 
 static var ui_string: UIString = null
+static var TEXT: Array = []
 
 static var desc_label_by_card_id: Dictionary = {}
 static var cached_orb_textures_by_region: Dictionary = {}
@@ -112,6 +113,14 @@ var is_multi_damage: bool = false
 var shuffle_back_into_draw_pile: bool = false
 
 var is_ethereal: bool = false # If true, the card is removed from the deck after use, but can be played again.
+
+var is_in_auto_play: bool = false
+var free_to_play_once: bool = false
+
+var dont_trigger_on_use_card: bool = false
+
+var energy_on_use: int = 0
+var ignore_energy_on_use: bool = false
 # evoke
 var show_evoke_value: bool = false
 var show_evoke_orb_count: int = -1
@@ -139,6 +148,7 @@ var portrait: AtlasRegion = null
 var card_to_preview: AbstractCard = null
 var tags: Array[CardTag] = []
 
+var cant_use_msg: String = ""
 # var card_description_label: CardDescriptionLabel = null
 # 静态初始化
 static func init_static():
@@ -174,6 +184,66 @@ _color: CardColor, _rarity: CardRarity, _target: CardTarget, dType: DamageInfo.D
 
 	self.initialize_color()
 	self.initialize_description()
+
+func card_playable(m: AbstractMonster) -> bool :
+	cant_use_msg = ""
+	var valid_target:bool = (target != CardTarget.ENEMY and target != CardTarget.SELF_AND_ENEMY) or m == null or not m.is_dying 
+	if valid_target and not CardGame.dungeon_main_screen.get_cur_monsters().are_monsters_basically_dead():
+		return true
+	return false
+
+func free_to_play() -> bool:
+	if free_to_play_once:
+		return true
+	if CardGame.dungeon_main_screen == null or CardGame.dungeon_main_screen.dungeon.cur_room_node == null:
+		return false
+	
+	if CardGame.dungeon_main_screen.dungeon.cur_room_node.room.phase != AbstractRoom.RoomPhase.COMBAT:
+		return false
+	if CardGame.dungeon_main_screen.dungeon.cur_room_node.room.phase != AbstractRoom.RoomPhase.COMBAT:
+		return false
+	# if !CardGame.dungeon_main_screen.player.has_power(FreeAttackPower.POWER_ID) || type != CardType.ATTACK:
+	# 	return false
+	return true
+
+func has_enough_energy(player: AbstractPlayer) -> bool:
+	if CardGame.dungeon_main_screen.action_manager.turn_has_ended:
+		cant_use_msg = TEXT[9]
+		return false
+	
+	for power: AbstractPower in player.powers:
+		if not power.can_play_card(self):
+			return false
+	
+	# if player.has_power(EntanglePower.ID) and type == CardType.ATTACK:
+	# 	cant_use_msg = TEXT[10]
+	# 	return false
+	
+	for relic : AbstractRelic in player.relics:
+		if not relic.can_play_card(self):
+			return false
+	
+	for blight : AbstracBlight in player.blights:
+		if not blight.can_play_card(self):
+			return false
+	
+
+	for c : AbstractCard in player.hand.group:
+		if not c.can_play_card(self):
+			return false
+	
+	if player.energy >= cost_for_turn or free_to_play() or is_in_auto_play:
+		return true
+	
+	cant_use_msg = TEXT[11]
+	return false
+
+func can_use(player: AbstractPlayer, monster: AbstractMonster) -> bool:
+	if type == CardType.STATUS and cost_for_turn < -1 and not CardGame.dungeon_main_screen.player.has_relic(MedicalKit.ID):
+		return false
+	if (type != CardType.CURSE or cost_for_turn >= -1 or CardGame.dungeon_main_screen.player.has_relic(BlueCandle.ID)) and card_playable(monster) and has_enough_energy(player) :
+		return true
+	return false
 
 func upgrade() -> void:
 	pass
@@ -574,7 +644,7 @@ static func initialize():
 		DESC_CHARACTER_WIDTH = ThemeHelper.normal_font_zhs.get_string_size("a").x
 	
 	ui_string = CardGame.languagePack.get_ui_string("SingleCardViewPopup")
-	
+	TEXT = ui_string.TEXT
 	# initialize atlas all needed
 	var cards_atlas_path: String = "res://arts/slay_the_spire/images/cards/cards.atlas"
 	var orb_atlas_path: String = "res://arts/slay_the_spire/images/orbs/orb.atlas"

@@ -1,6 +1,8 @@
 class_name AbstractPower
 extends Object
 
+var id: String = ""
+
 func at_end_of_turn(player: AbstractPlayer):
 	pass
 

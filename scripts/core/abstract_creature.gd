@@ -5,6 +5,8 @@ enum CreatureAnimation {
     FAST_SHAKE, SHAKE, ATTACK_FAST, ATTACK_SLOW, STAGGER, HOP, JUMP
 }
 
+var powers: Array[AbstractPower] = []
+
 var is_player: bool = false
 
 # hp
@@ -26,3 +28,8 @@ var is_escaping: bool = false
 func damage(info: DamageInfo) -> void:
     pass
 
+func has_power(power_id : String) -> bool:
+    for power : AbstractPower in powers:
+        if power.id == power_id:
+            return true
+    return false

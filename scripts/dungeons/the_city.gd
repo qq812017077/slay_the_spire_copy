@@ -49,7 +49,7 @@ func init_chances() -> void:
 	colorlessRareChance = 0.3
 	cardUpgradedChance = 0.0
 
-func generate_enemies() -> void:
+func generate_monsters() -> void:
 	# TODO: generate monster
 	# TODO:generate elites
 	# generate boss

@@ -3,11 +3,11 @@ extends Object
 
 var id: String = ""
 
-func at_end_of_turn(player: AbstractPlayer):
+func at_end_of_turn(_player: AbstractPlayer):
 	pass
 
-func at_end_of_turn_pre_end_turn_cards(player: AbstractPlayer):
+func at_end_of_turn_pre_end_turn_cards(_player: AbstractPlayer):
 	pass
 
-func at_end_of_round(player: AbstractPlayer):
+func at_end_of_round(_player: AbstractPlayer):
 	pass

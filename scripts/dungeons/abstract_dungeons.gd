@@ -85,7 +85,7 @@ func _init(_name: String, levelId: String, _player: AbstractPlayer, _event_list:
 	player = _player
 	init_chances()
 	generate_seeds()
-	generate_enemies()
+	generate_monsters()
 	
 	init_boss()
 	init_event_list()
@@ -196,8 +196,6 @@ func get_shrine() -> AbstractEvent:
 	shrine_list.erase(tmp_key)
 	return EventLibrary.get_event(tmp_key)
 
-func generate_enemies() -> void:
-	pass
 func get_shop_room_chance() -> float:
 	return shopRoomChance
 func get_rest_room_chance() -> float:
@@ -213,6 +211,45 @@ func get_elite_room_chance() -> float:
 func is_boss_room() -> bool:
 	return cur_room_node != null and cur_room_node.room.type == AbstractRoom.RoomType.BOSS
 
+func generate_monsters() -> void:
+	pass
+
+func generate_exclusions() -> Array[String]:
+	return []
+
+func populate_first_strong_monster(monsters: Array[MonsterInfo], exclusions: Array[String]) -> void:
+	var m := ""
+	while m.length() > 0 and exclusions.has(m):
+		m = MonsterHelper.roll(monsters, monsterRng.randf())
+	
+	monster_list.append(m)
+
+func populate_monster_list(monsters: Array[MonsterInfo], num: int, elites: bool) -> void:
+	if elites:
+		var i: int = 0
+		while i < num:
+			if elite_list.is_empty():
+				elite_list.append(MonsterHelper.roll(monsters, monsterRng.randf()))
+				i += 1
+				continue
+
+			var add: String = MonsterHelper.roll(monsters, monsterRng.randf())
+			if add != elite_list.back():
+				elite_list.append(add)
+				i += 1
+		return
+	else:
+		var i: int = 0
+		while i < num:
+			if monster_list.is_empty():
+				monster_list.append(MonsterHelper.roll(monsters, monsterRng.randf()))
+				i += 1
+				continue
+			var add: String = MonsterHelper.roll(monsters, monsterRng.randf())
+			if add != monster_list.back() and (monster_list.size() <= 1 or add != monster_list[monster_list.size()-2]):
+				monster_list.append(add)
+				i += 1
+		
 
 static func generate_map(cur_dungeon: AbstractDungeons, generate_boss: bool = true) -> void:
 	var starting_time: int = Time.get_ticks_msec()

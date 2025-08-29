@@ -15,7 +15,6 @@ var shoulder2_img: Texture2D = null
 var master_max_orbs: int = 0
 var energy: int = 0
 var master_hand_size: int = 0
-var gold: int = 0
 
 var orbs: Array[AbstractOrb] = []
 

@@ -10,6 +10,7 @@ static var keywords: Dictionary = {} # string: KeywordString
 static var ui: Dictionary = {} # string: KeywordString
 static var events: Dictionary = {} # string: EventString
 static var relics: Dictionary = {} # string: KeywordString
+static var monsters: Dictionary = {} # string: MonsterString
 static var break_chars = null
 
 
@@ -26,6 +27,9 @@ func _init():
 	# Load the localization files
 	var charactersPath: String = langPackDir + "/characters.json"
 	characters = load_json(charactersPath)
+
+	var monstersPath :String = langPackDir + "/monsters.json"
+	monsters = load_json(monstersPath)
 
 	var cardPath: String = langPackDir + "/cards.json"
 	cards = load_json(cardPath)
@@ -104,3 +108,11 @@ func get_relic_string(relicName: String) -> RelicString:
 		return null
 
 	return RelicString.parse(relics[relicName])
+
+
+func get_monster_string(monsterName: String) -> MonsterString:
+	if not monsters.has(monsterName) or monsters[monsterName] == null:
+		push_error("relic not found: " + monsterName)
+		return null
+
+	return MonsterString.parse(monsters[monsterName])

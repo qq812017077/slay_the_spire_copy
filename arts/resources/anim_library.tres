@@ -1,8 +1,52 @@
-[gd_resource type="Resource" script_class="AnimLibrary" load_steps=3 format=3 uid="uid://bau2a0qsicpex"]
+[gd_resource type="Resource" script_class="AnimLibrary" load_steps=25 format=3 uid="uid://bau2a0qsicpex"]
 
 [ext_resource type="SpriteFrames" uid="uid://cuv8tos14f78u" path="res://arts/slay_the_spire/images/npcs/neow/animation/neow.tres" id="1_cnits"]
+[ext_resource type="SpriteFrames" uid="uid://c424di2xppcvx" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeL/acid_slime_l.tres" id="1_h4he4"]
 [ext_resource type="Script" uid="uid://clwtyd0ko6j1d" path="res://scripts/resources/anim_library.gd" id="1_m2uue"]
+[ext_resource type="SpriteFrames" uid="uid://7p8wjaeuxt33" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeM/acid_slime_m.tres" id="2_jxew1"]
+[ext_resource type="SpriteFrames" uid="uid://do1gugflnskar" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeS/acid_slime_s.tres" id="3_06msc"]
+[ext_resource type="SpriteFrames" uid="uid://c84he4vxj7qf7" path="res://arts/slay_the_spire/images/monsters/theBottom/cultist/cultist.tres" id="3_e5qit"]
+[ext_resource type="SpriteFrames" uid="uid://dnx4a2e08b6rc" path="res://arts/slay_the_spire/images/monsters/theBottom/jawWorm/jaw_worm.tres" id="4_end1c"]
+[ext_resource type="SpriteFrames" uid="uid://dvhfjrix0xty0" path="res://arts/slay_the_spire/images/monsters/theBottom/blueSlaver/blue_slaver.tres" id="4_jxew1"]
+[ext_resource type="SpriteFrames" uid="uid://cqf3yk3lgyfvk" path="res://arts/slay_the_spire/images/monsters/theBottom/angryGremlin/gremlin_warrior.tres" id="6_06msc"]
+[ext_resource type="SpriteFrames" uid="uid://dvtiup1jlt40r" path="res://arts/slay_the_spire/images/monsters/theBottom/nobGremlin/gremlin_nob.tres" id="6_bcgmc"]
+[ext_resource type="SpriteFrames" uid="uid://cmimrhcgnq2bv" path="res://arts/slay_the_spire/images/monsters/theBottom/fatGremlin/gremlin_fat.tres" id="6_g12dm"]
+[ext_resource type="SpriteFrames" uid="uid://c2sxfrmk5hy7r" path="res://arts/slay_the_spire/images/monsters/theBottom/louseGreen/louse_green.tres" id="6_gphdv"]
+[ext_resource type="SpriteFrames" uid="uid://bo84qvv8m7qlw" path="res://arts/slay_the_spire/images/monsters/theBottom/fungi/fungi_beast.tres" id="6_lkwmc"]
+[ext_resource type="SpriteFrames" uid="uid://ch0l30nrxhb64" path="res://arts/slay_the_spire/images/monsters/theBottom/louseRed/louse_red.tres" id="7_bcgmc"]
+[ext_resource type="SpriteFrames" uid="uid://b4s4njncbme8f" path="res://arts/slay_the_spire/images/monsters/theBottom/thiefGremlin/gremlin_thief.tres" id="7_qn461"]
+[ext_resource type="SpriteFrames" uid="uid://dboeqpp8jg34n" path="res://arts/slay_the_spire/images/monsters/theBottom/femaleGremlin/gremlin_tsundere.tres" id="9_806j3"]
+[ext_resource type="SpriteFrames" uid="uid://d0ecpsr2imwf5" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltL/spike_slime_l.tres" id="10_qn461"]
+[ext_resource type="SpriteFrames" uid="uid://dybwaywjl2wf2" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltM/spike_slime_m.tres" id="11_8ubif"]
+[ext_resource type="SpriteFrames" uid="uid://dlydqpc1h4oi7" path="res://arts/slay_the_spire/images/monsters/theBottom/wizardGremlin/gremlin_wizard.tres" id="11_cylbj"]
+[ext_resource type="SpriteFrames" uid="uid://biq7xiwmxb7jb" path="res://arts/slay_the_spire/images/monsters/theBottom/slimeAltS/spike_slime_s.tres" id="12_g12dm"]
+[ext_resource type="SpriteFrames" uid="uid://cuh5668xd52r6" path="res://arts/slay_the_spire/images/monsters/theBottom/looter/looter.tres" id="14_7gs26"]
+[ext_resource type="SpriteFrames" uid="uid://ii7hhse1qmeb" path="res://arts/slay_the_spire/images/monsters/theBottom/lagavulin/lagavulin.tres" id="14_a706l"]
+[ext_resource type="SpriteFrames" uid="uid://386abn5aotc4" path="res://arts/slay_the_spire/images/monsters/theBottom/redSlaver/red_slaver.tres" id="18_a706l"]
+[ext_resource type="SpriteFrames" uid="uid://b7aabr0o6nyh2" path="res://arts/slay_the_spire/images/monsters/theBottom/sentry/sentry.tres" id="21_k1fhj"]
 
 [resource]
 script = ExtResource("1_m2uue")
 neow_anim = ExtResource("1_cnits")
+cultist_anim = ExtResource("3_e5qit")
+jaw_worm_anim = ExtResource("4_end1c")
+louse_green_anim = ExtResource("6_gphdv")
+louse_red_anim = ExtResource("7_bcgmc")
+acid_slime_s_anim = ExtResource("3_06msc")
+acid_slime_m_anim = ExtResource("2_jxew1")
+acid_slime_l_anim = ExtResource("1_h4he4")
+spike_slime_s_anim = ExtResource("12_g12dm")
+spike_slime_m_anim = ExtResource("11_8ubif")
+spike_slime_l_anim = ExtResource("10_qn461")
+blue_slaver_anim = ExtResource("4_jxew1")
+gremlin_nob_anim = ExtResource("6_bcgmc")
+gremlin_warrior_anim = ExtResource("6_06msc")
+gremlin_thief_anim = ExtResource("7_qn461")
+gremlin_fat_anim = ExtResource("6_g12dm")
+gremlin_tsundere_anim = ExtResource("9_806j3")
+gremlin_wizard_anim = ExtResource("11_cylbj")
+looter_anim = ExtResource("14_7gs26")
+red_slaver_anim = ExtResource("18_a706l")
+fungi_beasts_anim = ExtResource("6_lkwmc")
+lagavulin_anim = ExtResource("14_a706l")
+sentry_anim = ExtResource("21_k1fhj")

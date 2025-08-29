@@ -6,13 +6,17 @@ enum Intent { NONE, ATTACK, ATTACK_BUFF, ATTACK_DEBUFF, ATTACK_DEFEND, BUFF, DEB
 enum EnemyType { NORMAL, ELITE, BOSS }
 
 static func initialize() -> void:
-    
     pass
 
 var type: EnemyType = EnemyType.NORMAL
 var intent: Intent = Intent.NONE
 var tip_intent: Intent = Intent.DEBUG
 var escaped: bool = false
+
+func _init(_name: String, _id: String, _maxHealth: int, _imgUrl: String, _ignoreBlights: bool=false):
+    name = _name
+    id = _id
+    
 
 func show_intent() -> void:
     pass

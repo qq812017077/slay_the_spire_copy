@@ -59,48 +59,48 @@ func generate_monsters() -> void:
 func generate_weak_enemies(count: int) -> void:
 
 	populate_monster_list(MonsterHelper.normalize_weights(
-		[MonsterInfo.new(MonsterHelper.LEVEL1_WEAK_Cultist, 1.0), 
-		MonsterInfo.new(MonsterHelper.LEVEL1_WEAK_Jaw_Worm, 1.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_WEAK_2_Louse, 1.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_WEAK_Small_Slimes, 1.0)]
+		[MonsterInfo.new(MonsterHelper.LVL1_WEAK_Cultist, 1.0), 
+		MonsterInfo.new(MonsterHelper.LVL1_WEAK_Jaw_Worm, 1.0),
+		MonsterInfo.new(MonsterHelper.LVL1_WEAK_2_Louse, 1.0),
+		MonsterInfo.new(MonsterHelper.LVL1_WEAK_Small_Slimes, 1.0)]
 	), count, false)
 
 func generate_strong_enemies(count: int) -> void:
 	var monsters: = MonsterHelper.normalize_weights(
-		[MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Blue_Slaver, 2.0), 
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Gremlin_Gang, 1.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Looter, 2.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Large_Slime, 2.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Lots_of_Slimes, 1.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Exordium_Thugs, 1.5),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Exordium_Wildlife, 1.5),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_Red_Slaver, 1.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_3_Louse, 2.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_STRONG_2_Fungi_Beasts, 2.0)]
+		[MonsterInfo.new(MonsterHelper.LVL1_STRONG_Blue_Slaver, 2.0), 
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_Gremlin_Gang, 1.0),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_Looter, 2.0),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_Large_Slime, 2.0),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_Lots_of_Slimes, 1.0),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_Exordium_Thugs, 1.5),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_Exordium_Wildlife, 1.5),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_Red_Slaver, 1.0),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_3_Louse, 2.0),
+		MonsterInfo.new(MonsterHelper.LVL1_STRONG_2_Fungi_Beasts, 2.0)]
 	)
 	populate_first_strong_monster(monsters, generate_exclusions())
 	populate_monster_list(monsters, count, false)
 
 func generate_elites(count: int) -> void:
 	populate_monster_list(MonsterHelper.normalize_weights(
-	   [MonsterInfo.new(MonsterHelper.LEVEL1_ELITE_Gremlin_Bob, 1.0), 
-		MonsterInfo.new(MonsterHelper.LEVEL1_ELITE_Lagavulin, 1.0),
-		MonsterInfo.new(MonsterHelper.LEVEL1_ELITE_3_Sentries, 1.0)]
+	   [MonsterInfo.new(MonsterHelper.LVL1_ELITE_Gremlin_Bob, 1.0), 
+		MonsterInfo.new(MonsterHelper.LVL1_ELITE_Lagavulin, 1.0),
+		MonsterInfo.new(MonsterHelper.LVL1_ELITE_3_Sentries, 1.0)]
 	), count, true)
 
 func generate_exclusions() -> Array[String]:
 	var ret: Array[String] = []
 	match monster_list.back():
-		MonsterHelper.LEVEL1_STRONG_Looter:
-			ret.append(MonsterHelper.LEVEL1_STRONG_Exordium_Thugs)
-		MonsterHelper.LEVEL1_STRONG_Blue_Slaver:
-			ret.append(MonsterHelper.LEVEL1_STRONG_Red_Slaver)
-			ret.append(MonsterHelper.LEVEL1_STRONG_Exordium_Thugs)
-		MonsterHelper.LEVEL1_WEAK_2_Louse:
-			ret.append(MonsterHelper.LEVEL1_STRONG_3_Louse)
-		MonsterHelper.LEVEL1_WEAK_Small_Slimes:
-			ret.append(MonsterHelper.LEVEL1_STRONG_Large_Slime)
-			ret.append(MonsterHelper.LEVEL1_STRONG_Lots_of_Slimes)
+		MonsterHelper.LVL1_STRONG_Looter:
+			ret.append(MonsterHelper.LVL1_STRONG_Exordium_Thugs)
+		MonsterHelper.LVL1_STRONG_Blue_Slaver:
+			ret.append(MonsterHelper.LVL1_STRONG_Red_Slaver)
+			ret.append(MonsterHelper.LVL1_STRONG_Exordium_Thugs)
+		MonsterHelper.LVL1_WEAK_2_Louse:
+			ret.append(MonsterHelper.LVL1_STRONG_3_Louse)
+		MonsterHelper.LVL1_WEAK_Small_Slimes:
+			ret.append(MonsterHelper.LVL1_STRONG_Large_Slime)
+			ret.append(MonsterHelper.LVL1_STRONG_Lots_of_Slimes)
 	return ret
 
 func init_boss() -> void:

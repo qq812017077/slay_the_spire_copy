@@ -2,8 +2,8 @@ class_name Defect
 extends AbstractPlayer
 
 static var character_string: CharacterString = null
-static var NAMES : Array
-static var TEXT : Array
+static var CHARACTER_NAMES : Array
+static var CHARACTER_TEXT : Array
 
 const ID: String = "Defect"
 const DEFECT_IDLE_ANIM = "defect_idle"
@@ -12,8 +12,8 @@ const DEFECT_HIT_ANIM = "defect_hit"
 func _init() -> void:
 	if character_string == null:
 		character_string = CardGame.languagePack.get_character_string(ID)
-		NAMES = character_string.NAMES
-		TEXT = character_string.TEXT
+		CHARACTER_NAMES = character_string.NAMES
+		CHARACTER_TEXT = character_string.TEXT
 
 	super(AbstractPlayer.PlayerType.DEFECT, DEFECT_IDLE_ANIM, DEFECT_HIT_ANIM)
 	
@@ -22,8 +22,8 @@ func _init() -> void:
 
 func get_character_info() -> CharacterInfo:
 	return CharacterInfo.new(
-		NAMES[0],
-		TEXT[0],
+		CHARACTER_NAMES[0],
+		CHARACTER_TEXT[0],
 		75,
 		75,
 		3,

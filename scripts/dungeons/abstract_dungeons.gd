@@ -214,6 +214,15 @@ func is_boss_room() -> bool:
 func generate_monsters() -> void:
 	pass
 
+func generate_weak_enemies(_count: int) -> void:
+	pass
+
+func generate_strong_enemies(_count: int) -> void:
+	pass
+
+func generate_elites(_count: int) -> void:
+	pass
+
 func generate_exclusions() -> Array[String]:
 	return []
 

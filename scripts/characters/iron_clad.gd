@@ -2,8 +2,8 @@ class_name IronClad
 extends AbstractPlayer
 
 static var character_string: CharacterString = null
-static var NAMES: Array
-static var TEXT: Array
+static var CHARACTER_NAMES: Array
+static var CHARACTER_TEXT: Array
 const ID: String = "Ironclad"
 
 const IRON_IDLE_ANIM = "iron_idle"
@@ -12,8 +12,8 @@ const IRON_HIT_ANIM = "iron_hit"
 func _init() -> void:
 	if character_string == null:
 		character_string = CardGame.languagePack.get_character_string(ID)
-		NAMES = character_string.NAMES
-		TEXT = character_string.TEXT
+		CHARACTER_NAMES = character_string.NAMES
+		CHARACTER_TEXT = character_string.TEXT
 
 	super (AbstractPlayer.PlayerType.IRONCLAD, IRON_IDLE_ANIM, IRON_HIT_ANIM)
 	shoulder_img = ImageMaster.icon_clad_shoulder_img
@@ -24,8 +24,8 @@ func _init() -> void:
 	current_health = max_health
 func get_character_info() -> CharacterInfo:
 	return CharacterInfo.new(
-		NAMES[0],
-		TEXT[0],
+		CHARACTER_NAMES[0],
+		CHARACTER_TEXT[0],
 		80,
 		80,
 		0,

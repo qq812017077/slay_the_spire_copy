@@ -76,7 +76,7 @@ func initialize() -> void:
 	if not Settings.seedSet:
 		Settings.set_random_seed()
 
-
+	
 func _process(_delta: float) -> void:
 	var i = effectlist.size() - 1
 	while i >= 0:

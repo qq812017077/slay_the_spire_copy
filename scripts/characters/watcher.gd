@@ -2,8 +2,8 @@ class_name Watcher
 extends AbstractPlayer
 
 static var character_string: CharacterString = null
-static var NAMES: Array
-static var TEXT: Array
+static var CHARACTER_NAMES: Array
+static var CHARACTER_TEXT: Array
 
 const ID: String = "Watcher"
 
@@ -13,8 +13,8 @@ const WATCHER_HIT_ANIM = "watcher_hit"
 func _init() -> void:
 	if character_string == null:
 		character_string = CardGame.languagePack.get_character_string(ID)
-		NAMES = character_string.NAMES
-		TEXT = character_string.TEXT
+		CHARACTER_NAMES = character_string.NAMES
+		CHARACTER_TEXT = character_string.TEXT
 
 	super (AbstractPlayer.PlayerType.WATCHER, WATCHER_IDLE_ANIM, WATCHER_HIT_ANIM)
 	
@@ -23,8 +23,8 @@ func _init() -> void:
 
 func get_character_info() -> CharacterInfo:
 	return CharacterInfo.new(
-		NAMES[0],
-		TEXT[0],
+		CHARACTER_NAMES[0],
+		CHARACTER_TEXT[0],
 		72,
 		72,
 		0,

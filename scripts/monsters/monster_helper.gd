@@ -94,6 +94,7 @@ static func normalize_weights(list: Array[MonsterInfo]) -> Array[MonsterInfo]:
 	var i: = list.size()-1
 	while i >= 0:
 		list[i].weight /= total_weights
+		i -= 1
 	return list
 
 

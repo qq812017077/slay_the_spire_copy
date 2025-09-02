@@ -17,3 +17,9 @@ func _init(poision_amount: int = 0) -> void:
 
 
 	load_animation(CardGame.anim_library.acid_slime_s_anim)
+
+func get_move(num: int)-> void:
+	if CardGame.dungeon_main_screen.dungeon.aiRng.randf() < 0.5:
+		set_move_default(1, Intent.ATTACK,  damage_list[0].base)
+	else:
+		set_move_default(2, Intent.DEBUFF,  damage_list[0].base)

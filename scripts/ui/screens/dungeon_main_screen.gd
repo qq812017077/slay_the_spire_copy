@@ -698,6 +698,10 @@ func initialize_card_pool() -> void:
 func get_cur_monsters() -> MonsterGroup:
 	return dungeon.cur_room_node.room.monsters
 
+func create_monster_for_room(_room: AbstractRoom) -> MonsterGroup:
+	if dungeon.monster_list.is_empty():
+		dungeon.generate_strong_enemies(12)
+	return MonsterHelper.get_encounter(dungeon.monster_list.pop_front())
 
 # ******************************************************
 # Room Functions

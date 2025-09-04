@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://1rltgmyqpsds"]
+
+[ext_resource type="Script" uid="uid://d1mpl64ikfua" path="res://scripts/ui/dungeon/combat/energy_orb_widget.gd" id="1_crrph"]
+
+[node name="EnergyOrb" type="Control" node_paths=PackedStringArray("layer1", "layer2", "layer3", "layer4", "layer5", "layer6")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_crrph")
+layer1 = NodePath("layer1")
+layer2 = NodePath("layer2")
+layer3 = NodePath("layer3")
+layer4 = NodePath("layer4")
+layer5 = NodePath("layer5")
+layer6 = NodePath("layer6")
+
+[node name="layer1" type="Sprite2D" parent="."]
+
+[node name="layer2" type="Sprite2D" parent="."]
+
+[node name="layer3" type="Sprite2D" parent="."]
+
+[node name="layer4" type="Sprite2D" parent="."]
+
+[node name="layer5" type="Sprite2D" parent="."]
+
+[node name="layer6" type="Sprite2D" parent="."]

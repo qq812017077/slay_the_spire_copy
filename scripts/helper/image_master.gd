@@ -132,6 +132,48 @@ static var defect_shoulder2_img: Texture2D = null
 static var watcher_shoulder_img: Texture2D = null
 static var watcher_shoulder2_img: Texture2D = null
 
+# combat orb
+static var energy_red_layer1: Texture2D = null
+static var energy_red_layer2: Texture2D = null
+static var energy_red_layer3: Texture2D = null
+static var energy_red_layer4: Texture2D = null
+static var energy_red_layer5: Texture2D = null
+static var energy_red_layer6: Texture2D = null
+static var energy_red_layer1D: Texture2D = null
+static var energy_red_layer2D: Texture2D = null
+static var energy_red_layer3D: Texture2D = null
+static var energy_red_layer4D: Texture2D = null
+static var energy_red_layer5D: Texture2D = null
+
+static var energy_green_layer1: Texture2D = null
+static var energy_green_layer2: Texture2D = null
+static var energy_green_layer3: Texture2D = null
+static var energy_green_layer4: Texture2D = null
+static var energy_green_layer5: Texture2D = null
+static var energy_green_layer6: Texture2D = null
+static var energy_green_layer1D: Texture2D = null
+static var energy_green_layer2D: Texture2D = null
+static var energy_green_layer3D: Texture2D = null
+static var energy_green_layer4D: Texture2D = null
+static var energy_green_layer5D: Texture2D = null
+
+static var energy_blue_layer1: Texture2D = null
+static var energy_blue_layer2: Texture2D = null
+static var energy_blue_layer3: Texture2D = null
+static var energy_blue_layer4: Texture2D = null
+static var energy_blue_layer5: Texture2D = null
+static var energy_blue_layer6: Texture2D = null
+static var energy_blue_layer1D: Texture2D = null
+static var energy_blue_layer2D: Texture2D = null
+static var energy_blue_layer3D: Texture2D = null
+static var energy_blue_layer4D: Texture2D = null
+static var energy_blue_layer5D: Texture2D = null
+
+static var energy_purple_layer1: Texture2D = null
+static var energy_purple_layer2: Texture2D = null
+static var energy_purple_layer3: Texture2D = null
+static var energy_purple_layer4: Texture2D = null
+static var energy_purple_border: Texture2D = null
 # 
 static var SELECT_BANNER: Texture2D = null
 
@@ -270,6 +312,8 @@ static func initialize() -> void:
 	initialize_potion_ui()
 
 	initialize_reward_ui()
+
+	initialize_combat_ui()
 
 static func initialize_settings_ui() -> void:
 	pass
@@ -554,6 +598,50 @@ static func initialize_reward_ui() -> void:
 	
 	reward_card_boss = load("res://arts/slay_the_spire/images/ui/reward/bossCardReward.png")
 	reward_card_normal = load("res://arts/slay_the_spire/images/ui/reward/normalCardReward.png")
+
+static func initialize_combat_ui() -> void:
+	energy_red_layer1 = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer1.png")
+	energy_red_layer2 = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer2.png")
+	energy_red_layer3 = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer3.png")
+	energy_red_layer4 = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer4.png")
+	energy_red_layer5 = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer5.png")
+	energy_red_layer6 = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer6.png")
+	energy_red_layer1D = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer1d.png")
+	energy_red_layer2D = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer2d.png")
+	energy_red_layer3D = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer3d.png")
+	energy_red_layer4D = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer4d.png")
+	energy_red_layer5D = load("res://arts/slay_the_spire/images/ui/top_panel/red/layer5d.png")
+
+	energy_green_layer1 = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer1.png")
+	energy_green_layer2 = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer2.png")
+	energy_green_layer3 = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer3.png")
+	energy_green_layer4 = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer4.png")
+	energy_green_layer5 = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer5.png")
+	energy_green_layer6 = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer6.png")
+	energy_green_layer1D = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer1d.png")
+	energy_green_layer2D = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer2d.png")
+	energy_green_layer3D = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer3d.png")
+	energy_green_layer4D = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer4d.png")
+	energy_green_layer5D = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer5d.png")
+
+	energy_blue_layer1 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer1.png")
+	energy_blue_layer2 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer2.png")
+	energy_blue_layer3 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer3.png")
+	energy_blue_layer4 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer4.png")
+	energy_blue_layer5 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer5.png")
+	energy_blue_layer6 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer6.png")
+	energy_blue_layer1D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer1d.png")
+	energy_blue_layer2D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer2d.png")
+	energy_blue_layer3D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer3d.png")
+	energy_blue_layer4D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer4d.png")
+	energy_blue_layer5D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer5d.png")
+
+	energy_purple_layer1 = load("res://arts/slay_the_spire/images/ui/top_panel/purple/l1.png")
+	energy_purple_layer2 = load("res://arts/slay_the_spire/images/ui/top_panel/purple/l2.png")
+	energy_purple_layer3 = load("res://arts/slay_the_spire/images/ui/top_panel/purple/l3.png")
+	energy_purple_layer4 = load("res://arts/slay_the_spire/images/ui/top_panel/purple/l4.png")
+	energy_purple_border = load("res://arts/slay_the_spire/images/ui/top_panel/purple/border.png")
+
 static func loadPortraitImg(url: String) -> Texture2D:
 	return load("res://arts/slay_the_spire/images/1024Portraits/" + url + ".png")
 

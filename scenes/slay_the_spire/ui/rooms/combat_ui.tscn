@@ -1,9 +1,32 @@
-[gd_scene format=3 uid="uid://c641ar22rtoiv"]
+[gd_scene load_steps=2 format=3 uid="uid://c641ar22rtoiv"]
+
+[ext_resource type="Script" uid="uid://cbsfrbc8bsvjx" path="res://scripts/ui/dungeon/rooms/combat_ui.gd" id="1_8wce0"]
 
 [node name="CombatUI" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+script = ExtResource("1_8wce0")
+
+[node name="BottomBGPanel" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="CombatDeckPanel" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="DiscardPilePanel" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="ExhaustPanel" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="EneryPanel" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="EndTurnButton" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="HandPanel" type="Control" parent="."]
+anchors_preset = 0

@@ -82,6 +82,15 @@ func on_end_of_turn():
 	for c: AbstractCard in hand.group:
 		c.trigger_on_end_of_turn_for_playing_cards()
 
+func setup_orb(_energy_orb: EnergyOrbWidget) -> void:
+	pass
+
+func get_energy_image() -> Texture2D:
+	return null
+
+func get_energy_num_label_settings() -> LabelSettings:
+	return null
+
 static func get_character_name(player_type: PlayerType) -> String:
 	match player_type:
 		PlayerType.IRONCLAD:

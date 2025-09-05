@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c641ar22rtoiv"]
+[gd_scene load_steps=3 format=3 uid="uid://c641ar22rtoiv"]
 
 [ext_resource type="Script" uid="uid://cbsfrbc8bsvjx" path="res://scripts/ui/dungeon/rooms/combat_ui.gd" id="1_8wce0"]
+[ext_resource type="PackedScene" uid="uid://dvjw2vwexwccr" path="res://scenes/slay_the_spire/combat/enery_panel.tscn" id="2_k8ifh"]
 
 [node name="CombatUI" type="Control"]
 layout_mode = 3
@@ -22,8 +23,8 @@ anchors_preset = 0
 [node name="ExhaustPanel" type="Control" parent="."]
 anchors_preset = 0
 
-[node name="EneryPanel" type="Control" parent="."]
-anchors_preset = 0
+[node name="EneryPanel" parent="." instance=ExtResource("2_k8ifh")]
+layout_mode = 0
 
 [node name="EndTurnButton" type="Control" parent="."]
 anchors_preset = 0

@@ -5,6 +5,7 @@
 [node name="EnergyOrb" type="Control" node_paths=PackedStringArray("layer1", "layer2", "layer3", "layer4", "layer5", "layer6")]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_crrph")
 layer1 = NodePath("layer1")
 layer2 = NodePath("layer2")

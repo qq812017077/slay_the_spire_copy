@@ -3,7 +3,7 @@ extends Object
 
 enum GameLanguage {ENG, ZHS}
 
-
+static var is_debug: bool = true
 # version
 static var isBeta: bool = true
 

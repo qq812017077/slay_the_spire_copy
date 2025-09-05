@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvjw2vwexwccr"]
+
+[ext_resource type="Script" uid="uid://diy01ehsk4h37" path="res://scripts/ui/dungeon/combat/energy_panel.gd" id="1_b20l3"]
+[ext_resource type="PackedScene" uid="uid://1rltgmyqpsds" path="res://scenes/slay_the_spire/combat/energy_orb.tscn" id="2_ppanb"]
+
+[node name="EneryPanel" type="Control" node_paths=PackedStringArray("energy_orb", "gain_energy_sprite", "energe_num_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 198.0
+offset_top = 805.0
+offset_right = 198.0
+offset_bottom = 805.0
+mouse_filter = 2
+script = ExtResource("1_b20l3")
+energy_orb = NodePath("EnergyOrb")
+gain_energy_sprite = NodePath("GainEnergyImg")
+energe_num_label = NodePath("Label")
+
+[node name="EnergyOrb" parent="." instance=ExtResource("2_ppanb")]
+layout_mode = 0
+
+[node name="GainEnergyImg" type="Sprite2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1

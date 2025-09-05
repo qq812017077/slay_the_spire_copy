@@ -174,6 +174,11 @@ static var energy_purple_layer2: Texture2D = null
 static var energy_purple_layer3: Texture2D = null
 static var energy_purple_layer4: Texture2D = null
 static var energy_purple_border: Texture2D = null
+
+static var red_orb_flash_vfx: Texture2D = null
+static var green_orb_flash_vfx: Texture2D = null
+static var blue_orb_flash_vfx: Texture2D = null
+static var purple_orb_flash_vfx: Texture2D = null
 # 
 static var SELECT_BANNER: Texture2D = null
 
@@ -624,17 +629,17 @@ static func initialize_combat_ui() -> void:
 	energy_green_layer4D = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer4d.png")
 	energy_green_layer5D = load("res://arts/slay_the_spire/images/ui/top_panel/green/layer5d.png")
 
-	energy_blue_layer1 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer1.png")
-	energy_blue_layer2 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer2.png")
-	energy_blue_layer3 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer3.png")
-	energy_blue_layer4 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer4.png")
-	energy_blue_layer5 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer5.png")
-	energy_blue_layer6 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer6.png")
-	energy_blue_layer1D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer1d.png")
-	energy_blue_layer2D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer2d.png")
-	energy_blue_layer3D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer3d.png")
-	energy_blue_layer4D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer4d.png")
-	energy_blue_layer5D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/layer5d.png")
+	energy_blue_layer1 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/1.png")
+	energy_blue_layer2 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/2.png")
+	energy_blue_layer3 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/3.png")
+	energy_blue_layer4 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/4.png")
+	energy_blue_layer5 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/5.png")
+	energy_blue_layer6 = load("res://arts/slay_the_spire/images/ui/top_panel/blue/border.png")
+	energy_blue_layer1D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/1d.png")
+	energy_blue_layer2D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/2d.png")
+	energy_blue_layer3D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/3d.png")
+	energy_blue_layer4D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/4d.png")
+	energy_blue_layer5D = load("res://arts/slay_the_spire/images/ui/top_panel/blue/5d.png")
 
 	energy_purple_layer1 = load("res://arts/slay_the_spire/images/ui/top_panel/purple/l1.png")
 	energy_purple_layer2 = load("res://arts/slay_the_spire/images/ui/top_panel/purple/l2.png")
@@ -642,6 +647,10 @@ static func initialize_combat_ui() -> void:
 	energy_purple_layer4 = load("res://arts/slay_the_spire/images/ui/top_panel/purple/l4.png")
 	energy_purple_border = load("res://arts/slay_the_spire/images/ui/top_panel/purple/border.png")
 
+	red_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyRedVFX.png")
+	green_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyGreenVFX.png")
+	blue_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyBlueVFX.png")
+	purple_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyPurpleVFX.png")
 static func loadPortraitImg(url: String) -> Texture2D:
 	return load("res://arts/slay_the_spire/images/1024Portraits/" + url + ".png")
 

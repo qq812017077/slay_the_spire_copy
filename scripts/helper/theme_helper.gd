@@ -104,6 +104,11 @@ static var card_desc_font_N_label_settigns: LabelSettings
 static var dialog_option_label_settings: LabelSettings
 static var tip_header_label_settings: LabelSettings
 static var turn_num_settings: LabelSettings
+static var energy_num_red_label_settings: LabelSettings
+static var energy_num_green_label_settings: LabelSettings
+static var energy_num_blue_label_settings: LabelSettings
+static var energy_num_purple_label_settings: LabelSettings
+
 static func initialize():
 	# font load
 	normal_font_eng = load("res://arts/slay_the_spire/fonts/Kreon-Regular.ttf")
@@ -279,6 +284,41 @@ static func initialize_label_settings() -> void:
 	turn_num_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
 	turn_num_settings.shadow_offset = Vector2(0, 0)
 	
+	energy_num_red_label_settings = LabelSettings.new()
+	energy_num_red_label_settings.font = get_bold_font()
+	energy_num_red_label_settings.font_size = 36
+	energy_num_red_label_settings.font_color = Color.WHITE
+	energy_num_red_label_settings.outline_color = Color(0.4,0.15,0.15,1)
+	energy_num_red_label_settings.outline_size = 12
+	energy_num_red_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	energy_num_red_label_settings.shadow_offset = Vector2(0, 0)
+
+	energy_num_green_label_settings = LabelSettings.new()
+	energy_num_green_label_settings.font = get_bold_font()
+	energy_num_green_label_settings.font_size = 36
+	energy_num_green_label_settings.font_color = Color.WHITE
+	energy_num_green_label_settings.outline_color = Color(0.15,0.4,0.15,1)
+	energy_num_green_label_settings.outline_size = 12
+	energy_num_green_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	energy_num_green_label_settings.shadow_offset = Vector2(0, 0)
+
+	energy_num_blue_label_settings = LabelSettings.new()
+	energy_num_blue_label_settings.font = get_bold_font()
+	energy_num_blue_label_settings.font_size = 36
+	energy_num_blue_label_settings.font_color = Color.WHITE
+	energy_num_blue_label_settings.outline_color = Color(0.15,0.15,0.4,1)
+	energy_num_blue_label_settings.outline_size = 12
+	energy_num_blue_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	energy_num_blue_label_settings.shadow_offset = Vector2(0, 0)
+
+	energy_num_purple_label_settings = LabelSettings.new()
+	energy_num_purple_label_settings.font = get_bold_font()
+	energy_num_purple_label_settings.font_size = 36
+	energy_num_purple_label_settings.font_color = Color.WHITE
+	energy_num_purple_label_settings.outline_color = Color.hex(0x1595767551)
+	energy_num_purple_label_settings.outline_size = 12
+	energy_num_purple_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	energy_num_purple_label_settings.shadow_offset = Vector2(0, 0)
 
 static func try_get_constant(targettheme: Theme, name: StringName, theme_type: StringName, default: int) -> int:
 	return targettheme.get_font_size(name, theme_type) if targettheme.has_font_size(name, theme_type) else default

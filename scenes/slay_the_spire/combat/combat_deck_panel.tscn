@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://ee2ejpag0yv4"]
+
+[ext_resource type="Script" uid="uid://j44k6nvjifvc" path="res://scripts/ui/dungeon/combat/draw_pile_panel.gd" id="1_gka31"]
+[ext_resource type="Texture2D" uid="uid://c2cui51nke4rs" path="res://arts/slay_the_spire/images/ui/buttons/deck.png" id="2_uecv8"]
+[ext_resource type="Texture2D" uid="uid://bt1hfayogu7c" path="res://arts/slay_the_spire/images/ui/top_panel/countCircle.png" id="3_4dcxo"]
+[ext_resource type="PackedScene" uid="uid://d2be2evt35okg" path="res://scenes/slay_the_spire/effects/combat/top_panel/game_deck_glow_effect.tscn" id="4_y0i1a"]
+
+[node name="CombatDeckPanel" type="Control" node_paths=PackedStringArray("deck_sprite", "turn_num_label")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_gka31")
+deck_sprite = NodePath("Deck")
+turn_num_label = NodePath("CountCircle/TurnNumLabel")
+
+[node name="GameDeckGlowEffect" parent="." instance=ExtResource("4_y0i1a")]
+layout_mode = 0
+play_on_start = true
+
+[node name="Deck" type="Sprite2D" parent="."]
+position = Vector2(12, -10)
+texture = ExtResource("2_uecv8")
+
+[node name="CountCircle" type="Sprite2D" parent="."]
+position = Vector2(54, 18)
+texture = ExtResource("3_4dcxo")
+
+[node name="TurnNumLabel" type="Label" parent="CountCircle"]
+custom_minimum_size = Vector2(80, 80)
+offset_left = -40.0
+offset_top = -41.0
+offset_right = 12.0
+offset_bottom = 11.0
+theme_override_font_sizes/font_size = 32
+text = "13"
+horizontal_alignment = 1
+vertical_alignment = 1

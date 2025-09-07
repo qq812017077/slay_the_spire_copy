@@ -108,7 +108,7 @@ static var energy_num_red_label_settings: LabelSettings
 static var energy_num_green_label_settings: LabelSettings
 static var energy_num_blue_label_settings: LabelSettings
 static var energy_num_purple_label_settings: LabelSettings
-
+static var turn_font_label_settings: LabelSettings
 static func initialize():
 	# font load
 	normal_font_eng = load("res://arts/slay_the_spire/fonts/Kreon-Regular.ttf")
@@ -319,6 +319,15 @@ static func initialize_label_settings() -> void:
 	energy_num_purple_label_settings.outline_size = 12
 	energy_num_purple_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
 	energy_num_purple_label_settings.shadow_offset = Vector2(0, 0)
+
+	turn_font_label_settings = LabelSettings.new()
+	turn_font_label_settings.font = get_regular_font()
+	turn_font_label_settings.font_size = 32
+	turn_font_label_settings.font_color = Color.WHITE
+	turn_font_label_settings.outline_color = Color.WHITE
+	turn_font_label_settings.outline_size = 0
+	turn_font_label_settings.shadow_color = QUARTER_TRANSPARENT_BLACK_COLOR
+	turn_font_label_settings.shadow_offset = Vector2(0, 0)
 
 static func try_get_constant(targettheme: Theme, name: StringName, theme_type: StringName, default: int) -> int:
 	return targettheme.get_font_size(name, theme_type) if targettheme.has_font_size(name, theme_type) else default

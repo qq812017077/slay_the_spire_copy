@@ -1,5 +1,5 @@
 class_name DrawCardAction
 extends AbstractGameAction
 
-func _init(source: AbstractCreature, amount: int, is_end_turn_draw: bool) -> void:
+func _init(_source: AbstractCreature, _amount: int, _is_end_turn_draw: bool) -> void:
     pass

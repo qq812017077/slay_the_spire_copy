@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcp0uxg80ex33"]
+
+[ext_resource type="Script" uid="uid://d1w407at03c5j" path="res://scripts/ui/dungeon/combat/discard_pile_panel.gd" id="1_brfan"]
+[ext_resource type="PackedScene" uid="uid://cdmv5lm32xb18" path="res://scenes/slay_the_spire/effects/combat/top_panel/discard_glow_effect.tscn" id="2_kqpu3"]
+[ext_resource type="Texture2D" uid="uid://dc844dmik6nv5" path="res://arts/slay_the_spire/images/ui/buttons/discard.png" id="3_kqpu3"]
+[ext_resource type="Texture2D" uid="uid://bt1hfayogu7c" path="res://arts/slay_the_spire/images/ui/top_panel/countCircle.png" id="4_8e2k2"]
+
+[node name="DiscardPilePanel" type="Control" node_paths=PackedStringArray("discard_sprite", "turn_num_label")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_brfan")
+discard_sprite = NodePath("Discard")
+turn_num_label = NodePath("CountCircle/TurnNumLabel")
+
+[node name="DiscardGlowEffectBelow" parent="." instance=ExtResource("2_kqpu3")]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 54.0
+offset_bottom = 44.0
+play_on_start = true
+
+[node name="Discard" type="Sprite2D" parent="."]
+position = Vector2(16, -10)
+texture = ExtResource("3_kqpu3")
+
+[node name="CountCircle" type="Sprite2D" parent="."]
+position = Vector2(-30, 18)
+texture = ExtResource("4_8e2k2")
+
+[node name="TurnNumLabel" type="Label" parent="CountCircle"]
+custom_minimum_size = Vector2(80, 80)
+offset_left = -40.0
+offset_top = -41.0
+offset_right = 12.0
+offset_bottom = 11.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiscardGlowEffectAbove" parent="." instance=ExtResource("2_kqpu3")]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 54.0
+offset_bottom = 44.0
+play_on_start = true

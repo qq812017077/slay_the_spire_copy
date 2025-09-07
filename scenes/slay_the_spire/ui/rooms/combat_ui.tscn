@@ -1,30 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://c641ar22rtoiv"]
+[gd_scene load_steps=5 format=3 uid="uid://c641ar22rtoiv"]
 
 [ext_resource type="Script" uid="uid://cbsfrbc8bsvjx" path="res://scripts/ui/dungeon/rooms/combat_ui.gd" id="1_8wce0"]
+[ext_resource type="PackedScene" uid="uid://ee2ejpag0yv4" path="res://scenes/slay_the_spire/combat/combat_deck_panel.tscn" id="2_5o3l1"]
 [ext_resource type="PackedScene" uid="uid://dvjw2vwexwccr" path="res://scenes/slay_the_spire/combat/enery_panel.tscn" id="2_k8ifh"]
+[ext_resource type="PackedScene" uid="uid://dcp0uxg80ex33" path="res://scenes/slay_the_spire/combat/discard_pile_panel.tscn" id="3_fyl4n"]
 
-[node name="CombatUI" type="Control"]
+[node name="CombatUI" type="Control" node_paths=PackedStringArray("energy_panel", "combat_deck_panel", "discard_pile_panel")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+scale = Vector2(0.833, 0.833)
 mouse_filter = 2
 script = ExtResource("1_8wce0")
+energy_panel = NodePath("EneryPanel")
+combat_deck_panel = NodePath("CombatDeckPanel")
+discard_pile_panel = NodePath("DiscardPilePanel")
 
 [node name="BottomBGPanel" type="Control" parent="."]
 anchors_preset = 0
 
-[node name="CombatDeckPanel" type="Control" parent="."]
-anchors_preset = 0
+[node name="CombatDeckPanel" parent="." instance=ExtResource("2_5o3l1")]
+layout_mode = 0
+offset_left = 70.8283
+offset_top = 1024.01
+offset_right = 70.8283
+offset_bottom = 1024.01
 
-[node name="DiscardPilePanel" type="Control" parent="."]
-anchors_preset = 0
+[node name="DiscardPilePanel" parent="." instance=ExtResource("3_fyl4n")]
+layout_mode = 0
+offset_left = 1828.33
+offset_top = 1025.21
+offset_right = 1828.33
+offset_bottom = 1025.21
 
 [node name="ExhaustPanel" type="Control" parent="."]
 anchors_preset = 0
 
 [node name="EneryPanel" parent="." instance=ExtResource("2_k8ifh")]
 layout_mode = 0
+offset_left = 210.0
+offset_top = 808.0
+offset_right = 210.0
+offset_bottom = 808.0
 
 [node name="EndTurnButton" type="Control" parent="."]
 anchors_preset = 0

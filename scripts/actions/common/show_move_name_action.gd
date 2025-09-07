@@ -3,5 +3,5 @@ extends AbstractGameAction
 
 
 
-func _init(m: AbstractMonster) -> void:
+func _init(_m: AbstractMonster) -> void:
     pass

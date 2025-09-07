@@ -1,0 +1,92 @@
+[gd_scene load_steps=15 format=3 uid="uid://d2be2evt35okg"]
+
+[ext_resource type="Script" uid="uid://cm5wrqxa7qpn1" path="res://scripts/effects/combat/top_panel/game_deck_glow_effect.gd" id="1_gl8w2"]
+[ext_resource type="Texture2D" uid="uid://wrcl7hf2o8p8" path="res://arts/slay_the_spire/vfx/ui/deck_glow_1.tres" id="2_eyam2"]
+[ext_resource type="Texture2D" uid="uid://bs148wa3evxp7" path="res://arts/slay_the_spire/vfx/ui/deck_glow_2.tres" id="3_ux1g4"]
+[ext_resource type="Texture2D" uid="uid://bemyjiktceeff" path="res://arts/slay_the_spire/vfx/ui/deck_glow_3.tres" id="4_qvxjk"]
+[ext_resource type="Texture2D" uid="uid://h1ui62mwa4wl" path="res://arts/slay_the_spire/vfx/ui/deck_glow_4.tres" id="5_4muvf"]
+[ext_resource type="Texture2D" uid="uid://b83aahtpq5elj" path="res://arts/slay_the_spire/vfx/ui/deck_glow_5.tres" id="6_gck7m"]
+[ext_resource type="Texture2D" uid="uid://gb2s1sgot1nh" path="res://arts/slay_the_spire/vfx/ui/deck_glow_6.tres" id="7_7gkm6"]
+
+[sub_resource type="Curve" id="Curve_7gkm6"]
+_data = [Vector2(0.00362319, 0.512744), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.377586, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h0iaq"]
+curve = SubResource("Curve_7gkm6")
+
+[sub_resource type="Gradient" id="Gradient_7gkm6"]
+colors = PackedColorArray(0.898039, 0.862745, 0.784314, 1, 0.592157, 0.560784, 0.482353, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h0iaq"]
+gradient = SubResource("Gradient_7gkm6")
+
+[sub_resource type="Curve" id="Curve_h0iaq"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 20), 0.0, 0.0, 0, 0, Vector2(1, 0), -25.5665, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ohdtd"]
+curve = SubResource("Curve_h0iaq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gkm6"]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(25, 25, 1)
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(-1, 1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = -120.0
+angular_velocity_max = 120.0
+velocity_limit_curve = SubResource("CurveTexture_ohdtd")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.75
+scale_max = 0.75
+color_initial_ramp = SubResource("GradientTexture1D_h0iaq")
+alpha_curve = SubResource("CurveTexture_h0iaq")
+
+[node name="GameDeckGlowEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_gl8w2")
+
+[node name="DeckGlow1" type="GPUParticles2D" parent="."]
+amount = 4
+texture = ExtResource("2_eyam2")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_7gkm6")
+
+[node name="DeckGlow2" type="GPUParticles2D" parent="."]
+amount = 4
+texture = ExtResource("3_ux1g4")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_7gkm6")
+
+[node name="DeckGlow3" type="GPUParticles2D" parent="."]
+amount = 4
+texture = ExtResource("4_qvxjk")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_7gkm6")
+
+[node name="DeckGlow4" type="GPUParticles2D" parent="."]
+amount = 4
+texture = ExtResource("5_4muvf")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_7gkm6")
+
+[node name="DeckGlow5" type="GPUParticles2D" parent="."]
+amount = 4
+texture = ExtResource("6_gck7m")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_7gkm6")
+
+[node name="DeckGlow6" type="GPUParticles2D" parent="."]
+amount = 4
+texture = ExtResource("7_7gkm6")
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_7gkm6")

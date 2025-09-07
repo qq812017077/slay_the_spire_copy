@@ -13,7 +13,7 @@ var shoulder_img: Texture2D = null
 var shoulder2_img: Texture2D = null
 
 var master_max_orbs: int = 0
-var energy: int = 0
+var energy_manager: EnergyManager
 var master_hand_size: int = 0
 
 var orbs: Array[AbstractOrb] = []
@@ -30,13 +30,15 @@ var discard_pile: CardGroup = CardGroup.new(CardGroup.CardGroupType.DISCARD_PILE
 var exhaust_pile: CardGroup = CardGroup.new(CardGroup.CardGroupType.EXHAUST_PILE)
 
 
-func _init(_type: PlayerType, _idle_animation: String, _hit_animation: String) -> void:
+func _init(_type: PlayerType, _idle_animation: String, _hit_animation: String, emanager: EnergyManager = EnergyManager.new(3)) -> void:
 	type = _type
 	idle_animation = _idle_animation
 	hit_animation = _hit_animation
 	master_max_orbs = 3
 	gold = 99
 	master_hand_size = 10
+	energy_manager = emanager
+
 	
 func new_instance() -> AbstractPlayer:
 	return null

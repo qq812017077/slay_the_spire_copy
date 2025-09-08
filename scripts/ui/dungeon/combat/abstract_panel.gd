@@ -46,3 +46,6 @@ func hide_panel(instant: bool = false) -> void:
     is_moving = false
     is_hidden = true
 
+
+func load_player(_player: AbstractPlayer) -> void:
+    pass

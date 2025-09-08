@@ -59,6 +59,7 @@ var card_description_richtextlabel: CardDescriptionRichTextLabel = null
 var card_description_label: CardDescriptionLabel = null
 
 var target_pos: Vector2 = Vector2(0, 0)
+var target_angle: float = 0.0
 var enable_card_tip = false
 
 var on_card_just_hovered: Callable
@@ -236,6 +237,9 @@ func get_center_position() -> Vector2:
 
 func get_global_center_position() -> Vector2:
 	return global_position + size / 2
+
+func set_angle(angle: float) :
+	target_angle = angle
 '''
 ############ Event Methods ############
 '''

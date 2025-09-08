@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwcrx77pr50dp"]
+
+[ext_resource type="Script" uid="uid://bknfu0v3fjh4e" path="res://scripts/ui/dungeon/combat/hand_panel.gd" id="1_lu5p3"]
+
+[node name="HandPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lu5p3")

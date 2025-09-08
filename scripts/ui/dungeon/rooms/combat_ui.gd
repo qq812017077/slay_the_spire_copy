@@ -13,6 +13,7 @@ const DISCARD_PILE_PANEL_HIDE_POS: Vector2 = Vector2(1920 + 64, 1080 + 300 - 64)
 @export var energy_panel: EnergyPanel = null
 @export var combat_deck_panel: DrawPilePanel = null
 @export var discard_pile_panel: DiscardPilePanel = null
+@export var hand_panel: HandPanel = null
 
 var player: AbstractPlayer = null
 
@@ -29,6 +30,7 @@ func _ready() -> void:
 	player = IronClad.new()
 	energy_panel.load_player(player)
 	combat_deck_panel.load_player(player)
+	hand_panel.load_player(player)
 	show_combat_ui()
 
 func _process(_delta: float) -> void:

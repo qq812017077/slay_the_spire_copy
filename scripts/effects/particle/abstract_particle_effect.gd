@@ -75,6 +75,5 @@ func _on_particle_finished() -> void:
 	if finished_count == particles.size():
 		is_done = true
 
-
 func done() -> void:
 	is_done = true

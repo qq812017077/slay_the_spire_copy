@@ -25,6 +25,8 @@ static var RARE_CARD_PRICE: int = 200
 static var DESC_CHARACTER_WIDTH: float = 0.0
 static var IMG_WIDTH: float = 0.0
 static var IMG_HEIGHT: float = 0.0
+static var IMG_WIDTH_S: float = 0.0
+static var IMG_HEIGHT_S: float = 0.0
 static var CN_DESC_BOX_WIDTH: float = 0.0
 static var TITLE_BOX_WIDTH: float = 0.0
 static var TITLE_BOX_WIDTH_NO_COST: float = 0.0
@@ -635,6 +637,8 @@ static func initialize():
 	IMG_WIDTH = 300.0 * Settings.scale
 	IMG_HEIGHT = 420.0 * Settings.scale
 
+	IMG_WIDTH_S = IMG_WIDTH * 0.7
+	IMG_HEIGHT_S = IMG_HEIGHT * 0.7
 	CN_DESC_BOX_WIDTH = IMG_WIDTH if Settings.BIG_TEXT_MODE else IMG_WIDTH
 	CARD_ENERGY_IMG_WIDTH = 24.0 * Settings.scale
 	# load default font

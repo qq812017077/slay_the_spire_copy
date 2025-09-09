@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://bi70cy3txgbe7"]
+
+[ext_resource type="Script" uid="uid://1sw603dax1he" path="res://scripts/effects/card/card_glow_border_effect.gd" id="1_j6k8v"]
+[ext_resource type="Texture2D" uid="uid://dqxbtx2yas6jo" path="res://arts/slay_the_spire/images/cardui/cardui/512/bg_attack_silhouette.png" id="2_k53sd"]
+
+[sub_resource type="Curve" id="Curve_k53sd"]
+_data = [Vector2(0, 0.5962036), 0.0, -0.61691165, 0, 0, Vector2(1, 0), -0.62122566, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b7s32"]
+curve = SubResource("Curve_k53sd")
+
+[sub_resource type="Curve" id="Curve_b7s32"]
+_limits = [1.0, 1.11, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.29381412, 0, 0, Vector2(1, 1.11), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_naxt7"]
+curve = SubResource("Curve_b7s32")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b7s32"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_naxt7")
+alpha_curve = SubResource("CurveTexture_b7s32")
+
+[node name="CardGlowBorderEffect" type="Control" node_paths=PackedStringArray("particle")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j6k8v")
+particle = NodePath("GPUParticles2D")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 5
+texture = ExtResource("2_k53sd")
+lifetime = 1.2
+process_material = SubResource("ParticleProcessMaterial_b7s32")

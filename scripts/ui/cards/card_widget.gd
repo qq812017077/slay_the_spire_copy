@@ -65,8 +65,9 @@ var enable_card_tip = false
 var on_card_just_hovered: Callable
 var on_card_clicked: Callable
 
-var refresh_card_state_in_process = false
+var refresh_card_state_in_process: bool = false
 
+var is_glowing : bool = false
 static func _static_init() -> void:
 	attack_prefab = load("res://scenes/slay_the_spire/cards/attack_card.tscn")
 	skill_prefab = load("res://scenes/slay_the_spire/cards/skill_card.tscn")
@@ -231,6 +232,12 @@ func display_in_library(upgrade: bool, refresh: bool = false) -> void:
 		return
 	upgraded_card_library = null
 	display(card)
+
+func begin_glow() -> void:
+	is_glowing = true
+
+func stop_glow() -> void:
+	is_glowing = false
 
 func get_center_position() -> Vector2:
 	return position + size / 2

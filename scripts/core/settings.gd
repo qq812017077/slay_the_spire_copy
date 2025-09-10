@@ -48,6 +48,10 @@ static var game_seed: int = -1
 static var seedSet: bool = false
 
 static var SCROLL_SPEED: float = 0
+
+static var ACTION_DUR_XFAST: float = 0.1
+static var ACTION_DUR_FASTER: float = 0.2
+
 static func initialize(reloaded: bool = false) -> void:
 	print("Initializing Settings...")
 	initialize_display(reloaded)

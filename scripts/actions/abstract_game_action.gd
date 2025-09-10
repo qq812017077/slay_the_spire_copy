@@ -34,10 +34,10 @@ func set_values_with_damage_info(t: AbstractCreature, info: DamageInfo)-> void:
 	amount = info.output
 	duration = 0.5
 
-func set_values_with_amount(t: AbstractCreature, info: DamageInfo, vamount: int)-> void:
+func set_values_with_amount(t: AbstractCreature, s: AbstractCreature, _amount: int)-> void:
 	target = t
-	source = info.owner
-	amount = vamount
+	source = s
+	amount = _amount
 	duration = 0.5
 
 func is_dead_or_escaped()-> bool:

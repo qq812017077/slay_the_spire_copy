@@ -296,6 +296,15 @@ func upgrade_base_cost(new_cost: int) -> void:
 	self.upgraded_cost = true;
 func use(_player, _monster) -> void:
 	pass
+
+
+#
+############ Event Methods ############
+#
+func on_draw() -> void:
+	pass
+
+
 #					
 #	get card info
 # 

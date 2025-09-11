@@ -84,6 +84,7 @@ func execute_action(delta: float):
 			CardGame.dungeon_main_screen.refresh_player()
 			has_control = false
 		using_card = false
+	
 
 func get_next_action():
 	if not actions.is_empty():

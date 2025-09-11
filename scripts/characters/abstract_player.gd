@@ -93,6 +93,13 @@ func get_energy_image() -> Texture2D:
 func get_energy_num_label_settings() -> LabelSettings:
 	return null
 
+func draw_card() -> AbstractCard:
+	var card: AbstractCard = draw_pile.pop_top_card()
+	hand.add_to_top(card)
+	return card
+
+func create_hand_is_full_dialog():
+	pass
 static func get_character_name(player_type: PlayerType) -> String:
 	match player_type:
 		PlayerType.IRONCLAD:

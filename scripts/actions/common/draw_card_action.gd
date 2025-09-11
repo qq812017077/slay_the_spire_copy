@@ -69,16 +69,16 @@ func _process(delta: float) -> void:
     if amount != 0 and duration < 0.0:
         reset_duration()
         amount-=1
-        var end: bool = false
+        var end_action: bool = false
         if CardGame.dungeon_main_screen.player.draw_pile.size() != 0:
-            var drawn_card : AbstractCard = CardGame.dungeon_main_screen.dungeon_room_screen.combat_ui.draw_single_card()
+            var drawn_card : AbstractCard = CardGame.dungeon_main_screen.dungeon_room_screen.combat_ui.draw_card(true)
             drawn_cards.append(drawn_card)
         else:
-            end = true
+            end_action = true
         
-        end = amount == 0
+        end_action = amount == 0
         
-        if end:
+        if end_action:
             end_action_with_follow_up()
 
 

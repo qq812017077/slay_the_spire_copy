@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b877xf08pys47"]
+[gd_scene load_steps=14 format=3 uid="uid://b877xf08pys47"]
 
 [ext_resource type="Script" uid="uid://7rmfy6vifrq3" path="res://scripts/ui/screens/dungeon_room_screen.gd" id="1_3p215"]
 [ext_resource type="PackedScene" uid="uid://bgqowskwv2lb3" path="res://scenes/slay_the_spire/scenes/BottomScene.tscn" id="2_r3vk0"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://7vnx8mwyo167" path="res://scenes/slay_the_spire/ui/rooms/event_ui.tscn" id="7_fer8d"]
 [ext_resource type="PackedScene" uid="uid://cmdqtt5u7yw87" path="res://scenes/slay_the_spire/ui/rooms/shop_ui.tscn" id="7_hx8xb"]
 [ext_resource type="PackedScene" uid="uid://bh60bar22wm1c" path="res://scenes/slay_the_spire/ui/rooms/treasure_ui.tscn" id="9_a5dpk"]
+[ext_resource type="PackedScene" uid="uid://c641ar22rtoiv" path="res://scenes/slay_the_spire/ui/rooms/combat_ui.tscn" id="13_6kras"]
 
 [node name="DungeonRoomScreen" type="Control" node_paths=PackedStringArray("player_widget", "scene_container", "campfire_ui", "event_ui", "shop_ui", "treasure_ui")]
 process_mode = 1
@@ -59,6 +60,9 @@ visible = false
 position = Vector2(0, -56)
 texture = ExtResource("5_i8bs6")
 centered = false
+
+[node name="CombatUI" parent="." instance=ExtResource("13_6kras")]
+layout_mode = 0
 
 [node name="TreasureUI" parent="." instance=ExtResource("9_a5dpk")]
 visible = false

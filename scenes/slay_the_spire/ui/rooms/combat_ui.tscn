@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ee2ejpag0yv4" path="res://scenes/slay_the_spire/combat/combat_deck_panel.tscn" id="2_5o3l1"]
 [ext_resource type="PackedScene" uid="uid://dvjw2vwexwccr" path="res://scenes/slay_the_spire/combat/enery_panel.tscn" id="2_k8ifh"]
 [ext_resource type="PackedScene" uid="uid://dcp0uxg80ex33" path="res://scenes/slay_the_spire/combat/discard_pile_panel.tscn" id="3_fyl4n"]
-[ext_resource type="PackedScene" uid="uid://cwcrx77pr50dp" path="res://scenes/slay_the_spire/combat/hand_panel.tscn" id="5_ar41r"]
+[ext_resource type="PackedScene" path="res://scenes/slay_the_spire/combat/hand_panel.tscn" id="5_ar41r"]
 
 [node name="CombatUI" type="Control" node_paths=PackedStringArray("energy_panel", "combat_deck_panel", "discard_pile_panel")]
 layout_mode = 3

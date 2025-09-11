@@ -245,7 +245,7 @@ func get_center_position() -> Vector2:
 func get_global_center_position() -> Vector2:
 	return global_position + size / 2
 
-func set_angle(angle: float) :
+func set_target_angle(angle: float) :
 	target_angle = angle
 '''
 ############ Event Methods ############
@@ -307,6 +307,12 @@ func set_card_hover() -> void:
 	current_card_state = ECardState.HOVERING
 	if on_card_just_hovered.is_valid():
 		on_card_just_hovered.call(self)
+
+'''
+############ Event Methods ############
+'''
+func on_draw() -> void:
+	card.on_draw()
 
 '''
 ############ Static Methods ############

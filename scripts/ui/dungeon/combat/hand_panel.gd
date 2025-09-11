@@ -6,7 +6,7 @@ var CARD_Y_OFFSET_TABLE: Dictionary = {}
 
 var player: AbstractPlayer = null
 
-var card_widgets: Array[CardWidget] = []
+var hand_card_widgets: Array[CardWidget] = []
 
 func _ready() -> void:
     build_pos_table()
@@ -14,7 +14,9 @@ func _ready() -> void:
 func load_player(_player: AbstractPlayer) -> void:
     player = _player
 
-
+func add_to_hand(card: CardWidget) -> void:
+    hand_card_widgets.append(card)
+    
 func refresh_layout() -> void:
     
     for relic : AbstractRelic in player.relics:
@@ -30,7 +32,7 @@ func refresh_layout() -> void:
 
     var even_count: bool = hand_group_size % 2 == 0
     for i: int in range(hand_group_size):
-        card_widgets[i].set_angle(angle_range / 2.0 - increment_angle * i - increment_angle / 2.0)
+        hand_card_widgets[i].set_target_angle(angle_range / 2.0 - increment_angle * i - increment_angle / 2.0)
 
         var t: int = i - middle
         
@@ -44,19 +46,19 @@ func refresh_layout() -> void:
         t = int(t * 1.7)
 
         var target_y : float= sink_start + increment_sink * t
-        card_widgets[i].target_pos = Vector2(CARD_X_COORD_TABLE[hand_group_size][i], target_y)
+        hand_card_widgets[i].target_pos = Vector2(CARD_X_COORD_TABLE[hand_group_size][i], target_y)
 
     glow_check()
 
 func glow_check() -> void:
-    for card_widget: CardWidget in card_widgets:
+    for card_widget: CardWidget in hand_card_widgets:
         if card_widget.card.can_use(player, null):
             card_widget.begin_glow()
         else:
             card_widget.stop_glow()
 
 func stop_glowing():
-    for card_widget: CardWidget in card_widgets:
+    for card_widget: CardWidget in hand_card_widgets:
         card_widget.stop_glow()
 
 func build_pos_table() -> void:

@@ -4,6 +4,7 @@ extends Control
 static func initialize():
 	ShopUI.initialize()
 	TreasureUI.initialize()
+	CombatUI.initialize()
 
 @export_group("Scene Prefabs")
 @export var bottom_scene_prefab: PackedScene = null

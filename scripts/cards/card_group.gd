@@ -38,6 +38,12 @@ func get_top_card() -> AbstractCard:
 func get_bottom_card() -> AbstractCard:
     return group.front()
 
+func pop_top_card() -> AbstractCard:
+    return group.pop_back()
+
+func pop_bottom_card() -> AbstractCard:
+    return group.pop_front()
+
 func get_n_card_from_top(n: int) -> AbstractCard:
     return group[group.size() - 1 - n]
 

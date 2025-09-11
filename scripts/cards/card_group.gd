@@ -19,6 +19,9 @@ func _init(group_type: CardGroupType) -> void:
 #   return this.group.get(MathUtils.random(this.group.size() - 1));
 # }
 
+func size() -> int:
+    return group.size()
+
 func add_to_top(card: AbstractCard) -> void:
     group.push_back(card)
 

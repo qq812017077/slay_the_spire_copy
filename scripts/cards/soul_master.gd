@@ -41,3 +41,7 @@ func get_idle_soul() -> Soul:
 	else:
 		soul = idle_soul_pool.pop_back()
 	return soul
+
+func is_active() -> bool:
+	# for s: Soul in CardGame.dungeon_main_screen.dungeon_room_screen.cur_room.soul
+	return false

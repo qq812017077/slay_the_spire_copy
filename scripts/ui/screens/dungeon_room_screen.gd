@@ -29,6 +29,9 @@ static func initialize():
 @export var treasure_ui: TreasureUI = null
 @export_group("")
 
+@export_group("Combat UI")
+@export var combat_ui: CombatUI = null
+@export_group("")
 var dungeon: AbstractDungeons = null
 var cur_room: AbstractRoom = null
 var monsters: Array[AbstractMonster] = []

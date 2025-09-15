@@ -26,6 +26,9 @@ static var cached_orb_textures_by_region: Dictionary = {}
 # variables
 static var hovering_card_count: int = 0
 static var RATIO: float = 230.0 / 322.0
+static var HOVERING_SCALE: Vector2 = Vector2(1.3, 1.3)
+static var NORMAL_SCALE: Vector2 = Vector2(1, 1)
+static var RECOVERING_SCALE: Vector2 = Vector2(0.8, 0.8)
 
 @export var card_mode: CardMode = CardMode.NORMAL
 
@@ -60,6 +63,7 @@ var card_description_label: CardDescriptionLabel = null
 
 var target_pos: Vector2 = Vector2(0, 0)
 var target_angle: float = 0.0
+var target_scale: Vector2 = Vector2.ONE
 var enable_card_tip = false
 
 var on_card_just_hovered: Callable
@@ -105,6 +109,29 @@ func _process(delta: float) -> void:
 			_process_holding(delta)
 		ECardState.MOVING_TO_DESTINATION:
 			_process_moving_to_destination(delta)
+
+func update_position(delta: float) ->void:
+	if Settings.FAST_MODE:
+		position = MathHelper.vec2_lerp_snap(position, target_pos, delta * 6.0)
+
+	position = MathHelper.vec2_lerp_snap(position, target_pos, delta * 6.0)
+
+func update_angle(delta: float) ->void:
+	if rotation_degrees != target_angle:
+		rotation_degrees = MathHelper.lerp_snap(rotation_degrees, target_angle, delta * 12.0)
+
+func update_scale(delta: float) -> void:
+	if (scale - target_scale).length_squared() > Global.EPLISON:
+		scale = MathHelper.vec2_lerp_snap(scale, target_scale, delta * 8.0)
+	else:
+		scale = target_scale
+
+func update_hovering_logic() -> void:
+	if is_hovering():
+		target_scale = HOVERING_SCALE
+		scale = HOVERING_SCALE
+	else:
+		target_scale = NORMAL_SCALE
 
 func refresh_card_state() -> void:
 	if not CardGame.is_focused:

@@ -130,9 +130,11 @@ func update_hovering_logic() -> void:
 	if is_hovering():
 		target_scale = HOVERING_SCALE
 		scale = HOVERING_SCALE
+		z_index = 1
 	else:
 		target_scale = NORMAL_SCALE
-
+		z_index = 0
+		
 func refresh_card_state() -> void:
 	if not CardGame.is_focused:
 		return

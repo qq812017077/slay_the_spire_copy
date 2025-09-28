@@ -63,6 +63,12 @@ func hide_combat_ui(instant: bool = false) -> void:
 	combat_deck_panel.hide_panel(instant)
 	discard_pile_panel.hide_panel(instant)
 
+func on_combat_start() -> void:
+	energy_panel.on_combat_start()
+	combat_deck_panel.on_combat_start()
+	hand_panel.on_combat_start()
+	discard_pile_panel.on_combat_start()
+
 func draw_card(refresh_layout: bool = true) -> AbstractCard:
 	if player.hand.size() == 10:
 		player.create_hand_is_full_dialog()
@@ -71,7 +77,7 @@ func draw_card(refresh_layout: bool = true) -> AbstractCard:
 		return null
 	
 	CardGame.sound.single_play("CARD_DRAW_8")
-	var card: AbstractCard = player.draw_card()
+	var card: AbstractCard = player.draw_top_card()
 	var card_widget: CardWidget = CardWidget.allocate(card, hand_panel, 0.12)
 	card_widget.position = DRAW_PILE_POS
 	card_widget.rotation = 0.0

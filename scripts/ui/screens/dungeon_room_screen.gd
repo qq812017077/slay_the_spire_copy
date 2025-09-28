@@ -152,6 +152,7 @@ func load_room(_room: AbstractRoom) -> void:
 		cur_scene.refresh_scene()
 		cur_scene.open_combat_room()
 		player_widget.get_into_combat()
+		combat_ui.on_combat_start()
 		is_combat_room = true
 
 	# if is_combat_room:

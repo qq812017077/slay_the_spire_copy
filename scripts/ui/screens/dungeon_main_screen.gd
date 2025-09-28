@@ -87,7 +87,7 @@ func _ready() -> void:
 	overlay_menu.proceed_button.button.mouse_entered.connect(_on_proceed_button_mouse_entered)
 
 func _process(_delta: float) -> void:
-	action_manager.update(_delta)
+	# action_manager.update(_delta)
 	
 	_update_fading()
 	_update_room_state()

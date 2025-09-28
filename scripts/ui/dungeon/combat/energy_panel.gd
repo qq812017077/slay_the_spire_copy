@@ -107,3 +107,6 @@ func set_energy_label(value: int) -> void:
 	var label_size: Vector2 = energe_num_label.size
 	energe_num_label.pivot_offset = label_size / 2.0
 	energe_num_label.position = - label_size / 2.0
+
+func on_combat_start() -> void:
+	pass

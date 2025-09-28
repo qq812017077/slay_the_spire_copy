@@ -5,6 +5,12 @@ extends Control
 @export var shoulder: Sprite2D = null
 var player: AbstractPlayer = null
 var target_shoulder_pos_x: float = 0
+
+var damaged_this_combat: int = 0
+var game_hand_size: int = 0
+var is_dragging_card: bool = false
+var is_hovering_drop_zone: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if animated_sprite == null:
@@ -33,6 +39,12 @@ func play_hit_animation() -> void:
 func get_into_combat() -> void:
 	animated_sprite.visible = true
 	shoulder.visible = false
+	pre_battle_preparation()
+
+func pre_battle_preparation() -> void:
+	CardGame.action_manager.clear()
+	player.pre_combat_begin()
+	game_hand_size = player.master_hand_size
 
 func get_into_campfire(fade_in: bool = true) -> void:
 	animated_sprite.visible = false

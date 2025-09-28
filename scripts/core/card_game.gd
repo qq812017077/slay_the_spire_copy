@@ -34,6 +34,7 @@ var anim_library: AnimLibrary = null
 var cur_dungeon: AbstractDungeons = null
 
 
+var action_manager: GameActionManager = GameActionManager.new()
 var effectlist: Array[AbstractGameEffect] = []
 func _ready() -> void:
 	# Initialize the game settings and player configuration
@@ -78,6 +79,7 @@ func initialize() -> void:
 
 	
 func _process(_delta: float) -> void:
+	action_manager.update(_delta)
 	var i = effectlist.size() - 1
 	while i >= 0:
 		var effect = effectlist[i]

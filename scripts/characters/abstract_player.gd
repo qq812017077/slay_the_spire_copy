@@ -13,6 +13,7 @@ var shoulder_img: Texture2D = null
 var shoulder2_img: Texture2D = null
 
 var master_max_orbs: int = 0
+var max_orbs: int = 0
 var energy_manager: EnergyManager
 var master_hand_size: int = 0
 
@@ -93,13 +94,23 @@ func get_energy_image() -> Texture2D:
 func get_energy_num_label_settings() -> LabelSettings:
 	return null
 
-func draw_card() -> AbstractCard:
+func draw_top_card() -> AbstractCard:
 	var card: AbstractCard = draw_pile.pop_top_card()
 	hand.add_to_top(card)
 	return card
 
 func create_hand_is_full_dialog():
 	pass
+
+func pre_combat_begin() -> void:
+	cards_played_count_this_turn = 0
+	max_orbs = 0
+	orbs.clear()
+	# increase_max_orb_slots(master_max_orbs, false)
+	# is_blooded = current_health < (max_health * 0.5)
+	# poision_kill_count = 0
+	draw_pile.initialize_deck(master_decks)
+
 static func get_character_name(player_type: PlayerType) -> String:
 	match player_type:
 		PlayerType.IRONCLAD:

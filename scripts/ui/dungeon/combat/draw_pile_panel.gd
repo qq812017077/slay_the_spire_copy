@@ -25,7 +25,6 @@ func update(delta: float) -> void:
 	update_pop(delta)
 
 
-
 func update_vfx(delta: float) -> void:
 	pass
 
@@ -37,15 +36,11 @@ func update_pop(delta: float) -> void:
 		scale_amount = 1.2
 	
 	deck_sprite.scale = Vector2(scale_amount, scale_amount)
+
 func pop() -> void:
 	scale_amount = 1.75
-	
 
 func open_draw_pile() -> void:
-	pass
-
-func load_player(_player: AbstractPlayer) -> void:
-	
 	pass
 
 

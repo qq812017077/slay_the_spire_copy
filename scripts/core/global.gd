@@ -47,7 +47,7 @@ const REWARD_SCREEN_Z_INDEX = 2
 const BUTTON_GROUP = "button"
 const MAP_GROUP = "map"
 
-func array_shuffle(rng: RandomNumberGenerator, array: Array):
+func array_shuffle(rng: RandomNumberGenerator, array: Array) ->Array:
     for i in array.size():
         var rand_idx = rng.randi_range(0, array.size() - 1)
         if rand_idx == i:

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://w2chvmpctdrv"]
+
+[ext_resource type="Script" uid="uid://cf74jog58l2xd" path="res://scripts/effects/combat/combat_start_effect.gd" id="1_4v431"]
+[ext_resource type="Texture2D" uid="uid://dypbncmc7p4x7" path="res://arts/slay_the_spire/vfx/combat/sword_texture.tres" id="2_g1tmr"]
+
+[node name="CombatStartEffect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_4v431")
+
+[node name="SwordTexture" type="Sprite2D" parent="."]
+texture = ExtResource("2_g1tmr")

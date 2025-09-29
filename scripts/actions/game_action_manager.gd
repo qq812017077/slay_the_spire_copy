@@ -307,3 +307,8 @@ func clear_post_combat_actions() -> void:
 			continue
 		actions.remove_at(i)
 		i -= 1
+
+
+func on_combat_start() -> void:
+	
+	pass

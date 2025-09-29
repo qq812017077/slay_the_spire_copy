@@ -104,8 +104,7 @@ func create_hand_is_full_dialog():
 
 func pre_combat_begin() -> void:
 	cards_played_count_this_turn = 0
-	max_orbs = 0
-	orbs.clear()
+	
 	# increase_max_orb_slots(master_max_orbs, false)
 	# is_blooded = current_health < (max_health * 0.5)
 	# poision_kill_count = 0

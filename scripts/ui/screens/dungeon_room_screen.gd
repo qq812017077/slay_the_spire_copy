@@ -41,6 +41,8 @@ var sprite_by_region: Dictionary = {}
 # combat 
 var is_combat_room: bool = false
 
+var wait_timer: float = 0.0
+
 func _ready() -> void:
 	if scene_container == null:
 		scene_container = self
@@ -55,9 +57,7 @@ func _process(_delta: float) -> void:
 		return
 	match cur_room.phase:
 		AbstractRoom.RoomPhase.COMBAT:
-			if Input.is_key_pressed(KEY_ENTER):
-				print("enter pressed")
-				end_battle()
+			update_combat(_delta)
 		AbstractRoom.RoomPhase.EVENT:
 			pass
 		AbstractRoom.RoomPhase.INCOMPLETE:
@@ -215,3 +215,25 @@ func move_player_and_treasure_to_front() -> void:
 func move_player_and_treasure_to_back() -> void:
 	player_widget.z_index = Global.DEFAULT_Z_INDEX
 	treasure_ui.z_index = Global.DEFAULT_Z_INDEX
+
+
+func update_combat(delta: float) -> void:
+	# if Input.is_key_pressed(KEY_ENTER):
+	# 	print("enter pressed")
+	# 	end_battle()
+	for monster: AbstractMonster in monsters:
+		monster.update_combat()
+	
+	if wait_timer > 0.0:
+		if CardGame.action_manager.cur_action != null or not CardGame.action_manager.is_empty():
+			CardGame.action_manager.update(delta)
+		else:
+			wait_timer -= delta
+		
+		if wait_timer <= 0.0:
+			CardGame.action_manager.turn_has_ended = true
+			# CardGame.dungeon_main_screen.add_game_effect(BattleStartEffect.new(false))
+			show_health_bar()
+
+	else:
+		pass

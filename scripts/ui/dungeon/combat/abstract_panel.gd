@@ -8,6 +8,7 @@ var target_pos : Vector2
 var is_hidden: bool = false
 var is_moving: bool = false
 
+var player: AbstractPlayer
 
 
 func _process(delta: float) -> void:
@@ -46,7 +47,7 @@ func hide_panel(instant: bool = false) -> void:
 
 
 func load_player(_player: AbstractPlayer) -> void:
-	pass
+	player = _player
 
 func on_combat_start() -> void:
 	pass

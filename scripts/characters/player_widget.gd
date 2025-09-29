@@ -39,10 +39,10 @@ func play_hit_animation() -> void:
 func get_into_combat() -> void:
 	animated_sprite.visible = true
 	shoulder.visible = false
+	CardGame.action_manager.on_combat_start()
 	pre_battle_preparation()
 
 func pre_battle_preparation() -> void:
-	CardGame.action_manager.clear()
 	player.pre_combat_begin()
 	game_hand_size = player.master_hand_size
 

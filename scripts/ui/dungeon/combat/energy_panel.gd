@@ -17,7 +17,6 @@ var energy_vfx_angle: float = 0.0
 var energy_vfx_scale: float = 1.0
 
 var gain_energy_sprite_2: Sprite2D
-var player: AbstractPlayer
 
 var flag: bool = false
 func _ready() -> void:
@@ -109,4 +108,5 @@ func set_energy_label(value: int) -> void:
 	energe_num_label.position = - label_size / 2.0
 
 func on_combat_start() -> void:
-	pass
+	player.max_orbs = 0
+	player.orbs.clear()

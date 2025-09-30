@@ -4,15 +4,12 @@ extends AbstractPanel
 var CARD_X_COORD_TABLE: Dictionary = {}
 var CARD_Y_OFFSET_TABLE: Dictionary = {}
 
-var player: AbstractPlayer = null
 
 var hand_card_widgets: Array[CardWidget] = []
 
 func _ready() -> void:
 	build_pos_table()
 
-func load_player(_player: AbstractPlayer) -> void:
-	player = _player
 
 func add_to_hand(card: CardWidget) -> void:
 	hand_card_widgets.append(card)

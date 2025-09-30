@@ -52,7 +52,7 @@ static func distribute_rooms_across_map(map: Array[Array], room_list: Array[Abst
 	
 	# shuffle room list based on rng
 	# room_list.shuffle()
-	Global.array_shuffle(_rng, room_list)
+	RandomHelper.array_shuffle(_rng, room_list)
 
 	# assign rooms to map
 	for row in map:

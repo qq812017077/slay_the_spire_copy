@@ -16,11 +16,3 @@ static func remove_object(target: Node):
 	if parent != null:
 		parent.remove_child(target)
 	target.queue_free()
-	
-	
-static func shuffle_array(array: Array)  -> void:
-	for i in range(array.size() - 1, 0, -1):
-		var j = randi() % (i + 1)
-		var temp = array[i]
-		array[i] = array[j]
-		array[j] = temp

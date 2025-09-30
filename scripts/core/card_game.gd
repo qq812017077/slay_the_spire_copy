@@ -79,7 +79,6 @@ func initialize() -> void:
 
 	
 func _process(_delta: float) -> void:
-	action_manager.update(_delta)
 	var i = effectlist.size() - 1
 	while i >= 0:
 		var effect = effectlist[i]

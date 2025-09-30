@@ -237,3 +237,9 @@ func update_combat(delta: float) -> void:
 
 	else:
 		pass
+
+func show_health_bar() -> void:
+	pass
+
+func show_monster_intent() -> void:
+	pass

@@ -1,7 +1,7 @@
 class_name JawWorm
 extends AbstractMonster
 
-static var ID = "Jaw Worm"
+static var ID = "JawWorm"
 static var monster_string: MonsterString = null
 static var NAME : String = ""
 static var MOVES: Array = []

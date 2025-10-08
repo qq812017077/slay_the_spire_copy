@@ -401,6 +401,7 @@ func next_room_transition() -> void:
 	if CardGame.black_mask.is_black():
 		CardGame.black_mask.fade_out(0.3)
 	floor_num += 1
+	
 	dungeon.refresh_rng(floor_num)
 	dungeon_map_screen.close(true)
 	overlay_menu.cancel_button.hide_button()

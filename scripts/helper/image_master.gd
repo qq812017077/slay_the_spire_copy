@@ -179,6 +179,10 @@ static var red_orb_flash_vfx: Texture2D = null
 static var green_orb_flash_vfx: Texture2D = null
 static var blue_orb_flash_vfx: Texture2D = null
 static var purple_orb_flash_vfx: Texture2D = null
+
+# combat
+static var combat_sword: Texture2D = null
+
 # 
 static var SELECT_BANNER: Texture2D = null
 
@@ -301,7 +305,10 @@ static var boss_level_end_heart_outline: Texture2D = null
 static var arrow_up: Texture2D = null
 static var arrow_down: Texture2D = null
 
+static var white_square_img: Texture2D = null
 static func initialize() -> void:
+	initialize_misc_ui()
+
 	initialize_menu_ui()
 	initialize_card_ui()
 	initialize_portrait_img()
@@ -317,8 +324,10 @@ static func initialize() -> void:
 	initialize_potion_ui()
 
 	initialize_reward_ui()
-
 	initialize_combat_ui()
+
+static func initialize_misc_ui() -> void:
+	white_square_img = load("res://arts/slay_the_spire/images/whiteSquare32.png")
 
 static func initialize_settings_ui() -> void:
 	pass
@@ -651,6 +660,9 @@ static func initialize_combat_ui() -> void:
 	green_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyGreenVFX.png")
 	blue_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyBlueVFX.png")
 	purple_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyPurpleVFX.png")
+
+	combat_sword = load("res://arts/slay_the_spire/vfx/combat/sword_texture.tres")
+
 static func loadPortraitImg(url: String) -> Texture2D:
 	return load("res://arts/slay_the_spire/images/1024Portraits/" + url + ".png")
 

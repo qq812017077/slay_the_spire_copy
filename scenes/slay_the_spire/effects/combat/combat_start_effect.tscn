@@ -1,25 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://w2chvmpctdrv"]
+[gd_scene load_steps=2 format=3 uid="uid://w2chvmpctdrv"]
 
 [ext_resource type="Script" uid="uid://cf74jog58l2xd" path="res://scripts/effects/combat/combat_start_effect.gd" id="1_4v431"]
-[ext_resource type="Texture2D" uid="uid://dypbncmc7p4x7" path="res://arts/slay_the_spire/vfx/combat/sword_texture.tres" id="2_g1tmr"]
-[ext_resource type="Texture2D" uid="uid://dbevsjkw14vjx" path="res://arts/slay_the_spire/images/whiteSquare32.png" id="2_ynfvh"]
 
-[node name="CombatStartEffect" type="Control" node_paths=PackedStringArray("bg_tex")]
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
+[node name="CombatStartEffect" type="Node2D" node_paths=PackedStringArray("bg_tex", "sword_1", "sword_2", "battle_start_info_msg", "turn_type_msg", "turn_num_msg")]
+scale = Vector2(0.833, 0.833)
 script = ExtResource("1_4v431")
 bg_tex = NodePath("BG")
+sword_1 = NodePath("Sword1")
+sword_2 = NodePath("Sword2")
+battle_start_info_msg = NodePath("BattleStartMsg")
+turn_type_msg = NodePath("TurnTypeMsg")
+turn_num_msg = NodePath("TurnNumMsg")
 
 [node name="BG" type="TextureRect" parent="."]
-layout_mode = 1
 offset_right = 500.0
 offset_bottom = 500.0
-texture = ExtResource("2_ynfvh")
 expand_mode = 1
 
 [node name="Sword1" type="Sprite2D" parent="."]
-texture = ExtResource("2_g1tmr")
+rotation = 0.872665
 
 [node name="Sword2" type="Sprite2D" parent="."]
-texture = ExtResource("2_g1tmr")
+rotation = -0.872665
+
+[node name="BattleStartMsg" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnTypeMsg" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+
+[node name="TurnNumMsg" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1

@@ -304,6 +304,8 @@ func use(_player, _monster) -> void:
 func on_draw() -> void:
 	pass
 
+func at_turn_of_start() -> void:
+	pass
 
 #					
 #	get card info

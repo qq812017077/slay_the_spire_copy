@@ -15,6 +15,7 @@ var shoulder2_img: Texture2D = null
 var master_max_orbs: int = 0
 var max_orbs: int = 0
 var energy_manager: EnergyManager
+var game_hand_size: int = 0
 var master_hand_size: int = 0
 
 var orbs: Array[AbstractOrb] = []
@@ -36,16 +37,40 @@ func _init(_type: PlayerType, _idle_animation: String, _hit_animation: String, e
 	idle_animation = _idle_animation
 	hit_animation = _hit_animation
 	master_max_orbs = 3
-	gold = 99
-	master_hand_size = 10
 	energy_manager = emanager
+	initialize_data(get_character_info())
+
+func initialize_data(info: CharacterInfo) -> void:
+	max_health = info.maxHp
+	starting_max_health = info.maxHp
+	current_health = info.currentHp
+	master_max_orbs = info.maxOrbs
+	game_hand_size = info.cardDraw
+	master_hand_size = info.cardDraw
+	gold = info.gold
+
 
 	
 func new_instance() -> AbstractPlayer:
 	return null
 
 func get_character_info() -> CharacterInfo:
-	return null
+	return CharacterInfo.new(
+		"",
+		"",
+		80,
+		80,
+		0,
+		99,
+		5,
+		self,
+		get_starting_relics(),
+		get_starting_deck(),
+		false
+	)
+func get_starting_relics() -> Array:
+	var result: Array = []
+	return result
 
 func get_starting_deck() -> Array[String]:
 	return []
@@ -109,6 +134,38 @@ func pre_combat_begin() -> void:
 	# is_blooded = current_health < (max_health * 0.5)
 	# poision_kill_count = 0
 	draw_pile.initialize_deck(master_decks)
+
+func apply_start_of_turn_logic() -> void:
+	apply_start_of_turn_relics()
+	apply_start_of_turn_post_draw_relics()
+	apply_start_of_turn_cards()
+	apply_start_of_turn_powers()
+	apply_start_of_turn_orbs()
+
+func apply_start_of_turn_relics() -> void:
+	for relic : AbstractRelic in relics:
+		relic.at_start_of_turn()
+
+func apply_start_of_turn_post_draw_relics() -> void:
+	pass
+
+func apply_start_of_turn_cards() -> void:
+	for c: AbstractCard in draw_pile.group:
+		c.at_turn_of_start()
+
+	for c: AbstractCard in hand.group:
+		c.at_turn_of_start()
+
+	for c: AbstractCard in draw_pile.group:
+		c.at_turn_of_start()
+
+func apply_start_of_turn_powers() -> void:
+	for power: AbstractPower in powers:
+		power.at_start_of_turn()
+
+func apply_start_of_turn_orbs() -> void:
+	for orb: AbstractOrb in orbs:
+		orb.at_start_of_turn()
 
 static func get_character_name(player_type: PlayerType) -> String:
 	match player_type:

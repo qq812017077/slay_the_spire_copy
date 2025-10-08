@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cclmknhgv73pb"]
+
+[ext_resource type="Script" uid="uid://bxf7pqjumljbk" path="res://scripts/ui/buttons/end_turn_button.gd" id="1_w0elk"]
+[ext_resource type="Texture2D" uid="uid://b8qrrf0tem1kt" path="res://arts/slay_the_spire/images/ui/top_panel/endTurnButton.png" id="2_hig5t"]
+[ext_resource type="Texture2D" uid="uid://b68bb6oxslqps" path="res://arts/slay_the_spire/images/ui/top_panel/endTurnButtonGlow.png" id="3_byexe"]
+[ext_resource type="Texture2D" uid="uid://w3rknl7jci1j" path="res://arts/slay_the_spire/images/ui/top_panel/endTurnHover.png" id="4_oov56"]
+
+[node name="EndTurnButton" type="Control" node_paths=PackedStringArray("label", "hover_sprite", "end_turn_sprite", "end_turn_blend_sprite", "glow_list_container")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+script = ExtResource("1_w0elk")
+glow_button_img = ExtResource("3_byexe")
+button_img = ExtResource("2_hig5t")
+label = NodePath("Label")
+hover_sprite = NodePath("EndTurnHover")
+end_turn_sprite = NodePath("EndTurnButton")
+end_turn_blend_sprite = NodePath("EndTurnButtonBlend")
+glow_list_container = NodePath("GlowEffects")
+
+[node name="EndTurnHover" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_oov56")
+
+[node name="EndTurnButton" type="Sprite2D" parent="."]
+texture = ExtResource("2_hig5t")
+
+[node name="GlowEffects" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="EndTurnButtonBlend" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_hig5t")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -115.0
+offset_top = -55.0
+offset_right = 115.0
+offset_bottom = 55.0
+horizontal_alignment = 1
+vertical_alignment = 1

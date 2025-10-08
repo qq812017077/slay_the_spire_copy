@@ -15,7 +15,11 @@ func _init(poision_amount: int = 0) -> void:
 		DIALOG = monster_string.DIALOG
 	super(NAME, ID, 12, "")
 
-
+	if CardGame.dungeon_main_screen.ascension_level >= 2:
+		damage_list.append(DamageInfo.new(self, 4))
+	else:
+		damage_list.append(DamageInfo.new(self, 3))
+	
 	load_animation(CardGame.anim_library.acid_slime_s_anim)
 
 func get_move(num: int)-> void:

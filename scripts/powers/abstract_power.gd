@@ -3,6 +3,9 @@ extends Object
 
 var id: String = ""
 
+func at_start_of_turn() -> void:
+	pass
+
 func at_end_of_turn(_player: AbstractPlayer):
 	pass
 

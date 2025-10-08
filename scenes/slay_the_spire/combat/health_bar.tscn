@@ -1,0 +1,209 @@
+[gd_scene load_steps=8 format=3 uid="uid://bltrnflnkptqv"]
+
+[ext_resource type="Script" uid="uid://cu03r3wohg1lx" path="res://scripts/ui/dungeon/combat/health_bar.gd" id="1_mdog0"]
+[ext_resource type="Texture2D" uid="uid://bu7pqy3jmf41a" path="res://arts/slay_the_spire/images/ui/combat/leftBg.png" id="1_qdacu"]
+[ext_resource type="Texture2D" uid="uid://du6n8gwswkyn0" path="res://arts/slay_the_spire/images/ui/combat/bodyBg.png" id="2_mdog0"]
+[ext_resource type="Texture2D" uid="uid://cd83gv57yl7g5" path="res://arts/slay_the_spire/images/ui/combat/rightBg.png" id="3_vgqxj"]
+[ext_resource type="Texture2D" uid="uid://cdigb3ed6yoaf" path="res://arts/slay_the_spire/images/ui/combat/left7.png" id="5_ojpsk"]
+[ext_resource type="Texture2D" uid="uid://bbk0ooc6xypnb" path="res://arts/slay_the_spire/images/ui/combat/right7.png" id="6_ybdtu"]
+[ext_resource type="Texture2D" uid="uid://d4a3relj67yuu" path="res://arts/slay_the_spire/images/ui/combat/body7.png" id="7_6b4xu"]
+
+[node name="HealthBar" type="Control" node_paths=PackedStringArray("left_shadow_bg", "body_shadow_bg", "right_shadow_bg", "left_bg", "body_bg", "right_bg", "orange_bar", "orange_left_bar", "orange_body_bar", "orange_right_bar", "red_bar", "red_left_bar", "red_body_bar", "red_right_bar", "green_bar", "green_left_bar", "green_body_bar", "green_right_bar", "health_text")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_mdog0")
+target_hb_width = 200.0
+left_shadow_bg = NodePath("BG/LeftBg")
+body_shadow_bg = NodePath("BG/BodyBg")
+right_shadow_bg = NodePath("BG/RightBg")
+left_bg = NodePath("BG/Left7")
+body_bg = NodePath("BG/Body7")
+right_bg = NodePath("BG/Right7")
+orange_bar = NodePath("OrangeHealthBar")
+orange_left_bar = NodePath("OrangeHealthBar/OrangeLeftBar")
+orange_body_bar = NodePath("OrangeHealthBar/OrangeBodyBar")
+orange_right_bar = NodePath("OrangeHealthBar/OrangeRightBar")
+text_color = Color(1, 1, 1, 0)
+red_bar = NodePath("RedHealthBar")
+red_bar_color = Color(0.8, 0.05, 0.05, 0)
+red_left_bar = NodePath("RedHealthBar/RedLeftBar")
+red_body_bar = NodePath("RedHealthBar/RedBodyBar")
+red_right_bar = NodePath("RedHealthBar/RedRightBar")
+green_bar = NodePath("GreenHealthBar")
+green_bar_color = Color(0.470588, 0.756863, 0.235294, 0)
+green_left_bar = NodePath("GreenHealthBar/GreenLeftBar")
+green_body_bar = NodePath("GreenHealthBar/GreenBodyBar")
+green_right_bar = NodePath("GreenHealthBar/GreenRightBar")
+blue_bar_color = Color(0.192157, 0.337255, 0.54902, 0)
+block_outline_color = Color(1, 1, 1, 0)
+health_text = NodePath("HealthInfo")
+
+[node name="BG" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="LeftBg" type="TextureRect" parent="BG"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_left = -20.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("1_qdacu")
+expand_mode = 1
+
+[node name="BodyBg" type="TextureRect" parent="BG"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("2_mdog0")
+expand_mode = 1
+
+[node name="RightBg" type="TextureRect" parent="BG"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_left = 200.0
+offset_right = 220.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("3_vgqxj")
+expand_mode = 1
+
+[node name="Left7" type="TextureRect" parent="BG"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_left = -20.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("5_ojpsk")
+expand_mode = 1
+
+[node name="Body7" type="TextureRect" parent="BG"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("7_6b4xu")
+expand_mode = 1
+
+[node name="Right7" type="TextureRect" parent="BG"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_left = 200.0
+offset_right = 220.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("6_ybdtu")
+expand_mode = 1
+
+[node name="OrangeHealthBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="OrangeLeftBar" type="TextureRect" parent="OrangeHealthBar"]
+modulate = Color(1, 0.5, 0, 0)
+layout_mode = 0
+offset_left = -20.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("5_ojpsk")
+expand_mode = 1
+
+[node name="OrangeBodyBar" type="TextureRect" parent="OrangeHealthBar"]
+modulate = Color(1, 0.5, 0, 0)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("7_6b4xu")
+expand_mode = 1
+
+[node name="OrangeRightBar" type="TextureRect" parent="OrangeHealthBar"]
+modulate = Color(1, 0.5, 0, 0)
+layout_mode = 0
+offset_left = 200.0
+offset_right = 220.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("6_ybdtu")
+expand_mode = 1
+
+[node name="GreenHealthBar" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="GreenLeftBar" type="TextureRect" parent="GreenHealthBar"]
+modulate = Color(1, 0.5, 0, 1)
+layout_mode = 0
+offset_left = -20.0
+offset_top = -28.0
+offset_bottom = -8.0
+mouse_filter = 2
+texture = ExtResource("5_ojpsk")
+expand_mode = 1
+
+[node name="GreenBodyBar" type="TextureRect" parent="GreenHealthBar"]
+modulate = Color(1, 0.5, 0, 1)
+layout_mode = 0
+offset_top = -28.0
+offset_right = 200.0
+offset_bottom = -8.0
+mouse_filter = 2
+texture = ExtResource("7_6b4xu")
+expand_mode = 1
+
+[node name="GreenRightBar" type="TextureRect" parent="GreenHealthBar"]
+modulate = Color(1, 0.5, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = -28.0
+offset_right = 220.0
+offset_bottom = -8.0
+mouse_filter = 2
+texture = ExtResource("6_ybdtu")
+expand_mode = 1
+
+[node name="RedHealthBar" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="RedLeftBar" type="TextureRect" parent="RedHealthBar"]
+modulate = Color(0.8, 0.05, 0.05, 0)
+layout_mode = 0
+offset_left = -20.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("5_ojpsk")
+expand_mode = 1
+
+[node name="RedBodyBar" type="TextureRect" parent="RedHealthBar"]
+modulate = Color(0.8, 0.05, 0.05, 0)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("7_6b4xu")
+expand_mode = 1
+
+[node name="RedRightBar" type="TextureRect" parent="RedHealthBar"]
+modulate = Color(0.8, 0.05, 0.05, 0)
+layout_mode = 0
+offset_left = 200.0
+offset_right = 220.0
+offset_bottom = 20.0
+mouse_filter = 2
+texture = ExtResource("6_ybdtu")
+expand_mode = 1
+
+[node name="HealthInfo" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

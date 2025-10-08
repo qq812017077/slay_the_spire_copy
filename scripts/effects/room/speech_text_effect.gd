@@ -21,7 +21,7 @@ func _ready() -> void:
     rttl = RichTextTransitionLabel.new()
     add_child(rttl)
     ThemeHelper.clean_rich_text_style(rttl)
-    ThemeHelper.apply_rich_label_font_style_with_settings(rttl, ThemeHelper.turn_num_settings, ThemeHelper.DARK_GREY_COLOR)
+    ThemeHelper.apply_rich_label_font_style_with_settings(rttl, ThemeHelper.turn_num_label_settings, ThemeHelper.DARK_GREY_COLOR)
     rttl.update_text_with_appear(msg, appear_effect)
 
     position = target_global_pos

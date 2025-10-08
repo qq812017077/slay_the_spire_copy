@@ -1,20 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://b877xf08pys47"]
+[gd_scene load_steps=12 format=3 uid="uid://b877xf08pys47"]
 
 [ext_resource type="Script" uid="uid://7rmfy6vifrq3" path="res://scripts/ui/screens/dungeon_room_screen.gd" id="1_3p215"]
 [ext_resource type="PackedScene" uid="uid://bgqowskwv2lb3" path="res://scenes/slay_the_spire/scenes/BottomScene.tscn" id="2_r3vk0"]
 [ext_resource type="PackedScene" uid="uid://n1rlfh0wactx" path="res://scenes/slay_the_spire/ui/rooms/campfire_ui.tscn" id="3_dmqmt"]
 [ext_resource type="PackedScene" uid="uid://b8158w6gux25d" path="res://scenes/slay_the_spire/scenes/city_scene.tscn" id="3_tahci"]
-[ext_resource type="Script" uid="uid://dn5375c5h573x" path="res://scripts/characters/player_widget.gd" id="3_vxldj"]
-[ext_resource type="SpriteFrames" uid="uid://dhy44tqi43o2p" path="res://arts/slay_the_spire/images/characters/player_anim.tres" id="4_4ujba"]
 [ext_resource type="PackedScene" uid="uid://cfulyde0da5lr" path="res://scenes/slay_the_spire/scenes/beyond_scene.tscn" id="4_osp2q"]
 [ext_resource type="PackedScene" uid="uid://cpj7v2adgk8c7" path="res://scenes/slay_the_spire/scenes/end_scene.tscn" id="5_8knfj"]
-[ext_resource type="Texture2D" uid="uid://bhhi6u88jgbjg" path="res://arts/slay_the_spire/images/characters/defect/shoulder.png" id="5_i8bs6"]
 [ext_resource type="PackedScene" uid="uid://7vnx8mwyo167" path="res://scenes/slay_the_spire/ui/rooms/event_ui.tscn" id="7_fer8d"]
 [ext_resource type="PackedScene" uid="uid://cmdqtt5u7yw87" path="res://scenes/slay_the_spire/ui/rooms/shop_ui.tscn" id="7_hx8xb"]
+[ext_resource type="PackedScene" uid="uid://dvryxw6nvwiq7" path="res://scenes/slay_the_spire/player/player.tscn" id="7_osp2q"]
 [ext_resource type="PackedScene" uid="uid://bh60bar22wm1c" path="res://scenes/slay_the_spire/ui/rooms/treasure_ui.tscn" id="9_a5dpk"]
 [ext_resource type="PackedScene" uid="uid://c641ar22rtoiv" path="res://scenes/slay_the_spire/ui/rooms/combat_ui.tscn" id="13_6kras"]
 
-[node name="DungeonRoomScreen" type="Control" node_paths=PackedStringArray("player_widget", "scene_container", "campfire_ui", "event_ui", "shop_ui", "treasure_ui")]
+[node name="DungeonRoomScreen" type="Control" node_paths=PackedStringArray("player_widget", "scene_container", "campfire_ui", "event_ui", "shop_ui", "treasure_ui", "combat_ui")]
 process_mode = 1
 layout_mode = 3
 anchors_preset = 0
@@ -33,6 +31,7 @@ campfire_ui = NodePath("CampfireUI")
 event_ui = NodePath("EventUI")
 shop_ui = NodePath("ShopUI")
 treasure_ui = NodePath("TreasureUI")
+combat_ui = NodePath("CombatUI")
 
 [node name="SceneContainer" type="Control" parent="."]
 anchors_preset = 0
@@ -43,23 +42,8 @@ offset_bottom = 40.0
 visible = false
 layout_mode = 0
 
-[node name="Player" type="Control" parent="." node_paths=PackedStringArray("animated_sprite", "shoulder")]
-anchors_preset = 0
-script = ExtResource("3_vxldj")
-animated_sprite = NodePath("AnimatedSprite2D")
-shoulder = NodePath("Shoulder")
-metadata/_custom_type_script = "uid://dn5375c5h573x"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(440, 655)
-sprite_frames = ExtResource("4_4ujba")
-animation = &"iron_idle"
-
-[node name="Shoulder" type="Sprite2D" parent="Player"]
-visible = false
-position = Vector2(0, -56)
-texture = ExtResource("5_i8bs6")
-centered = false
+[node name="Player" parent="." instance=ExtResource("7_osp2q")]
+layout_mode = 0
 
 [node name="CombatUI" parent="." instance=ExtResource("13_6kras")]
 layout_mode = 0

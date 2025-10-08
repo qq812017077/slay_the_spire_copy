@@ -29,10 +29,10 @@ func apply_exp10(start: float, end: float, weight: float) -> float:
 
 
 func _apply_powin(start: float, end: float, weight: float, pow_num: int = 1) -> float:
-    return MathHelper.lerp_snap(start, end, pow(weight, pow_num))
+    return lerp(start, end, pow(weight, pow_num))
 
 func _apply_powout(start: float, end: float, weight: float, pow_num: int = 1) -> float:
-    return MathHelper.lerp_snap(start, end, 1 - pow(1 - weight, pow_num))
+    return lerp(start, end, 1 - pow(1 - weight, pow_num))
 
 func apply_pow5in(start: float, end: float, weight: float) -> float:
     return _apply_powin(start, end, weight, 5)

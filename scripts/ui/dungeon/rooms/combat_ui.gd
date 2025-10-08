@@ -21,6 +21,7 @@ static func initialize() -> void:
 @export var combat_deck_panel: DrawPilePanel = null
 @export var discard_pile_panel: DiscardPilePanel = null
 @export var hand_panel: HandPanel = null
+@export var end_turn_button: EndTurnButton = null
 
 var player: AbstractPlayer = null
 
@@ -31,15 +32,13 @@ func _ready() -> void:
 	energy_panel.set_pos(ENERGY_PANEL_SHOW_POS, ENERGY_PANEL_HIDE_POS)
 	combat_deck_panel.set_pos(COMBAT_DECK_PANEL_SHOW_POS, COMBAT_DECK_PANEL_HIDE_POS)
 	discard_pile_panel.set_pos(DISCARD_PILE_PANEL_SHOW_POS, DISCARD_PILE_PANEL_HIDE_POS)
-	hide_combat_ui(true)
+	close(true)
 
-	await get_tree().create_timer(1.0).timeout
+	# await get_tree().create_timer(1.0).timeout
 
-	player = IronClad.new()
-	energy_panel.load_player(player)
-	combat_deck_panel.load_player(player)
-	hand_panel.load_player(player)
-	show_combat_ui()
+	# player = IronClad.new()
+	# load_player(player)
+	# open()
 
 func _process(_delta: float) -> void:
 	if is_hidden:
@@ -47,21 +46,31 @@ func _process(_delta: float) -> void:
 	combat_deck_panel.update_draw_pile(player.draw_pile.group.size())
 	discard_pile_panel.update_discard_pile(player.discard_pile.group.size())
 
-func show_combat_ui() -> void:
+func load_player(_player: AbstractPlayer) -> void:
+	player = _player
+	energy_panel.load_player(player)
+	combat_deck_panel.load_player(player)
+	hand_panel.load_player(player)
+	discard_pile_panel.load_player(player)
+
+func open() -> void:
 	if not is_hidden:
 		return
 	is_hidden = false
 	energy_panel.show_panel()
 	combat_deck_panel.show_panel()
 	discard_pile_panel.show_panel()
+	end_turn_button.show_button()
+	
 
-func hide_combat_ui(instant: bool = false) -> void:
+func close(instant: bool = false) -> void:
 	if is_hidden:
 		return
 	is_hidden = true
 	energy_panel.hide_panel(instant)
 	combat_deck_panel.hide_panel(instant)
 	discard_pile_panel.hide_panel(instant)
+	end_turn_button.hide_button(instant)
 
 func on_combat_start() -> void:
 	energy_panel.on_combat_start()

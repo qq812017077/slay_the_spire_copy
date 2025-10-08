@@ -40,6 +40,12 @@ func _init() -> void:
 	sfx_map.set("VO_MERCHANT_MB", load_stream("npc/merchant/STS_VO_Merchant_Mlyah_b.ogg"))
 	sfx_map.set("VO_MERCHANT_MC", load_stream("npc/merchant/STS_VO_Merchant_Mlyah_c.ogg"))
 
+	# battle
+	sfx_map.set("BATTLE_START_BOSS", load_stream("combat/STS_SFX_BattleStart_Boss_v1.ogg"))
+	sfx_map.set("BATTLE_START_1", load_stream("combat/STS_SFX_BattleStart_1_v1.ogg"))
+	sfx_map.set("BATTLE_START_2", load_stream("combat/STS_SFX_BattleStart_2_v1.ogg"))
+	sfx_map.set("TURN_EFFECT", load_stream("combat/SOTE_SFX_PlayerTurn_v4_1.ogg"))
+	sfx_map.set("END_TURN", load_stream("combat/SOTE_SFX_EndTurn_v2.ogg"))
 	# ui
 	sfx_map.set("UI_CLICK_1", load_stream("ui/SOTE_SFX_UIClick_1_v2.wav"))
 	sfx_map.set("UI_CLICK_2", load_stream("ui/SOTE_SFX_UIClick_2_v2.wav"))

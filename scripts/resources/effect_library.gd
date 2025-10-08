@@ -16,6 +16,7 @@ extends Resource
 
 @export_group("Combat")
 @export var damage_impact_curvy_particle_effect_prefab: PackedScene
+@export var combat_start_effect_prefab: PackedScene
 @export_group("")
 
 @export_group("Card")

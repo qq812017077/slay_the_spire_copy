@@ -1,8 +1,8 @@
-class_name Clutist
+class_name Cultist
 extends AbstractMonster
 
 
-static var ID = MonsterHelper.LVL1_WEAK_Cultist
+static var ID = "Cultist"
 static var monster_string: MonsterString = null
 static var NAME : String = ""
 static var MOVES: Array = []

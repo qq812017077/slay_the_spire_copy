@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwyt6bfxl1evr"]
+
+[ext_resource type="Texture2D" uid="uid://b68bb6oxslqps" path="res://arts/slay_the_spire/images/ui/top_panel/endTurnButtonGlow.png" id="1_hyl12"]
+[ext_resource type="Script" uid="uid://civjl3eg6v7qy" path="res://scripts/effects/combat/end_turn_glow_effect.gd" id="1_ux4gy"]
+
+[node name="EndTurnGlowEffect" type="Control" node_paths=PackedStringArray("glow_sprite")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_ux4gy")
+glow_sprite = NodePath("EndTurnButtonGlow")
+
+[node name="EndTurnButtonGlow" type="Sprite2D" parent="."]
+texture = ExtResource("1_hyl12")

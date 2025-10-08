@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EffectLibrary" load_steps=10 format=3 uid="uid://cyo6aw6igdrs"]
+[gd_resource type="Resource" script_class="EffectLibrary" load_steps=11 format=3 uid="uid://cyo6aw6igdrs"]
 
 [ext_resource type="PackedScene" uid="uid://det4qffoyl3wj" path="res://scenes/slay_the_spire/effects/room/boss_chest_shine.tscn" id="1_0it5j"]
 [ext_resource type="PackedScene" uid="uid://dm5d3nrlse4p6" path="res://scenes/slay_the_spire/effects/soul/card_trail_effect.tscn" id="1_4es2f"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bi70cy3txgbe7" path="res://scenes/slay_the_spire/effects/card/card_glow_border_effect.tscn" id="2_c0apu"]
 [ext_resource type="PackedScene" uid="uid://den33c2yf425q" path="res://scenes/slay_the_spire/effects/purge/damage_impact_curvy_effect.tscn" id="2_u561j"]
 [ext_resource type="PackedScene" uid="uid://dg0f1dnaufa0u" path="res://scenes/slay_the_spire/effects/upgrade/upgrade_shine_particle_effect.tscn" id="3_j0pc2"]
+[ext_resource type="PackedScene" uid="uid://w2chvmpctdrv" path="res://scenes/slay_the_spire/effects/combat/combat_start_effect.tscn" id="5_vnppy"]
 [ext_resource type="PackedScene" uid="uid://faiwt6lju2cs" path="res://scenes/slay_the_spire/effects/room/speech_bubble.tscn" id="6_kovjl"]
 
 [resource]
@@ -19,5 +20,6 @@ boss_chest_shine_effect_prefab = ExtResource("1_0it5j")
 chest_shine_effect_prefab = ExtResource("2_0it5j")
 speech_bubble_prefab = ExtResource("6_kovjl")
 damage_impact_curvy_particle_effect_prefab = ExtResource("2_u561j")
+combat_start_effect_prefab = ExtResource("5_vnppy")
 card_glow_border_effect_prefab = ExtResource("2_c0apu")
 metadata/_custom_type_script = "uid://bj8ismkn2nrhr"

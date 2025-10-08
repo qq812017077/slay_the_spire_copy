@@ -22,6 +22,7 @@ func _init() -> void:
 	starting_max_health = 80
 	max_health = starting_max_health
 	current_health = max_health
+
 func get_character_info() -> CharacterInfo:
 	return CharacterInfo.new(
 		CHARACTER_NAMES[0],

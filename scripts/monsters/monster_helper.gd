@@ -3,7 +3,7 @@ extends Object
 
 
 # level1
-static var LVL1_WEAK_Cultist: String = "Clutist"
+static var LVL1_WEAK_Cultist: String = "Cultist"
 static var LVL1_WEAK_Jaw_Worm: String = "Jaw Worm"
 static var LVL1_WEAK_2_Louse: String = "2 Louse"
 static var LVL1_WEAK_Small_Slimes: String = "Small Slimes"
@@ -42,7 +42,7 @@ static var BOSS_LEVEL_END_HEART: String = "The Heart"
 static func get_encounter(key: String) -> MonsterGroup:
 	match key:
 		LVL1_WEAK_Cultist:
-			return MonsterGroup.new([Clutist.new()])
+			return MonsterGroup.new([Cultist.new()])
 		LVL1_WEAK_Jaw_Worm:
 			return MonsterGroup.new([JawWorm.new()])
 		LVL1_WEAK_2_Louse:

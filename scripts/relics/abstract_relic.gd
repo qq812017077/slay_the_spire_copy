@@ -68,8 +68,9 @@ func playLandingSFX() -> void:
 
 
 
-func on_turn_start():
+func at_start_of_turn():
 	pass
+
 # events
 func on_player_end_turn():
 	pass

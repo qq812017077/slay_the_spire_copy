@@ -8,6 +8,7 @@
 [node name="DiscardPilePanel" type="Control" node_paths=PackedStringArray("discard_sprite", "turn_num_label")]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_brfan")
 discard_sprite = NodePath("Discard")
 turn_num_label = NodePath("CountCircle/TurnNumLabel")

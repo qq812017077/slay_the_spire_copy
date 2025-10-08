@@ -3,6 +3,7 @@ extends Control
 
 @export var animated_sprite: AnimatedSprite2D = null
 @export var shoulder: Sprite2D = null
+@export var health_bar: HealthBar = null
 var player: AbstractPlayer = null
 var target_shoulder_pos_x: float = 0
 
@@ -58,3 +59,14 @@ func get_into_campfire(fade_in: bool = true) -> void:
 func get_into_event() -> void:
 	animated_sprite.visible = false
 	shoulder.visible = false
+
+
+func reset() -> void:
+	health_bar.hide_health_bar()
+	player.orbs.clear()
+	player.hand.clear()
+	player.powers.clear()
+	player.draw_pile.clear()
+	player.discard_pile.clear()
+	player.exhaust_pile.clear()
+	damaged_this_combat = 0

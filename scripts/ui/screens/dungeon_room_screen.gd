@@ -86,6 +86,7 @@ func load_dungeon(_dungeon: AbstractDungeons, _player: AbstractPlayer) -> void:
 	
 	dungeon = _dungeon
 	player_widget.load(_player)
+	combat_ui.load_player(_player)
 	if dungeon.id == Exordium.ID:
 		cur_scene = bottom_scene_prefab.instantiate()
 	elif dungeon.id == TheCity.ID:
@@ -102,10 +103,12 @@ func load_dungeon(_dungeon: AbstractDungeons, _player: AbstractPlayer) -> void:
 func load_room(_room: AbstractRoom) -> void:
 	cur_room = _room
 	is_combat_room = false
+	combat_ui.close()
 	campfire_ui.close()
 	event_ui.close()
 	shop_ui.close()
 	treasure_ui.close()
+	player_widget.reset()
 	# cur_room = TreasureRoom.new()
 	cur_room.on_player_entry()
 	# print("cur_room.type:", AbstractRoom.RoomType.find_key(cur_room.type))
@@ -149,10 +152,10 @@ func load_room(_room: AbstractRoom) -> void:
 		player_widget.get_into_combat()
 		cur_scene.close_effects()
 	else:
+		wait_timer = 0.1
 		cur_scene.refresh_scene()
 		cur_scene.open_combat_room()
 		player_widget.get_into_combat()
-		combat_ui.on_combat_start()
 		is_combat_room = true
 
 	# if is_combat_room:
@@ -218,9 +221,13 @@ func move_player_and_treasure_to_back() -> void:
 
 
 func update_combat(delta: float) -> void:
-	# if Input.is_key_pressed(KEY_ENTER):
-	# 	print("enter pressed")
-	# 	end_battle()
+	if Input.is_action_just_pressed("enter", true):
+		print("enter pressed")
+		end_battle()
+	if Input.is_action_just_pressed("space", true):
+		print(("space pressed"))
+		CardGame.dungeon_main_screen.add_game_effect(CombatStartEffect.create_player_turn_effect())
+	
 	for monster: AbstractMonster in monsters:
 		monster.update_combat()
 	
@@ -232,14 +239,23 @@ func update_combat(delta: float) -> void:
 		
 		if wait_timer <= 0.0:
 			CardGame.action_manager.turn_has_ended = true
-			# CardGame.dungeon_main_screen.add_game_effect(BattleStartEffect.new(false))
+			CardGame.dungeon_main_screen.add_game_effect(CombatStartEffect.create_player_turn_effect())
 			show_health_bar()
-
+			# CardGame.action_manager.add_to_bottom(GainEnergyAndEnableControlsAction.new(player_widget.player.energy_manager))
+			CardGame.action_manager.add_to_bottom(DrawCardAction.new(player_widget.player, player_widget.player.master_hand_size))
+			CardGame.action_manager.add_to_bottom(EnableEndTurnButtonAction.new())
+			combat_ui.open()
+			apply_start_of_combat_logic()
+			player_widget.player.apply_start_of_turn_logic()
 	else:
-		pass
+		wait_timer = 0.0
 
 func show_health_bar() -> void:
-	pass
+	print("show health bar")
+	player_widget.health_bar.show_health_bar()
 
 func show_monster_intent() -> void:
-	pass
+	print("show monster intent")
+
+func apply_start_of_combat_logic() -> void:
+	combat_ui.on_combat_start()

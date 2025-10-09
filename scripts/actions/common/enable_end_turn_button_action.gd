@@ -1,7 +1,7 @@
 class_name EnableEndTurnButtonAction
 extends AbstractGameAction
 
-func _process(_delta: float) -> void:
+func update(_delta: float) -> void:
     if CardGame.dungeon_main_screen:
         CardGame.dungeon_main_screen.dungeon_room_screen.combat_ui.end_turn_button.enable()
     else:

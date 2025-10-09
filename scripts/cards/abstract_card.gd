@@ -187,6 +187,7 @@ _color: CardColor, _rarity: CardRarity, _target: CardTarget, dType: DamageInfo.D
 	self.initialize_color()
 	self.initialize_description()
 
+
 func card_playable(m: AbstractMonster) -> bool :
 	cant_use_msg = ""
 	var valid_target:bool = (target != CardTarget.ENEMY and target != CardTarget.SELF_AND_ENEMY) or m == null or not m.is_dying 
@@ -215,6 +216,7 @@ func has_enough_energy(player: AbstractPlayer) -> bool:
 	
 	for power: AbstractPower in player.powers:
 		if not power.can_play_card(self):
+			cant_use_msg = TEXT[13]
 			return false
 	
 	# if player.has_power(EntanglePower.ID) and type == CardType.ATTACK:
@@ -234,11 +236,15 @@ func has_enough_energy(player: AbstractPlayer) -> bool:
 		if not c.can_play_card(self):
 			return false
 	
-	if player.energy >= cost_for_turn or free_to_play() or is_in_auto_play:
+	if player.energy_manager.energy >= cost_for_turn or free_to_play() or is_in_auto_play:
 		return true
 	
 	cant_use_msg = TEXT[11]
 	return false
+
+func can_play_card(_card :AbstractCard) -> bool:
+	return true
+
 
 func can_use(player: AbstractPlayer, monster: AbstractMonster) -> bool:
 	if type == CardType.STATUS and cost_for_turn < -1 and not CardGame.dungeon_main_screen.player.has_relic(MedicalKit.ID):

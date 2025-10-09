@@ -64,7 +64,7 @@ func stop_glowing():
 
 func build_pos_table() -> void:
 	var middle_pos_x: float = Settings.DEFAULT_WIDTH / 2.0
-	for i in range(1, 10):
+	for i in range(1, 11):
 		CARD_X_COORD_TABLE.set(i, {})
 		CARD_Y_OFFSET_TABLE.set(i, {})
 	
@@ -130,3 +130,15 @@ func build_pos_table() -> void:
 	CARD_X_COORD_TABLE[9][6] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 1.53
 	CARD_X_COORD_TABLE[9][7] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 2.2
 	CARD_X_COORD_TABLE[9][8] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 2.8
+	
+	# 10 card in hand
+	CARD_X_COORD_TABLE[10][0] = middle_pos_x - AbstractCard.IMG_WIDTH_S * 2.9
+	CARD_X_COORD_TABLE[10][1] = middle_pos_x - AbstractCard.IMG_WIDTH_S * 2.4
+	CARD_X_COORD_TABLE[10][2] = middle_pos_x - AbstractCard.IMG_WIDTH_S * 1.8
+	CARD_X_COORD_TABLE[10][3] = middle_pos_x - AbstractCard.IMG_WIDTH_S * 1.1
+	CARD_X_COORD_TABLE[10][4] = middle_pos_x - AbstractCard.IMG_WIDTH_S * 0.4
+	CARD_X_COORD_TABLE[10][5] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 0.4
+	CARD_X_COORD_TABLE[10][6] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 1.1
+	CARD_X_COORD_TABLE[10][7] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 1.8
+	CARD_X_COORD_TABLE[10][8] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 2.4
+	CARD_X_COORD_TABLE[10][9] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 2.9

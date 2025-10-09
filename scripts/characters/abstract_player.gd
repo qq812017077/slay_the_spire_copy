@@ -86,6 +86,9 @@ func get_purgeable_cards() -> Array[AbstractCard]:
 			return card.is_purgeable()
 	)
 
+func lose_block(amt: int = -1):
+	print("lost block:", amt)
+
 func gain_gold(gold_amt: int) -> void:
 	gold += gold_amt
 func lose_gold(gold_amt: int) -> void:
@@ -142,11 +145,19 @@ func apply_start_of_turn_logic() -> void:
 	apply_start_of_turn_powers()
 	apply_start_of_turn_orbs()
 
+
+func apply_start_of_turn_pre_draw_cards() -> void:
+	pass
+
 func apply_start_of_turn_relics() -> void:
 	for relic : AbstractRelic in relics:
 		relic.at_start_of_turn()
 
+
 func apply_start_of_turn_post_draw_relics() -> void:
+	pass
+
+func apply_start_of_turn_post_draw_powers() -> void:
 	pass
 
 func apply_start_of_turn_cards() -> void:

@@ -81,7 +81,7 @@ func execute_action(delta: float):
 
 		if cur_action == null and (is_combating and not using_card):
 			phase = Phase.WAITING_ON_USER
-			CardGame.dungeon_main_screen.refresh_player()
+			CardGame.dungeon_main_screen.dungeon_room_screen.combat_ui.hand_panel.refresh_layout()
 			has_control = false
 		using_card = false
 

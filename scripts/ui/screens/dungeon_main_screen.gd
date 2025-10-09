@@ -412,6 +412,8 @@ func next_room_transition() -> void:
 func set_z_order() -> void:
 	$BlackBG.z_index = Global.BLACKBG_Z_INDEX
 
+func refresh_player() -> void:
+	pass
 
 # ******************************************************
 # Effect Functions

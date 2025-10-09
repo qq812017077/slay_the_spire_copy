@@ -79,6 +79,7 @@ func on_combat_start() -> void:
 	discard_pile_panel.on_combat_start()
 
 func draw_card(refresh_layout: bool = true) -> AbstractCard:
+	print("draw_card, refresh_layout = ", refresh_layout)
 	if player.hand.size() == 10:
 		player.create_hand_is_full_dialog()
 		return null
@@ -87,6 +88,7 @@ func draw_card(refresh_layout: bool = true) -> AbstractCard:
 	
 	CardGame.sound.single_play("CARD_DRAW_8")
 	var card: AbstractCard = player.draw_top_card()
+	print("draw_card:", card.name)
 	var card_widget: CardWidget = CardWidget.allocate(card, hand_panel, 0.12)
 	card_widget.position = DRAW_PILE_POS
 	card_widget.rotation = 0.0

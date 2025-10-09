@@ -3,6 +3,9 @@ extends Object
 
 var id: String = ""
 
+func can_play_card(card: AbstractCard) -> bool:
+	return true
+
 func at_start_of_turn() -> void:
 	pass
 

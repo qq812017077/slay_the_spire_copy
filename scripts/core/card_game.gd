@@ -79,7 +79,6 @@ func initialize() -> void:
 
 	
 func _process(_delta: float) -> void:
-	action_manager.update(_delta)
 	var i = effectlist.size() - 1
 	while i >= 0:
 		var effect = effectlist[i]
@@ -188,3 +187,6 @@ func _on_window_focus_in() -> void:
 
 func _on_window_focus_out() -> void:
 	is_focused = false
+
+func save_game() -> void:
+	print("waiting for implementing to save game")

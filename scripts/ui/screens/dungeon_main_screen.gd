@@ -87,8 +87,6 @@ func _ready() -> void:
 	overlay_menu.proceed_button.button.mouse_entered.connect(_on_proceed_button_mouse_entered)
 
 func _process(_delta: float) -> void:
-	# action_manager.update(_delta)
-	
 	_update_fading()
 	_update_room_state()
 	_update_effects()
@@ -389,6 +387,7 @@ func close_screen(screen_type: ScreenType, instant: bool = true) -> void:
 	elif cur_screen == ScreenType.CARD_SELECT_REWARD:
 		card_select_reward_screen.reopen()
 		overlay_menu.show_black(true)
+	
 func close_current_screen() -> void:
 	close_screen(cur_screen, false)
 

@@ -40,8 +40,10 @@ var sprite_by_region: Dictionary = {}
 
 # combat 
 var is_combat_room: bool = false
-
+var is_battle_over: bool = false
+var skip_monster_turn: bool = false
 var wait_timer: float = 0.0
+var end_battle_timer: float = 0.0
 
 func _ready() -> void:
 	if scene_container == null:
@@ -52,6 +54,7 @@ func _ready() -> void:
 	
 	# load_dungeon(Exordium.new(), IronClad.new())
 	# load_room(TreasureRoom.new())
+
 func _process(_delta: float) -> void:
 	if cur_room == null:
 		return
@@ -79,6 +82,9 @@ func is_campfire_room() -> bool:
 
 func is_boss_room() -> bool:
 	return cur_room != null and cur_room.type == AbstractRoom.RoomType.BOSS
+
+func is_elite_room() -> bool:
+	return cur_room != null and cur_room.type == AbstractRoom.RoomType.ELITE
 
 func load_dungeon(_dungeon: AbstractDungeons, _player: AbstractPlayer) -> void:
 	if cur_scene != null:
@@ -157,39 +163,12 @@ func load_room(_room: AbstractRoom) -> void:
 		cur_scene.open_combat_room()
 		player_widget.get_into_combat()
 		is_combat_room = true
+		end_battle_timer = 0.25
 
 	# if is_combat_room:
 	# 	var combat_end_timer = get_tree().create_timer(1.0)
 	# 	combat_end_timer.timeout.connect(end_battle)
 
-func end_turn() -> void:
-	# 结束回合
-	pass
-
-func end_battle() -> void:
-	cur_scene.close_effects()
-	cur_room.phase = AbstractRoom.RoomPhase.COMPLETE
-	# add rewards
-	var tmp = 100 + dungeon.miscRng.randi_range(-5, 5)
-	CardGame.dungeon_main_screen.combat_reward_screen.clear_rewards()
-	CardGame.dungeon_main_screen.combat_reward_screen.add_gold_reward(tmp)
-	var cards: Array[AbstractCard] = CardGame.dungeon_main_screen.get_reward_cards()
-	CardGame.dungeon_main_screen.combat_reward_screen.add_card_reward(cards)
-	CardGame.dungeon_main_screen.open_screen(DungeonMainScreen.ScreenType.COMBAT_REWARD)
-	
-func end_room() -> void:
-	if cur_room.phase == AbstractRoom.RoomPhase.COMPLETE:
-		return
-	cur_scene.close_effects()
-	cur_room.phase = AbstractRoom.RoomPhase.COMPLETE
-	if cur_room.type == AbstractRoom.RoomType.SHOP:
-		if CardGame.dungeon_main_screen.cur_screen == DungeonMainScreen.ScreenType.ROOM:
-			CardGame.dungeon_main_screen.overlay_menu.proceed_button.show_button()
-	elif cur_room.type == AbstractRoom.RoomType.TREASURE:
-		if CardGame.dungeon_main_screen.cur_screen == DungeonMainScreen.ScreenType.ROOM:
-			CardGame.dungeon_main_screen.overlay_menu.proceed_button.show_button()
-	elif cur_room.type == AbstractRoom.RoomType.REST:
-		campfire_ui._on_campfire_end(0.5)
 
 func close_effects():
 	# process_mode = Node.PROCESS_MODE_DISABLED
@@ -223,7 +202,7 @@ func move_player_and_treasure_to_back() -> void:
 func update_combat(delta: float) -> void:
 	if Input.is_action_just_pressed("enter", true):
 		print("enter pressed")
-		end_battle()
+		is_battle_over = true
 	if Input.is_action_just_pressed("space", true):
 		print(("space pressed"))
 		CardGame.dungeon_main_screen.add_game_effect(CombatStartEffect.create_player_turn_effect())
@@ -248,7 +227,58 @@ func update_combat(delta: float) -> void:
 			apply_start_of_combat_logic()
 			player_widget.player.apply_start_of_turn_logic()
 	else:
-		wait_timer = 0.0
+		if Settings.is_debug and Input.is_action_just_pressed("draw_single_card", true):
+			CardGame.action_manager.add_to_top(DrawCardAction.new(player_widget.player, 1))
+
+		CardGame.action_manager.update(delta)
+	
+	if is_battle_over and CardGame.action_manager.is_empty():
+		skip_monster_turn = false
+		end_battle_timer -= delta
+		if end_battle_timer <= 0:
+			end_battle()
+
+		 
+
+func end_turn() -> void:
+	# 结束回合
+	pass
+
+
+func end_battle() -> void:
+	cur_scene.close_effects()
+	cur_room.phase = AbstractRoom.RoomPhase.COMPLETE
+	# add rewards
+	var gold_reward: int = 0
+	if is_boss_room():
+		gold_reward = 100 + dungeon.miscRng.randi_range(-5, 5)
+		if CardGame.dungeon_main_screen.ascension_level >= 13:
+			gold_reward = int(gold_reward * 0.75)
+	elif is_elite_room():
+		gold_reward = CardGame.dungeon_main_screen.dungeon.treasureRng.randi_range(25,35)
+	else:
+		gold_reward = CardGame.dungeon_main_screen.dungeon.treasureRng.randi_range(10,20)
+	
+	CardGame.dungeon_main_screen.combat_reward_screen.clear_rewards()
+	CardGame.dungeon_main_screen.combat_reward_screen.add_gold_reward(gold_reward)
+	var cards: Array[AbstractCard] = CardGame.dungeon_main_screen.get_reward_cards()
+	CardGame.dungeon_main_screen.combat_reward_screen.add_card_reward(cards)
+	CardGame.dungeon_main_screen.open_screen(DungeonMainScreen.ScreenType.COMBAT_REWARD)
+	CardGame.save_game()
+	
+func end_room() -> void:
+	if cur_room.phase == AbstractRoom.RoomPhase.COMPLETE:
+		return
+	cur_scene.close_effects()
+	cur_room.phase = AbstractRoom.RoomPhase.COMPLETE
+	if cur_room.type == AbstractRoom.RoomType.SHOP:
+		if CardGame.dungeon_main_screen.cur_screen == DungeonMainScreen.ScreenType.ROOM:
+			CardGame.dungeon_main_screen.overlay_menu.proceed_button.show_button()
+	elif cur_room.type == AbstractRoom.RoomType.TREASURE:
+		if CardGame.dungeon_main_screen.cur_screen == DungeonMainScreen.ScreenType.ROOM:
+			CardGame.dungeon_main_screen.overlay_menu.proceed_button.show_button()
+	elif cur_room.type == AbstractRoom.RoomType.REST:
+		campfire_ui._on_campfire_end(0.5)
 
 func show_health_bar() -> void:
 	print("show health bar")

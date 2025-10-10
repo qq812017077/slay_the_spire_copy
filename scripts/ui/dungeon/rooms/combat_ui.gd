@@ -4,17 +4,17 @@ extends Control
 const ENERGY_PANEL_SHOW_POS: Vector2 = Vector2(198, 890)
 const ENERGY_PANEL_HIDE_POS: Vector2 = Vector2(-420, 890)
 
-const COMBAT_DECK_PANEL_SHOW_POS: Vector2 = Vector2(64, 1080 - 64)
-const COMBAT_DECK_PANEL_HIDE_POS: Vector2 = Vector2(-300 + 64, 1080 + 300 - 64)
+const COMBAT_DECK_PANEL_SHOW_POS: Vector2 = Vector2(64, Settings.DEFAULT_HEIGHT - 64)
+const COMBAT_DECK_PANEL_HIDE_POS: Vector2 = Vector2(-300 + 64, Settings.DEFAULT_HEIGHT + 300 - 64)
 
-const DISCARD_PILE_PANEL_SHOW_POS: Vector2 = Vector2(1920 - 156 + 64, 1080 - 64)
-const DISCARD_PILE_PANEL_HIDE_POS: Vector2 = Vector2(1920 + 64, 1080 + 300 - 64)
+const DISCARD_PILE_PANEL_SHOW_POS: Vector2 = Vector2(Settings.DEFAULT_WIDTH - 156 + 64, Settings.DEFAULT_HEIGHT - 64)
+const DISCARD_PILE_PANEL_HIDE_POS: Vector2 = Vector2(Settings.DEFAULT_WIDTH + 64, Settings.DEFAULT_HEIGHT  + 300 - 64)
 
-static var DRAW_PILE_POS = Vector2(1920 * 0.04, 50.0)
-static var DISCARD_PILE_POS = Vector2(1920.0, 0.0)
+static var DRAW_PILE_POS = Vector2(Settings.DEFAULT_WIDTH * 0.04, Settings.DEFAULT_HEIGHT - 50.0)
+static var DISCARD_PILE_POS = Vector2(Settings.DEFAULT_WIDTH, Settings.DEFAULT_HEIGHT)
 
 static func initialize() -> void:
-	DRAW_PILE_POS = Vector2(Settings.DEFAULT_WIDTH * 0.04, 50.0)
+	DRAW_PILE_POS = Vector2(Settings.DEFAULT_WIDTH * 0.04, Settings.DEFAULT_HEIGHT - 50.0)
 	DISCARD_PILE_POS = Vector2(Settings.DEFAULT_WIDTH + AbstractCard.IMG_WIDTH_S / 2.0 + 100.0, 0.0)
 
 @export var energy_panel: EnergyPanel = null

@@ -136,6 +136,8 @@ func pre_combat_begin() -> void:
 	# increase_max_orb_slots(master_max_orbs, false)
 	# is_blooded = current_health < (max_health * 0.5)
 	# poision_kill_count = 0
+	hand.clear()
+	discard_pile.clear()
 	draw_pile.initialize_deck(master_decks)
 
 func apply_start_of_turn_logic() -> void:

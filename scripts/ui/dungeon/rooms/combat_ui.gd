@@ -32,6 +32,7 @@ func _ready() -> void:
 	energy_panel.set_pos(ENERGY_PANEL_SHOW_POS, ENERGY_PANEL_HIDE_POS)
 	combat_deck_panel.set_pos(COMBAT_DECK_PANEL_SHOW_POS, COMBAT_DECK_PANEL_HIDE_POS)
 	discard_pile_panel.set_pos(DISCARD_PILE_PANEL_SHOW_POS, DISCARD_PILE_PANEL_HIDE_POS)
+	hand_panel.set_pos(Vector2(0.0, 0.0), Vector2(0.0, AbstractCard.IMG_HEIGHT))
 	close(true)
 
 	# await get_tree().create_timer(1.0).timeout
@@ -40,7 +41,7 @@ func _ready() -> void:
 	# load_player(player)
 	# open()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if is_hidden:
 		return
 	combat_deck_panel.update_draw_pile(player.draw_pile.group.size())
@@ -57,6 +58,7 @@ func open() -> void:
 	if not is_hidden:
 		return
 	is_hidden = false
+	hand_panel.show_panel()
 	energy_panel.show_panel()
 	combat_deck_panel.show_panel()
 	discard_pile_panel.show_panel()
@@ -67,6 +69,7 @@ func close(instant: bool = false) -> void:
 	if is_hidden:
 		return
 	is_hidden = true
+	hand_panel.hide_panel(instant)
 	energy_panel.hide_panel(instant)
 	combat_deck_panel.hide_panel(instant)
 	discard_pile_panel.hide_panel(instant)
@@ -77,7 +80,7 @@ func on_combat_start() -> void:
 	combat_deck_panel.on_combat_start()
 	hand_panel.on_combat_start()
 	discard_pile_panel.on_combat_start()
-
+	
 func draw_card(refresh_layout: bool = true) -> AbstractCard:
 	print("draw_card, refresh_layout = ", refresh_layout)
 	if player.hand.size() == 10:
@@ -89,9 +92,10 @@ func draw_card(refresh_layout: bool = true) -> AbstractCard:
 	CardGame.sound.single_play("CARD_DRAW_8")
 	var card: AbstractCard = player.draw_top_card()
 	print("draw_card:", card.name)
-	var card_widget: CardWidget = CardWidget.allocate(card, hand_panel, 0.12)
+	var card_widget: CardWidget = CardWidget.allocate(card, hand_panel, 0.9)
 	card_widget.position = DRAW_PILE_POS
 	card_widget.rotation = 0.0
+	card_widget.scale = Vector2(0.12, 0.12)
 	card_widget.on_draw()
 	hand_panel.add_to_hand(card_widget)
 	

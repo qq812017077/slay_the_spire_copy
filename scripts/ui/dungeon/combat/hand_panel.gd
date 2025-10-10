@@ -10,14 +10,22 @@ var hand_card_widgets: Array[CardWidget] = []
 func _ready() -> void:
 	build_pos_table()
 
+func update(delta: float) -> void:
+	for card in hand_card_widgets:
+		card.update_position(delta)
+		card.update_angle(delta)
+		card.update_scale(delta)
 
 func add_to_hand(card: CardWidget) -> void:
 	hand_card_widgets.append(card)
 
 func on_combat_start() -> void:
-	pass
+	for widget: CardWidget in hand_card_widgets:
+		CardWidget.recycle(widget)
 	
-		
+	hand_card_widgets.clear()
+
+
 func refresh_layout() -> void:
 	
 	for relic : AbstractRelic in player.relics:
@@ -29,12 +37,12 @@ func refresh_layout() -> void:
 	var sink_start : float = 80.0
 	var sink_range : float = 300.0
 	var increment_sink: float = sink_range / hand_group_size / 2.0
-	var middle = hand_group_size / 2
+	var middle : int = int(hand_group_size / 2.0)
 
 	var even_count: bool = hand_group_size % 2 == 0
 	for i: int in range(hand_group_size):
-		hand_card_widgets[i].set_target_angle(angle_range / 2.0 - increment_angle * i - increment_angle / 2.0)
-
+		hand_card_widgets[i].set_target_angle(increment_angle * i + increment_angle / 2.0 - angle_range / 2.0)
+		hand_card_widgets[i].set_target_scale(1.0)
 		var t: int = i - middle
 		
 		if t >= 0:
@@ -46,8 +54,8 @@ func refresh_layout() -> void:
 			t += 1
 		t = int(t * 1.7)
 
-		var target_y : float= sink_start + increment_sink * t
-		hand_card_widgets[i].target_pos = Vector2(CARD_X_COORD_TABLE[hand_group_size][i], target_y)
+		var target_y : float =Settings.DEFAULT_HEIGHT - sink_start - increment_sink * t
+		hand_card_widgets[i].target_pos = Vector2(CARD_X_COORD_TABLE[hand_group_size][i], target_y) - hand_card_widgets[i].pivot_offset
 
 	glow_check()
 

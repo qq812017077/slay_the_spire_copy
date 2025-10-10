@@ -161,9 +161,10 @@ func load_room(_room: AbstractRoom) -> void:
 		wait_timer = 0.1
 		cur_scene.refresh_scene()
 		cur_scene.open_combat_room()
-		player_widget.get_into_combat()
+		apply_start_of_combat_logic()
 		is_combat_room = true
 		end_battle_timer = 0.25
+		is_battle_over = false
 
 	# if is_combat_room:
 	# 	var combat_end_timer = get_tree().create_timer(1.0)
@@ -207,6 +208,13 @@ func update_combat(delta: float) -> void:
 		print(("space pressed"))
 		CardGame.dungeon_main_screen.add_game_effect(CombatStartEffect.create_player_turn_effect())
 	
+	if Input.is_action_just_pressed("dev_combat_ui_show", true):
+		print("show combat ui")
+		combat_ui.open()
+	if Input.is_action_just_pressed("dev_combat_ui_close", true):
+		print("close combat ui")
+		combat_ui.close()
+
 	for monster: AbstractMonster in monsters:
 		monster.update_combat()
 	
@@ -217,14 +225,13 @@ func update_combat(delta: float) -> void:
 			wait_timer -= delta
 		
 		if wait_timer <= 0.0:
-			CardGame.action_manager.turn_has_ended = true
+			# CardGame.action_manager.turn_has_ended = true
 			CardGame.dungeon_main_screen.add_game_effect(CombatStartEffect.create_player_turn_effect())
 			show_health_bar()
 			# CardGame.action_manager.add_to_bottom(GainEnergyAndEnableControlsAction.new(player_widget.player.energy_manager))
 			CardGame.action_manager.add_to_bottom(DrawCardAction.new(player_widget.player, player_widget.player.master_hand_size))
 			CardGame.action_manager.add_to_bottom(EnableEndTurnButtonAction.new())
 			combat_ui.open()
-			apply_start_of_combat_logic()
 			player_widget.player.apply_start_of_turn_logic()
 	else:
 		if Settings.is_debug and Input.is_action_just_pressed("draw_single_card", true):
@@ -259,6 +266,9 @@ func end_battle() -> void:
 	else:
 		gold_reward = CardGame.dungeon_main_screen.dungeon.treasureRng.randi_range(10,20)
 	
+	CardGame.action_manager.clear()
+	
+	combat_ui.close()
 	CardGame.dungeon_main_screen.combat_reward_screen.clear_rewards()
 	CardGame.dungeon_main_screen.combat_reward_screen.add_gold_reward(gold_reward)
 	var cards: Array[AbstractCard] = CardGame.dungeon_main_screen.get_reward_cards()
@@ -288,4 +298,5 @@ func show_monster_intent() -> void:
 	print("show monster intent")
 
 func apply_start_of_combat_logic() -> void:
+	player_widget.get_into_combat()
 	combat_ui.on_combat_start()

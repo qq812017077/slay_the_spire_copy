@@ -276,6 +276,9 @@ func get_global_center_position() -> Vector2:
 
 func set_target_angle(angle: float) :
 	target_angle = angle
+
+func set_target_scale(_scale: float) :
+	target_scale = Vector2(_scale, _scale)
 '''
 ############ Event Methods ############
 '''

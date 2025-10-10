@@ -37,7 +37,7 @@ var using_card: bool = false
 var has_control: bool = false
 var is_combating: bool:
 	get:
-		return CardGame.dungeon_main_screen.dungeon.cur_room_node.room.phase == AbstractRoom.RoomPhase.COMBAT
+		return CardGame.dungeon_main_screen.dungeon_room_screen.cur_room.phase == AbstractRoom.RoomPhase.COMBAT
 
 var monster_attacks_queued: bool = false
 

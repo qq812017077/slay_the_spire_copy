@@ -13,7 +13,7 @@ func _init(_source: AbstractCreature, _amount: int, is_end_turn_draw: bool = fal
 	set_values_with_amount(CardGame.dungeon_main_screen.player, source, _amount)
 	action_type = ActionType.DRAW
 	reset_duration()
-	push_error("call draw action.")
+	# push_error("call draw action.")
 	if is_end_turn_draw:
 		# CardGame.dungeon_main_screen.add_game_effect(PlayerTurnEffect.new())
 		pass

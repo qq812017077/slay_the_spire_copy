@@ -24,6 +24,9 @@ end_turn_button = NodePath("EndTurnButton")
 anchors_preset = 0
 mouse_filter = 2
 
+[node name="HandPanel" parent="." instance=ExtResource("5_ar41r")]
+layout_mode = 0
+
 [node name="CombatDeckPanel" parent="." instance=ExtResource("2_5o3l1")]
 layout_mode = 0
 offset_left = 70.8283
@@ -47,9 +50,6 @@ offset_left = 210.0
 offset_top = 808.0
 offset_right = 210.0
 offset_bottom = 808.0
-
-[node name="HandPanel" parent="." instance=ExtResource("5_ar41r")]
-layout_mode = 0
 
 [node name="EndTurnButton" parent="." instance=ExtResource("6_s7hdw")]
 layout_mode = 0

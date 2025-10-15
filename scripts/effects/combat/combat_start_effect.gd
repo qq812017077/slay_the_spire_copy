@@ -53,14 +53,17 @@ var sword_angle: float = 0.0
 var sword_img: Texture2D
 var play_sword_sound: bool = false
 
+static func initialize() -> void:
+	ui_string = CardGame.languagePack.get_ui_string("BattleStartEffect")
+	TEXT = ui_string.TEXT
+	BATTLE_START_MSG = TEXT[0]
+	PLAYER_TURN_MSG = TEXT[1]
+	ENEMY_TURN_MSG = TEXT[2]
+	TURN_TXT = TEXT[3]
+
 func _ready() -> void:
 	if ui_string == null:
-		ui_string = CardGame.languagePack.get_ui_string("BattleStartEffect")
-		TEXT = ui_string.TEXT
-		BATTLE_START_MSG = TEXT[0]
-		PLAYER_TURN_MSG = TEXT[1]
-		ENEMY_TURN_MSG = TEXT[2]
-		TURN_TXT = TEXT[3]
+		initialize()
 	
 	bg_tex.texture = ImageMaster.white_square_img
 	sword_1.texture = ImageMaster.combat_sword
@@ -206,6 +209,7 @@ func do_reset_in_editor() -> void:
 	timer1 = FIRST_TIME
 	timer2 = SECOND_TIME
 	sword_timer = 0.5
+
 static func create_player_turn_effect() -> CombatStartEffect:
 	var effect = CardGame.effect_library.combat_start_effect_prefab.instantiate()
 	effect.turn_type_msg.text = PLAYER_TURN_MSG

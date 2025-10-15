@@ -22,3 +22,7 @@ extends Resource
 @export_group("Card")
 @export var card_glow_border_effect_prefab: PackedScene
 @export_group("")
+
+
+static func initialize() -> void:
+    CombatStartEffect.initialize()

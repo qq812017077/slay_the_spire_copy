@@ -38,8 +38,8 @@ var action_manager: GameActionManager = GameActionManager.new()
 var effectlist: Array[AbstractGameEffect] = []
 func _ready() -> void:
 	# Initialize the game settings and player configuration
-	initialize()
 	load_resources()
+	initialize()
 	create_nodes()
 
 	get_viewport().focus_entered.connect(_on_window_focus_in)
@@ -62,6 +62,7 @@ func initialize() -> void:
 	AbstractRelic.initialize()
 	AbstractDungeons.initialize()
 
+	EffectLibrary.initialize()
 	MaterialLibrary.initialize()
 	CardLibrary.initialize()
 	RelicLibrary.initialize()

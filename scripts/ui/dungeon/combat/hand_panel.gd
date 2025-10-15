@@ -1,20 +1,40 @@
 class_name HandPanel
 extends AbstractPanel
 
+const HOVER_CARD_Y_POSITION: float = 1080 - 210
 var CARD_X_COORD_TABLE: Dictionary = {}
 var CARD_Y_OFFSET_TABLE: Dictionary = {}
 
 
 var hand_card_widgets: Array[CardWidget] = []
-
+var hovered_card: CardWidget = null
+var is_hovering_card: bool = false
 func _ready() -> void:
 	build_pos_table()
 
 func update(delta: float) -> void:
+	var cur_hovered_card: CardWidget = null
+	var cur_hovering_card: bool = false
 	for card in hand_card_widgets:
 		card.update_position(delta)
 		card.update_angle(delta)
 		card.update_scale(delta)
+
+		if not cur_hovering_card and card.is_hovering():
+			cur_hovered_card = card
+			cur_hovering_card = true
+	
+	var changed:bool = cur_hovering_card != is_hovering_card or cur_hovered_card != hovered_card
+	hovered_card = cur_hovered_card
+	is_hovering_card = cur_hovering_card
+
+	if changed:
+		if is_hovering_card:
+			hovered_card.set_target_pos_y(HOVER_CARD_Y_POSITION + hovered_card.pivot_offset.y, true)
+			hovered_card.set_target_angle(0.0, true)
+			hover_card_push(hovered_card)
+		else:
+			refresh_layout()
 
 func add_to_hand(card: CardWidget) -> void:
 	hand_card_widgets.append(card)
@@ -25,6 +45,9 @@ func on_combat_start() -> void:
 	
 	hand_card_widgets.clear()
 
+func hover_card_push(card: CardWidget) -> void:
+	
+	pass
 
 func refresh_layout() -> void:
 	
@@ -55,7 +78,7 @@ func refresh_layout() -> void:
 		t = int(t * 1.7)
 
 		var target_y : float =Settings.DEFAULT_HEIGHT - sink_start - increment_sink * t
-		hand_card_widgets[i].target_pos = Vector2(CARD_X_COORD_TABLE[hand_group_size][i], target_y) - hand_card_widgets[i].pivot_offset
+		hand_card_widgets[i].set_target_pos(Vector2(CARD_X_COORD_TABLE[hand_group_size][i], target_y) - hand_card_widgets[i].pivot_offset)
 
 	glow_check()
 

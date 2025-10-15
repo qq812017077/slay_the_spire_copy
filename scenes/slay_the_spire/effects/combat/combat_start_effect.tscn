@@ -13,14 +13,17 @@ turn_type_msg = NodePath("TurnTypeMsg")
 turn_num_msg = NodePath("TurnNumMsg")
 
 [node name="BG" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_right = 500.0
 offset_bottom = 500.0
 expand_mode = 1
 
 [node name="Sword1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 rotation = 0.872665
 
 [node name="Sword2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 rotation = -0.872665
 
 [node name="BattleStartMsg" type="Label" parent="."]

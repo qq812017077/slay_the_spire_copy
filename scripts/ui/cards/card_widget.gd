@@ -274,11 +274,31 @@ func get_center_position() -> Vector2:
 func get_global_center_position() -> Vector2:
 	return global_position + size / 2
 
-func set_target_angle(angle: float) :
-	target_angle = angle
+func set_target_pos_x(pos_x: float , instant: bool = false):
+	target_pos.x = pos_x
+	if instant:
+		position.x = pos_x
 
-func set_target_scale(_scale: float) :
+func set_target_pos_y(pos_y: float , instant: bool = false):
+	target_pos.y = pos_y
+	if instant:
+		position.y = pos_y
+
+func set_target_pos(pos:Vector2, instant: bool = false):
+	target_pos = pos
+	if instant:
+		position = pos
+
+func set_target_angle(angle: float, instant: bool = false) :
+	target_angle = angle
+	if instant:
+		rotation_degrees = angle
+
+func set_target_scale(_scale: float, instant: bool = false) :
 	target_scale = Vector2(_scale, _scale)
+	if instant:
+		scale = target_scale
+
 '''
 ############ Event Methods ############
 '''

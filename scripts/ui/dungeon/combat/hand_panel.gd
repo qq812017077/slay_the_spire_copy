@@ -1,7 +1,6 @@
 class_name HandPanel
 extends AbstractPanel
 
-const HOVER_CARD_Y_POSITION: float = 1080 - 210
 var CARD_X_COORD_TABLE: Dictionary = {}
 var CARD_Y_OFFSET_TABLE: Dictionary = {}
 
@@ -20,21 +19,27 @@ func update(delta: float) -> void:
 		card.update_angle(delta)
 		card.update_scale(delta)
 
+		if card.is_hovering():
+			card.z_index = 1
+		else:
+			card.z_index = 0
 		if not cur_hovering_card and card.is_hovering():
 			cur_hovered_card = card
 			cur_hovering_card = true
 	
 	var changed:bool = cur_hovering_card != is_hovering_card or cur_hovered_card != hovered_card
-	hovered_card = cur_hovered_card
-	is_hovering_card = cur_hovering_card
 
 	if changed:
-		if is_hovering_card:
-			hovered_card.set_target_pos_y(HOVER_CARD_Y_POSITION + hovered_card.pivot_offset.y, true)
-			hovered_card.set_target_angle(0.0, true)
-			hover_card_push(hovered_card)
-		else:
-			refresh_layout()
+		refresh_layout()
+		if cur_hovering_card:
+			cur_hovered_card.set_target_pos_y(Settings.DEFAULT_HEIGHT - cur_hovered_card.size.y - 50.0, true)
+			cur_hovered_card.set_target_angle(0.0, true)
+			cur_hovered_card.set_target_scale(1.3333, true)
+			hover_card_push(cur_hovered_card)
+	
+	
+	hovered_card = cur_hovered_card
+	is_hovering_card = cur_hovering_card
 
 func add_to_hand(card: CardWidget) -> void:
 	hand_card_widgets.append(card)
@@ -46,8 +51,36 @@ func on_combat_start() -> void:
 	hand_card_widgets.clear()
 
 func hover_card_push(card: CardWidget) -> void:
+	var hand_card_count: int = hand_card_widgets.size()
+	if hand_card_count < 2:
+		return
 	
-	pass
+	var card_num: int = -1
+	for i: int in range(hand_card_count):
+		if hand_card_widgets[i] == card:
+			card_num = i
+			break
+	
+	var push_amt: float = 0.4
+	if hand_card_count == 2:
+		push_amt = 0.2
+	elif hand_card_count == 3 or hand_card_count == 4:
+		push_amt = 0.27
+	
+	var left_push_amt: float = push_amt
+	var right_push_amt: float = push_amt
+
+	var right_slot: int = card_num + 1
+	var left_slot: int = card_num - 1
+	while right_slot < hand_card_count:
+		hand_card_widgets[right_slot].target_pos.x += AbstractCard.IMG_WIDTH_S * right_push_amt
+		right_push_amt *= 0.25
+		right_slot += 1
+	
+	while left_slot >= 0 and left_slot < hand_card_count:
+		hand_card_widgets[left_slot].target_pos.x -= AbstractCard.IMG_WIDTH_S * left_push_amt
+		left_push_amt *= 0.25
+		left_slot -= 1
 
 func refresh_layout() -> void:
 	

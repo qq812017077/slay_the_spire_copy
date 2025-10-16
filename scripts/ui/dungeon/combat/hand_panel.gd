@@ -1,6 +1,7 @@
 class_name HandPanel
 extends AbstractPanel
 
+const HOVER_CARD_POS: float = Settings.DEFAULT_HEIGHT - 50.0
 var CARD_X_COORD_TABLE: Dictionary = {}
 var CARD_Y_OFFSET_TABLE: Dictionary = {}
 
@@ -32,7 +33,7 @@ func update(delta: float) -> void:
 	if changed:
 		refresh_layout()
 		if cur_hovering_card:
-			cur_hovered_card.set_target_pos_y(Settings.DEFAULT_HEIGHT - cur_hovered_card.size.y - 50.0, true)
+			cur_hovered_card.set_target_pos_y(HOVER_CARD_POS- cur_hovered_card.size.y, true)
 			cur_hovered_card.set_target_angle(0.0, true)
 			cur_hovered_card.set_target_scale(1.3333, true)
 			hover_card_push(cur_hovered_card)

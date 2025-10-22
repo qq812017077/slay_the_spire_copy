@@ -71,7 +71,10 @@ var on_card_clicked: Callable
 
 var refresh_card_state_in_process: bool = false
 
+var glow_effect_container: Control = null
+var glow_border_effect: CardGlowBorderEffect
 var is_glowing : bool = false
+
 static func _static_init() -> void:
 	attack_prefab = load("res://scenes/slay_the_spire/cards/attack_card.tscn")
 	skill_prefab = load("res://scenes/slay_the_spire/cards/skill_card.tscn")
@@ -82,10 +85,12 @@ static func _static_init() -> void:
 
 func _init(vcard_mode: CardMode = CardMode.NORMAL) -> void:
 	card_mode = vcard_mode
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	add_glow_border()
 
 	connect("mouse_entered", _on_mouse_enter)
 	connect("mouse_exited", _on_mouse_exit)
@@ -95,7 +100,9 @@ func _ready() -> void:
 	CardHelper.set_mouse_filter_recursion(self, Control.MOUSE_FILTER_IGNORE)
 
 	refresh_card_style()
+
 func _process(delta: float) -> void:
+	
 	if not is_visible_in_tree():
 		return
 	
@@ -109,6 +116,25 @@ func _process(delta: float) -> void:
 			_process_holding(delta)
 		ECardState.MOVING_TO_DESTINATION:
 			_process_moving_to_destination(delta)
+
+
+func add_glow_border() -> void:
+	glow_effect_container = Control.new()
+	glow_effect_container.name = "GlowEffectContainer"
+	card_container.add_child(glow_effect_container)
+	card_container.move_child(glow_effect_container, 0)
+	
+	glow_border_effect = CardGame.effect_library.card_glow_border_effect_prefab.instantiate()
+	glow_effect_container.add_child(glow_border_effect)
+
+	glow_border_effect.stop(true, true)
+
+
+func begin_glow() -> void:
+	glow_border_effect.play()
+
+func stop_glow() -> void:
+	glow_border_effect.stop(true, true)
 
 func update_position(delta: float) ->void:
 	if Settings.FAST_MODE:
@@ -219,9 +245,12 @@ func load_card(_card: AbstractCard, _upgrade: bool = false, create_shadow: bool 
 	card_orb_ui.size = orb_atlas.region.size
 	card_cost_ui.size = orb_atlas.region.size
 	card_cost_ui.position = card_orb_ui.position
+
+	glow_border_effect.load(self, Color.hex(0x30c8dcff))
 	if create_shadow:
 		add_shadow()
 	display(self.card)
+
 
 func add_shadow(offset: Vector2 = Vector2(10, 10)) -> void:
 	if card_shadow == null:
@@ -262,11 +291,6 @@ func display_in_library(upgrade: bool, refresh: bool = false) -> void:
 	upgraded_card_library = null
 	display(card)
 
-func begin_glow() -> void:
-	is_glowing = true
-
-func stop_glow() -> void:
-	is_glowing = false
 
 func get_center_position() -> Vector2:
 	return position + size / 2

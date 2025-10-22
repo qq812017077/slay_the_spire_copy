@@ -83,6 +83,13 @@ func hover_card_push(card: CardWidget) -> void:
 		left_push_amt *= 0.25
 		left_slot -= 1
 
+func reset_card_before_moving(card: CardWidget) -> void:
+	if hovered_card == card:
+		release_card()
+
+	# card.
+	card.stop_glow()
+
 func refresh_layout() -> void:
 	
 	for relic : AbstractRelic in player.relics:

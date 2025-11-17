@@ -90,6 +90,14 @@ func reset_card_before_moving(card: CardWidget) -> void:
 	# card.
 	card.stop_glow()
 
+func release_card() -> void:
+	if hovered_card != null:
+		if hovered_card.card.can_use(player, null):
+			hovered_card.begin_glow()
+		
+		hovered_card.hover_timer = 0.25
+	pass
+
 func refresh_layout() -> void:
 	
 	for relic : AbstractRelic in player.relics:

@@ -8,6 +8,11 @@ var card_widget: CardWidget = null
 func _ready() -> void:
     process_material = particle.process_material
 #     sprite.texture = TextureHelper.get_cached_texture(ImageMaster.card_attack_bg_silhouette)
+    particle.local_coords = true
+
+func update_effect_position() -> void:
+    particle.position = size / 2.0
+    
 
 func load(_card_widget: CardWidget, color:Color):
     card_widget = _card_widget
@@ -23,8 +28,9 @@ func load(_card_widget: CardWidget, color:Color):
     particle.self_modulate = color
 
 func set_particle_scale(scale_mount: float) -> void:
-    process_material.scale_min = scale_mount
-    process_material.scale_max = scale_mount
+    # process_material.scale_min = scale_mount
+    # process_material.scale_max = scale_mount
+    scale = Vector2(scale_mount, scale_mount)
 
 static func create(_card_widget: CardWidget, color:Color = Color.hex(0x30c8dcff)) -> CardGlowBorderEffect:
     var effect: CardGlowBorderEffect = CardGame.effect_library.card_glow_border_effect_prefab.instantiate()

@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dqxbtx2yas6jo" path="res://arts/slay_the_spire/images/cardui/cardui/512/bg_attack_silhouette.png" id="2_k53sd"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k53sd"]
+blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_k53sd"]
-_data = [Vector2(0, 0.5962036), 0.0, -0.61691165, 0, 0, Vector2(1, 0), -0.62122566, 0.0, 0, 0]
+_data = [Vector2(0, 0.596204), 0.0, -0.616912, 0, 0, Vector2(1, 0), -0.621226, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_b7s32"]
@@ -14,7 +15,7 @@ curve = SubResource("Curve_k53sd")
 
 [sub_resource type="Curve" id="Curve_b7s32"]
 _limits = [1.0, 1.11, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.29381412, 0, 0, Vector2(1, 1.11), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.293814, 0, 0, Vector2(1, 1.11), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_naxt7"]
@@ -34,7 +35,9 @@ particle = NodePath("GPUParticles2D")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_k53sd")
+position = Vector2(155, 210)
 amount = 5
 texture = ExtResource("2_k53sd")
 lifetime = 1.2
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_b7s32")

@@ -98,6 +98,7 @@ func draw_card(refresh_layout: bool = true) -> AbstractCard:
 	card_widget.scale = Vector2(0.12, 0.12)
 	card_widget.on_draw()
 	hand_panel.add_to_hand(card_widget)
+	card_widget.add_glow_border()
 	
 	for power: AbstractPower in player.powers:
 		power.on_card_draw(card)

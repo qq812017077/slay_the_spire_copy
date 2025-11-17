@@ -65,6 +65,7 @@ var target_pos: Vector2 = Vector2(0, 0)
 var target_angle: float = 0.0
 var target_scale: Vector2 = Vector2.ONE
 var enable_card_tip = false
+var hover_timer: float = 0.0
 
 var on_card_just_hovered: Callable
 var on_card_clicked: Callable
@@ -90,7 +91,7 @@ func _init(vcard_mode: CardMode = CardMode.NORMAL) -> void:
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	add_glow_border()
+	
 
 	connect("mouse_entered", _on_mouse_enter)
 	connect("mouse_exited", _on_mouse_exit)
@@ -109,6 +110,8 @@ func _process(delta: float) -> void:
 	if refresh_card_state_in_process:
 		refresh_card_state()
 
+	if hover_timer >= 0.0:
+		hover_timer = max(0.0, hover_timer - delta)
 	match current_card_state:
 		ECardState.HOVERING:
 			_process_hovering(delta)
@@ -119,22 +122,37 @@ func _process(delta: float) -> void:
 
 
 func add_glow_border() -> void:
-	glow_effect_container = Control.new()
-	glow_effect_container.name = "GlowEffectContainer"
-	card_container.add_child(glow_effect_container)
-	card_container.move_child(glow_effect_container, 0)
-	
+	# glow_effect_container = Control.new()
+	# glow_effect_container.name = "GlowEffectContainer"
+	# card_container.add_child(glow_effect_container)
+	# card_container.move_child(glow_effect_container, 0)
+	if glow_border_effect:
+		glow_border_effect.stop(true, true)
+		return 
 	glow_border_effect = CardGame.effect_library.card_glow_border_effect_prefab.instantiate()
-	glow_effect_container.add_child(glow_border_effect)
+	# glow_effect_container.add_child(glow_border_effect)
+	glow_border_effect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	glow_border_effect.load(self, Color.hex(0x30c8dcff))
+	card_container.add_child(glow_border_effect)
+	card_container.move_child(glow_border_effect, 0)
+	
+	await get_tree().process_frame
+	glow_border_effect.update_effect_position()
 
-	glow_border_effect.stop(true, true)
-
+func remove_glow_border() -> void:
+	if not glow_border_effect:
+		return 
+	stop_glow()
+	glow_border_effect.queue_free()
+	glow_border_effect = null
 
 func begin_glow() -> void:
-	glow_border_effect.play()
+	if glow_border_effect:
+		glow_border_effect.play()
 
 func stop_glow() -> void:
-	glow_border_effect.stop(true, true)
+	if glow_border_effect:
+		glow_border_effect.stop(true, true)
 
 func update_position(delta: float) ->void:
 	if Settings.FAST_MODE:
@@ -151,7 +169,6 @@ func update_scale(delta: float) -> void:
 		scale = MathHelper.vec2_lerp_snap(scale, target_scale, delta * 8.0)
 	else:
 		scale = target_scale
-
 func update_hovering_logic() -> void:
 	if is_hovering():
 		target_scale = HOVERING_SCALE
@@ -225,6 +242,7 @@ func set_cardscale(card_scale: float) -> void:
 	custom_minimum_size = card_container.size * card_scale
 	set_size(custom_minimum_size)
 	pivot_offset = custom_minimum_size / 2
+	
 
 
 func load_card(_card: AbstractCard, _upgrade: bool = false, create_shadow: bool = false) -> void:
@@ -246,7 +264,7 @@ func load_card(_card: AbstractCard, _upgrade: bool = false, create_shadow: bool 
 	card_cost_ui.size = orb_atlas.region.size
 	card_cost_ui.position = card_orb_ui.position
 
-	glow_border_effect.load(self, Color.hex(0x30c8dcff))
+	
 	if create_shadow:
 		add_shadow()
 	display(self.card)
@@ -328,7 +346,7 @@ func set_target_scale(_scale: float, instant: bool = false) :
 '''
 
 func _process_hovering(_delta: float) -> void:
-	if enable_card_tip:
+	if enable_card_tip and hover_timer <= 0.01:
 		CardGame.tip.render_tip_for_card(self)
 	
 func _process_holding(_delta: float) -> void:
@@ -560,6 +578,7 @@ static func recycle(widget: CardWidget) -> void:
 	widget.hide()
 	widget.z_index = Global.CARD_Z_INDEX
 	widget.refresh_card_state_in_process = false
+	widget.remove_glow_border()
 
 static func generate_cardwidgets(_cards: Array, parent: Node, card_scale: float = 1.0, create_shadow: bool = false) -> Array:
 	var output: Array = []

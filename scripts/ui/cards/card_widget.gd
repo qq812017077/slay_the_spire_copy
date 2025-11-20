@@ -70,6 +70,9 @@ var hover_timer: float = 0.0
 var on_card_just_hovered: Callable
 var on_card_clicked: Callable
 
+
+var refresh_state_once: bool = false
+var refresh_state_timer: float = 0.0
 var refresh_card_state_in_process: bool = false
 
 var glow_effect_container: Control = null
@@ -109,6 +112,11 @@ func _process(delta: float) -> void:
 	
 	if refresh_card_state_in_process:
 		refresh_card_state()
+	elif refresh_state_once:
+		refresh_state_timer -= delta
+		if refresh_state_timer <= 0.0:
+			refresh_card_state()
+			refresh_state_once = false
 
 	if hover_timer >= 0.0:
 		hover_timer = max(0.0, hover_timer - delta)
@@ -186,6 +194,10 @@ func refresh_card_state() -> void:
 		set_card_hover()
 	elif current_card_state == ECardState.HOVERING and not is_mouse_hovered:
 		current_card_state = ECardState.WAITED
+
+func refresh_card_state_once(delay_time: float) -> void:
+	refresh_state_once = true
+	refresh_state_timer = delay_time
 
 func set_card_mode(_card_mode):
 	card_mode = _card_mode
@@ -361,14 +373,14 @@ func _on_gui_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event as InputEventMouseButton
-		if mouse_event.button_index != MOUSE_BUTTON_LEFT:
+		if mouse_event.button_index != MOUSE_BUTTON_LEFT and mouse_event.button_index != MOUSE_BUTTON_RIGHT:
 			return
 
 		if mouse_event.is_pressed():
-			_handle_mouse_pressed()
+			_handle_mouse_pressed(mouse_event.button_index)
 
 		if mouse_event.is_released():
-			_handle_mouse_released()
+			_handle_mouse_released(mouse_event.button_index)
 
 
 func _on_mouse_enter() -> void:
@@ -386,14 +398,14 @@ func _on_mouse_exit() -> void:
 	if enable_card_tip:
 		CardGame.tip.remove_tip_rendering()
 
-func _handle_mouse_pressed() -> void:
+func _handle_mouse_pressed(_mouse_button: MouseButton) -> void:
+	# print("Mouse pressed on card:", name, "button:", mouse_button)
 	if on_card_clicked.is_valid():
 		on_card_clicked.call(self)
 	current_card_state = ECardState.HOLDING
-	pass
-
-func _handle_mouse_released() -> void:
-	# print("Mouse released on card:", name)
+	
+func _handle_mouse_released(_mouse_button: MouseButton) -> void:
+	# print("Mouse released on card:", name, "button:", mouse_button)
 	current_card_state = ECardState.WAITED
 	pass
 

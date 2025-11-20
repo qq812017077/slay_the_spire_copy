@@ -9,17 +9,25 @@ var CARD_Y_OFFSET_TABLE: Dictionary = {}
 var hand_card_widgets: Array[CardWidget] = []
 var hovered_card: CardWidget = null
 var is_hovering_card: bool = false
+
+var dragging_card: CardWidget = null
+var is_dragging_card: bool = false
+
 func _ready() -> void:
 	build_pos_table()
 
 func update(delta: float) -> void:
+
 	var cur_hovered_card: CardWidget = null
 	var cur_hovering_card: bool = false
 	for card in hand_card_widgets:
 		card.update_position(delta)
 		card.update_angle(delta)
 		card.update_scale(delta)
-
+	
+		if is_dragging_card:
+			continue
+		
 		if card.is_hovering():
 			card.z_index = 1
 		else:
@@ -28,21 +36,24 @@ func update(delta: float) -> void:
 			cur_hovered_card = card
 			cur_hovering_card = true
 	
-	var changed:bool = cur_hovering_card != is_hovering_card or cur_hovered_card != hovered_card
+	if is_dragging_card:
+		dragging_card.set_target_pos(get_local_mouse_position() - dragging_card.size/ 2.0)
+		dragging_card.update_position(delta)
+	else:
+		var changed:bool = cur_hovering_card != is_hovering_card or cur_hovered_card != hovered_card
 
-	if changed:
-		refresh_layout()
-		if cur_hovering_card:
-			cur_hovered_card.set_target_pos_y(HOVER_CARD_POS- cur_hovered_card.size.y, true)
-			cur_hovered_card.set_target_angle(0.0, true)
-			cur_hovered_card.set_target_scale(1.3333, true)
-			hover_card_push(cur_hovered_card)
-	
-	
-	hovered_card = cur_hovered_card
-	is_hovering_card = cur_hovering_card
+		if changed:
+			refresh_layout()
+			if cur_hovering_card:
+				cur_hovered_card.set_target_pos_y(HOVER_CARD_POS- cur_hovered_card.size.y, true)
+				cur_hovered_card.set_target_angle(0.0, true)
+				cur_hovered_card.set_target_scale(1.3333, true)
+				hover_card_push(cur_hovered_card)
+		hovered_card = cur_hovered_card
+		is_hovering_card = cur_hovering_card
 
 func add_to_hand(card: CardWidget) -> void:
+	# card.on_card_clicked = _on_card_clicked
 	hand_card_widgets.append(card)
 
 func on_combat_start() -> void:
@@ -50,6 +61,54 @@ func on_combat_start() -> void:
 		CardWidget.recycle(widget)
 	
 	hand_card_widgets.clear()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event: InputEventMouseButton = event as InputEventMouseButton
+		if mouse_event.button_index != MOUSE_BUTTON_LEFT and mouse_event.button_index != MOUSE_BUTTON_RIGHT:
+			return
+
+		if mouse_event.is_pressed():
+			_on_hand_panel_clicked(mouse_event)
+			# print("mouse pressed ",mouse_event.button_index)
+
+func _on_hand_panel_clicked(mouse_event: InputEventMouseButton) -> void:
+	for card in hand_card_widgets:
+		# check if mouse is inside card
+		if card.z_index == 1 and card.get_global_rect().has_point(mouse_event.global_position):
+			_on_card_clicked(card)
+			# print("card clicked:", card.name)
+
+			if is_dragging_card == false:
+				for i in range(hand_card_widgets.size()-1, -1, -1):
+					if hand_card_widgets[i] == card:
+						card.refresh_card_state_once(0.25)
+					elif hand_card_widgets[i].get_global_rect().has_point(mouse_event.global_position):
+						hand_card_widgets[i].set_card_hover()
+						break
+			break
+
+func _on_card_clicked(card: CardWidget) -> void:
+	if hovered_card != card:
+		return 
+	
+	# if is hovered card, select or release it
+	if is_dragging_card:
+		is_dragging_card = false
+		dragging_card.z_index = 0
+		dragging_card = null
+		refresh_layout()
+		
+		# refresh all cards' state after 0.25 second
+		# for card_widget: CardWidget in hand_card_widgets:
+		# 	card_widget.refresh_card_state_once(0.25 if card_widget == card else 0.01)
+	else:
+		is_dragging_card = true
+		dragging_card = card
+		dragging_card.set_target_angle(0.0, true)
+		dragging_card.set_target_scale(1.3333, true)
+
+
 
 func hover_card_push(card: CardWidget) -> void:
 	var hand_card_count: int = hand_card_widgets.size()

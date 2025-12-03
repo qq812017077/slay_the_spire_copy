@@ -22,7 +22,7 @@ const DEFAULT_WIDTH: int = 1920
 const DEFAULT_HEIGHT: int = 1080
 static var HEIGHT: int
 static var WIDTH: int
-
+static var CARD_DROP_TOP_Y: float 
 #
 static var BIG_TEXT_MODE: bool = false
 static var FAST_MODE: bool = false
@@ -85,6 +85,7 @@ static func initialize_display(_reloaded: bool = false) -> void:
 	print("Screen size: %s, Scale: %f" % [screenSize, scale])
 
 	SCROLL_SPEED = 50 * scale
+	CARD_DROP_TOP_Y = HEIGHT * 0.1
 	
 static func initialize_game_config(_reloaded: bool = false) -> void:
 	gameConfig = ConfigFile.new()

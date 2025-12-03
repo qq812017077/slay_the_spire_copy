@@ -182,7 +182,8 @@ static var purple_orb_flash_vfx: Texture2D = null
 
 # combat
 static var combat_sword: Texture2D = null
-
+static var combat_target_circle: Texture2D = null
+static var combat_target_arrow: Texture2D = null
 # 
 static var SELECT_BANNER: Texture2D = null
 
@@ -662,6 +663,8 @@ static func initialize_combat_ui() -> void:
 	purple_orb_flash_vfx = load("res://arts/slay_the_spire/images/ui/top_panel/energyPurpleVFX.png")
 
 	combat_sword = load("res://arts/slay_the_spire/vfx/combat/sword_texture.tres")
+	combat_target_circle = load("res://arts/slay_the_spire/images/ui/combat/reticleBlock.png")
+	combat_target_arrow = load("res://arts/slay_the_spire/images/ui/combat/reticleArrow.png")
 
 static func loadPortraitImg(url: String) -> Texture2D:
 	return load("res://arts/slay_the_spire/images/1024Portraits/" + url + ".png")

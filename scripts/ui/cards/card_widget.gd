@@ -189,6 +189,7 @@ func update_hovering_logic() -> void:
 func refresh_card_state() -> void:
 	if not CardGame.is_focused:
 		return
+	print("refresh_card_state")
 	var is_mouse_hovered: bool = Rect2(Vector2(), size).has_point(get_local_mouse_position())
 	if current_card_state == ECardState.WAITED and is_mouse_hovered:
 		set_card_hover()
@@ -402,12 +403,15 @@ func _handle_mouse_pressed(_mouse_button: MouseButton) -> void:
 	# print("Mouse pressed on card:", name, "button:", mouse_button)
 	if on_card_clicked.is_valid():
 		on_card_clicked.call(self)
-	current_card_state = ECardState.HOLDING
+	# current_card_state = ECardState.HOLDING
 	
 func _handle_mouse_released(_mouse_button: MouseButton) -> void:
 	# print("Mouse released on card:", name, "button:", mouse_button)
-	current_card_state = ECardState.WAITED
+	# current_card_state = ECardState.WAITED
 	pass
+
+func set_card_waited() -> void:
+	current_card_state = ECardState.WAITED
 
 func set_card_hover() -> void:
 	current_card_state = ECardState.HOVERING

@@ -9,16 +9,23 @@ var normal_cursor: Texture2D
 var clicked_cursor: Texture2D
 var is_pressed: bool = false
 func _ready() -> void:
-    normal_cursor = load(normal_cursor_path)
-    clicked_cursor = load(clicked_cursor_path)
-    
-    Input.set_custom_mouse_cursor(normal_cursor)
+	normal_cursor = load(normal_cursor_path)
+	clicked_cursor = load(clicked_cursor_path)
+	
+	Input.set_custom_mouse_cursor(normal_cursor)
 
 func _process(_delta: float) -> void:
-    var pressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-    if not is_pressed and pressed:
-        Input.set_custom_mouse_cursor(clicked_cursor)
-    elif is_pressed and not pressed:
-        Input.set_custom_mouse_cursor(normal_cursor)
-    
-    is_pressed = pressed
+	var pressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	if not is_pressed and pressed:
+		Input.set_custom_mouse_cursor(clicked_cursor)
+	elif is_pressed and not pressed:
+		Input.set_custom_mouse_cursor(normal_cursor)
+	
+	is_pressed = pressed
+
+func hide_cursor() -> void:
+	# hide the cursor
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
+func show_cursor() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

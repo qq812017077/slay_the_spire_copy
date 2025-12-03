@@ -5,6 +5,9 @@ const HOVER_CARD_POS: float = Settings.DEFAULT_HEIGHT - 50.0
 var CARD_X_COORD_TABLE: Dictionary = {}
 var CARD_Y_OFFSET_TABLE: Dictionary = {}
 
+@export var arrow_container: Control = null
+@export var arrows: Array[Sprite2D] = []
+var is_hovering_drop_zone: bool = false
 
 var hand_card_widgets: Array[CardWidget] = []
 var hovered_card: CardWidget = null
@@ -12,12 +15,21 @@ var is_hovering_card: bool = false
 
 var dragging_card: CardWidget = null
 var is_dragging_card: bool = false
+var is_single_target_mode: bool = false
+
+# arrow
+var arrow_points: PackedVector2Array = PackedVector2Array(
+	[Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0),
+	Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0),
+	Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0),
+	Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+var target_arrow_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	build_pos_table()
+	build_arrow()
 
 func update(delta: float) -> void:
-
 	var cur_hovered_card: CardWidget = null
 	var cur_hovering_card: bool = false
 	for card in hand_card_widgets:
@@ -37,20 +49,67 @@ func update(delta: float) -> void:
 			cur_hovering_card = true
 	
 	if is_dragging_card:
-		dragging_card.set_target_pos(get_local_mouse_position() - dragging_card.size/ 2.0)
-		dragging_card.update_position(delta)
+		update_dragging_card(delta)
 	else:
-		var changed:bool = cur_hovering_card != is_hovering_card or cur_hovered_card != hovered_card
+		var changed: bool = cur_hovering_card != is_hovering_card or cur_hovered_card != hovered_card
 
 		if changed:
 			refresh_layout()
 			if cur_hovering_card:
-				cur_hovered_card.set_target_pos_y(HOVER_CARD_POS- cur_hovered_card.size.y, true)
+				cur_hovered_card.set_target_pos_y(HOVER_CARD_POS - cur_hovered_card.size.y, true)
 				cur_hovered_card.set_target_angle(0.0, true)
 				cur_hovered_card.set_target_scale(1.3333, true)
 				hover_card_push(cur_hovered_card)
 		hovered_card = cur_hovered_card
 		is_hovering_card = cur_hovering_card
+
+	
+
+func update_dragging_card(delta: float) -> void:
+	var target_card_pos: Vector2 = get_local_mouse_position() - dragging_card.size / 2.0
+	if is_hovering_drop_zone:
+		if dragging_card.card.target == AbstractCard.CardTarget.ENEMY or dragging_card.card.target == AbstractCard.CardTarget.SELF_AND_ENEMY:
+			is_single_target_mode = true
+			target_card_pos = Vector2(Settings.WIDTH / 2.0, Settings.HEIGHT - AbstractCard.IMG_HEIGHT * 0.75 / 2.5)
+
+	dragging_card.set_target_pos(target_card_pos)
+	dragging_card.update_position(delta)
+	
+	render_targeting_ui(delta)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		if is_dragging_card:
+			var y: float = event.global_position.y
+			is_hovering_drop_zone = y < (Settings.DEFAULT_HEIGHT - 250.0) * Settings.scale and y > 0.0
+	elif event is InputEventMouseButton:
+		var mouse_event: InputEventMouseButton = event as InputEventMouseButton
+		if mouse_event.button_index != MOUSE_BUTTON_LEFT and mouse_event.button_index != MOUSE_BUTTON_RIGHT:
+			return
+		elif is_dragging_card:
+			if mouse_event.button_index ==  MOUSE_BUTTON_RIGHT:
+				release_card()
+				return 
+		if mouse_event.is_pressed():
+			_on_hand_panel_clicked(mouse_event)
+			# print("mouse pressed ",mouse_event.button_index)
+
+func _on_hand_panel_clicked(mouse_event: InputEventMouseButton) -> void:
+	for card in hand_card_widgets:
+		# check if mouse is inside card
+		if card.z_index == 1 and card.get_global_rect().has_point(mouse_event.global_position):
+			_on_card_clicked(card)
+
+			if not is_dragging_card:
+				# tranverse all card from right to left.
+				for i in range(hand_card_widgets.size() - 1, -1, -1):
+					if hand_card_widgets[i] == card:
+						card.refresh_card_state_once(0.25)
+					elif hand_card_widgets[i].get_global_rect().has_point(mouse_event.global_position):
+						hand_card_widgets[i].set_card_hover()
+						break
+			break
 
 func add_to_hand(card: CardWidget) -> void:
 	# card.on_card_clicked = _on_card_clicked
@@ -62,43 +121,27 @@ func on_combat_start() -> void:
 	
 	hand_card_widgets.clear()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		var mouse_event: InputEventMouseButton = event as InputEventMouseButton
-		if mouse_event.button_index != MOUSE_BUTTON_LEFT and mouse_event.button_index != MOUSE_BUTTON_RIGHT:
-			return
-
-		if mouse_event.is_pressed():
-			_on_hand_panel_clicked(mouse_event)
-			# print("mouse pressed ",mouse_event.button_index)
-
-func _on_hand_panel_clicked(mouse_event: InputEventMouseButton) -> void:
-	for card in hand_card_widgets:
-		# check if mouse is inside card
-		if card.z_index == 1 and card.get_global_rect().has_point(mouse_event.global_position):
-			_on_card_clicked(card)
-			# print("card clicked:", card.name)
-
-			if is_dragging_card == false:
-				for i in range(hand_card_widgets.size()-1, -1, -1):
-					if hand_card_widgets[i] == card:
-						card.refresh_card_state_once(0.25)
-					elif hand_card_widgets[i].get_global_rect().has_point(mouse_event.global_position):
-						hand_card_widgets[i].set_card_hover()
-						break
-			break
+func release_card() -> void:
+	# if hovered_card != null:
+	# 	if hovered_card.card.can_use(player, null):
+	# 		hovered_card.begin_glow()
+		
+	# 	hovered_card.hover_timer = 0.25
+	arrow_container.visible = false
+	is_dragging_card = false
+	CardGame.mouse_cursor.show_cursor()
+	dragging_card.set_card_waited()
+	dragging_card.z_index = 0
+	dragging_card = null
+	refresh_layout()
 
 func _on_card_clicked(card: CardWidget) -> void:
 	if hovered_card != card:
-		return 
+		return
 	
 	# if is hovered card, select or release it
 	if is_dragging_card:
-		is_dragging_card = false
-		dragging_card.z_index = 0
-		dragging_card = null
-		refresh_layout()
-		
+		release_card()
 		# refresh all cards' state after 0.25 second
 		# for card_widget: CardWidget in hand_card_widgets:
 		# 	card_widget.refresh_card_state_once(0.25 if card_widget == card else 0.01)
@@ -107,7 +150,8 @@ func _on_card_clicked(card: CardWidget) -> void:
 		dragging_card = card
 		dragging_card.set_target_angle(0.0, true)
 		dragging_card.set_target_scale(1.3333, true)
-
+		target_arrow_pos = get_global_mouse_position()
+		CardGame.mouse_cursor.hide_cursor()
 
 
 func hover_card_push(card: CardWidget) -> void:
@@ -142,33 +186,26 @@ func hover_card_push(card: CardWidget) -> void:
 		left_push_amt *= 0.25
 		left_slot -= 1
 
-func reset_card_before_moving(card: CardWidget) -> void:
-	if hovered_card == card:
-		release_card()
+# func reset_card_before_moving(card: CardWidget) -> void:
+# 	if hovered_card == card:
+# 		release_card()
 
-	# card.
-	card.stop_glow()
+# 	# card.
+# 	card.stop_glow()
 
-func release_card() -> void:
-	if hovered_card != null:
-		if hovered_card.card.can_use(player, null):
-			hovered_card.begin_glow()
-		
-		hovered_card.hover_timer = 0.25
-	pass
 
+# 
 func refresh_layout() -> void:
-	
-	for relic : AbstractRelic in player.relics:
+	for relic: AbstractRelic in player.relics:
 		relic.on_refresh_hand()
 	
 	var hand_group_size: int = player.hand.group.size()
-	var angle_range : float= 50.0 - ( 10 - hand_group_size) * 5.0
-	var increment_angle : float = angle_range / hand_group_size
-	var sink_start : float = 80.0
-	var sink_range : float = 300.0
+	var angle_range: float = 50.0 - (10 - hand_group_size) * 5.0
+	var increment_angle: float = angle_range / hand_group_size
+	var sink_start: float = 80.0
+	var sink_range: float = 300.0
 	var increment_sink: float = sink_range / hand_group_size / 2.0
-	var middle : int = int(hand_group_size / 2.0)
+	var middle: int = int(hand_group_size / 2.0)
 
 	var even_count: bool = hand_group_size % 2 == 0
 	for i: int in range(hand_group_size):
@@ -185,7 +222,7 @@ func refresh_layout() -> void:
 			t += 1
 		t = int(t * 1.7)
 
-		var target_y : float =Settings.DEFAULT_HEIGHT - sink_start - increment_sink * t
+		var target_y: float = Settings.DEFAULT_HEIGHT - sink_start - increment_sink * t
 		hand_card_widgets[i].set_target_pos(Vector2(CARD_X_COORD_TABLE[hand_group_size][i], target_y) - hand_card_widgets[i].pivot_offset)
 
 	glow_check()
@@ -200,6 +237,7 @@ func glow_check() -> void:
 func stop_glowing():
 	for card_widget: CardWidget in hand_card_widgets:
 		card_widget.stop_glow()
+
 
 func build_pos_table() -> void:
 	var middle_pos_x: float = Settings.DEFAULT_WIDTH / 2.0
@@ -281,3 +319,58 @@ func build_pos_table() -> void:
 	CARD_X_COORD_TABLE[10][7] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 1.8
 	CARD_X_COORD_TABLE[10][8] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 2.4
 	CARD_X_COORD_TABLE[10][9] = middle_pos_x + AbstractCard.IMG_WIDTH_S * 2.9
+
+func build_arrow() -> void:
+	var sprite: Sprite2D
+	if arrow_container == null:
+		arrow_container = Control.new()
+		arrow_container.name = "ArrowContainer"
+		add_child(arrow_container)
+	for i in range(arrow_points.size()-1):
+		sprite = Sprite2D.new()
+		sprite.name = "Circle" + str(i)
+		sprite.texture = ImageMaster.combat_target_circle
+		arrow_container.add_child(sprite)
+		arrows.push_back(sprite)
+	sprite = Sprite2D.new()
+	sprite.name = "Arrow"
+	sprite.texture = ImageMaster.combat_target_arrow
+	arrow_container.add_child(sprite)
+	arrows.push_back(sprite)
+	arrow_container.visible = false
+	arrow_container.z_index = Global.CARD_Z_INDEX + 2
+
+func render_targeting_ui(delta: float) -> void:
+	arrow_container.visible = is_hovering_drop_zone
+	if not is_hovering_drop_zone:
+		return
+	
+	# draw arrow
+	var start_arrow_pos: Vector2 = dragging_card.get_center_position()
+	target_arrow_pos = MathHelper.vec2_lerp_snap(target_arrow_pos, get_global_mouse_position() / Settings.scale, delta * 20.0)
+	# print("target_arrow_pos: " + str(target_arrow_pos) + " get_global_mouse_position():", get_global_mouse_position(), " scale:", Settings.scale)
+	# print("get_global_mouse_position() / Settings.scale:", get_global_mouse_position() / Settings.scale)
+	var control_point: Vector2 = Vector2(start_arrow_pos.x - (target_arrow_pos.x - start_arrow_pos.x) / 4.0, start_arrow_pos.y - (target_arrow_pos.y - start_arrow_pos.y) / 2.0)
+	var arrow_dir: Vector2 = target_arrow_pos - control_point
+	# print("arrow_dir.angle(): " + str(arrow_dir.angle()))
+	draw_curved_line(start_arrow_pos, target_arrow_pos, control_point)
+	
+	var arrow: Sprite2D = arrows[arrow_points.size() - 1]
+	arrow.position = target_arrow_pos
+	arrow.scale = Vector2.ONE * Settings.scale
+	arrow.rotation = arrow_dir.angle() + PI / 2.0
+
+
+
+
+func draw_curved_line(start_arrow_pos: Vector2, end_arrow_pos: Vector2, control_point: Vector2) -> void:
+	var radius: float = 7.0 * Settings.scale
+	var count: int = arrow_points.size() - 1
+	for i in range(count):
+		arrow_points[i] = Beizer.quadratic(start_arrow_pos, control_point, end_arrow_pos, i / float(count))
+		radius += 0.4 * Settings.scale
+		arrows[i].position = arrow_points[i]
+		arrows[i].scale = Vector2(radius / 18.0, radius / 18.0)
+		var dir: Vector2 = arrow_points[i] - arrow_points[i-1] if i != 0 else control_point - arrow_points[i]
+		arrows[i].rotation = dir.angle() + PI / 2.0
+

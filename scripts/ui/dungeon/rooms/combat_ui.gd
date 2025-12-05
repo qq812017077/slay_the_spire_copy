@@ -47,6 +47,10 @@ func _process(delta: float) -> void:
 	combat_deck_panel.update_draw_pile(player.draw_pile.group.size())
 	discard_pile_panel.update_discard_pile(player.discard_pile.group.size())
 
+	var is_using_card: bool = hand_panel.hovered_card != null or hand_panel.dragging_card != null
+	end_turn_button.can_use = not is_using_card
+
+
 func load_player(_player: AbstractPlayer) -> void:
 	player = _player
 	energy_panel.load_player(player)

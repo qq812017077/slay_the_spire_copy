@@ -63,19 +63,22 @@ func update(delta: float) -> void:
 		hovered_card = cur_hovered_card
 		is_hovering_card = cur_hovering_card
 
-	
 
 func update_dragging_card(delta: float) -> void:
-	var target_card_pos: Vector2 = get_local_mouse_position() - dragging_card.size / 2.0
-	if is_hovering_drop_zone:
-		if dragging_card.card.target == AbstractCard.CardTarget.ENEMY or dragging_card.card.target == AbstractCard.CardTarget.SELF_AND_ENEMY:
-			is_single_target_mode = true
-			target_card_pos = Vector2(Settings.WIDTH / 2.0, Settings.HEIGHT - AbstractCard.IMG_HEIGHT * 0.75 / 2.5)
+	if is_single_target_mode:
+		render_targeting_ui(delta)
+	else:
+		var target_card_pos: Vector2 = get_local_mouse_position() - dragging_card.size / 2.0
+		if is_hovering_drop_zone:
+			if dragging_card.card.target == AbstractCard.CardTarget.ENEMY or dragging_card.card.target == AbstractCard.CardTarget.SELF_AND_ENEMY:
+				is_single_target_mode = true
+				arrow_container.visible = true
+				target_card_pos = Vector2(Settings.WIDTH / 2.0, Settings.HEIGHT - AbstractCard.IMG_HEIGHT * 0.75 / 2.5)
 
-	dragging_card.set_target_pos(target_card_pos)
-	dragging_card.update_position(delta)
+		dragging_card.set_target_pos(target_card_pos)
 	
-	render_targeting_ui(delta)
+	
+	dragging_card.update_position(delta)
 
 
 func _input(event: InputEvent) -> void:
@@ -98,9 +101,9 @@ func _input(event: InputEvent) -> void:
 func _on_hand_panel_clicked(mouse_event: InputEventMouseButton) -> void:
 	for card in hand_card_widgets:
 		# check if mouse is inside card
+		# print("check card:", card.name, " z_index:", card.z_index, " has point:", card.get_global_rect().has_point(mouse_event.global_position))
 		if card.z_index == 1 and card.get_global_rect().has_point(mouse_event.global_position):
 			_on_card_clicked(card)
-
 			if not is_dragging_card:
 				# tranverse all card from right to left.
 				for i in range(hand_card_widgets.size() - 1, -1, -1):
@@ -129,6 +132,7 @@ func release_card() -> void:
 	# 	hovered_card.hover_timer = 0.25
 	arrow_container.visible = false
 	is_dragging_card = false
+	is_single_target_mode = false
 	CardGame.mouse_cursor.show_cursor()
 	dragging_card.set_card_waited()
 	dragging_card.z_index = 0
@@ -341,16 +345,20 @@ func build_arrow() -> void:
 	arrow_container.z_index = Global.CARD_Z_INDEX + 2
 
 func render_targeting_ui(delta: float) -> void:
-	arrow_container.visible = is_hovering_drop_zone
-	if not is_hovering_drop_zone:
-		return
+	# arrow_container.visible = is_hovering_drop_zone
+	# if not is_hovering_drop_zone:
+	# 	return
 	
 	# draw arrow
 	var start_arrow_pos: Vector2 = dragging_card.get_center_position()
 	target_arrow_pos = MathHelper.vec2_lerp_snap(target_arrow_pos, get_global_mouse_position() / Settings.scale, delta * 20.0)
 	# print("target_arrow_pos: " + str(target_arrow_pos) + " get_global_mouse_position():", get_global_mouse_position(), " scale:", Settings.scale)
 	# print("get_global_mouse_position() / Settings.scale:", get_global_mouse_position() / Settings.scale)
-	var control_point: Vector2 = Vector2(start_arrow_pos.x - (target_arrow_pos.x - start_arrow_pos.x) / 4.0, start_arrow_pos.y - (target_arrow_pos.y - start_arrow_pos.y) / 2.0)
+	
+	var control_point: Vector2 = Vector2.ZERO
+	control_point.x = start_arrow_pos.x - (target_arrow_pos.x - start_arrow_pos.x) / 4.0
+	control_point.y = target_arrow_pos.y + (target_arrow_pos.y - start_arrow_pos.y) / 2.0
+	
 	var arrow_dir: Vector2 = target_arrow_pos - control_point
 	# print("arrow_dir.angle(): " + str(arrow_dir.angle()))
 	draw_curved_line(start_arrow_pos, target_arrow_pos, control_point)
@@ -373,4 +381,3 @@ func draw_curved_line(start_arrow_pos: Vector2, end_arrow_pos: Vector2, control_
 		arrows[i].scale = Vector2(radius / 18.0, radius / 18.0)
 		var dir: Vector2 = arrow_points[i] - arrow_points[i-1] if i != 0 else control_point - arrow_points[i]
 		arrows[i].rotation = dir.angle() + PI / 2.0
-

@@ -52,7 +52,7 @@ func update(delta: float) -> void:
 		update_dragging_card(delta)
 	else:
 		var changed: bool = cur_hovering_card != is_hovering_card or cur_hovered_card != hovered_card
-
+		
 		if changed:
 			refresh_layout()
 			if cur_hovering_card:
@@ -154,7 +154,8 @@ func _on_card_clicked(card: CardWidget) -> void:
 		dragging_card = card
 		dragging_card.set_target_angle(0.0, true)
 		dragging_card.set_target_scale(1.3333, true)
-		target_arrow_pos = get_global_mouse_position()
+		target_arrow_pos = dragging_card.get_center_position()
+		draw_curved_line(target_arrow_pos, target_arrow_pos)
 		CardGame.mouse_cursor.hide_cursor()
 
 
@@ -355,23 +356,14 @@ func render_targeting_ui(delta: float) -> void:
 	# print("target_arrow_pos: " + str(target_arrow_pos) + " get_global_mouse_position():", get_global_mouse_position(), " scale:", Settings.scale)
 	# print("get_global_mouse_position() / Settings.scale:", get_global_mouse_position() / Settings.scale)
 	
+	draw_curved_line(start_arrow_pos, target_arrow_pos)
+
+
+func draw_curved_line(start_arrow_pos: Vector2, end_arrow_pos: Vector2) -> void:
 	var control_point: Vector2 = Vector2.ZERO
-	control_point.x = start_arrow_pos.x - (target_arrow_pos.x - start_arrow_pos.x) / 4.0
-	control_point.y = target_arrow_pos.y + (target_arrow_pos.y - start_arrow_pos.y) / 2.0
-	
-	var arrow_dir: Vector2 = target_arrow_pos - control_point
-	# print("arrow_dir.angle(): " + str(arrow_dir.angle()))
-	draw_curved_line(start_arrow_pos, target_arrow_pos, control_point)
-	
-	var arrow: Sprite2D = arrows[arrow_points.size() - 1]
-	arrow.position = target_arrow_pos
-	arrow.scale = Vector2.ONE * Settings.scale
-	arrow.rotation = arrow_dir.angle() + PI / 2.0
+	control_point.x = start_arrow_pos.x - (end_arrow_pos.x - start_arrow_pos.x) / 4.0
+	control_point.y = end_arrow_pos.y + (end_arrow_pos.y - start_arrow_pos.y) / 2.0
 
-
-
-
-func draw_curved_line(start_arrow_pos: Vector2, end_arrow_pos: Vector2, control_point: Vector2) -> void:
 	var radius: float = 7.0 * Settings.scale
 	var count: int = arrow_points.size() - 1
 	for i in range(count):
@@ -381,3 +373,9 @@ func draw_curved_line(start_arrow_pos: Vector2, end_arrow_pos: Vector2, control_
 		arrows[i].scale = Vector2(radius / 18.0, radius / 18.0)
 		var dir: Vector2 = arrow_points[i] - arrow_points[i-1] if i != 0 else control_point - arrow_points[i]
 		arrows[i].rotation = dir.angle() + PI / 2.0
+
+	var arrow_dir: Vector2 = target_arrow_pos - control_point
+	var arrow: Sprite2D = arrows[arrow_points.size() - 1]
+	arrow.position = target_arrow_pos
+	arrow.scale = Vector2.ONE * Settings.scale
+	arrow.rotation = arrow_dir.angle() + PI / 2.0

@@ -127,7 +127,7 @@ func on_combat_start() -> void:
 func release_card() -> void:
 	# if hovered_card != null:
 	# 	if hovered_card.card.can_use(player, null):
-	# 		hovered_card.begin_glow()
+	#		hovered_card.begin_glow()
 		
 	# 	hovered_card.hover_timer = 0.25
 	arrow_container.visible = false

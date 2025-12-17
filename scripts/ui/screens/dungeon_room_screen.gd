@@ -11,11 +11,12 @@ static func initialize():
 @export var city_scene_prefab: PackedScene = null
 @export var beyond_scene_prefab: PackedScene = null
 @export var ending_scene_prefab: PackedScene = null
+@export var monster_prefab: PackedScene = null
 @export_group("")
 @export var player_widget: PlayerWidget = null
 @export var scene_container: Control = null
 @export var cur_scene: AbstractScene = null
-
+@export var monster_widgets: Array[MonsterWidget] = []
 
 @export_group("Campfire UI")
 @export var campfire_ui: CampfireUI = null
@@ -158,6 +159,8 @@ func load_room(_room: AbstractRoom) -> void:
 		player_widget.get_into_combat()
 		cur_scene.close_effects()
 	else:
+		# combat room
+		build_monsters(cur_room.monsters)
 		wait_timer = 0.1
 		cur_scene.refresh_scene()
 		cur_scene.open_combat_room()
@@ -300,3 +303,9 @@ func show_monster_intent() -> void:
 func apply_start_of_combat_logic() -> void:
 	player_widget.get_into_combat()
 	combat_ui.on_combat_start()
+
+
+func build_monsters(monster_group: MonsterGroup) -> void:
+	
+	for monster: AbstractMonster in monster_group.monsters:
+		print("monster name:" , monster.name)

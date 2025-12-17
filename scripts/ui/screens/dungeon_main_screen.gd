@@ -247,7 +247,7 @@ func open_screen(screen_type: ScreenType, instant: bool = true) -> void:
 				overlay_menu.cancel_button.hide_button(true)
 			else:
 				overlay_menu.cancel_button.show_button_with_name(DungeonMapScreen.TEXT[1])
-
+		
 		ScreenType.SHOP:
 			dungeon_shop_screen.open()
 			overlay_menu.show_black()

@@ -33,5 +33,12 @@ extends Resource
 
 @export var slime_anim : SpriteFrames = null
 @export var guardian_anim : SpriteFrames = null
-@export var hexaghost_anim : SpriteFrames = null
-@export_group("")
+@export var hexaghost_anim : SpriteFrames = null    
+@export_group("")   
+
+
+
+func get_monster_anim(monster_id: String) -> SpriteFrames:
+    if monster_id == "AcidSlime_S":
+        return acid_slime_s_anim
+    return acid_slime_s_anim

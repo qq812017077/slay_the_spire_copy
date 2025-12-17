@@ -18,7 +18,7 @@ var move_name: String = ""
 var move_history: Array[int] = []
 var move: EnemyMoveInfo = null
 
-
+var anims: Array[String] = []
 func _init(_name: String, _id: String, _maxHealth: int, _imgUrl: String, _ignoreBlights: bool=false):
     name = _name
     id = _id

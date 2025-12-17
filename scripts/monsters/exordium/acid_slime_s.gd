@@ -27,3 +27,4 @@ func get_move(num: int)-> void:
 		set_move_default(1, Intent.ATTACK,  damage_list[0].base)
 	else:
 		set_move_default(2, Intent.DEBUFF,  damage_list[0].base)
+

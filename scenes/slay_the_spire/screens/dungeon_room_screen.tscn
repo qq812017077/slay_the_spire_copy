@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b877xf08pys47"]
+[gd_scene load_steps=13 format=3 uid="uid://b877xf08pys47"]
 
 [ext_resource type="Script" uid="uid://7rmfy6vifrq3" path="res://scripts/ui/screens/dungeon_room_screen.gd" id="1_3p215"]
 [ext_resource type="PackedScene" uid="uid://bgqowskwv2lb3" path="res://scenes/slay_the_spire/scenes/BottomScene.tscn" id="2_r3vk0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8158w6gux25d" path="res://scenes/slay_the_spire/scenes/city_scene.tscn" id="3_tahci"]
 [ext_resource type="PackedScene" uid="uid://cfulyde0da5lr" path="res://scenes/slay_the_spire/scenes/beyond_scene.tscn" id="4_osp2q"]
 [ext_resource type="PackedScene" uid="uid://cpj7v2adgk8c7" path="res://scenes/slay_the_spire/scenes/end_scene.tscn" id="5_8knfj"]
+[ext_resource type="PackedScene" uid="uid://fkdvdoxjrbx6" path="res://scenes/slay_the_spire/monsters/monster.tscn" id="6_8knfj"]
 [ext_resource type="PackedScene" uid="uid://7vnx8mwyo167" path="res://scenes/slay_the_spire/ui/rooms/event_ui.tscn" id="7_fer8d"]
 [ext_resource type="PackedScene" uid="uid://cmdqtt5u7yw87" path="res://scenes/slay_the_spire/ui/rooms/shop_ui.tscn" id="7_hx8xb"]
 [ext_resource type="PackedScene" uid="uid://dvryxw6nvwiq7" path="res://scenes/slay_the_spire/player/player.tscn" id="7_osp2q"]
@@ -25,6 +26,7 @@ bottom_scene_prefab = ExtResource("2_r3vk0")
 city_scene_prefab = ExtResource("3_tahci")
 beyond_scene_prefab = ExtResource("4_osp2q")
 ending_scene_prefab = ExtResource("5_8knfj")
+monster_prefab = ExtResource("6_8knfj")
 player_widget = NodePath("Player")
 scene_container = NodePath("SceneContainer")
 campfire_ui = NodePath("CampfireUI")

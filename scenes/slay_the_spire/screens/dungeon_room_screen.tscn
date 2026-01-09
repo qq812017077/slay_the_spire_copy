@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bh60bar22wm1c" path="res://scenes/slay_the_spire/ui/rooms/treasure_ui.tscn" id="9_a5dpk"]
 [ext_resource type="PackedScene" uid="uid://c641ar22rtoiv" path="res://scenes/slay_the_spire/ui/rooms/combat_ui.tscn" id="13_6kras"]
 
-[node name="DungeonRoomScreen" type="Control" node_paths=PackedStringArray("player_widget", "scene_container", "campfire_ui", "event_ui", "shop_ui", "treasure_ui", "combat_ui")]
+[node name="DungeonRoomScreen" type="Control" node_paths=PackedStringArray("player_widget", "scene_container", "monster_container", "campfire_ui", "event_ui", "shop_ui", "treasure_ui", "combat_ui")]
 process_mode = 1
 layout_mode = 3
 anchors_preset = 0
@@ -29,6 +29,7 @@ ending_scene_prefab = ExtResource("5_8knfj")
 monster_prefab = ExtResource("6_8knfj")
 player_widget = NodePath("Player")
 scene_container = NodePath("SceneContainer")
+monster_container = NodePath("MonsterContainer")
 campfire_ui = NodePath("CampfireUI")
 event_ui = NodePath("EventUI")
 shop_ui = NodePath("ShopUI")
@@ -46,6 +47,10 @@ layout_mode = 0
 
 [node name="Player" parent="." instance=ExtResource("7_osp2q")]
 layout_mode = 0
+
+[node name="MonsterContainer" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
 
 [node name="CombatUI" parent="." instance=ExtResource("13_6kras")]
 layout_mode = 0

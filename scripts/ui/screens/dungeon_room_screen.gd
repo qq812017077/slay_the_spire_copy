@@ -16,6 +16,7 @@ static func initialize():
 @export var player_widget: PlayerWidget = null
 @export var scene_container: Control = null
 @export var cur_scene: AbstractScene = null
+@export var monster_container: Control = null
 @export var monster_widgets: Array[MonsterWidget] = []
 
 @export_group("Campfire UI")
@@ -34,9 +35,9 @@ static func initialize():
 @export_group("Combat UI")
 @export var combat_ui: CombatUI = null
 @export_group("")
+
 var dungeon: AbstractDungeons = null
 var cur_room: AbstractRoom = null
-var monsters: Array[AbstractMonster] = []
 var sprite_by_region: Dictionary = {}
 
 # combat 
@@ -118,6 +119,7 @@ func load_room(_room: AbstractRoom) -> void:
 	player_widget.reset()
 	# cur_room = TreasureRoom.new()
 	cur_room.on_player_entry()
+	recycle_monsters()
 	# print("cur_room.type:", AbstractRoom.RoomType.find_key(cur_room.type))
 	# cur_room.type = AbstractRoom.RoomType.SHOP
 	if cur_room.type == AbstractRoom.RoomType.NEOW:
@@ -218,8 +220,8 @@ func update_combat(delta: float) -> void:
 		print("close combat ui")
 		combat_ui.close()
 
-	for monster: AbstractMonster in monsters:
-		monster.update_combat()
+	for monster_widget: MonsterWidget in monster_widgets:
+		monster_widget.monster.update_combat()
 	
 	if wait_timer > 0.0:
 		if CardGame.action_manager.cur_action != null or not CardGame.action_manager.is_empty():
@@ -306,6 +308,16 @@ func apply_start_of_combat_logic() -> void:
 
 
 func build_monsters(monster_group: MonsterGroup) -> void:
-	
 	for monster: AbstractMonster in monster_group.monsters:
 		print("monster name:" , monster.name)
+		var monster_widget: MonsterWidget = MonsterWidget.allocate()
+
+		monster_widget.load_monster(monster)
+
+
+func recycle_monsters() -> void:
+	for widget: MonsterWidget in monster_widgets:
+		MonsterWidget.recycle(widget)
+	monster_widgets.clear()
+	
+
